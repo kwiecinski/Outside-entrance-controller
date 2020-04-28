@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name user-panel-receiver-rescue)(type Legacy)(uri ${KIPRJMOD}/user-panel-receiver-rescue.lib)(options "")(descr ""))
+)

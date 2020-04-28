@@ -1769,7 +1769,7 @@ Wire Wire Line
 Text Label 9800 3100 2    50   ~ 0
 gate_sw
 $Comp
-L My-Lib:433MHz-Transmitter U3
+L outside-entrance-controller-rescue:433MHz-Transmitter-My-Lib U3
 U 1 1 5E5B9D94
 P 9000 4100
 F 0 "U3" V 8850 4200 50  0000 L CNN
@@ -1800,17 +1800,6 @@ Wire Wire Line
 	8900 4300 8850 4300
 Wire Wire Line
 	8850 4300 8850 4500
-$Comp
-L power:+5V #PWR0148
-U 1 1 5E5DAED9
-P 8850 3900
-F 0 "#PWR0148" H 8850 3750 50  0001 C CNN
-F 1 "+5V" H 8850 4050 50  0000 C CNN
-F 2 "" H 8850 3900 50  0001 C CNN
-F 3 "" H 8850 3900 50  0001 C CNN
-	1    8850 3900
-	1    0    0    -1  
-$EndComp
 Text Label 8150 4100 0    50   ~ 0
 radio_tx
 $Comp
@@ -1833,17 +1822,6 @@ F 1 "GND" H 10255 4127 50  0000 C CNN
 F 2 "" H 10250 4300 50  0001 C CNN
 F 3 "" H 10250 4300 50  0001 C CNN
 	1    10250 4300
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+5V #PWR0150
-U 1 1 5E5DDE2E
-P 10250 4000
-F 0 "#PWR0150" H 10250 3850 50  0001 C CNN
-F 1 "+5V" H 10250 4150 50  0000 C CNN
-F 2 "" H 10250 4000 50  0001 C CNN
-F 3 "" H 10250 4000 50  0001 C CNN
-	1    10250 4000
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -1886,4 +1864,28 @@ Text Label 6650 3800 2    50   ~ 0
 RA6
 Text Label 6650 3900 2    50   ~ 0
 RA7
+$Comp
+L power:+12V #PWR0148
+U 1 1 5E66F15E
+P 8850 3900
+F 0 "#PWR0148" H 8850 3750 50  0001 C CNN
+F 1 "+12V" H 8865 4073 50  0000 C CNN
+F 2 "" H 8850 3900 50  0001 C CNN
+F 3 "" H 8850 3900 50  0001 C CNN
+	1    8850 3900
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+12V #PWR0150
+U 1 1 5E67065A
+P 10250 3900
+F 0 "#PWR0150" H 10250 3750 50  0001 C CNN
+F 1 "+12V" H 10265 4073 50  0000 C CNN
+F 2 "" H 10250 3900 50  0001 C CNN
+F 3 "" H 10250 3900 50  0001 C CNN
+	1    10250 3900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10250 3900 10250 4000
 $EndSCHEMATC

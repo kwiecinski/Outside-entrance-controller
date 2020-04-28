@@ -1,0 +1,506 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"378 /opt/microchip/xc8/v2.10/pic/include/pic16f819.h
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 378:     struct {
+[s S14 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S14 . TMR1IF TMR2IF CCP1IF SSPIF . ADIF ]
+"377
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 377: typedef union {
+[u S13 `S14 1 ]
+[n S13 . . ]
+"387
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 387: extern volatile PIR1bits_t PIR1bits __attribute__((address(0x00C)));
+[v _PIR1bits `VS13 ~T0 @X0 0 e@12 ]
+"438
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 438: extern volatile unsigned short TMR1 __attribute__((address(0x00E)));
+[v _TMR1 `Vus ~T0 @X0 0 e@14 ]
+"172
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 172:     struct {
+[s S6 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S6 . RA0 RA1 RA2 RA3 RA4 RA5 RA6 RA7 ]
+"171
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 171: typedef union {
+[u S5 `S6 1 ]
+[n S5 . . ]
+"183
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 183: extern volatile PORTAbits_t PORTAbits __attribute__((address(0x005)));
+[v _PORTAbits `VS5 ~T0 @X0 0 e@5 ]
+"11 ./crc16.h
+[; ;./crc16.h: 11: unsigned int CRC16(unsigned char *data_tab_ptr, unsigned char size);
+[v _CRC16 `(ui ~T0 @X0 0 ef2`*uc`uc ]
+"465 /opt/microchip/xc8/v2.10/pic/include/pic16f819.h
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 465:     struct {
+[s S18 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 ]
+[n S18 . TMR1ON TMR1CS nT1SYNC T1OSCEN T1CKPS ]
+"472
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 472:     struct {
+[s S19 :4 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S19 . . T1CKPS0 T1CKPS1 ]
+"477
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 477:     struct {
+[s S20 :2 `uc 1 :1 `uc 1 ]
+[n S20 . . T1INSYNC ]
+"464
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 464: typedef union {
+[u S17 `S18 1 `S19 1 `S20 1 ]
+[n S17 . . . . ]
+"482
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 482: extern volatile T1CONbits_t T1CONbits __attribute__((address(0x010)));
+[v _T1CONbits `VS17 ~T0 @X0 0 e@16 ]
+"316
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 316:     struct {
+[s S12 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S12 . RBIF INTF TMR0IF RBIE INTE TMR0IE PEIE GIE ]
+"315
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 315: typedef union {
+[u S11 `S12 1 ]
+[n S11 . . ]
+"327
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 327: extern volatile INTCONbits_t INTCONbits __attribute__((address(0x00B)));
+[v _INTCONbits `VS11 ~T0 @X0 0 e@11 ]
+"54 /opt/microchip/xc8/v2.10/pic/include/pic16f819.h
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 54: __asm("INDF equ 00h");
+[; <" INDF equ 00h ;# ">
+"61
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 61: __asm("TMR0 equ 01h");
+[; <" TMR0 equ 01h ;# ">
+"68
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 68: __asm("PCL equ 02h");
+[; <" PCL equ 02h ;# ">
+"75
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 75: __asm("STATUS equ 03h");
+[; <" STATUS equ 03h ;# ">
+"161
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 161: __asm("FSR equ 04h");
+[; <" FSR equ 04h ;# ">
+"168
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 168: __asm("PORTA equ 05h");
+[; <" PORTA equ 05h ;# ">
+"230
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 230: __asm("PORTB equ 06h");
+[; <" PORTB equ 06h ;# ">
+"292
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 292: __asm("PCLATH equ 0Ah");
+[; <" PCLATH equ 0Ah ;# ">
+"312
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 312: __asm("INTCON equ 0Bh");
+[; <" INTCON equ 0Bh ;# ">
+"374
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 374: __asm("PIR1 equ 0Ch");
+[; <" PIR1 equ 0Ch ;# ">
+"419
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 419: __asm("PIR2 equ 0Dh");
+[; <" PIR2 equ 0Dh ;# ">
+"440
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 440: __asm("TMR1 equ 0Eh");
+[; <" TMR1 equ 0Eh ;# ">
+"447
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 447: __asm("TMR1L equ 0Eh");
+[; <" TMR1L equ 0Eh ;# ">
+"454
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 454: __asm("TMR1H equ 0Fh");
+[; <" TMR1H equ 0Fh ;# ">
+"461
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 461: __asm("T1CON equ 010h");
+[; <" T1CON equ 010h ;# ">
+"529
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 529: __asm("TMR2 equ 011h");
+[; <" TMR2 equ 011h ;# ">
+"536
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 536: __asm("T2CON equ 012h");
+[; <" T2CON equ 012h ;# ">
+"607
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 607: __asm("SSPBUF equ 013h");
+[; <" SSPBUF equ 013h ;# ">
+"614
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 614: __asm("SSPCON equ 014h");
+[; <" SSPCON equ 014h ;# ">
+"684
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 684: __asm("CCPR1 equ 015h");
+[; <" CCPR1 equ 015h ;# ">
+"691
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 691: __asm("CCPR1L equ 015h");
+[; <" CCPR1L equ 015h ;# ">
+"698
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 698: __asm("CCPR1H equ 016h");
+[; <" CCPR1H equ 016h ;# ">
+"705
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 705: __asm("CCP1CON equ 017h");
+[; <" CCP1CON equ 017h ;# ">
+"763
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 763: __asm("ADRESH equ 01Eh");
+[; <" ADRESH equ 01Eh ;# ">
+"770
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 770: __asm("ADCON0 equ 01Fh");
+[; <" ADCON0 equ 01Fh ;# ">
+"866
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 866: __asm("OPTION_REG equ 081h");
+[; <" OPTION_REG equ 081h ;# ">
+"936
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 936: __asm("TRISA equ 085h");
+[; <" TRISA equ 085h ;# ">
+"998
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 998: __asm("TRISB equ 086h");
+[; <" TRISB equ 086h ;# ">
+"1060
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 1060: __asm("PIE1 equ 08Ch");
+[; <" PIE1 equ 08Ch ;# ">
+"1105
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 1105: __asm("PIE2 equ 08Dh");
+[; <" PIE2 equ 08Dh ;# ">
+"1126
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 1126: __asm("PCON equ 08Eh");
+[; <" PCON equ 08Eh ;# ">
+"1160
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 1160: __asm("OSCCON equ 08Fh");
+[; <" OSCCON equ 08Fh ;# ">
+"1209
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 1209: __asm("OSCTUNE equ 090h");
+[; <" OSCTUNE equ 090h ;# ">
+"1267
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 1267: __asm("PR2 equ 092h");
+[; <" PR2 equ 092h ;# ">
+"1274
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 1274: __asm("SSPADD equ 093h");
+[; <" SSPADD equ 093h ;# ">
+"1281
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 1281: __asm("SSPSTAT equ 094h");
+[; <" SSPSTAT equ 094h ;# ">
+"1450
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 1450: __asm("ADRESL equ 09Eh");
+[; <" ADRESL equ 09Eh ;# ">
+"1457
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 1457: __asm("ADCON1 equ 09Fh");
+[; <" ADCON1 equ 09Fh ;# ">
+"1516
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 1516: __asm("EEDATA equ 010Ch");
+[; <" EEDATA equ 010Ch ;# ">
+"1523
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 1523: __asm("EEADR equ 010Dh");
+[; <" EEADR equ 010Dh ;# ">
+"1530
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 1530: __asm("EEDATH equ 010Eh");
+[; <" EEDATH equ 010Eh ;# ">
+"1537
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 1537: __asm("EEADRH equ 010Fh");
+[; <" EEADRH equ 010Fh ;# ">
+"1544
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 1544: __asm("EECON1 equ 018Ch");
+[; <" EECON1 equ 018Ch ;# ">
+"1595
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 1595: __asm("EECON2 equ 018Dh");
+[; <" EECON2 equ 018Dh ;# ">
+"14 ./main.h
+[p x FOSC = INTOSCIO ]
+"15
+[p x WDTE = OFF ]
+"16
+[p x PWRTE = OFF ]
+"17
+[p x MCLRE = ON ]
+"18
+[p x BOREN = OFF ]
+"19
+[p x LVP = OFF ]
+"20
+[p x CPD = OFF ]
+"21
+[p x WRT = OFF ]
+"22
+[p x CCPMX = RB2 ]
+"23
+[p x CP = OFF ]
+"13 ./interrupts.h
+[; ;./interrupts.h: 13: volatile unsigned char g_key_timer;
+[v _g_key_timer `Vuc ~T0 @X0 1 e ]
+"21 manchester_encode.c
+[; ;manchester_encode.c: 21: void WaitManchesterT(void)
+[v _WaitManchesterT `(v ~T0 @X0 1 ef ]
+"22
+[; ;manchester_encode.c: 22: {
+{
+[e :U _WaitManchesterT ]
+[f ]
+"23
+[; ;manchester_encode.c: 23:     PIR1bits.CCP1IF=0;
+[e = . . _PIR1bits 0 2 -> -> 0 `i `uc ]
+"24
+[; ;manchester_encode.c: 24:     TMR1=0;
+[e = _TMR1 -> -> 0 `i `us ]
+"25
+[; ;manchester_encode.c: 25:     while(PIR1bits.CCP1IF==0);
+[e $U 69  ]
+[e :U 70 ]
+[e :U 69 ]
+[e $ == -> . . _PIR1bits 0 2 `i -> 0 `i 70  ]
+[e :U 71 ]
+"27
+[; ;manchester_encode.c: 27: }
+[e :UE 68 ]
+}
+"29
+[; ;manchester_encode.c: 29: void ManchesterSendOne(void)
+[v _ManchesterSendOne `(v ~T0 @X0 1 ef ]
+"30
+[; ;manchester_encode.c: 30: {
+{
+[e :U _ManchesterSendOne ]
+[f ]
+"31
+[; ;manchester_encode.c: 31:  PORTAbits.RA2=0;
+[e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
+"32
+[; ;manchester_encode.c: 32:  WaitManchesterT();
+[e ( _WaitManchesterT ..  ]
+"33
+[; ;manchester_encode.c: 33:  PORTAbits.RA2=1;
+[e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
+"34
+[; ;manchester_encode.c: 34:  WaitManchesterT();
+[e ( _WaitManchesterT ..  ]
+"35
+[; ;manchester_encode.c: 35: }
+[e :UE 72 ]
+}
+"37
+[; ;manchester_encode.c: 37: void ManchesterSendZero(void)
+[v _ManchesterSendZero `(v ~T0 @X0 1 ef ]
+"38
+[; ;manchester_encode.c: 38: {
+{
+[e :U _ManchesterSendZero ]
+[f ]
+"39
+[; ;manchester_encode.c: 39:  PORTAbits.RA2=1;
+[e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
+"40
+[; ;manchester_encode.c: 40:  WaitManchesterT();
+[e ( _WaitManchesterT ..  ]
+"41
+[; ;manchester_encode.c: 41:  PORTAbits.RA2=0;
+[e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
+"42
+[; ;manchester_encode.c: 42:  WaitManchesterT();
+[e ( _WaitManchesterT ..  ]
+"43
+[; ;manchester_encode.c: 43: }
+[e :UE 73 ]
+}
+"45
+[; ;manchester_encode.c: 45: void ManchesteEncode(unsigned char *data_to_send, unsigned char data_lenght)
+[v _ManchesteEncode `(v ~T0 @X0 1 ef2`*uc`uc ]
+"46
+[; ;manchester_encode.c: 46: {
+{
+[e :U _ManchesteEncode ]
+"45
+[; ;manchester_encode.c: 45: void ManchesteEncode(unsigned char *data_to_send, unsigned char data_lenght)
+[v _data_to_send `*uc ~T0 @X0 1 r1 ]
+[v _data_lenght `uc ~T0 @X0 1 r2 ]
+"46
+[; ;manchester_encode.c: 46: {
+[f ]
+"47
+[; ;manchester_encode.c: 47:  signed char bit_loop, data_loop;
+[v _bit_loop `c ~T0 @X0 1 a ]
+[v _data_loop `c ~T0 @X0 1 a ]
+"49
+[; ;manchester_encode.c: 49:  for(data_loop=0;data_loop<data_lenght;data_loop++)
+{
+[e = _data_loop -> -> 0 `i `c ]
+[e $U 78  ]
+[e :U 75 ]
+"50
+[; ;manchester_encode.c: 50:  {
+{
+"51
+[; ;manchester_encode.c: 51:   for(bit_loop=7;bit_loop>=0;bit_loop--)
+{
+[e = _bit_loop -> -> 7 `i `c ]
+[e $ >= -> _bit_loop `i -> 0 `i 79  ]
+[e $U 80  ]
+[e :U 79 ]
+"52
+[; ;manchester_encode.c: 52:   {
+{
+"53
+[; ;manchester_encode.c: 53:    if(((*(data_to_send+data_loop))>>bit_loop) & 0x01)
+[e $ ! != & >> -> *U + _data_to_send * -> -> _data_loop `i `x -> -> # *U _data_to_send `i `x `i -> _bit_loop `i -> 1 `i -> 0 `i 82  ]
+"54
+[; ;manchester_encode.c: 54:    {
+{
+"55
+[; ;manchester_encode.c: 55:     ManchesterSendOne();
+[e ( _ManchesterSendOne ..  ]
+"56
+[; ;manchester_encode.c: 56:    }else
+}
+[e $U 83  ]
+[e :U 82 ]
+"57
+[; ;manchester_encode.c: 57:     ManchesterSendZero();
+[e ( _ManchesterSendZero ..  ]
+[e :U 83 ]
+"58
+[; ;manchester_encode.c: 58:    }
+}
+[e -- _bit_loop -> -> 1 `i `c ]
+[e $ >= -> _bit_loop `i -> 0 `i 79  ]
+[e :U 80 ]
+}
+"59
+[; ;manchester_encode.c: 59:  }
+}
+[e ++ _data_loop -> -> 1 `i `c ]
+[e :U 78 ]
+[e $ < -> _data_loop `i -> _data_lenght `i 75  ]
+[e :U 76 ]
+}
+"61
+[; ;manchester_encode.c: 61:     PORTAbits.RA2=1;
+[e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
+"62
+[; ;manchester_encode.c: 62: }
+[e :UE 74 ]
+}
+"64
+[; ;manchester_encode.c: 64: void SendFrame(unsigned char type)
+[v _SendFrame `(v ~T0 @X0 1 ef1`uc ]
+"65
+[; ;manchester_encode.c: 65: {
+{
+[e :U _SendFrame ]
+"64
+[; ;manchester_encode.c: 64: void SendFrame(unsigned char type)
+[v _type `uc ~T0 @X0 1 r1 ]
+"65
+[; ;manchester_encode.c: 65: {
+[f ]
+"67
+[; ;manchester_encode.c: 67:     unsigned char data_table[6 +4];
+[v _data_table `uc ~T0 @X0 -> 10 `i a ]
+"70
+[; ;manchester_encode.c: 70:  data_table[0]=0xFE;
+[e = *U + &U _data_table * -> -> -> 0 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 254 `i `uc ]
+"71
+[; ;manchester_encode.c: 71:     data_table[1]=0xFE;
+[e = *U + &U _data_table * -> -> -> 1 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 254 `i `uc ]
+"72
+[; ;manchester_encode.c: 72:     data_table[2]=0xFE;
+[e = *U + &U _data_table * -> -> -> 2 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 254 `i `uc ]
+"73
+[; ;manchester_encode.c: 73:     data_table[3]=0xFE;
+[e = *U + &U _data_table * -> -> -> 3 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 254 `i `uc ]
+"75
+[; ;manchester_encode.c: 75:  data_table[4]='$';
+[e = *U + &U _data_table * -> -> -> 4 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 36 `ui `uc ]
+"77
+[; ;manchester_encode.c: 77:     if(type==1)
+[e $ ! == -> _type `i -> 1 `i 85  ]
+"78
+[; ;manchester_encode.c: 78:     {
+{
+"79
+[; ;manchester_encode.c: 79:         data_table[5]='G';
+[e = *U + &U _data_table * -> -> -> 5 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 71 `ui `uc ]
+"80
+[; ;manchester_encode.c: 80:         data_table[6]='0';
+[e = *U + &U _data_table * -> -> -> 6 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 48 `ui `uc ]
+"82
+[; ;manchester_encode.c: 82:     }else if(type==0)
+}
+[e $U 86  ]
+[e :U 85 ]
+[e $ ! == -> _type `i -> 0 `i 87  ]
+"83
+[; ;manchester_encode.c: 83:     {
+{
+"84
+[; ;manchester_encode.c: 84:         data_table[5]='W';
+[e = *U + &U _data_table * -> -> -> 5 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 87 `ui `uc ]
+"85
+[; ;manchester_encode.c: 85:         data_table[6]='0';
+[e = *U + &U _data_table * -> -> -> 6 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 48 `ui `uc ]
+"87
+[; ;manchester_encode.c: 87:     }else if(type==2)
+}
+[e $U 88  ]
+[e :U 87 ]
+[e $ ! == -> _type `i -> 2 `i 89  ]
+"88
+[; ;manchester_encode.c: 88:     {
+{
+"89
+[; ;manchester_encode.c: 89:         data_table[5]='W';
+[e = *U + &U _data_table * -> -> -> 5 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 87 `ui `uc ]
+"90
+[; ;manchester_encode.c: 90:         data_table[6]='B';
+[e = *U + &U _data_table * -> -> -> 6 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 66 `ui `uc ]
+"91
+[; ;manchester_encode.c: 91:     }
+}
+[e :U 89 ]
+[e :U 88 ]
+[e :U 86 ]
+"95
+[; ;manchester_encode.c: 95:      unsigned int crc_val;
+[v _crc_val `ui ~T0 @X0 1 a ]
+"96
+[; ;manchester_encode.c: 96:     crc_val=CRC16(&data_table[5],2);
+[e = _crc_val ( _CRC16 (2 , &U *U + &U _data_table * -> -> -> 5 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 2 `i `uc ]
+"97
+[; ;manchester_encode.c: 97:     data_table[7]=crc_val>>8;
+[e = *U + &U _data_table * -> -> -> 7 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> >> _crc_val -> 8 `i `uc ]
+"98
+[; ;manchester_encode.c: 98:  data_table[8]=crc_val & 0x00FF;
+[e = *U + &U _data_table * -> -> -> 8 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> & _crc_val -> -> 255 `i `ui `uc ]
+"99
+[; ;manchester_encode.c: 99:  data_table[9]='&';
+[e = *U + &U _data_table * -> -> -> 9 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 38 `ui `uc ]
+"102
+[; ;manchester_encode.c: 102:     T1CONbits.TMR1ON=1;
+[e = . . _T1CONbits 0 0 -> -> 1 `i `uc ]
+"103
+[; ;manchester_encode.c: 103:     INTCONbits.TMR0IE=0;
+[e = . . _INTCONbits 0 5 -> -> 0 `i `uc ]
+"106
+[; ;manchester_encode.c: 106:     unsigned char i;
+[v _i `uc ~T0 @X0 1 a ]
+"107
+[; ;manchester_encode.c: 107:     for(i=0;i<3;i++)
+{
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 3 `i 90  ]
+[e $U 91  ]
+[e :U 90 ]
+"108
+[; ;manchester_encode.c: 108:     {
+{
+"109
+[; ;manchester_encode.c: 109:         ManchesteEncode(&data_table[0], 6 +4);
+[e ( _ManchesteEncode (2 , &U *U + &U _data_table * -> -> -> 0 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> + -> 6 `i -> 4 `i `uc ]
+"111
+[; ;manchester_encode.c: 111:         WaitManchesterT();
+[e ( _WaitManchesterT ..  ]
+"112
+[; ;manchester_encode.c: 112:         WaitManchesterT();
+[e ( _WaitManchesterT ..  ]
+"113
+[; ;manchester_encode.c: 113:         WaitManchesterT();
+[e ( _WaitManchesterT ..  ]
+"114
+[; ;manchester_encode.c: 114:     }
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 3 `i 90  ]
+[e :U 91 ]
+}
+"115
+[; ;manchester_encode.c: 115:     T1CONbits.TMR1ON=0;
+[e = . . _T1CONbits 0 0 -> -> 0 `i `uc ]
+"116
+[; ;manchester_encode.c: 116:     INTCONbits.TMR0IE=1;
+[e = . . _INTCONbits 0 5 -> -> 1 `i `uc ]
+"117
+[; ;manchester_encode.c: 117: }
+[e :UE 84 ]
+}
