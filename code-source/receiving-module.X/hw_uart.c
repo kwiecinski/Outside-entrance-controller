@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "main.h"
 #include "hw_uart.h"
-
+/*
 #define BaudRate    9600
 #define SPBRG_Reg_Val   (_XTAL_FREQ/BaudRate)/64-1
 
@@ -23,7 +23,7 @@ void SendUART(char data)
 }
 
 
-/*
+
 unsigned char DigitToString(unsigned char digit)
 {
     unsigned char i;
@@ -49,7 +49,6 @@ void SendArrayUART(unsigned char *data, unsigned char size)
     {
         SendUART(*(data+i));
     }
-    
 }
 
 
@@ -71,7 +70,7 @@ void SendDigitUART(unsigned int data)
         SendUART(DigitToString(data%10));
    
     }
-        
-
+    SendUART('\n');
+    SendUART('\r');
 }
 */

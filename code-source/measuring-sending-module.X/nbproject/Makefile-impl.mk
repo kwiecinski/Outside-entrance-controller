@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=ManchesterSend.X
+PROJECTNAME=measuring-sending-module.X
 
 # Active Configuration
 DEFAULTCONF=default

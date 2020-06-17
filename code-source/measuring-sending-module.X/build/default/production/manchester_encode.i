@@ -1191,7 +1191,7 @@ extern __bank0 __bit __timeout;
 #pragma config CP = OFF
 # 10 "manchester_encode.c" 2
 # 1 "./manchester_encode.h" 1
-# 18 "./manchester_encode.h"
+# 20 "./manchester_encode.h"
 void SendFrame(unsigned char type);
 # 11 "manchester_encode.c" 2
 # 1 "./sw_uart.h" 1
@@ -1208,13 +1208,7 @@ void InterruptConfig(void);
 
 volatile unsigned char g_key_timer;
 # 14 "manchester_encode.c" 2
-
-
-
-
-
-
-
+# 23 "manchester_encode.c"
 void WaitManchesterT(void)
 {
     PIR1bits.CCP1IF=0;
@@ -1298,17 +1292,22 @@ void SendFrame(unsigned char type)
 
     T1CONbits.TMR1ON=1;
     INTCONbits.TMR0IE=0;
+    PORTAbits.RA0=1;
 
-
-    unsigned char i;
+    unsigned char i,j;
     for(i=0;i<3;i++)
     {
         ManchesteEncode(&data_table[0], 6 +4);
 
-        WaitManchesterT();
-        WaitManchesterT();
-        WaitManchesterT();
+
+
+        for(j=0;j<6;j++)
+        {
+            WaitManchesterT();
+        }
     }
+
+    PORTAbits.RA0=0;
     T1CONbits.TMR1ON=0;
     INTCONbits.TMR0IE=1;
 }

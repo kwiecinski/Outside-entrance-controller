@@ -16,6 +16,8 @@
 #define MANCH_LOW        PORTAbits.RA2=0
 #define MANCH_HIGH       PORTAbits.RA2=1
 
+
+
 //baud rate can be set in InterruptConfig function
 
 void WaitManchesterT(void)
@@ -101,18 +103,22 @@ void SendFrame(unsigned char type)
     //disable timer0 to not affect timer1
     T1CONbits.TMR1ON=1;
     INTCONbits.TMR0IE=0;
-    
+    TRANSCIEVER_ON;
     //sending the same data 3 times to minimize frame loss
-    unsigned char i;
+    unsigned char i,j;
     for(i=0;i<3;i++)        
     {
         ManchesteEncode(&data_table[0], DATA_SIZE+4);
         //little time interval between send (grater than 2*ManchesterT)
         //to prevent frame overlap
-        WaitManchesterT();
-        WaitManchesterT();
-        WaitManchesterT();
+        
+        for(j=0;j<6;j++)
+        {
+            WaitManchesterT();
+        }
     }
+    
+    TRANSCIEVER_OFF;
     T1CONbits.TMR1ON=0;
     INTCONbits.TMR0IE=1;
 }

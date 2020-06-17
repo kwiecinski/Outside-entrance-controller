@@ -1,98 +1,98 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"8 crc16.c
-[; ;crc16.c: 8: unsigned int CRC16(unsigned char *data_tab_ptr, unsigned char size)
+"7 crc16.c
+[; ;crc16.c: 7: unsigned int CRC16(unsigned char *data_tab_ptr, unsigned char size)
 [v _CRC16 `(ui ~T0 @X0 1 ef2`*uc`uc ]
-"9
-[; ;crc16.c: 9: {
+"8
+[; ;crc16.c: 8: {
 {
 [e :U _CRC16 ]
-"8
-[; ;crc16.c: 8: unsigned int CRC16(unsigned char *data_tab_ptr, unsigned char size)
+"7
+[; ;crc16.c: 7: unsigned int CRC16(unsigned char *data_tab_ptr, unsigned char size)
 [v _data_tab_ptr `*uc ~T0 @X0 1 r1 ]
 [v _size `uc ~T0 @X0 1 r2 ]
-"9
-[; ;crc16.c: 9: {
+"8
+[; ;crc16.c: 8: {
 [f ]
-"10
-[; ;crc16.c: 10:     const unsigned int generator = 0x1021;
+"9
+[; ;crc16.c: 9:     const unsigned int generator = 0x1021;
 [v F5 `Cui ~T0 @X0 1 s generator ]
 [i F5
 -> -> 4129 `i `ui
 ]
-"11
-[; ;crc16.c: 11:     unsigned int crc = 0;
+"10
+[; ;crc16.c: 10:     unsigned int crc = 0;
 [v _crc `ui ~T0 @X0 1 a ]
 [e = _crc -> -> 0 `i `ui ]
-"12
-[; ;crc16.c: 12:     unsigned char k,i;
+"11
+[; ;crc16.c: 11:     unsigned char k,i;
 [v _k `uc ~T0 @X0 1 a ]
 [v _i `uc ~T0 @X0 1 a ]
-"14
-[; ;crc16.c: 14:     for(k=0;k<size;k++)
+"13
+[; ;crc16.c: 13:     for(k=0;k<size;k++)
 {
 [e = _k -> -> 0 `i `uc ]
 [e $U 5  ]
 [e :U 2 ]
-"15
-[; ;crc16.c: 15:     {
+"14
+[; ;crc16.c: 14:     {
 {
-"16
-[; ;crc16.c: 16:         crc ^= (*(data_tab_ptr+k) << 8);
+"15
+[; ;crc16.c: 15:         crc ^= (*(data_tab_ptr+k) << 8);
 [e =^ _crc -> << -> *U + _data_tab_ptr * -> -> _k `i `x -> -> # *U _data_tab_ptr `i `x `i -> 8 `i `ui ]
-"18
-[; ;crc16.c: 18:         for (i=0;i<8;i++)
+"17
+[; ;crc16.c: 17:         for (i=0;i<8;i++)
 {
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 8 `i 6  ]
 [e $U 7  ]
 [e :U 6 ]
+"18
+[; ;crc16.c: 18:         {
+{
 "19
-[; ;crc16.c: 19:         {
-{
-"20
-[; ;crc16.c: 20:             if ((crc&0x8000)!=0)
+[; ;crc16.c: 19:             if ((crc&0x8000)!=0)
 [e $ ! != & _crc -> 32768 `ui -> -> 0 `i `ui 9  ]
-"21
-[; ;crc16.c: 21:             {
+"20
+[; ;crc16.c: 20:             {
 {
-"22
-[; ;crc16.c: 22:                  crc=(crc<<1)^generator;
+"21
+[; ;crc16.c: 21:                  crc=(crc<<1)^generator;
 [e = _crc ^ << _crc -> 1 `i F5 ]
-"23
-[; ;crc16.c: 23:             }else
+"22
+[; ;crc16.c: 22:             }else
 }
 [e $U 10  ]
 [e :U 9 ]
-"24
-[; ;crc16.c: 24:             {
+"23
+[; ;crc16.c: 23:             {
 {
-"25
-[; ;crc16.c: 25:                 crc<<=1;
+"24
+[; ;crc16.c: 24:                 crc<<=1;
 [e =<< _crc -> -> 1 `i `ui ]
-"26
-[; ;crc16.c: 26:             }
+"25
+[; ;crc16.c: 25:             }
 }
 [e :U 10 ]
-"27
-[; ;crc16.c: 27:         }
+"26
+[; ;crc16.c: 26:         }
 }
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 8 `i 6  ]
 [e :U 7 ]
 }
-"28
-[; ;crc16.c: 28:     }
+"27
+[; ;crc16.c: 27:     }
 }
 [e ++ _k -> -> 1 `i `uc ]
 [e :U 5 ]
 [e $ < -> _k `i -> _size `i 2  ]
 [e :U 3 ]
 }
-"30
-[; ;crc16.c: 30:     return crc;
+"29
+[; ;crc16.c: 29:     return crc;
 [e ) _crc ]
 [e $UE 1  ]
-"31
-[; ;crc16.c: 31: }
+"30
+[; ;crc16.c: 30: }
 [e :UE 1 ]
 }

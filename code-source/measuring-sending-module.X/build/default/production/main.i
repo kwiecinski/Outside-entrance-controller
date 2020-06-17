@@ -1206,7 +1206,7 @@ volatile unsigned char g_key_timer;
 void SendUART(unsigned char data);
 # 14 "main.c" 2
 # 1 "./manchester_encode.h" 1
-# 18 "./manchester_encode.h"
+# 20 "./manchester_encode.h"
 void SendFrame(unsigned char type);
 # 15 "main.c" 2
 # 1 "./input_handler.h" 1

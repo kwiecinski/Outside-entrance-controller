@@ -2378,11 +2378,7 @@ void I2C_Master_Write(unsigned data);
 unsigned char I2C_Master_Read(unsigned char ack);
 # 3 "pcf8583.c" 2
 # 1 "./main.h" 1
-
-
-
-
-
+# 13 "./main.h"
 #pragma config FOSC = INTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
@@ -2397,6 +2393,34 @@ unsigned char I2C_Master_Read(unsigned char ack);
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
+# 48 "./main.h"
+enum button_press
+{
+    k_set_rtc_short,
+    k_set_rtc_long,
+    k_set_time1_short,
+    k_set_time1_long,
+    k_set_time2_short,
+    k_set_time2_long,
+    k_set_right_short,
+    k_set_right_long,
+    k_set_up_short,
+    k_set_up_long,
+    k_set_down_short,
+    k_set_down_long,
+    k_no_key_press
+};
+
+enum days
+{
+    monday,
+    tuesday,
+    wedenesday,
+    thursday,
+    friday,
+    saturday,
+    sunday
+};
 
 typedef struct
 {
@@ -2408,7 +2432,7 @@ typedef struct
 
 typedef struct
 {
- unsigned char seconds,minutes,hours,day,month,year;
+ signed char seconds,minutes,hours,day,month,year,weekday;
 
 }TimeStruct;
 
@@ -2416,8 +2440,8 @@ typedef struct
 {
     unsigned char klock, pin, lock_long_press;
     volatile unsigned char *port;
-    void (*button_short_function)(void);
-    void (*button_long_function)(void);
+    unsigned char button_short_function;
+    unsigned char button_long_function;
 
 }KeyStruct;
 
@@ -2431,27 +2455,35 @@ typedef struct
     KeyStruct *set_down;
 
 }KeyPointerStruct;
+
+typedef struct MenuParamStruct
+{
+    unsigned char max_limit,max_limit1,letter,min_limit,min_limit1;
+    signed char param, param1;
+    struct MenuParamStruct *next_menu;
+
+}MenuParamStruct;
+
+typedef struct
+{
+    MenuParamStruct *hours_minutes_ptr;
+    MenuParamStruct *day_month_ptr;
+    MenuParamStruct *year_ptr;
+    MenuParamStruct *time_limit_work_day_1_ptr;
+    MenuParamStruct *time_limit_work_day_2_ptr;
+    MenuParamStruct *time_limit_free_day_1_ptr;
+    MenuParamStruct *time_limit_free_day_2_ptr;
+
+}MenuParamPonterStruct;
 # 4 "pcf8583.c" 2
 # 1 "./hw_uart.h" 1
-
-
-
-
-
-
-
-
+# 11 "./hw_uart.h"
 void UART_Init(void);
 void SendUART(char data);
 void SendDigitUART(unsigned int data);
 void SendArrayUART(unsigned char *data, unsigned char size);
 # 5 "pcf8583.c" 2
 # 25 "pcf8583.c"
-unsigned char DEC_2_STR(unsigned char dec)
-{
-    return (0x30+dec);
-}
-
 unsigned char BCD_2_DEC(unsigned char bcd)
 {
     return (((bcd>>4)*10) + (bcd&0x0F));
@@ -2461,25 +2493,6 @@ unsigned char DEC_2_BCD(unsigned char dec)
 {
     return (((dec/10)<<4)+(dec%10));
 }
-
-void Time_To_UART(TimeStruct *time_struct_ptr)
-{
-    SendUART('s');
-    SendDigitUART(time_struct_ptr->seconds);
-    SendUART('m');
-    SendDigitUART(time_struct_ptr->minutes);
-    SendUART('h');
-    SendDigitUART(time_struct_ptr->hours);
-    SendUART('D');
-    SendDigitUART(time_struct_ptr->day);
-    SendUART('M');
-    SendDigitUART(time_struct_ptr->month);
-    SendUART('Y');
-    SendDigitUART(time_struct_ptr->year);
-    SendUART(0x0d);
-}
-
-
 
 void PCF8583_Write_Byte(unsigned char address, unsigned char data)
 {
@@ -2515,6 +2528,8 @@ void PCF8583_Read_Time_Date(TimeStruct *time_struct_ptr)
  unsigned char bcd_day;
  unsigned char bcd_mon;
 
+    INTCONbits.GIE=0;
+
  I2C_Master_Start();
  I2C_Master_Write(0xA0);
  I2C_Master_Write(0x02);
@@ -2532,6 +2547,7 @@ void PCF8583_Read_Time_Date(TimeStruct *time_struct_ptr)
  time_struct_ptr->hours = BCD_2_DEC(bcd_hrs & 0x3F);
  time_struct_ptr->day = BCD_2_DEC(bcd_day & 0x3F);
  time_struct_ptr->month = BCD_2_DEC(bcd_mon & 0x1F);
+    time_struct_ptr->weekday = bcd_mon>>5;
 
  year_bits = bcd_day >> 6;
 
@@ -2544,4 +2560,41 @@ void PCF8583_Read_Time_Date(TimeStruct *time_struct_ptr)
  time_struct_ptr->year = year;
  PCF8583_Write_Byte(0x10, year);
 
+    INTCONbits.GIE=1;
+}
+
+
+void PCF8583_Set_Date_Time(TimeStruct *time_struct_ptr)
+{
+ unsigned char bcd_sec;
+ unsigned char bcd_min;
+ unsigned char bcd_hrs;
+ unsigned char bcd_day;
+ unsigned char bcd_mon;
+
+ INTCONbits.GIE=0;
+
+ bcd_sec = DEC_2_BCD(time_struct_ptr->seconds);
+ bcd_min = DEC_2_BCD(time_struct_ptr->minutes);
+ bcd_hrs = DEC_2_BCD(time_struct_ptr->hours);
+ bcd_day = DEC_2_BCD(time_struct_ptr->day) | (time_struct_ptr->year<<6);
+ bcd_mon = DEC_2_BCD(time_struct_ptr->month & 0b00011111) |
+              (time_struct_ptr->weekday<<5);
+
+ PCF8583_Write_Byte(0x00, 0x80);
+
+ I2C_Master_Start();
+ I2C_Master_Write(0xA0);
+ I2C_Master_Write(0x02);
+ I2C_Master_Write(bcd_sec);
+ I2C_Master_Write(bcd_min);
+ I2C_Master_Write(bcd_hrs);
+ I2C_Master_Write(bcd_day);
+ I2C_Master_Write(bcd_mon);
+ I2C_Master_Stop();
+
+ PCF8583_Write_Byte(0x10,time_struct_ptr->year);
+ PCF8583_Write_Byte(0x00, 0x00);
+
+    INTCONbits.GIE=1;
 }

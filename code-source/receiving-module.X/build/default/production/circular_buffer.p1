@@ -227,137 +227,135 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3370
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 3370: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"6 circular_buffer.c
-[; ;circular_buffer.c: 6: unsigned char FrameBuffer(unsigned char *data,unsigned char mode)
+"13 circular_buffer.c
+[; ;circular_buffer.c: 13: unsigned char FrameBuffer(unsigned char *data,unsigned char mode)
 [v _FrameBuffer `(uc ~T0 @X0 1 ef2`*uc`uc ]
-"7
-[; ;circular_buffer.c: 7: {
+"14
+[; ;circular_buffer.c: 14: {
 {
 [e :U _FrameBuffer ]
-"6
-[; ;circular_buffer.c: 6: unsigned char FrameBuffer(unsigned char *data,unsigned char mode)
+"13
+[; ;circular_buffer.c: 13: unsigned char FrameBuffer(unsigned char *data,unsigned char mode)
 [v _data `*uc ~T0 @X0 1 r1 ]
 [v _mode `uc ~T0 @X0 1 r2 ]
-"7
-[; ;circular_buffer.c: 7: {
-[f ]
-"8
-[; ;circular_buffer.c: 8:  static unsigned char Buffer[30];
-[v F1210 `uc ~T0 @X0 -> 30 `i s Buffer ]
-"9
-[; ;circular_buffer.c: 9:  static unsigned char ReadPointer,WritePointer,
-[v F1211 `uc ~T0 @X0 1 s ReadPointer ]
-[v F1212 `uc ~T0 @X0 1 s WritePointer ]
-"10
-[; ;circular_buffer.c: 10:      WritePointerMem;
-[v F1213 `uc ~T0 @X0 1 s WritePointerMem ]
-"12
-[; ;circular_buffer.c: 12:  if(mode==1)
-[e $ ! == -> _mode `i -> 1 `i 135  ]
-"13
-[; ;circular_buffer.c: 13:  {
-{
 "14
-[; ;circular_buffer.c: 14:   WritePointerMem=WritePointer;
-[e = F1213 F1212 ]
+[; ;circular_buffer.c: 14: {
+[f ]
 "15
-[; ;circular_buffer.c: 15:   WritePointer++;
-[e ++ F1212 -> -> 1 `i `uc ]
+[; ;circular_buffer.c: 15:  static unsigned char buffer[30];
+[v F1210 `uc ~T0 @X0 -> 30 `i s buffer ]
 "16
-[; ;circular_buffer.c: 16:   if(WritePointer==30)
-[e $ ! == -> F1212 `i -> 30 `i 136  ]
-"17
-[; ;circular_buffer.c: 17:   {
-{
+[; ;circular_buffer.c: 16:  static unsigned char read_pointer, write_pointer, write_pointer_mem;
+[v F1211 `uc ~T0 @X0 1 s read_pointer ]
+[v F1212 `uc ~T0 @X0 1 s write_pointer ]
+[v F1213 `uc ~T0 @X0 1 s write_pointer_mem ]
 "18
-[; ;circular_buffer.c: 18:    WritePointer=0;
-[e = F1212 -> -> 0 `i `uc ]
+[; ;circular_buffer.c: 18:  if(mode==1)
+[e $ ! == -> _mode `i -> 1 `i 135  ]
 "19
-[; ;circular_buffer.c: 19:   }
+[; ;circular_buffer.c: 19:  {
+{
+"20
+[; ;circular_buffer.c: 20:   write_pointer_mem=write_pointer;
+[e = F1213 F1212 ]
+"21
+[; ;circular_buffer.c: 21:   write_pointer++;
+[e ++ F1212 -> -> 1 `i `uc ]
+"23
+[; ;circular_buffer.c: 23:   if(write_pointer==30)
+[e $ ! == -> F1212 `i -> 30 `i 136  ]
+"24
+[; ;circular_buffer.c: 24:   {
+{
+"25
+[; ;circular_buffer.c: 25:    write_pointer=0;
+[e = F1212 -> -> 0 `i `uc ]
+"26
+[; ;circular_buffer.c: 26:   }
 }
 [e :U 136 ]
-"20
-[; ;circular_buffer.c: 20:   if(WritePointer==ReadPointer)
+"27
+[; ;circular_buffer.c: 27:   if(write_pointer==read_pointer)
 [e $ ! == -> F1212 `i -> F1211 `i 137  ]
-"21
-[; ;circular_buffer.c: 21:   {
+"28
+[; ;circular_buffer.c: 28:   {
 {
-"22
-[; ;circular_buffer.c: 22:    WritePointer=WritePointerMem;
+"29
+[; ;circular_buffer.c: 29:    write_pointer=write_pointer_mem;
 [e = F1212 F1213 ]
-"23
-[; ;circular_buffer.c: 23:    return 0xFE;
+"30
+[; ;circular_buffer.c: 30:    return 0xFE;
 [e ) -> -> 254 `i `uc ]
 [e $UE 134  ]
-"24
-[; ;circular_buffer.c: 24:   }
+"31
+[; ;circular_buffer.c: 31:   }
 }
 [e :U 137 ]
-"26
-[; ;circular_buffer.c: 26:   Buffer[WritePointer]=*data;
+"33
+[; ;circular_buffer.c: 33:   buffer[write_pointer]=*data;
 [e = *U + &U F1210 * -> F1212 `ux -> -> # *U &U F1210 `ui `ux *U _data ]
-"28
-[; ;circular_buffer.c: 28:   return 1;
+"35
+[; ;circular_buffer.c: 35:   return 1;
 [e ) -> -> 1 `i `uc ]
 [e $UE 134  ]
-"30
-[; ;circular_buffer.c: 30:  }else
+"37
+[; ;circular_buffer.c: 37:  }else
 }
 [e $U 138  ]
 [e :U 135 ]
-"31
-[; ;circular_buffer.c: 31:  {
-{
-"32
-[; ;circular_buffer.c: 32:   if(WritePointer!=ReadPointer)
-[e $ ! != -> F1212 `i -> F1211 `i 139  ]
-"33
-[; ;circular_buffer.c: 33:   {
-{
-"34
-[; ;circular_buffer.c: 34:    ReadPointer++;
-[e ++ F1211 -> -> 1 `i `uc ]
-"35
-[; ;circular_buffer.c: 35:    if(ReadPointer==30)
-[e $ ! == -> F1211 `i -> 30 `i 140  ]
-"36
-[; ;circular_buffer.c: 36:    {
-{
-"37
-[; ;circular_buffer.c: 37:     ReadPointer=0;
-[e = F1211 -> -> 0 `i `uc ]
 "38
-[; ;circular_buffer.c: 38:    }
+[; ;circular_buffer.c: 38:  {
+{
+"39
+[; ;circular_buffer.c: 39:   if(write_pointer!=read_pointer)
+[e $ ! != -> F1212 `i -> F1211 `i 139  ]
+"40
+[; ;circular_buffer.c: 40:   {
+{
+"41
+[; ;circular_buffer.c: 41:    read_pointer++;
+[e ++ F1211 -> -> 1 `i `uc ]
+"42
+[; ;circular_buffer.c: 42:    if(read_pointer==30)
+[e $ ! == -> F1211 `i -> 30 `i 140  ]
+"43
+[; ;circular_buffer.c: 43:    {
+{
+"44
+[; ;circular_buffer.c: 44:     read_pointer=0;
+[e = F1211 -> -> 0 `i `uc ]
+"45
+[; ;circular_buffer.c: 45:    }
 }
 [e :U 140 ]
-"39
-[; ;circular_buffer.c: 39:    *data=Buffer[ReadPointer];
+"46
+[; ;circular_buffer.c: 46:    *data=buffer[read_pointer];
 [e = *U _data *U + &U F1210 * -> F1211 `ux -> -> # *U &U F1210 `ui `ux ]
-"40
-[; ;circular_buffer.c: 40:    return 1;
+"47
+[; ;circular_buffer.c: 47:    return 1;
 [e ) -> -> 1 `i `uc ]
 [e $UE 134  ]
-"42
-[; ;circular_buffer.c: 42:   }else
+"49
+[; ;circular_buffer.c: 49:   }else
 }
 [e $U 141  ]
 [e :U 139 ]
-"43
-[; ;circular_buffer.c: 43:   {
+"50
+[; ;circular_buffer.c: 50:   {
 {
-"44
-[; ;circular_buffer.c: 44:    return 0xFF;
+"51
+[; ;circular_buffer.c: 51:    return 0xFF;
 [e ) -> -> 255 `i `uc ]
 [e $UE 134  ]
-"45
-[; ;circular_buffer.c: 45:   }
+"52
+[; ;circular_buffer.c: 52:   }
 }
 [e :U 141 ]
-"46
-[; ;circular_buffer.c: 46:  }
+"53
+[; ;circular_buffer.c: 53:  }
 }
 [e :U 138 ]
-"47
-[; ;circular_buffer.c: 47: }
+"54
+[; ;circular_buffer.c: 54: }
 [e :UE 134 ]
 }

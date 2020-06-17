@@ -1,4 +1,12 @@
+/* 
+ * 
+ * 
+ *
+ * 
+ */
+
 #include <xc.h>
+
 #include "main.h"
 #include "inits.h"
 #include "utils.h"
@@ -14,53 +22,26 @@
 #include "menu.h"
 #include "key-handler.h"
 
-
 void main(void) 
 {  
     Global_Inits();
     InterruptConfig();
     Init_I2C();
-    UART_Init();
-    
-    DataStruct DataRCV;
-    //TimeStruct time;  
-    //time.seconds=0;
-    //RTC_init(&time);
-    
-    g_display_text[0]=1;
-    g_display_text[1]='f';
-    g_display_text[2]='c';
-    g_display_text[3]=4;
-    g_decimal_point=0b0101;
-    
+
+    DataStruct data_rcv;
     KeyPointerStruct keydef;
-    Button_Init(&keydef);
-    
+    MenuParamPonterStruct menudef;
     TimeStruct time;
+    
+    Button_Init(&keydef);
+    Menu_Init(&menudef);
+    
+   
+    
     
     while(1)
     {   
-        Button_Handler(&keydef);
-        
-        
-        /*
-        if(g_generic_timer==0)
-        {
-         PCF8583_Read_Time_Date(&time);
-         SendUART(time.minutes);
-            SendUART(5);
-            g_generic_timer=4000;
-        }
-         */
-       //  INTCONbits.GIE=0; 
-        // PCF8583_Read_Time_Date(&time);
-        //__delay_ms(400);
-        //INTCONbits.GIE=1; 
-
-        // Time_To_UART(&time);
-        
-       // CheckEvent(&DataRCV);
-        
-        ProcessRCVData(&DataRCV);
+        ProcessRCVData(&data_rcv,&time,&menudef);
+        Select_Menu(&menudef,&keydef,&time);
     }
 }

@@ -14,6 +14,8 @@
 #define GATE            1
 #define WICKET_BELL     2
 
+#define TRANSCIEVER_ON   PORTAbits.RA0=1
+#define TRANSCIEVER_OFF  PORTAbits.RA0=0
 
 void SendFrame(unsigned char type);
 

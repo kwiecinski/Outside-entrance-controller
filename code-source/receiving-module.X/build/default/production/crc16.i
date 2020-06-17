@@ -13,7 +13,6 @@
 
 
 
-
 unsigned int CRC16(unsigned char *data_tab_ptr, unsigned char size)
 {
     const unsigned int generator = 0x1021;

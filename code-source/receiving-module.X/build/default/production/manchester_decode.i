@@ -2369,11 +2369,7 @@ extern __bank0 __bit __timeout;
 # 28 "/opt/microchip/xc8/v2.10/pic/include/xc.h" 2 3
 # 2 "manchester_decode.c" 2
 # 1 "./main.h" 1
-
-
-
-
-
+# 13 "./main.h"
 #pragma config FOSC = INTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
@@ -2388,6 +2384,34 @@ extern __bank0 __bit __timeout;
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
+# 48 "./main.h"
+enum button_press
+{
+    k_set_rtc_short,
+    k_set_rtc_long,
+    k_set_time1_short,
+    k_set_time1_long,
+    k_set_time2_short,
+    k_set_time2_long,
+    k_set_right_short,
+    k_set_right_long,
+    k_set_up_short,
+    k_set_up_long,
+    k_set_down_short,
+    k_set_down_long,
+    k_no_key_press
+};
+
+enum days
+{
+    monday,
+    tuesday,
+    wedenesday,
+    thursday,
+    friday,
+    saturday,
+    sunday
+};
 
 typedef struct
 {
@@ -2399,7 +2423,7 @@ typedef struct
 
 typedef struct
 {
- unsigned char seconds,minutes,hours,day,month,year;
+ signed char seconds,minutes,hours,day,month,year,weekday;
 
 }TimeStruct;
 
@@ -2407,8 +2431,8 @@ typedef struct
 {
     unsigned char klock, pin, lock_long_press;
     volatile unsigned char *port;
-    void (*button_short_function)(void);
-    void (*button_long_function)(void);
+    unsigned char button_short_function;
+    unsigned char button_long_function;
 
 }KeyStruct;
 
@@ -2422,26 +2446,39 @@ typedef struct
     KeyStruct *set_down;
 
 }KeyPointerStruct;
+
+typedef struct MenuParamStruct
+{
+    unsigned char max_limit,max_limit1,letter,min_limit,min_limit1;
+    signed char param, param1;
+    struct MenuParamStruct *next_menu;
+
+}MenuParamStruct;
+
+typedef struct
+{
+    MenuParamStruct *hours_minutes_ptr;
+    MenuParamStruct *day_month_ptr;
+    MenuParamStruct *year_ptr;
+    MenuParamStruct *time_limit_work_day_1_ptr;
+    MenuParamStruct *time_limit_work_day_2_ptr;
+    MenuParamStruct *time_limit_free_day_1_ptr;
+    MenuParamStruct *time_limit_free_day_2_ptr;
+
+}MenuParamPonterStruct;
 # 3 "manchester_decode.c" 2
 # 1 "./manchester_decode.h" 1
-# 13 "./manchester_decode.h"
-void ManchesterDecode(unsigned char *EdgeDir, unsigned int *PulseTime);
-void ProcessRCVData(DataStruct *DataRCV);
-unsigned char CheckEvent(DataStruct *DataRCV);
+# 11 "./manchester_decode.h"
+void ManchesterDecode(unsigned char *edge_dir, unsigned int *pulse_time);
+void ProcessRCVData(DataStruct *DataRCV, TimeStruct *time, MenuParamPonterStruct *time_limit);
+unsigned char Check_Time_Date(TimeStruct *time, MenuParamPonterStruct *time_limit);
 # 4 "manchester_decode.c" 2
 # 1 "./circular_buffer.h" 1
 # 11 "./circular_buffer.h"
 unsigned char FrameBuffer(unsigned char *data,unsigned char mode);
 # 5 "manchester_decode.c" 2
 # 1 "./hw_uart.h" 1
-
-
-
-
-
-
-
-
+# 11 "./hw_uart.h"
 void UART_Init(void);
 void SendUART(char data);
 void SendDigitUART(unsigned int data);
@@ -2454,50 +2491,75 @@ unsigned int CRC16(unsigned char *data_tab_ptr, unsigned char size);
 # 1 "./interrupts.h" 1
 # 18 "./interrupts.h"
 void InterruptConfig(void);
-volatile unsigned char ISR_ACK;
-volatile unsigned int PWM_Freq, Timer1, g_button_timer, g_generic_timer;
+
+volatile unsigned char g_reciver_ccp2_isr_fire_flag, g_display_controll;
+volatile unsigned int g_pwm_freq, g_button_timer, g_generic_timer;
+
 unsigned char g_display_text[4];
 unsigned char g_decimal_point;
 # 8 "manchester_decode.c" 2
 # 1 "./melody.h" 1
-# 11 "./melody.h"
-void Wait_ms(unsigned int time);
-void PlayRing(unsigned char diode);
+# 12 "./melody.h"
+void PlayRing(void);
 # 9 "manchester_decode.c" 2
 # 1 "./utils.h" 1
+# 15 "./utils.h"
+void Wait_ms(unsigned int time);
 # 10 "manchester_decode.c" 2
-# 30 "manchester_decode.c"
+# 1 "./pcf8583.h" 1
+# 14 "./pcf8583.h"
+void PCF8583_Read_Time_Date(TimeStruct *time_struct_ptr);
+void RTC_init(TimeStruct *set0val);
+void Time_To_UART(TimeStruct *time_struct_ptr);
+void PCF8583_Set_Date_Time(TimeStruct *time_struct_ptr);
+# 11 "manchester_decode.c" 2
+# 1 "./menu.h" 1
+# 12 "./menu.h"
+void Menu_Init(MenuParamPonterStruct *menudef);
+void Select_Menu(MenuParamPonterStruct *menudef, KeyPointerStruct *keydef, TimeStruct *time);
+void Display_7Seg_Text(char *text, unsigned char decimal_point);
+# 12 "manchester_decode.c" 2
+# 29 "manchester_decode.c"
+unsigned char Check_Time_Date(TimeStruct *time,
+                              MenuParamPonterStruct *time_limit);
+# 42 "manchester_decode.c"
 void ManchesterDecode(unsigned char *edge_dir, unsigned int *pulse_time)
 {
-    static unsigned char decoded_byte, bit_pos, data_counter,f_start_data;
-    static unsigned char f_slope_t,f_sync;
+    static unsigned char decoded_byte, bit_pos, data_counter, start_data_flag;
+    static unsigned char next_edge_also_T_flag,sync_flag;
 
- if(f_sync==0)
+ if(sync_flag==0)
     {
-        if((*pulse_time>(8000000/4)/300*60/100) && (*pulse_time<(8000000/4)/300*140/100))
+
+
+        if((*pulse_time>((8000000/4)/300*2)*80/100) && (*pulse_time<((8000000/4)/300*2)*120/100))
         {
-            f_slope_t=0;
+            next_edge_also_T_flag=0;
             decoded_byte=0;
             bit_pos=0;
-            f_sync=1;
+            sync_flag=1;
             data_counter=0;
 
             return;
 
         }else
         {
+
             return;
         }
-    }else if(f_sync)
+    }else if(sync_flag)
     {
-        if(f_slope_t==0)
+
+        if(next_edge_also_T_flag==0)
         {
-            if((*pulse_time>((8000000/4)/300/2)*60/100) && (*pulse_time<((8000000/4)/300/2)*140/100))
+            if((*pulse_time>(8000000/4)/300*80/100) &&
+               (*pulse_time<(8000000/4)/300*120/100))
             {
-                    f_slope_t=1;
+                    next_edge_also_T_flag=1;
                     return;
 
-            }else if((*pulse_time>(8000000/4)/300*60/100) && (*pulse_time<(8000000/4)/300*140/100))
+            }else if((*pulse_time>((8000000/4)/300*2)*80/100) &&
+                     (*pulse_time<((8000000/4)/300*2)*120/100))
             {
                 if(*edge_dir==0)
                 {
@@ -2511,13 +2573,14 @@ void ManchesterDecode(unsigned char *edge_dir, unsigned int *pulse_time)
             }else
             {
 
-                f_sync=0;
+                sync_flag=0;
                 return;
             }
 
         }else
         {
-            if((*pulse_time>((8000000/4)/300/2)*60/100) && (*pulse_time<((8000000/4)/300/2)*140/100))
+            if((*pulse_time>(8000000/4)/300*80/100) &&
+               (*pulse_time<(8000000/4)/300*120/100))
             {
                 if(*edge_dir==0)
                 {
@@ -2527,12 +2590,12 @@ void ManchesterDecode(unsigned char *edge_dir, unsigned int *pulse_time)
                     decoded_byte^=(0x00>>bit_pos);
                 }
                 bit_pos++;
-                f_slope_t=0;
+                next_edge_also_T_flag=0;
 
             }else
             {
 
-                f_sync=0;
+                sync_flag=0;
                 return;
             }
         }
@@ -2541,29 +2604,32 @@ void ManchesterDecode(unsigned char *edge_dir, unsigned int *pulse_time)
         {
             if(decoded_byte=='$')
             {
-                f_start_data=1;
-           }
-            if(f_start_data)
+                start_data_flag=1;
+            }
+
+            if(start_data_flag)
             {
+
                 FrameBuffer(&decoded_byte,1);
                 data_counter++;
             }
-                decoded_byte=0;
-                bit_pos=0;
+
+            decoded_byte=0;
+            bit_pos=0;
 
             if(data_counter>=6)
             {
-                f_start_data=0;
-                f_sync=0;
+                start_data_flag=0;
+                sync_flag=0;
                 return;
             }
         }
  }
 }
-# 133 "manchester_decode.c"
+# 155 "manchester_decode.c"
 unsigned int FrameDecode(DataStruct *DataRCV)
 {
-    unsigned char data, i, data_counter;
+    unsigned char data, i;
 
     while(1)
     {
@@ -2601,12 +2667,15 @@ unsigned int FrameDecode(DataStruct *DataRCV)
         }
     }
 }
-
+# 205 "manchester_decode.c"
 unsigned char CRC_check(DataStruct *DataRCV)
 {
  unsigned int crc_val;
+
  crc_val=CRC16(&DataRCV->frame[0],6 -4);
- if( (DataRCV->frame[6 -4]==crc_val>>8) && (DataRCV->frame[6 -3]==(crc_val&0x00FF)) )
+
+ if((DataRCV->frame[6 -4]==crc_val>>8) &&
+       (DataRCV->frame[6 -3]==(crc_val&0x00FF)))
     {
   return 1;
  }else
@@ -2614,80 +2683,133 @@ unsigned char CRC_check(DataStruct *DataRCV)
   return 0;
  }
 }
-
-unsigned char CheckEvent(DataStruct *DataRCV)
+# 229 "manchester_decode.c"
+unsigned char Check_Event(DataStruct *DataRCV)
 {
-    static char a;
+
+
 
     if(DataRCV->frame[0]=='G' && DataRCV->frame[1]=='0')
     {
-        PlayRing(1);
-        SendUART('G');
+
+        Display_7Seg_Text("bram",0);
+        g_display_controll=0;
+        PlayRing();
         while(FrameDecode(DataRCV)!=0xFF);
+        g_display_controll=1;
+        Display_7Seg_Text("****",0);
         return 1;
+
     }else if(DataRCV->frame[0]=='W' && DataRCV->frame[1]=='0')
     {
 
-        SendUART('W');
-        if(a)
-        {
-            PORTCbits.RC3=1;
-            a=0;
-        }else
-        {
-             PORTCbits.RC3=0;
-             a=1;
-        }
+        Display_7Seg_Text("furt",0);
+        g_display_controll=0;
+        PlayRing();
         while(FrameDecode(DataRCV)!=0xFF);
+        g_display_controll=1;
+        Display_7Seg_Text("****",0);
         return 1;
 
     }else if(DataRCV->frame[0]=='W' && DataRCV->frame[1]=='B')
     {
 
-        SendUART('B');
+        Display_7Seg_Text("dzwo",0);
+        g_display_controll=0;
+        PlayRing();
         while(FrameDecode(DataRCV)!=0xFF);
+        g_display_controll=1;
+        Display_7Seg_Text("****",0);
+
         return 1;
     }
 
+
     return 0;
 }
-# 233 "manchester_decode.c"
-void ProcessRCVData(DataStruct *DataRCV)
+# 282 "manchester_decode.c"
+void ProcessRCVData(DataStruct *DataRCV, TimeStruct *time,
+                    MenuParamPonterStruct *time_limit)
 {
-    if(ISR_ACK==1)
+    if(g_reciver_ccp2_isr_fire_flag==1)
     {
+
+
+
+
 
 
 
         if(PORTCbits.RC1 == 0)
         {
-            Timer1=80;
+            g_generic_timer=80;
+
         }
 
-        if(Timer1==0)
+        if(g_generic_timer==0)
         {
             while(FrameDecode(DataRCV)!=0xFF)
             {
                 if(DataRCV->RCV_Frame)
                 {
-                    if(CRC_check(DataRCV))
+                    if(CRC_check(DataRCV) && Check_Time_Date(time, time_limit))
                     {
-
-                        if(CheckEvent(DataRCV))
+                        if(Check_Event(DataRCV))
                         {
                             return;
                         }
                     }else
                     {
-                        SendUART('C');
+
                     }
 
                     DataRCV->RCV_Frame=0;
                 }
             }
-            ISR_ACK=0;
+            g_reciver_ccp2_isr_fire_flag=0;
+        }
+    }
+}
+
+unsigned char Check_Time_Date(TimeStruct *time, MenuParamPonterStruct *time_limit)
+{
+    unsigned int time_limit_min_1, time_limit_min_2, current_time_min;
+
+    PCF8583_Read_Time_Date(time);
+
+    if(time->weekday==saturday || time->weekday==sunday)
+    {
+        time_limit_min_1=time_limit->time_limit_free_day_1_ptr->param*60+time_limit->time_limit_free_day_1_ptr->param1;
+        time_limit_min_2=time_limit->time_limit_free_day_2_ptr->param*60+time_limit->time_limit_free_day_2_ptr->param1;
+        current_time_min=time->hours*60+time->minutes;
+
+
+        if(time_limit_min_1>current_time_min && time_limit_min_2>time_limit_min_1)
+        {
+            return 1;
+        }else
+        {
+            return 0;
         }
 
-    }
+    }else
+    {
+        time_limit_min_1=time_limit->time_limit_work_day_1_ptr->param*60+time_limit->time_limit_free_day_1_ptr->param1;
+        time_limit_min_2=time_limit->time_limit_work_day_2_ptr->param*60+time_limit->time_limit_free_day_2_ptr->param1;
+        current_time_min=time->hours*60+time->minutes;
 
+
+
+
+
+        if(time_limit_min_1>current_time_min && time_limit_min_2>time_limit_min_1)
+        {
+            return 1;
+        }else
+        {
+            return 0;
+        }
+
+
+    }
 }

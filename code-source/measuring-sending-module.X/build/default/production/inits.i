@@ -1170,7 +1170,15 @@ extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "/opt/microchip/xc8/v2.10/pic/include/xc.h" 2 3
 # 2 "inits.c" 2
-
+# 1 "./manchester_encode.h" 1
+# 20 "./manchester_encode.h"
+void SendFrame(unsigned char type);
+# 3 "inits.c" 2
+# 1 "./input_handler.h" 1
+# 11 "./input_handler.h"
+void LineState(void);
+void CheckGateCloseSwitch(void);
+# 4 "inits.c" 2
 
 void GlobalInits(void)
 {
@@ -1193,5 +1201,8 @@ void GlobalInits(void)
     TRISB3=0;
     TRISB4=0;
     TRISB5=0;
+
+    PORTAbits.RA0=0;
+    PORTBbits.RB3=0;
 
 }

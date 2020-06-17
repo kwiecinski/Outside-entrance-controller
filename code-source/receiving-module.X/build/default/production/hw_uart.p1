@@ -1,58 +1,4 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"4248 /opt/microchip/xc8/v2.10/pic/include/pic16f886.h
-[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 4248: extern volatile __bit TRISC6 __attribute__((address(0x43E)));
-[v _TRISC6 `Vb ~T0 @X0 0 e@1086 ]
-"965
-[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 965:     struct {
-[s S35 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S35 . RX9D OERR FERR ADDEN CREN SREN RX9 SPEN ]
-"975
-[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 975:     struct {
-[s S36 :1 `uc 1 :5 `uc 1 :1 `uc 1 ]
-[n S36 . RCD8 . RC9 ]
-"980
-[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 980:     struct {
-[s S37 :6 `uc 1 :1 `uc 1 ]
-[n S37 . . nRC8 ]
-"984
-[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 984:     struct {
-[s S38 :6 `uc 1 :1 `uc 1 ]
-[n S38 . . RC8_9 ]
-"964
-[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 964: typedef union {
-[u S34 `S35 1 `S36 1 `S37 1 `S38 1 ]
-[n S34 . . . . . ]
-"989
-[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 989: extern volatile RCSTAbits_t RCSTAbits __attribute__((address(0x018)));
-[v _RCSTAbits `VS34 ~T0 @X0 0 e@24 ]
-"2404
-[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 2404:     struct {
-[s S95 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S95 . TX9D TRMT BRGH SENDB SYNC TXEN TX9 CSRC ]
-"2414
-[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 2414:     struct {
-[s S96 :1 `uc 1 :5 `uc 1 :1 `uc 1 ]
-[n S96 . TXD8 . nTX8 ]
-"2419
-[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 2419:     struct {
-[s S97 :6 `uc 1 :1 `uc 1 ]
-[n S97 . . TX8_9 ]
-"2403
-[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 2403: typedef union {
-[u S94 `S95 1 `S96 1 `S97 1 ]
-[n S94 . . . . ]
-"2424
-[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 2424: extern volatile TXSTAbits_t TXSTAbits __attribute__((address(0x098)));
-[v _TXSTAbits `VS94 ~T0 @X0 0 e@152 ]
-"2484
-[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 2484: extern volatile unsigned char SPBRG __attribute__((address(0x099)));
-[v _SPBRG `Vuc ~T0 @X0 0 e@153 ]
-"4257
-[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 4257: extern volatile __bit TRMT __attribute__((address(0x4C1)));
-[v _TRMT `Vb ~T0 @X0 0 e@1217 ]
-"1054
-[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 1054: extern volatile unsigned char TXREG __attribute__((address(0x019)));
-[v _TXREG `Vuc ~T0 @X0 0 e@25 ]
 "54 /opt/microchip/xc8/v2.10/pic/include/pic16f886.h
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -281,96 +227,27 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3370
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 3370: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"6 ./main.h
-[; ;./main.h: 6: 
+"13 ./main.h
 [p x FOSC = INTRC_NOCLKOUT ]
-"7
-[; ;./main.h: 7: 
+"14
 [p x WDTE = OFF ]
-"8
-[; ;./main.h: 8: typedef struct
+"15
 [p x PWRTE = OFF ]
-"9
-[; ;./main.h: 9: {
-[p x MCLRE = ON ]
-"10
-[; ;./main.h: 10:  unsigned char seconds,minutes,hours,day,month,year;
-[p x CP = OFF ]
-"11
-[; ;./main.h: 11: 
-[p x CPD = OFF ]
-"12
-[; ;./main.h: 12: }TimeStruct;
-[p x BOREN = OFF ]
-"13
-[; ;./main.h: 13: 
-[p x IESO = OFF ]
-"14
-[; ;./main.h: 14: typedef struct
-[p x FCMEN = OFF ]
-"15
-[; ;./main.h: 15: {
-[p x LVP = OFF ]
-"18
-[; ;./main.h: 18:     void (*button_short_function)(void);
-[p x BOR4V = BOR40V ]
-"19
-[; ;./main.h: 19:     void (*button_long_function)(void);
-[p x WRT = OFF ]
-"9 hw_uart.c
-[; ;hw_uart.c: 9: void UART_Init(void)
-[v _UART_Init `(v ~T0 @X0 1 ef ]
-"10
-[; ;hw_uart.c: 10: {
-{
-[e :U _UART_Init ]
-[f ]
-"11
-[; ;hw_uart.c: 11:     TRISC6=0;
-[e = _TRISC6 -> -> 0 `i `b ]
-"12
-[; ;hw_uart.c: 12:     RCSTAbits.SPEN=1;
-[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
-"13
-[; ;hw_uart.c: 13:     RCSTAbits.CREN=1;
-[e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
-"14
-[; ;hw_uart.c: 14:     TXSTAbits.SYNC=0;
-[e = . . _TXSTAbits 0 4 -> -> 0 `i `uc ]
-"15
-[; ;hw_uart.c: 15:     TXSTAbits.TXEN=1;
-[e = . . _TXSTAbits 0 5 -> -> 1 `i `uc ]
 "16
-[; ;hw_uart.c: 16:     SPBRG=(8000000/9600)/64-1;
-[e = _SPBRG -> - / / -> 8000000 `l -> -> 9600 `i `l -> -> 64 `i `l -> -> 1 `i `l `uc ]
+[p x MCLRE = ON ]
 "17
-[; ;hw_uart.c: 17: }
-[e :UE 139 ]
-}
+[p x CP = OFF ]
+"18
+[p x CPD = OFF ]
 "19
-[; ;hw_uart.c: 19: void SendUART(char data)
-[v _SendUART `(v ~T0 @X0 1 ef1`uc ]
+[p x BOREN = OFF ]
 "20
-[; ;hw_uart.c: 20: {
-{
-[e :U _SendUART ]
-"19
-[; ;hw_uart.c: 19: void SendUART(char data)
-[v _data `uc ~T0 @X0 1 r1 ]
-"20
-[; ;hw_uart.c: 20: {
-[f ]
+[p x IESO = OFF ]
 "21
-[; ;hw_uart.c: 21:   while(!TRMT);
-[e $U 141  ]
-[e :U 142 ]
-[e :U 141 ]
-[e $ ! _TRMT 142  ]
-[e :U 143 ]
+[p x FCMEN = OFF ]
 "22
-[; ;hw_uart.c: 22:   TXREG = data;
-[e = _TXREG -> _data `uc ]
-"23
-[; ;hw_uart.c: 23: }
-[e :UE 140 ]
-}
+[p x LVP = OFF ]
+"25
+[p x BOR4V = BOR40V ]
+"26
+[p x WRT = OFF ]

@@ -1,3 +1,10 @@
+/* 
+ * 
+ * 
+ *
+ * 
+ */
+
 #ifndef DEFINE_H
 #define	DEFINE_H
 
@@ -18,49 +25,7 @@
 #pragma config BOR4V = BOR40V   // Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
 
-typedef struct 
-{
-	unsigned char frame[4];
-    unsigned char RCV_Frame;
-    
-}DataStruct;
 
-
-typedef struct 
-{
-	unsigned char seconds,minutes,hours,day,month,year;	
-	
-}TimeStruct;
-
-typedef struct
-{
-    unsigned char klock, pin, lock_long_press;
-    volatile unsigned char *port;
-    void (*button_short_function)(void); 
-    void (*button_long_function)(void);
- 
-}KeyStruct;
-
-typedef struct
-{
-    KeyStruct *set_rtc;
-    KeyStruct *set_time1;
-    KeyStruct *set_time2;
-    KeyStruct *set_right;
-    KeyStruct *set_up;
-    KeyStruct *set_down;
-    
-}KeyPointerStruct;
-
-/*
-#define SW_TIME1    PORTCbits.RC7
-#define SW_TIME2    PORTCbits.RC5
-#define SW_SET_RTC  PORTBbits.RB0
-#define SW_RIGHT    PORTBbits.RB1
-#define SW_DOWN     PORTBbits.RB2
-#define SW_UP       PORTBbits.RB3
-
-*/
 #define SW_TIME1_PIN       7
 #define SW_TIME1_PORT      PORTC
 
@@ -78,6 +43,90 @@ typedef struct
 
 #define SW_UP_PIN          3
 #define SW_UP_PORT         PORTB
+
+
+enum button_press 
+{
+    k_set_rtc_short,
+    k_set_rtc_long,
+    k_set_time1_short,
+    k_set_time1_long,
+    k_set_time2_short,
+    k_set_time2_long,
+    k_set_right_short,
+    k_set_right_long,
+    k_set_up_short,
+    k_set_up_long,
+    k_set_down_short,
+    k_set_down_long,
+    k_no_key_press       
+};
+
+enum days
+{
+    monday,
+    tuesday,
+    wedenesday,
+    thursday,
+    friday,
+    saturday,
+    sunday
+};
+
+typedef struct 
+{
+	unsigned char frame[4];
+    unsigned char RCV_Frame;
+    
+}DataStruct;
+
+
+typedef struct 
+{
+	signed char seconds,minutes,hours,day,month,year,weekday;	
+	
+}TimeStruct;
+
+typedef struct
+{
+    unsigned char klock, pin, lock_long_press;
+    volatile unsigned char *port;
+    unsigned char button_short_function;
+    unsigned char button_long_function;
+ 
+}KeyStruct;
+
+typedef struct
+{
+    KeyStruct *set_rtc;
+    KeyStruct *set_time1;
+    KeyStruct *set_time2;
+    KeyStruct *set_right;
+    KeyStruct *set_up;
+    KeyStruct *set_down;
+    
+}KeyPointerStruct;
+
+typedef struct MenuParamStruct
+{
+    unsigned char max_limit,max_limit1,letter,min_limit,min_limit1;
+    signed char param, param1;
+    struct MenuParamStruct *next_menu;
+        
+}MenuParamStruct;
+
+typedef struct
+{
+    MenuParamStruct *hours_minutes_ptr;
+    MenuParamStruct *day_month_ptr;
+    MenuParamStruct *year_ptr;
+    MenuParamStruct *time_limit_work_day_1_ptr;
+    MenuParamStruct *time_limit_work_day_2_ptr;
+    MenuParamStruct *time_limit_free_day_1_ptr;
+    MenuParamStruct *time_limit_free_day_2_ptr;
+    
+}MenuParamPonterStruct;
+    
 
 
 #endif	/* DEFINE_H */

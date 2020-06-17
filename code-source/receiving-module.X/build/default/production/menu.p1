@@ -1,33 +1,69 @@
 Version 4.0 HI-TECH Software Intermediate Code
+"111 ./main.h
+[; ;./main.h: 111: {
+[s S138 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `c 1 `c 1 `*S138 1 ]
+[n S138 MenuParamStruct max_limit max_limit1 letter min_limit min_limit1 param param1 next_menu ]
+"119
+[; ;./main.h: 119: {
+[s S139 `*S138 1 `*S138 1 `*S138 1 `*S138 1 `*S138 1 `*S138 1 `*S138 1 ]
+[n S139 . hours_minutes_ptr day_month_ptr year_ptr time_limit_work_day_1_ptr time_limit_work_day_2_ptr time_limit_free_day_1_ptr time_limit_free_day_2_ptr ]
+"12 ./display-7-segment.h
+[; ;./display-7-segment.h: 12: void Disable_All_Digits(void);
+[v _Disable_All_Digits `(v ~T0 @X0 0 ef ]
+"28 menu.c
+[; ;menu.c: 28: void Read_Limit_From_EEprom(MenuParamStruct *limit1, MenuParamStruct *limit2, unsigned char limit_type);
+[v _Read_Limit_From_EEprom `(v ~T0 @X0 0 ef3`*S138`*S138`uc ]
+"85 ./main.h
+[; ;./main.h: 85: {
+[s S135 `c 1 `c 1 `c 1 `c 1 `c 1 `c 1 `c 1 ]
+[n S135 . seconds minutes hours day month year weekday ]
+"91
+[; ;./main.h: 91: {
+[s S136 `uc 1 `uc 1 `uc 1 `*Vuc 1 `uc 1 `uc 1 ]
+[n S136 . klock pin lock_long_press port button_short_function button_long_function ]
+"100
+[; ;./main.h: 100: {
+[s S137 `*S136 1 `*S136 1 `*S136 1 `*S136 1 `*S136 1 `*S136 1 ]
+[n S137 . set_rtc set_time1 set_time2 set_right set_up set_down ]
+"14 ./pcf8583.h
+[; ;./pcf8583.h: 14: void PCF8583_Read_Time_Date(TimeStruct *time_struct_ptr);
+[v _PCF8583_Read_Time_Date `(v ~T0 @X0 0 ef1`*S135 ]
+"12 ./key-handler.h
+[; ;./key-handler.h: 12: unsigned char Button_Handler(KeyPointerStruct *keydef);
+[v _Button_Handler `(uc ~T0 @X0 0 ef1`*S137 ]
+"137 menu.c
+[; ;menu.c: 137:         if(check_button==k_set_right_short)
+[c E1212 0 1 2 3 4 5 6 7 8 9 10 11 12 .. ]
+[n E1212 button_press k_set_rtc_short k_set_rtc_long k_set_time1_short k_set_time1_long k_set_time2_short k_set_time2_long k_set_right_short k_set_right_long k_set_up_short k_set_up_long k_set_down_short k_set_down_long k_no_key_press  ]
+"30
+[; ;menu.c: 30: void Display_Weekday(unsigned char weekday);
+[v _Display_Weekday `(v ~T0 @X0 0 ef1`uc ]
+"29
+[; ;menu.c: 29: void Display_7Seg_Text(char *text, unsigned char decimal_point);
+[v _Display_7Seg_Text `(v ~T0 @X0 0 ef2`*uc`uc ]
 [v F1196 `(v ~T0 @X0 1 tf1`ul ]
 "92 /opt/microchip/xc8/v2.10/pic/include/pic.h
 [v __delay `JF1196 ~T0 @X0 0 e ]
 [p i __delay ]
-"30 ./main.h
-[; ;./main.h: 30:     KeyStruct *set_down;
-[s S135 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 ]
-[n S135 . seconds minutes hours day month year ]
-"386 /opt/microchip/xc8/v2.10/pic/include/pic16f886.h
-[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 386:     struct {
-[s S14 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S14 . RBIF INTF T0IF RBIE INTE T0IE PEIE GIE ]
-"396
-[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 396:     struct {
-[s S15 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
-[n S15 . . TMR0IF . TMR0IE ]
-"385
-[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 385: typedef union {
-[u S13 `S14 1 `S15 1 ]
-[n S13 . . . ]
-"403
-[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 403: extern volatile INTCONbits_t INTCONbits __attribute__((address(0x00B)));
-[v _INTCONbits `VS13 ~T0 @X0 0 e@11 ]
-"14 ./pcf8583.h
-[; ;./pcf8583.h: 14: void PCF8583_Read_Time_Date(TimeStruct *time_struct_ptr);
-[v _PCF8583_Read_Time_Date `(v ~T0 @X0 0 ef1`*S135 ]
-"10 ./hw_uart.h
-[; ;./hw_uart.h: 10: void SendUART(char data);
-[v _SendUART `(v ~T0 @X0 0 ef1`uc ]
+"26 menu.c
+[; ;menu.c: 26: void Menu_Set_Param_Time_Limit(MenuParamStruct *menu, unsigned char check_button);
+[v _Menu_Set_Param_Time_Limit `(v ~T0 @X0 0 ef2`*S138`uc ]
+"27
+[; ;menu.c: 27: void Write_Limit_To_EEprom(MenuParamStruct *limit1, MenuParamStruct *limit2, unsigned char limit_type);
+[v _Write_Limit_To_EEprom `(v ~T0 @X0 0 ef3`*S138`*S138`uc ]
+"17 ./pcf8583.h
+[; ;./pcf8583.h: 17: void PCF8583_Set_Date_Time(TimeStruct *time_struct_ptr);
+[v _PCF8583_Set_Date_Time `(v ~T0 @X0 0 ef1`*S135 ]
+"11 ./flash.h
+[; ;./flash.h: 11: void Write_EEprom (signed char data, unsigned char adress);
+[v _Write_EEprom `(v ~T0 @X0 0 ef2`c`uc ]
+"12
+[; ;./flash.h: 12: signed char Read_EEprom (unsigned char adress);
+[v _Read_EEprom `(c ~T0 @X0 0 ef1`uc ]
+"671 menu.c
+[; ;menu.c: 671:     }
+[c E1226 0 1 2 3 4 5 6 .. ]
+[n E1226 days monday tuesday wedenesday thursday friday saturday sunday  ]
 "54 /opt/microchip/xc8/v2.10/pic/include/pic16f886.h
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -256,191 +292,1603 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3370
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 3370: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"19 ./interrupts.h
-[; ;./interrupts.h: 19: volatile unsigned char ISR_ACK;
-[v _ISR_ACK `Vuc ~T0 @X0 1 e ]
-"20
-[; ;./interrupts.h: 20: volatile unsigned int PWM_Freq, Timer1, g_button_timer, g_generic_timer;
-[v _PWM_Freq `Vui ~T0 @X0 1 e ]
-[v _Timer1 `Vui ~T0 @X0 1 e ]
+"20 ./interrupts.h
+[; ;./interrupts.h: 20: volatile unsigned char g_reciver_ccp2_isr_fire_flag, g_display_controll;
+[v _g_reciver_ccp2_isr_fire_flag `Vuc ~T0 @X0 1 e ]
+[v _g_display_controll `Vuc ~T0 @X0 1 e ]
+"21
+[; ;./interrupts.h: 21: volatile unsigned int g_pwm_freq, g_button_timer, g_generic_timer;
+[v _g_pwm_freq `Vui ~T0 @X0 1 e ]
 [v _g_button_timer `Vui ~T0 @X0 1 e ]
 [v _g_generic_timer `Vui ~T0 @X0 1 e ]
-"21
-[; ;./interrupts.h: 21: unsigned char g_display_text[4];
-[v _g_display_text `uc ~T0 @X0 -> 4 `i e ]
-"22
-[; ;./interrupts.h: 22: unsigned char g_decimal_point;
-[v _g_decimal_point `uc ~T0 @X0 1 e ]
-"6 ./main.h
-[; ;./main.h: 6: 
-[p x FOSC = INTRC_NOCLKOUT ]
-"7
-[; ;./main.h: 7: 
-[p x WDTE = OFF ]
-"8
-[; ;./main.h: 8: typedef struct
-[p x PWRTE = OFF ]
-"9
-[; ;./main.h: 9: {
-[p x MCLRE = ON ]
-"10
-[; ;./main.h: 10:  unsigned char seconds,minutes,hours,day,month,year;
-[p x CP = OFF ]
-"11
-[; ;./main.h: 11: 
-[p x CPD = OFF ]
-"12
-[; ;./main.h: 12: }TimeStruct;
-[p x BOREN = OFF ]
-"13
-[; ;./main.h: 13: 
-[p x IESO = OFF ]
-"14
-[; ;./main.h: 14: typedef struct
-[p x FCMEN = OFF ]
-"15
-[; ;./main.h: 15: {
-[p x LVP = OFF ]
-"18
-[; ;./main.h: 18:     void (*button_short_function)(void);
-[p x BOR4V = BOR40V ]
-"19
-[; ;./main.h: 19:     void (*button_long_function)(void);
-[p x WRT = OFF ]
-"8 menu.c
-[; ;menu.c: 8: void Display_2Dig(unsigned char data)
-[v _Display_2Dig `(v ~T0 @X0 1 ef1`uc ]
-"9
-[; ;menu.c: 9: {
-{
-[e :U _Display_2Dig ]
-"8
-[; ;menu.c: 8: void Display_2Dig(unsigned char data)
-[v _data `uc ~T0 @X0 1 r1 ]
-"9
-[; ;menu.c: 9: {
-[f ]
-"10
-[; ;menu.c: 10:     g_display_text[2]=data/10;
-[e = *U + &U _g_display_text * -> -> -> 2 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> / -> _data `i -> 10 `i `uc ]
-"11
-[; ;menu.c: 11:     g_display_text[3]=data%10;
-[e = *U + &U _g_display_text * -> -> -> 3 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> % -> _data `i -> 10 `i `uc ]
-"12
-[; ;menu.c: 12: }
-[e :UE 138 ]
-}
-"15
-[; ;menu.c: 15: void Set_RTC_Button_Short(void)
-[v _Set_RTC_Button_Short `(v ~T0 @X0 1 ef ]
-"16
-[; ;menu.c: 16: {
-{
-[e :U _Set_RTC_Button_Short ]
-[f ]
-"17
-[; ;menu.c: 17:     g_display_text[0]='s';
-[e = *U + &U _g_display_text * -> -> -> 0 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> -> 115 `ui `uc ]
-"18
-[; ;menu.c: 18:     g_display_text[1]='r';
-[e = *U + &U _g_display_text * -> -> -> 1 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> -> 114 `ui `uc ]
-"19
-[; ;menu.c: 19:     g_display_text[2]='t';
-[e = *U + &U _g_display_text * -> -> -> 2 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> -> 116 `ui `uc ]
-"20
-[; ;menu.c: 20:     g_display_text[3]='c';
-[e = *U + &U _g_display_text * -> -> -> 3 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> -> 99 `ui `uc ]
-"21
-[; ;menu.c: 21:     g_decimal_point=0b0000;
-[e = _g_decimal_point -> -> 0 `i `uc ]
 "23
-[; ;menu.c: 23:     _delay((unsigned long)((2000)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;./interrupts.h: 23: unsigned char g_display_text[4];
+[v _g_display_text `uc ~T0 @X0 -> 4 `i e ]
+"24
+[; ;./interrupts.h: 24: unsigned char g_decimal_point;
+[v _g_decimal_point `uc ~T0 @X0 1 e ]
+"13 ./main.h
+[p x FOSC = INTRC_NOCLKOUT ]
+"14
+[p x WDTE = OFF ]
+"15
+[p x PWRTE = OFF ]
+"16
+[p x MCLRE = ON ]
+"17
+[p x CP = OFF ]
+"18
+[p x CPD = OFF ]
+"19
+[p x BOREN = OFF ]
+"20
+[p x IESO = OFF ]
+"21
+[p x FCMEN = OFF ]
+"22
+[p x LVP = OFF ]
 "25
-[; ;menu.c: 25:     TimeStruct time;
-[v _time `S135 ~T0 @X0 1 a ]
-"27
-[; ;menu.c: 27:     INTCONbits.T0IE=0;
-[e = . . _INTCONbits 0 5 -> -> 0 `i `uc ]
-"28
-[; ;menu.c: 28:     PCF8583_Read_Time_Date(&time);
-[e ( _PCF8583_Read_Time_Date (1 &U _time ]
-"30
-[; ;menu.c: 30:     g_display_text[0]='n';
-[e = *U + &U _g_display_text * -> -> -> 0 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> -> 110 `ui `uc ]
-"31
-[; ;menu.c: 31:     g_display_text[1]='*';
-[e = *U + &U _g_display_text * -> -> -> 1 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> -> 42 `ui `uc ]
-"32
-[; ;menu.c: 32:     SendUART(time.minutes);
-[e ( _SendUART (1 -> . _time 1 `uc ]
-"33
-[; ;menu.c: 33:     Display_2Dig(time.minutes);
-[e ( _Display_2Dig (1 . _time 1 ]
-"34
-[; ;menu.c: 34:     INTCONbits.T0IE=1;
-[e = . . _INTCONbits 0 5 -> -> 1 `i `uc ]
-"36
-[; ;menu.c: 36: }
-[e :UE 139 ]
-}
-"38
-[; ;menu.c: 38: void Set_Time1_Button_Short(void)
-[v _Set_Time1_Button_Short `(v ~T0 @X0 1 ef ]
-"39
-[; ;menu.c: 39: {
+[p x BOR4V = BOR40V ]
+"26
+[p x WRT = OFF ]
+"42 menu.c
+[; ;menu.c: 42: void Menu_Init(MenuParamPonterStruct *menudef)
+[v _Menu_Init `(v ~T0 @X0 1 ef1`*S139 ]
+"43
+[; ;menu.c: 43: {
 {
-[e :U _Set_Time1_Button_Short ]
+[e :U _Menu_Init ]
+"42
+[; ;menu.c: 42: void Menu_Init(MenuParamPonterStruct *menudef)
+[v _menudef `*S139 ~T0 @X0 1 r1 ]
+"43
+[; ;menu.c: 43: {
 [f ]
-"41
-[; ;menu.c: 41: }
+"44
+[; ;menu.c: 44:      g_display_controll=0;
+[e = _g_display_controll -> -> 0 `i `uc ]
+"45
+[; ;menu.c: 45:      Disable_All_Digits();
+[e ( _Disable_All_Digits ..  ]
+"47
+[; ;menu.c: 47:     static MenuParamStruct hours_minutes;
+[v F1341 `S138 ~T0 @X0 1 s hours_minutes ]
+"48
+[; ;menu.c: 48:     static MenuParamStruct day_month;
+[v F1342 `S138 ~T0 @X0 1 s day_month ]
+"49
+[; ;menu.c: 49:     static MenuParamStruct year;
+[v F1343 `S138 ~T0 @X0 1 s year ]
+"50
+[; ;menu.c: 50:     static MenuParamStruct time_limit_work_day_1;
+[v F1344 `S138 ~T0 @X0 1 s time_limit_work_day_1 ]
+"51
+[; ;menu.c: 51:     static MenuParamStruct time_limit_work_day_2;
+[v F1345 `S138 ~T0 @X0 1 s time_limit_work_day_2 ]
+"52
+[; ;menu.c: 52:     static MenuParamStruct time_limit_free_day_1;
+[v F1346 `S138 ~T0 @X0 1 s time_limit_free_day_1 ]
+"53
+[; ;menu.c: 53:     static MenuParamStruct time_limit_free_day_2;
+[v F1347 `S138 ~T0 @X0 1 s time_limit_free_day_2 ]
+"55
+[; ;menu.c: 55:     menudef->hours_minutes_ptr=&hours_minutes;
+[e = . *U _menudef 0 &U F1341 ]
+"56
+[; ;menu.c: 56:     menudef->day_month_ptr=&day_month;
+[e = . *U _menudef 1 &U F1342 ]
+"57
+[; ;menu.c: 57:     menudef->year_ptr=&year;
+[e = . *U _menudef 2 &U F1343 ]
+"59
+[; ;menu.c: 59:     menudef->time_limit_free_day_1_ptr=&time_limit_free_day_1;
+[e = . *U _menudef 5 &U F1346 ]
+"60
+[; ;menu.c: 60:     menudef->time_limit_free_day_2_ptr=&time_limit_free_day_2;
+[e = . *U _menudef 6 &U F1347 ]
+"61
+[; ;menu.c: 61:     menudef->time_limit_work_day_1_ptr=&time_limit_work_day_1;
+[e = . *U _menudef 3 &U F1344 ]
+"62
+[; ;menu.c: 62:     menudef->time_limit_work_day_2_ptr=&time_limit_work_day_2;
+[e = . *U _menudef 4 &U F1345 ]
+"64
+[; ;menu.c: 64:     Read_Limit_From_EEprom(menudef->time_limit_free_day_1_ptr,menudef->time_limit_free_day_2_ptr,1);
+[e ( _Read_Limit_From_EEprom (3 , , . *U _menudef 5 . *U _menudef 6 -> -> 1 `i `uc ]
+"65
+[; ;menu.c: 65:     Read_Limit_From_EEprom(menudef->time_limit_work_day_1_ptr,menudef->time_limit_work_day_2_ptr,0);
+[e ( _Read_Limit_From_EEprom (3 , , . *U _menudef 3 . *U _menudef 4 -> -> 0 `i `uc ]
+"67
+[; ;menu.c: 67:     hours_minutes.max_limit=23;
+[e = . F1341 0 -> -> 23 `i `uc ]
+"68
+[; ;menu.c: 68:     hours_minutes.max_limit1=59;
+[e = . F1341 1 -> -> 59 `i `uc ]
+"69
+[; ;menu.c: 69:     hours_minutes.min_limit=0;
+[e = . F1341 3 -> -> 0 `i `uc ]
+"70
+[; ;menu.c: 70:     hours_minutes.min_limit1=0;
+[e = . F1341 4 -> -> 0 `i `uc ]
+"71
+[; ;menu.c: 71:     hours_minutes.next_menu=&day_month;
+[e = . F1341 7 &U F1342 ]
+"73
+[; ;menu.c: 73:     day_month.max_limit=31;
+[e = . F1342 0 -> -> 31 `i `uc ]
+"74
+[; ;menu.c: 74:     day_month.max_limit1=12;
+[e = . F1342 1 -> -> 12 `i `uc ]
+"75
+[; ;menu.c: 75:     day_month.min_limit=1;
+[e = . F1342 3 -> -> 1 `i `uc ]
+"76
+[; ;menu.c: 76:     day_month.min_limit1=1;
+[e = . F1342 4 -> -> 1 `i `uc ]
+"77
+[; ;menu.c: 77:     day_month.next_menu=&year;
+[e = . F1342 7 &U F1343 ]
+"79
+[; ;menu.c: 79:     year.max_limit=21;
+[e = . F1343 0 -> -> 21 `i `uc ]
+"80
+[; ;menu.c: 80:     year.max_limit1=99;
+[e = . F1343 1 -> -> 99 `i `uc ]
+"81
+[; ;menu.c: 81:     year.min_limit=20;
+[e = . F1343 3 -> -> 20 `i `uc ]
+"82
+[; ;menu.c: 82:     year.min_limit1=0;
+[e = . F1343 4 -> -> 0 `i `uc ]
+"83
+[; ;menu.c: 83:     year.next_menu=0;
+[e = . F1343 7 -> -> 0 `i `*S138 ]
+"85
+[; ;menu.c: 85:     time_limit_work_day_1.max_limit=23;
+[e = . F1344 0 -> -> 23 `i `uc ]
+"86
+[; ;menu.c: 86:     time_limit_work_day_1.max_limit1=59;
+[e = . F1344 1 -> -> 59 `i `uc ]
+"87
+[; ;menu.c: 87:     time_limit_work_day_1.min_limit=0;
+[e = . F1344 3 -> -> 0 `i `uc ]
+"88
+[; ;menu.c: 88:     time_limit_work_day_1.min_limit1=0;
+[e = . F1344 4 -> -> 0 `i `uc ]
+"89
+[; ;menu.c: 89:     time_limit_work_day_1.next_menu=&time_limit_work_day_2;
+[e = . F1344 7 &U F1345 ]
+"91
+[; ;menu.c: 91:     time_limit_work_day_2.max_limit=23;
+[e = . F1345 0 -> -> 23 `i `uc ]
+"92
+[; ;menu.c: 92:     time_limit_work_day_2.max_limit1=59;
+[e = . F1345 1 -> -> 59 `i `uc ]
+"93
+[; ;menu.c: 93:     time_limit_work_day_2.min_limit=0;
+[e = . F1345 3 -> -> 0 `i `uc ]
+"94
+[; ;menu.c: 94:     time_limit_work_day_2.min_limit1=0;
+[e = . F1345 4 -> -> 0 `i `uc ]
+"95
+[; ;menu.c: 95:     time_limit_work_day_2.next_menu=0;
+[e = . F1345 7 -> -> 0 `i `*S138 ]
+"98
+[; ;menu.c: 98:     time_limit_free_day_1.max_limit=23;
+[e = . F1346 0 -> -> 23 `i `uc ]
+"99
+[; ;menu.c: 99:     time_limit_free_day_1.max_limit1=59;
+[e = . F1346 1 -> -> 59 `i `uc ]
+"100
+[; ;menu.c: 100:     time_limit_free_day_1.min_limit=0;
+[e = . F1346 3 -> -> 0 `i `uc ]
+"101
+[; ;menu.c: 101:     time_limit_free_day_1.min_limit1=0;
+[e = . F1346 4 -> -> 0 `i `uc ]
+"102
+[; ;menu.c: 102:     time_limit_free_day_1.next_menu=&time_limit_free_day_2;
+[e = . F1346 7 &U F1347 ]
+"104
+[; ;menu.c: 104:     time_limit_free_day_2.max_limit=23;
+[e = . F1347 0 -> -> 23 `i `uc ]
+"105
+[; ;menu.c: 105:     time_limit_free_day_2.max_limit1=59;
+[e = . F1347 1 -> -> 59 `i `uc ]
+"106
+[; ;menu.c: 106:     time_limit_free_day_2.min_limit=0;
+[e = . F1347 3 -> -> 0 `i `uc ]
+"107
+[; ;menu.c: 107:     time_limit_free_day_2.min_limit1=0;
+[e = . F1347 4 -> -> 0 `i `uc ]
+"108
+[; ;menu.c: 108:     time_limit_free_day_2.next_menu=0;
+[e = . F1347 7 -> -> 0 `i `*S138 ]
+"109
+[; ;menu.c: 109: }
 [e :UE 140 ]
 }
-"43
-[; ;menu.c: 43: void Set_Time2_Button_Short(void)
-[v _Set_Time2_Button_Short `(v ~T0 @X0 1 ef ]
-"44
-[; ;menu.c: 44: {
+"119
+[; ;menu.c: 119: void Show_Time(TimeStruct *time, KeyPointerStruct *keydef)
+[v _Show_Time `(v ~T0 @X0 1 ef2`*S135`*S137 ]
+"120
+[; ;menu.c: 120: {
 {
-[e :U _Set_Time2_Button_Short ]
+[e :U _Show_Time ]
+"119
+[; ;menu.c: 119: void Show_Time(TimeStruct *time, KeyPointerStruct *keydef)
+[v _time `*S135 ~T0 @X0 1 r1 ]
+[v _keydef `*S137 ~T0 @X0 1 r2 ]
+"120
+[; ;menu.c: 120: {
 [f ]
-"46
-[; ;menu.c: 46: }
+"121
+[; ;menu.c: 121:     unsigned char check_button;
+[v _check_button `uc ~T0 @X0 1 a ]
+"123
+[; ;menu.c: 123:     PCF8583_Read_Time_Date(time);
+[e ( _PCF8583_Read_Time_Date (1 _time ]
+"125
+[; ;menu.c: 125:     g_display_controll=1;
+[e = _g_display_controll -> -> 1 `i `uc ]
+"127
+[; ;menu.c: 127:     g_display_text[0]=time->hours/10;
+[e = *U + &U _g_display_text * -> -> -> 0 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> / -> . *U _time 2 `i -> 10 `i `uc ]
+"128
+[; ;menu.c: 128:     g_display_text[1]=time->hours%10;
+[e = *U + &U _g_display_text * -> -> -> 1 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> % -> . *U _time 2 `i -> 10 `i `uc ]
+"129
+[; ;menu.c: 129:     g_display_text[2]=time->minutes/10;
+[e = *U + &U _g_display_text * -> -> -> 2 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> / -> . *U _time 1 `i -> 10 `i `uc ]
+"130
+[; ;menu.c: 130:     g_display_text[3]=time->minutes%10;
+[e = *U + &U _g_display_text * -> -> -> 3 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> % -> . *U _time 1 `i -> 10 `i `uc ]
+"132
+[; ;menu.c: 132:     g_decimal_point=0b0100;
+[e = _g_decimal_point -> -> 4 `i `uc ]
+"134
+[; ;menu.c: 134:     while(1)
+[e :U 143 ]
+"135
+[; ;menu.c: 135:     {
+{
+"136
+[; ;menu.c: 136:         check_button=Button_Handler(keydef);
+[e = _check_button ( _Button_Handler (1 _keydef ]
+"137
+[; ;menu.c: 137:         if(check_button==k_set_right_short)
+[e $ ! == -> _check_button `i -> . `E1212 6 `i 145  ]
+"138
+[; ;menu.c: 138:         {
+{
+"139
+[; ;menu.c: 139:             g_decimal_point=0b0100;
+[e = _g_decimal_point -> -> 4 `i `uc ]
+"140
+[; ;menu.c: 140:             g_display_text[0]=time->day/10;
+[e = *U + &U _g_display_text * -> -> -> 0 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> / -> . *U _time 3 `i -> 10 `i `uc ]
+"141
+[; ;menu.c: 141:             g_display_text[1]=time->day%10;
+[e = *U + &U _g_display_text * -> -> -> 1 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> % -> . *U _time 3 `i -> 10 `i `uc ]
+"142
+[; ;menu.c: 142:             g_display_text[2]=time->month/10;
+[e = *U + &U _g_display_text * -> -> -> 2 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> / -> . *U _time 4 `i -> 10 `i `uc ]
+"143
+[; ;menu.c: 143:             g_display_text[3]=time->month%10;
+[e = *U + &U _g_display_text * -> -> -> 3 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> % -> . *U _time 4 `i -> 10 `i `uc ]
+"146
+[; ;menu.c: 146:             while(1)
+[e :U 147 ]
+"147
+[; ;menu.c: 147:             {
+{
+"148
+[; ;menu.c: 148:                 check_button=Button_Handler(keydef);
+[e = _check_button ( _Button_Handler (1 _keydef ]
+"149
+[; ;menu.c: 149:                 if(check_button==k_set_right_short)
+[e $ ! == -> _check_button `i -> . `E1212 6 `i 149  ]
+"150
+[; ;menu.c: 150:                 {
+{
+"151
+[; ;menu.c: 151:                     g_decimal_point=0b0000;
+[e = _g_decimal_point -> -> 0 `i `uc ]
+"152
+[; ;menu.c: 152:                     g_display_text[0]=2;
+[e = *U + &U _g_display_text * -> -> -> 0 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> -> 2 `i `uc ]
+"153
+[; ;menu.c: 153:                     g_display_text[1]=time->year/100;
+[e = *U + &U _g_display_text * -> -> -> 1 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> / -> . *U _time 5 `i -> 100 `i `uc ]
+"154
+[; ;menu.c: 154:                     g_display_text[2]=time->year%100/10;
+[e = *U + &U _g_display_text * -> -> -> 2 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> / % -> . *U _time 5 `i -> 100 `i -> 10 `i `uc ]
+"155
+[; ;menu.c: 155:                     g_display_text[3]=time->year%10;
+[e = *U + &U _g_display_text * -> -> -> 3 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> % -> . *U _time 5 `i -> 10 `i `uc ]
+"158
+[; ;menu.c: 158:                     while(1)
+[e :U 151 ]
+"159
+[; ;menu.c: 159:                     {
+{
+"160
+[; ;menu.c: 160:                        check_button=Button_Handler(keydef);
+[e = _check_button ( _Button_Handler (1 _keydef ]
+"161
+[; ;menu.c: 161:                        if(check_button==k_set_right_short)
+[e $ ! == -> _check_button `i -> . `E1212 6 `i 153  ]
+"162
+[; ;menu.c: 162:                        {
+{
+"164
+[; ;menu.c: 164:                            Display_Weekday(time->weekday);
+[e ( _Display_Weekday (1 -> . *U _time 6 `uc ]
+"166
+[; ;menu.c: 166:                            while(Button_Handler(keydef)!=k_set_right_short);
+[e $U 154  ]
+[e :U 155 ]
+[e :U 154 ]
+[e $ != -> ( _Button_Handler (1 _keydef `i -> . `E1212 6 `i 155  ]
+[e :U 156 ]
+"168
+[; ;menu.c: 168:                            g_display_controll=0;
+[e = _g_display_controll -> -> 0 `i `uc ]
+"169
+[; ;menu.c: 169:                            Disable_All_Digits();
+[e ( _Disable_All_Digits ..  ]
+"171
+[; ;menu.c: 171:                            return;
+[e $UE 141  ]
+"172
+[; ;menu.c: 172:                        }
+}
+[e :U 153 ]
+"173
+[; ;menu.c: 173:                     }
+}
+[e :U 150 ]
+[e $U 151  ]
+[e :U 152 ]
+"174
+[; ;menu.c: 174:                 }
+}
+[e :U 149 ]
+"175
+[; ;menu.c: 175:             }
+}
+[e :U 146 ]
+[e $U 147  ]
+[e :U 148 ]
+"176
+[; ;menu.c: 176:         }
+}
+[e :U 145 ]
+"177
+[; ;menu.c: 177:     }
+}
+[e :U 142 ]
+[e $U 143  ]
+[e :U 144 ]
+"178
+[; ;menu.c: 178: }
 [e :UE 141 ]
 }
-"48
-[; ;menu.c: 48: void Down_Button_Short(void)
-[v _Down_Button_Short `(v ~T0 @X0 1 ef ]
-"49
-[; ;menu.c: 49: {
+"189
+[; ;menu.c: 189: unsigned char Is_Leap(unsigned int year)
+[v _Is_Leap `(uc ~T0 @X0 1 ef1`ui ]
+"190
+[; ;menu.c: 190: {
 {
-[e :U _Down_Button_Short ]
+[e :U _Is_Leap ]
+"189
+[; ;menu.c: 189: unsigned char Is_Leap(unsigned int year)
+[v _year `ui ~T0 @X0 1 r1 ]
+"190
+[; ;menu.c: 190: {
 [f ]
-"51
-[; ;menu.c: 51: }
-[e :UE 142 ]
+"194
+[; ;menu.c: 194:     return (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0));
+[e ) -> -> || && == % _year -> -> 4 `i `ui -> -> 0 `i `ui != % _year -> -> 100 `i `ui -> -> 0 `i `ui == % _year -> -> 400 `i `ui -> -> 0 `i `ui `i `uc ]
+[e $UE 157  ]
+"195
+[; ;menu.c: 195: }
+[e :UE 157 ]
 }
-"53
-[; ;menu.c: 53: void Up_Button_Short(void)
-[v _Up_Button_Short `(v ~T0 @X0 1 ef ]
-"54
-[; ;menu.c: 54: {
+"205
+[; ;menu.c: 205: unsigned char Is_Valid_Date(unsigned char d, unsigned char m, unsigned int y)
+[v _Is_Valid_Date `(uc ~T0 @X0 1 ef3`uc`uc`ui ]
+"206
+[; ;menu.c: 206: {
 {
-[e :U _Up_Button_Short ]
+[e :U _Is_Valid_Date ]
+"205
+[; ;menu.c: 205: unsigned char Is_Valid_Date(unsigned char d, unsigned char m, unsigned int y)
+[v _d `uc ~T0 @X0 1 r1 ]
+[v _m `uc ~T0 @X0 1 r2 ]
+[v _y `ui ~T0 @X0 1 r3 ]
+"206
+[; ;menu.c: 206: {
 [f ]
-"56
-[; ;menu.c: 56: }
-[e :UE 143 ]
-}
-"58
-[; ;menu.c: 58: void Right_Button_Short(void)
-[v _Right_Button_Short `(v ~T0 @X0 1 ef ]
-"59
-[; ;menu.c: 59: {
+"208
+[; ;menu.c: 208:     const unsigned int k_max_valid_year = 2999;
+[v F1358 `Cui ~T0 @X0 1 s k_max_valid_year ]
+[i F1358
+-> -> 2999 `i `ui
+]
+"209
+[; ;menu.c: 209:     const unsigned int k_min_valid_year = 2000;
+[v F1359 `Cui ~T0 @X0 1 s k_min_valid_year ]
+[i F1359
+-> -> 2000 `i `ui
+]
+"212
+[; ;menu.c: 212:     if (y>k_max_valid_year || y<k_min_valid_year)
+[e $ ! || > _y F1358 < _y F1359 159  ]
+"213
+[; ;menu.c: 213:     {
 {
-[e :U _Right_Button_Short ]
-[f ]
-"61
-[; ;menu.c: 61: }
-[e :UE 144 ]
+"214
+[; ;menu.c: 214:         return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 158  ]
+"215
+[; ;menu.c: 215:     }
 }
+[e :U 159 ]
+"216
+[; ;menu.c: 216:     if (m<1 || m>12)
+[e $ ! || < -> _m `i -> 1 `i > -> _m `i -> 12 `i 160  ]
+"217
+[; ;menu.c: 217:     {
+{
+"218
+[; ;menu.c: 218:         return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 158  ]
+"219
+[; ;menu.c: 219:     }
+}
+[e :U 160 ]
+"220
+[; ;menu.c: 220:     if (d<1 || d>31)
+[e $ ! || < -> _d `i -> 1 `i > -> _d `i -> 31 `i 161  ]
+"221
+[; ;menu.c: 221:     {
+{
+"222
+[; ;menu.c: 222:         return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 158  ]
+"223
+[; ;menu.c: 223:     }
+}
+[e :U 161 ]
+"226
+[; ;menu.c: 226:     if (m == 2)
+[e $ ! == -> _m `i -> 2 `i 162  ]
+"227
+[; ;menu.c: 227:     {
+{
+"228
+[; ;menu.c: 228:         if (Is_Leap(y))
+[e $ ! != -> ( _Is_Leap (1 _y `i -> 0 `i 163  ]
+"229
+[; ;menu.c: 229:         {
+{
+"230
+[; ;menu.c: 230:             return (d <= 29);
+[e ) -> -> <= -> _d `i -> 29 `i `i `uc ]
+[e $UE 158  ]
+"231
+[; ;menu.c: 231:         }else
+}
+[e $U 164  ]
+[e :U 163 ]
+"232
+[; ;menu.c: 232:         {
+{
+"233
+[; ;menu.c: 233:             return (d <= 28);
+[e ) -> -> <= -> _d `i -> 28 `i `i `uc ]
+[e $UE 158  ]
+"234
+[; ;menu.c: 234:         }
+}
+[e :U 164 ]
+"235
+[; ;menu.c: 235:     }
+}
+[e :U 162 ]
+"239
+[; ;menu.c: 239:     if (m == 4 || m == 6 || m == 9 || m == 11)
+[e $ ! || || || == -> _m `i -> 4 `i == -> _m `i -> 6 `i == -> _m `i -> 9 `i == -> _m `i -> 11 `i 165  ]
+"240
+[; ;menu.c: 240:     {
+{
+"241
+[; ;menu.c: 241:         return (d <= 30);
+[e ) -> -> <= -> _d `i -> 30 `i `i `uc ]
+[e $UE 158  ]
+"242
+[; ;menu.c: 242:     }
+}
+[e :U 165 ]
+"244
+[; ;menu.c: 244:     return 1;
+[e ) -> -> 1 `i `uc ]
+[e $UE 158  ]
+"245
+[; ;menu.c: 245: }
+[e :UE 158 ]
+}
+"255
+[; ;menu.c: 255: unsigned char Find_Weekday(unsigned int year, unsigned int month, unsigned int day)
+[v _Find_Weekday `(uc ~T0 @X0 1 ef3`ui`ui`ui ]
+"256
+[; ;menu.c: 256: {
+{
+[e :U _Find_Weekday ]
+"255
+[; ;menu.c: 255: unsigned char Find_Weekday(unsigned int year, unsigned int month, unsigned int day)
+[v _year `ui ~T0 @X0 1 r1 ]
+[v _month `ui ~T0 @X0 1 r2 ]
+[v _day `ui ~T0 @X0 1 r3 ]
+"256
+[; ;menu.c: 256: {
+[f ]
+"257
+[; ;menu.c: 257:     unsigned char wday=0;
+[v _wday `uc ~T0 @X0 1 a ]
+[e = _wday -> -> 0 `i `uc ]
+"258
+[; ;menu.c: 258:     wday=(day += month < 3 ? year-- : year - 2, 23*month/9 + day + 4 +
+[e = _wday -> - % ; =+ _day ? < _month -> -> 3 `i `ui : -- _year -> -> 1 `i `ui - _year -> -> 2 `i `ui + - + + + / * -> -> 23 `i `ui _month -> -> 9 `i `ui _day -> -> 4 `i `ui / _year -> -> 4 `i `ui / _year -> -> 100 `i `ui / _year -> -> 400 `i `ui -> -> 7 `i `ui -> -> 1 `i `ui `uc ]
+"261
+[; ;menu.c: 261:     return wday;
+[e ) _wday ]
+[e $UE 166  ]
+"262
+[; ;menu.c: 262: }
+[e :UE 166 ]
+}
+"272
+[; ;menu.c: 272: void Menu_Set_Time(MenuParamPonterStruct *menudef, KeyPointerStruct *keydef,
+[v _Menu_Set_Time `(v ~T0 @X0 1 ef3`*S139`*S137`uc ]
+"274
+[; ;menu.c: 274: {
+{
+[e :U _Menu_Set_Time ]
+"272
+[; ;menu.c: 272: void Menu_Set_Time(MenuParamPonterStruct *menudef, KeyPointerStruct *keydef,
+[v _menudef `*S139 ~T0 @X0 1 r1 ]
+[v _keydef `*S137 ~T0 @X0 1 r2 ]
+"273
+[; ;menu.c: 273:                    unsigned char menu_type)
+[v _menu_type `uc ~T0 @X0 1 r3 ]
+"274
+[; ;menu.c: 274: {
+[f ]
+"275
+[; ;menu.c: 275:     unsigned char check_button, key;
+[v _check_button `uc ~T0 @X0 1 a ]
+[v _key `uc ~T0 @X0 1 a ]
+"276
+[; ;menu.c: 276:     MenuParamStruct current_menu;
+[v _current_menu `S138 ~T0 @X0 1 a ]
+"277
+[; ;menu.c: 277:     MenuParamStruct *current_menu_ptr=&current_menu;
+[v _current_menu_ptr `*S138 ~T0 @X0 1 a ]
+[e = _current_menu_ptr &U _current_menu ]
+"278
+[; ;menu.c: 278:     TimeStruct time;
+[v _time `S135 ~T0 @X0 1 a ]
+"280
+[; ;menu.c: 280:     g_display_controll=1;
+[e = _g_display_controll -> -> 1 `i `uc ]
+"282
+[; ;menu.c: 282:     if(menu_type==1)
+[e $ ! == -> _menu_type `i -> 1 `i 168  ]
+"283
+[; ;menu.c: 283:     {
+{
+"284
+[; ;menu.c: 284:          Display_7Seg_Text("set2", 0);
+[e ( _Display_7Seg_Text (2 , :s 1C -> -> 0 `i `uc ]
+"285
+[; ;menu.c: 285:         _delay((unsigned long)((1000)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"287
+[; ;menu.c: 287:         Read_Limit_From_EEprom(menudef->time_limit_free_day_1_ptr,
+[e ( _Read_Limit_From_EEprom (3 , , . *U _menudef 5 . *U _menudef 6 -> -> 1 `i `uc ]
+"291
+[; ;menu.c: 291:         current_menu_ptr=menudef->time_limit_free_day_1_ptr;
+[e = _current_menu_ptr . *U _menudef 5 ]
+"292
+[; ;menu.c: 292:         key=k_set_time2_short;
+[e = _key -> . `E1212 4 `uc ]
+"294
+[; ;menu.c: 294:     }else if(menu_type==0)
+}
+[e $U 169  ]
+[e :U 168 ]
+[e $ ! == -> _menu_type `i -> 0 `i 170  ]
+"295
+[; ;menu.c: 295:     {
+{
+"296
+[; ;menu.c: 296:         Display_7Seg_Text("set1", 0);
+[e ( _Display_7Seg_Text (2 , :s 2C -> -> 0 `i `uc ]
+"297
+[; ;menu.c: 297:         _delay((unsigned long)((1000)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"298
+[; ;menu.c: 298:         Read_Limit_From_EEprom(menudef->time_limit_work_day_1_ptr,
+[e ( _Read_Limit_From_EEprom (3 , , . *U _menudef 3 . *U _menudef 4 -> -> 0 `i `uc ]
+"302
+[; ;menu.c: 302:         current_menu_ptr=menudef->time_limit_work_day_1_ptr;
+[e = _current_menu_ptr . *U _menudef 3 ]
+"303
+[; ;menu.c: 303:         key=k_set_time1_short;
+[e = _key -> . `E1212 2 `uc ]
+"305
+[; ;menu.c: 305:     }else if(menu_type==2)
+}
+[e $U 171  ]
+[e :U 170 ]
+[e $ ! == -> _menu_type `i -> 2 `i 172  ]
+"306
+[; ;menu.c: 306:     {
+{
+"307
+[; ;menu.c: 307:         Display_7Seg_Text("srtc", 0);
+[e ( _Display_7Seg_Text (2 , :s 3C -> -> 0 `i `uc ]
+"308
+[; ;menu.c: 308:         _delay((unsigned long)((1000)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"309
+[; ;menu.c: 309:         PCF8583_Read_Time_Date(&time);
+[e ( _PCF8583_Read_Time_Date (1 &U _time ]
+"311
+[; ;menu.c: 311:         menudef->hours_minutes_ptr->param1=time.minutes;
+[e = . *U . *U _menudef 0 6 . _time 1 ]
+"312
+[; ;menu.c: 312:         menudef->hours_minutes_ptr->param=time.hours;
+[e = . *U . *U _menudef 0 5 . _time 2 ]
+"313
+[; ;menu.c: 313:         menudef->day_month_ptr->param=time.day;
+[e = . *U . *U _menudef 1 5 . _time 3 ]
+"314
+[; ;menu.c: 314:         menudef->day_month_ptr->param1=time.month;
+[e = . *U . *U _menudef 1 6 . _time 4 ]
+"316
+[; ;menu.c: 316:         menudef->year_ptr->param1=time.year%100;
+[e = . *U . *U _menudef 2 6 -> % -> . _time 5 `i -> 100 `i `c ]
+"317
+[; ;menu.c: 317:         menudef->year_ptr->param=20+time.year/100;
+[e = . *U . *U _menudef 2 5 -> + -> 20 `i / -> . _time 5 `i -> 100 `i `c ]
+"319
+[; ;menu.c: 319:         current_menu_ptr=menudef->hours_minutes_ptr;
+[e = _current_menu_ptr . *U _menudef 0 ]
+"320
+[; ;menu.c: 320:         key=k_set_rtc_short;
+[e = _key -> . `E1212 0 `uc ]
+"322
+[; ;menu.c: 322:     }
+}
+[e :U 172 ]
+[e :U 171 ]
+[e :U 169 ]
+"324
+[; ;menu.c: 324:     g_decimal_point=0b0100;
+[e = _g_decimal_point -> -> 4 `i `uc ]
+"326
+[; ;menu.c: 326:     while(1)
+[e :U 174 ]
+"327
+[; ;menu.c: 327:     {
+{
+"328
+[; ;menu.c: 328:         Menu_Set_Param_Time_Limit(current_menu_ptr, check_button);
+[e ( _Menu_Set_Param_Time_Limit (2 , _current_menu_ptr _check_button ]
+"330
+[; ;menu.c: 330:         check_button=Button_Handler(keydef);
+[e = _check_button ( _Button_Handler (1 _keydef ]
+"332
+[; ;menu.c: 332:         if(check_button==key)
+[e $ ! == -> _check_button `i -> _key `i 176  ]
+"333
+[; ;menu.c: 333:         {
+{
+"334
+[; ;menu.c: 334:            if(current_menu_ptr->next_menu==0)
+[e $ ! == . *U _current_menu_ptr 7 -> -> 0 `i `*S138 177  ]
+"335
+[; ;menu.c: 335:            {
+{
+"336
+[; ;menu.c: 336:                 if(menu_type==1)
+[e $ ! == -> _menu_type `i -> 1 `i 178  ]
+"337
+[; ;menu.c: 337:                 {
+{
+"339
+[; ;menu.c: 339:                     Write_Limit_To_EEprom(menudef->time_limit_free_day_1_ptr,
+[e ( _Write_Limit_To_EEprom (3 , , . *U _menudef 5 . *U _menudef 6 -> -> 1 `i `uc ]
+"343
+[; ;menu.c: 343:                     Display_7Seg_Text("save",0);
+[e ( _Display_7Seg_Text (2 , :s 4C -> -> 0 `i `uc ]
+"345
+[; ;menu.c: 345:                 }else if(menu_type==0)
+}
+[e $U 179  ]
+[e :U 178 ]
+[e $ ! == -> _menu_type `i -> 0 `i 180  ]
+"346
+[; ;menu.c: 346:                 {
+{
+"347
+[; ;menu.c: 347:                     Write_Limit_To_EEprom(menudef->time_limit_work_day_1_ptr,
+[e ( _Write_Limit_To_EEprom (3 , , . *U _menudef 3 . *U _menudef 4 -> -> 0 `i `uc ]
+"351
+[; ;menu.c: 351:                     Display_7Seg_Text("save",0);
+[e ( _Display_7Seg_Text (2 , :s 5C -> -> 0 `i `uc ]
+"353
+[; ;menu.c: 353:                 }else if(menu_type==2)
+}
+[e $U 181  ]
+[e :U 180 ]
+[e $ ! == -> _menu_type `i -> 2 `i 182  ]
+"354
+[; ;menu.c: 354:                 {
+{
+"355
+[; ;menu.c: 355:                     time.seconds=0;
+[e = . _time 0 -> -> 0 `i `c ]
+"356
+[; ;menu.c: 356:                     time.minutes=menudef->hours_minutes_ptr->param1;
+[e = . _time 1 . *U . *U _menudef 0 6 ]
+"357
+[; ;menu.c: 357:                     time.hours=menudef->hours_minutes_ptr->param;
+[e = . _time 2 . *U . *U _menudef 0 5 ]
+"358
+[; ;menu.c: 358:                     time.day=menudef->day_month_ptr->param;
+[e = . _time 3 . *U . *U _menudef 1 5 ]
+"359
+[; ;menu.c: 359:                     time.month=menudef->day_month_ptr->param1;
+[e = . _time 4 . *U . *U _menudef 1 6 ]
+"361
+[; ;menu.c: 361:                     time.year=((menudef->year_ptr->param1)+100*
+[e = . _time 5 -> + -> . *U . *U _menudef 2 6 `i * -> 100 `i % -> . *U . *U _menudef 2 5 `i -> 10 `i `c ]
+"364
+[; ;menu.c: 364:                     time.weekday=Find_Weekday((2000+time.year),
+[e = . _time 6 -> ( _Find_Weekday (3 , , -> + -> 2000 `i -> . _time 5 `i `ui -> -> . _time 4 `i `ui -> -> . _time 3 `i `ui `c ]
+"367
+[; ;menu.c: 367:                     if(Is_Valid_Date(time.day,time.month,(2000+time.year)))
+[e $ ! != -> ( _Is_Valid_Date (3 , , -> . _time 3 `uc -> . _time 4 `uc -> + -> 2000 `i -> . _time 5 `i `ui `i -> 0 `i 183  ]
+"368
+[; ;menu.c: 368:                     {
+{
+"369
+[; ;menu.c: 369:                         PCF8583_Set_Date_Time(&time);
+[e ( _PCF8583_Set_Date_Time (1 &U _time ]
+"370
+[; ;menu.c: 370:                          Display_7Seg_Text("save",0);
+[e ( _Display_7Seg_Text (2 , :s 6C -> -> 0 `i `uc ]
+"372
+[; ;menu.c: 372:                     }else
+}
+[e $U 184  ]
+[e :U 183 ]
+"373
+[; ;menu.c: 373:                     {
+{
+"374
+[; ;menu.c: 374:                          Display_7Seg_Text("badd",0);
+[e ( _Display_7Seg_Text (2 , :s 7C -> -> 0 `i `uc ]
+"375
+[; ;menu.c: 375:                     }
+}
+[e :U 184 ]
+"376
+[; ;menu.c: 376:                 }
+}
+[e :U 182 ]
+[e :U 181 ]
+[e :U 179 ]
+"378
+[; ;menu.c: 378:                 _delay((unsigned long)((2000)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"379
+[; ;menu.c: 379:                 Display_7Seg_Text("****",0);
+[e ( _Display_7Seg_Text (2 , :s 8C -> -> 0 `i `uc ]
+"381
+[; ;menu.c: 381:                 return;
+[e $UE 167  ]
+"382
+[; ;menu.c: 382:             }
+}
+[e :U 177 ]
+"384
+[; ;menu.c: 384:             current_menu_ptr=(current_menu_ptr->next_menu);
+[e = _current_menu_ptr . *U _current_menu_ptr 7 ]
+"385
+[; ;menu.c: 385:             if(current_menu_ptr==menudef->year_ptr)
+[e $ ! == _current_menu_ptr . *U _menudef 2 185  ]
+"386
+[; ;menu.c: 386:             {
+{
+"387
+[; ;menu.c: 387:                  g_decimal_point=0b0000;
+[e = _g_decimal_point -> -> 0 `i `uc ]
+"388
+[; ;menu.c: 388:             }
+}
+[e :U 185 ]
+"389
+[; ;menu.c: 389:         }
+}
+[e :U 176 ]
+"390
+[; ;menu.c: 390:     }
+}
+[e :U 173 ]
+[e $U 174  ]
+[e :U 175 ]
+"391
+[; ;menu.c: 391: }
+[e :UE 167 ]
+}
+"401
+[; ;menu.c: 401: void Menu_Set_Param_Time_Limit(MenuParamStruct *menu,
+[v _Menu_Set_Param_Time_Limit `(v ~T0 @X0 1 ef2`*S138`uc ]
+"403
+[; ;menu.c: 403: {
+{
+[e :U _Menu_Set_Param_Time_Limit ]
+"401
+[; ;menu.c: 401: void Menu_Set_Param_Time_Limit(MenuParamStruct *menu,
+[v _menu `*S138 ~T0 @X0 1 r1 ]
+"402
+[; ;menu.c: 402:                                unsigned char check_button)
+[v _check_button `uc ~T0 @X0 1 r2 ]
+"403
+[; ;menu.c: 403: {
+[f ]
+"404
+[; ;menu.c: 404:     static unsigned char flag=0, change_digit=0;
+[v F1377 `uc ~T0 @X0 1 s flag ]
+[i F1377
+-> -> 0 `i `uc
+]
+[v F1378 `uc ~T0 @X0 1 s change_digit ]
+[i F1378
+-> -> 0 `i `uc
+]
+"406
+[; ;menu.c: 406:     if(flag==0 && g_generic_timer==0)
+[e $ ! && == -> F1377 `i -> 0 `i == _g_generic_timer -> -> 0 `i `ui 187  ]
+"407
+[; ;menu.c: 407:     {
+{
+"408
+[; ;menu.c: 408:         g_generic_timer=2000;
+[e = _g_generic_timer -> -> 2000 `i `ui ]
+"409
+[; ;menu.c: 409:         flag=1;
+[e = F1377 -> -> 1 `i `uc ]
+"411
+[; ;menu.c: 411:         g_display_text[0]=(menu->param)/10;
+[e = *U + &U _g_display_text * -> -> -> 0 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> / -> . *U _menu 5 `i -> 10 `i `uc ]
+"412
+[; ;menu.c: 412:         g_display_text[1]=(menu->param)%10;
+[e = *U + &U _g_display_text * -> -> -> 1 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> % -> . *U _menu 5 `i -> 10 `i `uc ]
+"413
+[; ;menu.c: 413:         g_display_text[2]=(menu->param1)/10;
+[e = *U + &U _g_display_text * -> -> -> 2 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> / -> . *U _menu 6 `i -> 10 `i `uc ]
+"414
+[; ;menu.c: 414:         g_display_text[3]=(menu->param1)%10;
+[e = *U + &U _g_display_text * -> -> -> 3 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> % -> . *U _menu 6 `i -> 10 `i `uc ]
+"416
+[; ;menu.c: 416:     }else if(g_generic_timer==0)
+}
+[e $U 188  ]
+[e :U 187 ]
+[e $ ! == _g_generic_timer -> -> 0 `i `ui 189  ]
+"417
+[; ;menu.c: 417:     {
+{
+"418
+[; ;menu.c: 418:         g_display_text[change_digit]='*';
+[e = *U + &U _g_display_text * -> F1378 `ux -> -> # *U &U _g_display_text `ui `ux -> -> 42 `ui `uc ]
+"419
+[; ;menu.c: 419:         flag=0;
+[e = F1377 -> -> 0 `i `uc ]
+"420
+[; ;menu.c: 420:         g_generic_timer=400;
+[e = _g_generic_timer -> -> 400 `i `ui ]
+"421
+[; ;menu.c: 421:     }
+}
+[e :U 189 ]
+[e :U 188 ]
+"423
+[; ;menu.c: 423:      if(check_button==k_set_right_short)
+[e $ ! == -> _check_button `i -> . `E1212 6 `i 190  ]
+"424
+[; ;menu.c: 424:     {
+{
+"425
+[; ;menu.c: 425:         change_digit++;
+[e ++ F1378 -> -> 1 `i `uc ]
+"427
+[; ;menu.c: 427:         if(change_digit>3)
+[e $ ! > -> F1378 `i -> 3 `i 191  ]
+"428
+[; ;menu.c: 428:         {
+{
+"429
+[; ;menu.c: 429:             change_digit=0;
+[e = F1378 -> -> 0 `i `uc ]
+"431
+[; ;menu.c: 431:             g_display_text[3]=(menu->param1)%10;
+[e = *U + &U _g_display_text * -> -> -> 3 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> % -> . *U _menu 6 `i -> 10 `i `uc ]
+"433
+[; ;menu.c: 433:         }else if(change_digit==2)
+}
+[e $U 192  ]
+[e :U 191 ]
+[e $ ! == -> F1378 `i -> 2 `i 193  ]
+"434
+[; ;menu.c: 434:         {
+{
+"435
+[; ;menu.c: 435:             g_display_text[2]=(menu->param1)/10;
+[e = *U + &U _g_display_text * -> -> -> 2 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> / -> . *U _menu 6 `i -> 10 `i `uc ]
+"437
+[; ;menu.c: 437:         }else if(change_digit==1)
+}
+[e $U 194  ]
+[e :U 193 ]
+[e $ ! == -> F1378 `i -> 1 `i 195  ]
+"438
+[; ;menu.c: 438:         {
+{
+"439
+[; ;menu.c: 439:             g_display_text[1]=(menu->param)%10;
+[e = *U + &U _g_display_text * -> -> -> 1 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> % -> . *U _menu 5 `i -> 10 `i `uc ]
+"440
+[; ;menu.c: 440:         }else if(change_digit==0)
+}
+[e $U 196  ]
+[e :U 195 ]
+[e $ ! == -> F1378 `i -> 0 `i 197  ]
+"441
+[; ;menu.c: 441:         {
+{
+"442
+[; ;menu.c: 442:             g_display_text[0]=(menu->param)/10;
+[e = *U + &U _g_display_text * -> -> -> 0 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> / -> . *U _menu 5 `i -> 10 `i `uc ]
+"443
+[; ;menu.c: 443:         }
+}
+[e :U 197 ]
+[e :U 196 ]
+[e :U 194 ]
+[e :U 192 ]
+"444
+[; ;menu.c: 444:     }
+}
+[e :U 190 ]
+"446
+[; ;menu.c: 446:     if(check_button==k_set_up_short)
+[e $ ! == -> _check_button `i -> . `E1212 8 `i 198  ]
+"447
+[; ;menu.c: 447:     {
+{
+"448
+[; ;menu.c: 448:         if(change_digit==0)
+[e $ ! == -> F1378 `i -> 0 `i 199  ]
+"449
+[; ;menu.c: 449:         {
+{
+"450
+[; ;menu.c: 450:             (menu->param)=(menu->param)+10;
+[e = . *U _menu 5 -> + -> . *U _menu 5 `i -> 10 `i `c ]
+"452
+[; ;menu.c: 452:             if(menu->param>menu->max_limit)
+[e $ ! > -> . *U _menu 5 `i -> . *U _menu 0 `i 200  ]
+"453
+[; ;menu.c: 453:             {
+{
+"454
+[; ;menu.c: 454:                 (menu->param)=(menu->param)-((menu->max_limit)-(menu->max_limit)%10+10);
+[e = . *U _menu 5 -> - -> . *U _menu 5 `i + - -> . *U _menu 0 `i % -> . *U _menu 0 `i -> 10 `i -> 10 `i `c ]
+"455
+[; ;menu.c: 455:             }
+}
+[e :U 200 ]
+"457
+[; ;menu.c: 457:             if(menu->max_limit/10==menu->min_limit/10)
+[e $ ! == / -> . *U _menu 0 `i -> 10 `i / -> . *U _menu 3 `i -> 10 `i 201  ]
+"458
+[; ;menu.c: 458:             {
+{
+"459
+[; ;menu.c: 459:                 (menu->param)=(menu->param%10)+((menu->max_limit)-(menu->max_limit)%10);
+[e = . *U _menu 5 -> + % -> . *U _menu 5 `i -> 10 `i - -> . *U _menu 0 `i % -> . *U _menu 0 `i -> 10 `i `c ]
+"460
+[; ;menu.c: 460:             }
+}
+[e :U 201 ]
+"462
+[; ;menu.c: 462:         }else if(change_digit==1)
+}
+[e $U 202  ]
+[e :U 199 ]
+[e $ ! == -> F1378 `i -> 1 `i 203  ]
+"463
+[; ;menu.c: 463:         {
+{
+"464
+[; ;menu.c: 464:             (menu->param)=(menu->param)+1;
+[e = . *U _menu 5 -> + -> . *U _menu 5 `i -> 1 `i `c ]
+"466
+[; ;menu.c: 466:             if((menu->param)>(menu->max_limit))
+[e $ ! > -> . *U _menu 5 `i -> . *U _menu 0 `i 204  ]
+"467
+[; ;menu.c: 467:             {
+{
+"468
+[; ;menu.c: 468:                 (menu->param)=(menu->min_limit);
+[e = . *U _menu 5 -> . *U _menu 3 `c ]
+"469
+[; ;menu.c: 469:             }
+}
+[e :U 204 ]
+"470
+[; ;menu.c: 470:         }else if(change_digit==2)
+}
+[e $U 205  ]
+[e :U 203 ]
+[e $ ! == -> F1378 `i -> 2 `i 206  ]
+"471
+[; ;menu.c: 471:         {
+{
+"472
+[; ;menu.c: 472:             (menu->param1)=(menu->param1)+10;
+[e = . *U _menu 6 -> + -> . *U _menu 6 `i -> 10 `i `c ]
+"474
+[; ;menu.c: 474:             if(menu->param1>menu->max_limit1)
+[e $ ! > -> . *U _menu 6 `i -> . *U _menu 1 `i 207  ]
+"475
+[; ;menu.c: 475:             {
+{
+"476
+[; ;menu.c: 476:                 (menu->param1)=(menu->param1)-((menu->max_limit1)-(menu->max_limit1)%10+10);
+[e = . *U _menu 6 -> - -> . *U _menu 6 `i + - -> . *U _menu 1 `i % -> . *U _menu 1 `i -> 10 `i -> 10 `i `c ]
+"477
+[; ;menu.c: 477:             }
+}
+[e :U 207 ]
+"478
+[; ;menu.c: 478:         }else if(change_digit==3)
+}
+[e $U 208  ]
+[e :U 206 ]
+[e $ ! == -> F1378 `i -> 3 `i 209  ]
+"479
+[; ;menu.c: 479:         {
+{
+"480
+[; ;menu.c: 480:             (menu->param1)=(menu->param1)+1;
+[e = . *U _menu 6 -> + -> . *U _menu 6 `i -> 1 `i `c ]
+"482
+[; ;menu.c: 482:             if((menu->param1)>(menu->max_limit1))
+[e $ ! > -> . *U _menu 6 `i -> . *U _menu 1 `i 210  ]
+"483
+[; ;menu.c: 483:             {
+{
+"484
+[; ;menu.c: 484:                 (menu->param1)=(menu->min_limit1);
+[e = . *U _menu 6 -> . *U _menu 4 `c ]
+"485
+[; ;menu.c: 485:             }
+}
+[e :U 210 ]
+"486
+[; ;menu.c: 486:         }
+}
+[e :U 209 ]
+[e :U 208 ]
+[e :U 205 ]
+[e :U 202 ]
+"488
+[; ;menu.c: 488:         g_display_text[0]=(menu->param)/10;
+[e = *U + &U _g_display_text * -> -> -> 0 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> / -> . *U _menu 5 `i -> 10 `i `uc ]
+"489
+[; ;menu.c: 489:         g_display_text[1]=(menu->param)%10;
+[e = *U + &U _g_display_text * -> -> -> 1 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> % -> . *U _menu 5 `i -> 10 `i `uc ]
+"490
+[; ;menu.c: 490:         g_display_text[2]=(menu->param1)/10;
+[e = *U + &U _g_display_text * -> -> -> 2 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> / -> . *U _menu 6 `i -> 10 `i `uc ]
+"491
+[; ;menu.c: 491:         g_display_text[3]=(menu->param1)%10;
+[e = *U + &U _g_display_text * -> -> -> 3 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> % -> . *U _menu 6 `i -> 10 `i `uc ]
+"493
+[; ;menu.c: 493:         g_generic_timer=7000;
+[e = _g_generic_timer -> -> 7000 `i `ui ]
+"494
+[; ;menu.c: 494:     }
+}
+[e :U 198 ]
+"496
+[; ;menu.c: 496:     if(check_button==k_set_down_short)
+[e $ ! == -> _check_button `i -> . `E1212 10 `i 211  ]
+"497
+[; ;menu.c: 497:     {
+{
+"498
+[; ;menu.c: 498:         if(change_digit==0)
+[e $ ! == -> F1378 `i -> 0 `i 212  ]
+"499
+[; ;menu.c: 499:         {
+{
+"500
+[; ;menu.c: 500:             (menu->param)=(menu->param)-10;
+[e = . *U _menu 5 -> - -> . *U _menu 5 `i -> 10 `i `c ]
+"502
+[; ;menu.c: 502:             if((menu->param)<(menu->min_limit))
+[e $ ! < -> . *U _menu 5 `i -> . *U _menu 3 `i 213  ]
+"503
+[; ;menu.c: 503:             {
+{
+"504
+[; ;menu.c: 504:                 (menu->param)=(menu->param)+((menu->max_limit)-(menu->max_limit)%10+10);
+[e = . *U _menu 5 -> + -> . *U _menu 5 `i + - -> . *U _menu 0 `i % -> . *U _menu 0 `i -> 10 `i -> 10 `i `c ]
+"505
+[; ;menu.c: 505:             }
+}
+[e :U 213 ]
+"512
+[; ;menu.c: 512:         }else if(change_digit==1)
+}
+[e $U 214  ]
+[e :U 212 ]
+[e $ ! == -> F1378 `i -> 1 `i 215  ]
+"513
+[; ;menu.c: 513:         {
+{
+"514
+[; ;menu.c: 514:             (menu->param)=(menu->param)-1;
+[e = . *U _menu 5 -> - -> . *U _menu 5 `i -> 1 `i `c ]
+"516
+[; ;menu.c: 516:             if(menu->param<(menu->min_limit))
+[e $ ! < -> . *U _menu 5 `i -> . *U _menu 3 `i 216  ]
+"517
+[; ;menu.c: 517:             {
+{
+"518
+[; ;menu.c: 518:                 (menu->param)=(menu->max_limit);
+[e = . *U _menu 5 -> . *U _menu 0 `c ]
+"519
+[; ;menu.c: 519:             }
+}
+[e :U 216 ]
+"520
+[; ;menu.c: 520:         }else if(change_digit==2)
+}
+[e $U 217  ]
+[e :U 215 ]
+[e $ ! == -> F1378 `i -> 2 `i 218  ]
+"521
+[; ;menu.c: 521:         {
+{
+"522
+[; ;menu.c: 522:             (menu->param1)=(menu->param1)-10;
+[e = . *U _menu 6 -> - -> . *U _menu 6 `i -> 10 `i `c ]
+"524
+[; ;menu.c: 524:             if(menu->param1<(menu->min_limit1))
+[e $ ! < -> . *U _menu 6 `i -> . *U _menu 4 `i 219  ]
+"525
+[; ;menu.c: 525:             {
+{
+"526
+[; ;menu.c: 526:                 (menu->param1)=(menu->param1)+((menu->max_limit1)-(menu->max_limit1)%10+10);
+[e = . *U _menu 6 -> + -> . *U _menu 6 `i + - -> . *U _menu 1 `i % -> . *U _menu 1 `i -> 10 `i -> 10 `i `c ]
+"527
+[; ;menu.c: 527:             }
+}
+[e :U 219 ]
+"528
+[; ;menu.c: 528:         }else if(change_digit==3)
+}
+[e $U 220  ]
+[e :U 218 ]
+[e $ ! == -> F1378 `i -> 3 `i 221  ]
+"529
+[; ;menu.c: 529:         {
+{
+"530
+[; ;menu.c: 530:             (menu->param1)=(menu->param1)-1;
+[e = . *U _menu 6 -> - -> . *U _menu 6 `i -> 1 `i `c ]
+"532
+[; ;menu.c: 532:             if(menu->param1<(menu->min_limit1))
+[e $ ! < -> . *U _menu 6 `i -> . *U _menu 4 `i 222  ]
+"533
+[; ;menu.c: 533:             {
+{
+"534
+[; ;menu.c: 534:                 (menu->param1)=(menu->max_limit1);
+[e = . *U _menu 6 -> . *U _menu 1 `c ]
+"535
+[; ;menu.c: 535:             }
+}
+[e :U 222 ]
+"536
+[; ;menu.c: 536:         }
+}
+[e :U 221 ]
+[e :U 220 ]
+[e :U 217 ]
+[e :U 214 ]
+"538
+[; ;menu.c: 538:         g_display_text[0]=(menu->param)/10;
+[e = *U + &U _g_display_text * -> -> -> 0 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> / -> . *U _menu 5 `i -> 10 `i `uc ]
+"539
+[; ;menu.c: 539:         g_display_text[1]=(menu->param)%10;
+[e = *U + &U _g_display_text * -> -> -> 1 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> % -> . *U _menu 5 `i -> 10 `i `uc ]
+"540
+[; ;menu.c: 540:         g_display_text[2]=(menu->param1)/10;
+[e = *U + &U _g_display_text * -> -> -> 2 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> / -> . *U _menu 6 `i -> 10 `i `uc ]
+"541
+[; ;menu.c: 541:         g_display_text[3]=(menu->param1)%10;
+[e = *U + &U _g_display_text * -> -> -> 3 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> % -> . *U _menu 6 `i -> 10 `i `uc ]
+"543
+[; ;menu.c: 543:         g_generic_timer=7000;
+[e = _g_generic_timer -> -> 7000 `i `ui ]
+"544
+[; ;menu.c: 544:     }
+}
+[e :U 211 ]
+"545
+[; ;menu.c: 545: }
+[e :UE 186 ]
+}
+"555
+[; ;menu.c: 555: void Select_Menu(MenuParamPonterStruct *menudef, KeyPointerStruct *keydef,
+[v _Select_Menu `(v ~T0 @X0 1 ef3`*S139`*S137`*S135 ]
+"557
+[; ;menu.c: 557: {
+{
+[e :U _Select_Menu ]
+"555
+[; ;menu.c: 555: void Select_Menu(MenuParamPonterStruct *menudef, KeyPointerStruct *keydef,
+[v _menudef `*S139 ~T0 @X0 1 r1 ]
+[v _keydef `*S137 ~T0 @X0 1 r2 ]
+"556
+[; ;menu.c: 556:                  TimeStruct *time)
+[v _time `*S135 ~T0 @X0 1 r3 ]
+"557
+[; ;menu.c: 557: {
+[f ]
+"558
+[; ;menu.c: 558:     unsigned char check_button;
+[v _check_button `uc ~T0 @X0 1 a ]
+"560
+[; ;menu.c: 560:     check_button=Button_Handler(keydef);
+[e = _check_button ( _Button_Handler (1 _keydef ]
+"561
+[; ;menu.c: 561:     if(check_button==k_set_right_short)
+[e $ ! == -> _check_button `i -> . `E1212 6 `i 224  ]
+"562
+[; ;menu.c: 562:     {
+{
+"563
+[; ;menu.c: 563:         Show_Time(time,keydef);
+[e ( _Show_Time (2 , _time _keydef ]
+"565
+[; ;menu.c: 565:     }else if(check_button==k_set_rtc_short)
+}
+[e $U 225  ]
+[e :U 224 ]
+[e $ ! == -> _check_button `i -> . `E1212 0 `i 226  ]
+"566
+[; ;menu.c: 566:     {
+{
+"567
+[; ;menu.c: 567:         Menu_Set_Time(menudef,keydef,2);
+[e ( _Menu_Set_Time (3 , , _menudef _keydef -> -> 2 `i `uc ]
+"569
+[; ;menu.c: 569:     }else if(check_button==k_set_time1_short)
+}
+[e $U 227  ]
+[e :U 226 ]
+[e $ ! == -> _check_button `i -> . `E1212 2 `i 228  ]
+"570
+[; ;menu.c: 570:     {
+{
+"571
+[; ;menu.c: 571:         Menu_Set_Time(menudef,keydef,0);
+[e ( _Menu_Set_Time (3 , , _menudef _keydef -> -> 0 `i `uc ]
+"573
+[; ;menu.c: 573:     }else if(check_button==k_set_time2_short)
+}
+[e $U 229  ]
+[e :U 228 ]
+[e $ ! == -> _check_button `i -> . `E1212 4 `i 230  ]
+"574
+[; ;menu.c: 574:     {
+{
+"575
+[; ;menu.c: 575:         Menu_Set_Time(menudef,keydef,1);
+[e ( _Menu_Set_Time (3 , , _menudef _keydef -> -> 1 `i `uc ]
+"576
+[; ;menu.c: 576:     }
+}
+[e :U 230 ]
+[e :U 229 ]
+[e :U 227 ]
+[e :U 225 ]
+"577
+[; ;menu.c: 577: }
+[e :UE 223 ]
+}
+"587
+[; ;menu.c: 587: void Write_Limit_To_EEprom(MenuParamStruct *limit1, MenuParamStruct *limit2, unsigned char limit_type)
+[v _Write_Limit_To_EEprom `(v ~T0 @X0 1 ef3`*S138`*S138`uc ]
+"588
+[; ;menu.c: 588: {
+{
+[e :U _Write_Limit_To_EEprom ]
+"587
+[; ;menu.c: 587: void Write_Limit_To_EEprom(MenuParamStruct *limit1, MenuParamStruct *limit2, unsigned char limit_type)
+[v _limit1 `*S138 ~T0 @X0 1 r1 ]
+[v _limit2 `*S138 ~T0 @X0 1 r2 ]
+[v _limit_type `uc ~T0 @X0 1 r3 ]
+"588
+[; ;menu.c: 588: {
+[f ]
+"589
+[; ;menu.c: 589:     if(limit_type==0)
+[e $ ! == -> _limit_type `i -> 0 `i 232  ]
+"590
+[; ;menu.c: 590:     {
+{
+"591
+[; ;menu.c: 591:         Write_EEprom(limit1->param, 0x00);
+[e ( _Write_EEprom (2 , . *U _limit1 5 -> -> 0 `i `uc ]
+"592
+[; ;menu.c: 592:         Write_EEprom(limit1->param1,0x01);
+[e ( _Write_EEprom (2 , . *U _limit1 6 -> -> 1 `i `uc ]
+"593
+[; ;menu.c: 593:         Write_EEprom(limit2->param, 0x02);
+[e ( _Write_EEprom (2 , . *U _limit2 5 -> -> 2 `i `uc ]
+"594
+[; ;menu.c: 594:         Write_EEprom(limit2->param1, 0x03);
+[e ( _Write_EEprom (2 , . *U _limit2 6 -> -> 3 `i `uc ]
+"596
+[; ;menu.c: 596:     }else if(limit_type==1)
+}
+[e $U 233  ]
+[e :U 232 ]
+[e $ ! == -> _limit_type `i -> 1 `i 234  ]
+"597
+[; ;menu.c: 597:     {
+{
+"598
+[; ;menu.c: 598:         Write_EEprom(limit1->param,0x04);
+[e ( _Write_EEprom (2 , . *U _limit1 5 -> -> 4 `i `uc ]
+"599
+[; ;menu.c: 599:         Write_EEprom(limit1->param1,0x05);
+[e ( _Write_EEprom (2 , . *U _limit1 6 -> -> 5 `i `uc ]
+"600
+[; ;menu.c: 600:         Write_EEprom(limit2->param,0x06);
+[e ( _Write_EEprom (2 , . *U _limit2 5 -> -> 6 `i `uc ]
+"601
+[; ;menu.c: 601:         Write_EEprom(limit2->param1,0x07);
+[e ( _Write_EEprom (2 , . *U _limit2 6 -> -> 7 `i `uc ]
+"602
+[; ;menu.c: 602:     }
+}
+[e :U 234 ]
+[e :U 233 ]
+"603
+[; ;menu.c: 603: }
+[e :UE 231 ]
+}
+"613
+[; ;menu.c: 613: void Read_Limit_From_EEprom(MenuParamStruct *limit1, MenuParamStruct *limit2,
+[v _Read_Limit_From_EEprom `(v ~T0 @X0 1 ef3`*S138`*S138`uc ]
+"615
+[; ;menu.c: 615: {
+{
+[e :U _Read_Limit_From_EEprom ]
+"613
+[; ;menu.c: 613: void Read_Limit_From_EEprom(MenuParamStruct *limit1, MenuParamStruct *limit2,
+[v _limit1 `*S138 ~T0 @X0 1 r1 ]
+[v _limit2 `*S138 ~T0 @X0 1 r2 ]
+"614
+[; ;menu.c: 614:                             unsigned char limit_type)
+[v _limit_type `uc ~T0 @X0 1 r3 ]
+"615
+[; ;menu.c: 615: {
+[f ]
+"616
+[; ;menu.c: 616:     if(limit_type==0)
+[e $ ! == -> _limit_type `i -> 0 `i 236  ]
+"617
+[; ;menu.c: 617:     {
+{
+"618
+[; ;menu.c: 618:         limit1->param=Read_EEprom(0x00);
+[e = . *U _limit1 5 ( _Read_EEprom (1 -> -> 0 `i `uc ]
+"619
+[; ;menu.c: 619:         limit1->param1=Read_EEprom(0x01);
+[e = . *U _limit1 6 ( _Read_EEprom (1 -> -> 1 `i `uc ]
+"620
+[; ;menu.c: 620:         limit2->param=Read_EEprom(0x02);
+[e = . *U _limit2 5 ( _Read_EEprom (1 -> -> 2 `i `uc ]
+"621
+[; ;menu.c: 621:         limit2->param1=Read_EEprom(0x03);
+[e = . *U _limit2 6 ( _Read_EEprom (1 -> -> 3 `i `uc ]
+"623
+[; ;menu.c: 623:     }else if(limit_type==1)
+}
+[e $U 237  ]
+[e :U 236 ]
+[e $ ! == -> _limit_type `i -> 1 `i 238  ]
+"624
+[; ;menu.c: 624:     {
+{
+"625
+[; ;menu.c: 625:         limit1->param=Read_EEprom(0x04);
+[e = . *U _limit1 5 ( _Read_EEprom (1 -> -> 4 `i `uc ]
+"626
+[; ;menu.c: 626:         limit1->param1=Read_EEprom(0x05);
+[e = . *U _limit1 6 ( _Read_EEprom (1 -> -> 5 `i `uc ]
+"627
+[; ;menu.c: 627:         limit2->param=Read_EEprom(0x06);
+[e = . *U _limit2 5 ( _Read_EEprom (1 -> -> 6 `i `uc ]
+"628
+[; ;menu.c: 628:         limit2->param1=Read_EEprom(0x07);
+[e = . *U _limit2 6 ( _Read_EEprom (1 -> -> 7 `i `uc ]
+"629
+[; ;menu.c: 629:     }
+}
+[e :U 238 ]
+[e :U 237 ]
+"630
+[; ;menu.c: 630: }
+[e :UE 235 ]
+}
+"640
+[; ;menu.c: 640: void Display_7Seg_Text(char *text, unsigned char decimal_point)
+[v _Display_7Seg_Text `(v ~T0 @X0 1 ef2`*uc`uc ]
+"641
+[; ;menu.c: 641: {
+{
+[e :U _Display_7Seg_Text ]
+"640
+[; ;menu.c: 640: void Display_7Seg_Text(char *text, unsigned char decimal_point)
+[v _text `*uc ~T0 @X0 1 r1 ]
+[v _decimal_point `uc ~T0 @X0 1 r2 ]
+"641
+[; ;menu.c: 641: {
+[f ]
+"642
+[; ;menu.c: 642:     unsigned char i;
+[v _i `uc ~T0 @X0 1 a ]
+"644
+[; ;menu.c: 644:     for(i=0;i<4;i++)
+{
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 4 `i 240  ]
+[e $U 241  ]
+[e :U 240 ]
+"645
+[; ;menu.c: 645:     {
+{
+"646
+[; ;menu.c: 646:         g_display_text[i]=*(text+i);
+[e = *U + &U _g_display_text * -> _i `ux -> -> # *U &U _g_display_text `ui `ux -> *U + _text * -> -> _i `i `x -> -> # *U _text `i `x `uc ]
+"647
+[; ;menu.c: 647:     }
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 4 `i 240  ]
+[e :U 241 ]
+}
+"649
+[; ;menu.c: 649:     g_decimal_point=decimal_point;
+[e = _g_decimal_point _decimal_point ]
+"650
+[; ;menu.c: 650: }
+[e :UE 239 ]
+}
+"660
+[; ;menu.c: 660: void Display_Weekday(unsigned char weekday)
+[v _Display_Weekday `(v ~T0 @X0 1 ef1`uc ]
+"661
+[; ;menu.c: 661: {
+{
+[e :U _Display_Weekday ]
+"660
+[; ;menu.c: 660: void Display_Weekday(unsigned char weekday)
+[v _weekday `uc ~T0 @X0 1 r1 ]
+"661
+[; ;menu.c: 661: {
+[f ]
+"662
+[; ;menu.c: 662:     switch (weekday)
+[e $U 245  ]
+"663
+[; ;menu.c: 663:     {
+{
+"664
+[; ;menu.c: 664:         case monday: Display_7Seg_Text("mond",0); break;
+[e :U 246 ]
+[e ( _Display_7Seg_Text (2 , :s 9C -> -> 0 `i `uc ]
+[e $U 244  ]
+"665
+[; ;menu.c: 665:         case tuesday: Display_7Seg_Text("tues",0); break;
+[e :U 247 ]
+[e ( _Display_7Seg_Text (2 , :s 10C -> -> 0 `i `uc ]
+[e $U 244  ]
+"666
+[; ;menu.c: 666:         case wedenesday: Display_7Seg_Text("wede",0); break;
+[e :U 248 ]
+[e ( _Display_7Seg_Text (2 , :s 11C -> -> 0 `i `uc ]
+[e $U 244  ]
+"667
+[; ;menu.c: 667:         case thursday: Display_7Seg_Text("thur",0); break;
+[e :U 249 ]
+[e ( _Display_7Seg_Text (2 , :s 12C -> -> 0 `i `uc ]
+[e $U 244  ]
+"668
+[; ;menu.c: 668:         case friday: Display_7Seg_Text("frid",0); break;
+[e :U 250 ]
+[e ( _Display_7Seg_Text (2 , :s 13C -> -> 0 `i `uc ]
+[e $U 244  ]
+"669
+[; ;menu.c: 669:         case saturday: Display_7Seg_Text("satu",0); break;
+[e :U 251 ]
+[e ( _Display_7Seg_Text (2 , :s 14C -> -> 0 `i `uc ]
+[e $U 244  ]
+"670
+[; ;menu.c: 670:         case sunday: Display_7Seg_Text("sund",0); break;
+[e :U 252 ]
+[e ( _Display_7Seg_Text (2 , :s 15C -> -> 0 `i `uc ]
+[e $U 244  ]
+"671
+[; ;menu.c: 671:     }
+}
+[e $U 244  ]
+[e :U 245 ]
+[e [\ -> _weekday `i , $ . `E1226 0 246
+ , $ . `E1226 1 247
+ , $ . `E1226 2 248
+ , $ . `E1226 3 249
+ , $ . `E1226 4 250
+ , $ . `E1226 5 251
+ , $ . `E1226 6 252
+ 244 ]
+[e :U 244 ]
+"672
+[; ;menu.c: 672: }
+[e :UE 243 ]
+}
+[a 14C 115 97 116 117 0 ]
+[a 10C 116 117 101 115 0 ]
+[a 12C 116 104 117 114 0 ]
+[a 4C 115 97 118 101 0 ]
+[a 5C 115 97 118 101 0 ]
+[a 6C 115 97 118 101 0 ]
+[a 11C 119 101 100 101 0 ]
+[a 15C 115 117 110 100 0 ]
+[a 9C 109 111 110 100 0 ]
+[a 13C 102 114 105 100 0 ]
+[a 7C 98 97 100 100 0 ]
+[a 3C 115 114 116 99 0 ]
+[a 1C 115 101 116 50 0 ]
+[a 2C 115 101 116 49 0 ]
+[a 8C 42 42 42 42 0 ]

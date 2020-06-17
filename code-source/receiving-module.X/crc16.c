@@ -1,9 +1,8 @@
-///////////////////////////////////////////////////////////////////////////////
-//
-//  Counting 16bit CRC from 8bit data tab
-//  CRC Polynomial: 0x1021
-//              
-//////////////////////////////////////////////////////////////////////////////
+/* 
+ * Counting 16bit CRC from 8bit data tab
+ * CRC Polynomial: 0x1021
+ * 
+ */
 
 unsigned int CRC16(unsigned char *data_tab_ptr, unsigned char size)
 {

@@ -7,6 +7,13 @@
 # 1 "/opt/microchip/xc8/v2.10/pic/include/language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "circular_buffer.c" 2
+
+
+
+
+
+
+
 # 1 "/opt/microchip/xc8/v2.10/pic/include/xc.h" 1 3
 # 18 "/opt/microchip/xc8/v2.10/pic/include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2367,48 +2374,48 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "/opt/microchip/xc8/v2.10/pic/include/xc.h" 2 3
-# 2 "circular_buffer.c" 2
+# 9 "circular_buffer.c" 2
 # 1 "./circular_buffer.h" 1
 # 11 "./circular_buffer.h"
 unsigned char FrameBuffer(unsigned char *data,unsigned char mode);
-# 3 "circular_buffer.c" 2
+# 10 "circular_buffer.c" 2
 
 
 
 unsigned char FrameBuffer(unsigned char *data,unsigned char mode)
 {
- static unsigned char Buffer[30];
- static unsigned char ReadPointer,WritePointer,
-     WritePointerMem;
+ static unsigned char buffer[30];
+ static unsigned char read_pointer, write_pointer, write_pointer_mem;
 
  if(mode==1)
  {
-  WritePointerMem=WritePointer;
-  WritePointer++;
-  if(WritePointer==30)
+  write_pointer_mem=write_pointer;
+  write_pointer++;
+
+  if(write_pointer==30)
   {
-   WritePointer=0;
+   write_pointer=0;
   }
-  if(WritePointer==ReadPointer)
+  if(write_pointer==read_pointer)
   {
-   WritePointer=WritePointerMem;
+   write_pointer=write_pointer_mem;
    return 0xFE;
   }
 
-  Buffer[WritePointer]=*data;
+  buffer[write_pointer]=*data;
 
   return 1;
 
  }else
  {
-  if(WritePointer!=ReadPointer)
+  if(write_pointer!=read_pointer)
   {
-   ReadPointer++;
-   if(ReadPointer==30)
+   read_pointer++;
+   if(read_pointer==30)
    {
-    ReadPointer=0;
+    read_pointer=0;
    }
-   *data=Buffer[ReadPointer];
+   *data=buffer[read_pointer];
    return 1;
 
   }else

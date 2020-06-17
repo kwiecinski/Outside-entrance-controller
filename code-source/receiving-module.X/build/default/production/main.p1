@@ -9,34 +9,42 @@ Version 4.0 HI-TECH Software Intermediate Code
 "11 ./hw_i2c.h
 [; ;./hw_i2c.h: 11: void Init_I2C(void);
 [v _Init_I2C `(v ~T0 @X0 0 ef ]
-"9 ./hw_uart.h
-[; ;./hw_uart.h: 9: void UART_Init(void);
-[v _UART_Init `(v ~T0 @X0 0 ef ]
-"22 ./main.h
-[; ;./main.h: 22: 
+"77 ./main.h
+[; ;./main.h: 77: {
 [s S134 `uc -> 4 `i `uc 1 ]
 [n S134 . frame RCV_Frame ]
-[v F1222 `(v ~T0 @X0 0 tf ]
-[v F1224 `(v ~T0 @X0 0 tf ]
-"36
-[s S136 `uc 1 `uc 1 `uc 1 `*Vuc 1 `*F1222 1 `*F1224 1 ]
+"91
+[; ;./main.h: 91: {
+[s S136 `uc 1 `uc 1 `uc 1 `*Vuc 1 `uc 1 `uc 1 ]
 [n S136 . klock pin lock_long_press port button_short_function button_long_function ]
-"45
+"100
+[; ;./main.h: 100: {
 [s S137 `*S136 1 `*S136 1 `*S136 1 `*S136 1 `*S136 1 `*S136 1 ]
 [n S137 . set_rtc set_time1 set_time2 set_right set_up set_down ]
-"12 ./key-handler.h
-[; ;./key-handler.h: 12: void Button_Init (KeyPointerStruct *keydef);
+"111
+[; ;./main.h: 111: {
+[s S138 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `c 1 `c 1 `*S138 1 ]
+[n S138 MenuParamStruct max_limit max_limit1 letter min_limit min_limit1 param param1 next_menu ]
+"119
+[; ;./main.h: 119: {
+[s S139 `*S138 1 `*S138 1 `*S138 1 `*S138 1 `*S138 1 `*S138 1 `*S138 1 ]
+[n S139 . hours_minutes_ptr day_month_ptr year_ptr time_limit_work_day_1_ptr time_limit_work_day_2_ptr time_limit_free_day_1_ptr time_limit_free_day_2_ptr ]
+"85
+[; ;./main.h: 85: {
+[s S135 `c 1 `c 1 `c 1 `c 1 `c 1 `c 1 `c 1 ]
+[n S135 . seconds minutes hours day month year weekday ]
+"13 ./key-handler.h
+[; ;./key-handler.h: 13: void Button_Init (KeyPointerStruct *keydef);
 [v _Button_Init `(v ~T0 @X0 0 ef1`*S137 ]
-"30 ./main.h
-[; ;./main.h: 30:     KeyStruct *set_down;
-[s S135 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 ]
-[n S135 . seconds minutes hours day month year ]
-"11 ./key-handler.h
-[; ;./key-handler.h: 11: void Button_Handler(KeyPointerStruct *keydef);
-[v _Button_Handler `(v ~T0 @X0 0 ef1`*S137 ]
-"14 ./manchester_decode.h
-[; ;./manchester_decode.h: 14: void ProcessRCVData(DataStruct *DataRCV);
-[v _ProcessRCVData `(v ~T0 @X0 0 ef1`*S134 ]
+"12 ./menu.h
+[; ;./menu.h: 12: void Menu_Init(MenuParamPonterStruct *menudef);
+[v _Menu_Init `(v ~T0 @X0 0 ef1`*S139 ]
+"12 ./manchester_decode.h
+[; ;./manchester_decode.h: 12: void ProcessRCVData(DataStruct *DataRCV, TimeStruct *time, MenuParamPonterStruct *time_limit);
+[v _ProcessRCVData `(v ~T0 @X0 0 ef3`*S134`*S135`*S139 ]
+"13 ./menu.h
+[; ;./menu.h: 13: void Select_Menu(MenuParamPonterStruct *menudef, KeyPointerStruct *keydef, TimeStruct *time);
+[v _Select_Menu `(v ~T0 @X0 0 ef3`*S139`*S137`*S135 ]
 "54 /opt/microchip/xc8/v2.10/pic/include/pic16f886.h
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -265,124 +273,100 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3370
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 3370: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"6 ./main.h
-[; ;./main.h: 6: 
+"13 ./main.h
 [p x FOSC = INTRC_NOCLKOUT ]
-"7
-[; ;./main.h: 7: 
-[p x WDTE = OFF ]
-"8
-[; ;./main.h: 8: typedef struct
-[p x PWRTE = OFF ]
-"9
-[; ;./main.h: 9: {
-[p x MCLRE = ON ]
-"10
-[; ;./main.h: 10:  unsigned char seconds,minutes,hours,day,month,year;
-[p x CP = OFF ]
-"11
-[; ;./main.h: 11: 
-[p x CPD = OFF ]
-"12
-[; ;./main.h: 12: }TimeStruct;
-[p x BOREN = OFF ]
-"13
-[; ;./main.h: 13: 
-[p x IESO = OFF ]
 "14
-[; ;./main.h: 14: typedef struct
-[p x FCMEN = OFF ]
+[p x WDTE = OFF ]
 "15
-[; ;./main.h: 15: {
-[p x LVP = OFF ]
+[p x PWRTE = OFF ]
+"16
+[p x MCLRE = ON ]
+"17
+[p x CP = OFF ]
 "18
-[; ;./main.h: 18:     void (*button_short_function)(void);
-[p x BOR4V = BOR40V ]
+[p x CPD = OFF ]
 "19
-[; ;./main.h: 19:     void (*button_long_function)(void);
-[p x WRT = OFF ]
-"19 ./interrupts.h
-[; ;./interrupts.h: 19: volatile unsigned char ISR_ACK;
-[v _ISR_ACK `Vuc ~T0 @X0 1 e ]
+[p x BOREN = OFF ]
 "20
-[; ;./interrupts.h: 20: volatile unsigned int PWM_Freq, Timer1, g_button_timer, g_generic_timer;
-[v _PWM_Freq `Vui ~T0 @X0 1 e ]
-[v _Timer1 `Vui ~T0 @X0 1 e ]
+[p x IESO = OFF ]
+"21
+[p x FCMEN = OFF ]
+"22
+[p x LVP = OFF ]
+"25
+[p x BOR4V = BOR40V ]
+"26
+[p x WRT = OFF ]
+"20 ./interrupts.h
+[; ;./interrupts.h: 20: volatile unsigned char g_reciver_ccp2_isr_fire_flag, g_display_controll;
+[v _g_reciver_ccp2_isr_fire_flag `Vuc ~T0 @X0 1 e ]
+[v _g_display_controll `Vuc ~T0 @X0 1 e ]
+"21
+[; ;./interrupts.h: 21: volatile unsigned int g_pwm_freq, g_button_timer, g_generic_timer;
+[v _g_pwm_freq `Vui ~T0 @X0 1 e ]
 [v _g_button_timer `Vui ~T0 @X0 1 e ]
 [v _g_generic_timer `Vui ~T0 @X0 1 e ]
-"21
-[; ;./interrupts.h: 21: unsigned char g_display_text[4];
+"23
+[; ;./interrupts.h: 23: unsigned char g_display_text[4];
 [v _g_display_text `uc ~T0 @X0 -> 4 `i e ]
-"22
-[; ;./interrupts.h: 22: unsigned char g_decimal_point;
+"24
+[; ;./interrupts.h: 24: unsigned char g_decimal_point;
 [v _g_decimal_point `uc ~T0 @X0 1 e ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"18 main.c
-[; ;main.c: 18: void main(void)
+"25 main.c
+[; ;main.c: 25: void main(void)
 [v _main `(v ~T0 @X0 1 ef ]
-"19
-[; ;main.c: 19: {
+"26
+[; ;main.c: 26: {
 {
 [e :U _main ]
 [f ]
-"20
-[; ;main.c: 20:     Global_Inits();
+"27
+[; ;main.c: 27:     Global_Inits();
 [e ( _Global_Inits ..  ]
-"21
-[; ;main.c: 21:     InterruptConfig();
+"28
+[; ;main.c: 28:     InterruptConfig();
 [e ( _InterruptConfig ..  ]
-"22
-[; ;main.c: 22:     Init_I2C();
+"29
+[; ;main.c: 29:     Init_I2C();
 [e ( _Init_I2C ..  ]
-"23
-[; ;main.c: 23:     UART_Init();
-[e ( _UART_Init ..  ]
-"25
-[; ;main.c: 25:     DataStruct DataRCV;
-[v _DataRCV `S134 ~T0 @X0 1 a ]
-"30
-[; ;main.c: 30:     g_display_text[0]=1;
-[e = *U + &U _g_display_text * -> -> -> 0 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> -> 1 `i `uc ]
 "31
-[; ;main.c: 31:     g_display_text[1]='f';
-[e = *U + &U _g_display_text * -> -> -> 1 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> -> 102 `ui `uc ]
+[; ;main.c: 31:     DataStruct data_rcv;
+[v _data_rcv `S134 ~T0 @X0 1 a ]
 "32
-[; ;main.c: 32:     g_display_text[2]='c';
-[e = *U + &U _g_display_text * -> -> -> 2 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> -> 99 `ui `uc ]
-"33
-[; ;main.c: 33:     g_display_text[3]=4;
-[e = *U + &U _g_display_text * -> -> -> 3 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux -> -> 4 `i `uc ]
-"34
-[; ;main.c: 34:     g_decimal_point=0b0101;
-[e = _g_decimal_point -> -> 5 `i `uc ]
-"36
-[; ;main.c: 36:     KeyPointerStruct keydef;
+[; ;main.c: 32:     KeyPointerStruct keydef;
 [v _keydef `S137 ~T0 @X0 1 a ]
-"37
-[; ;main.c: 37:     Button_Init(&keydef);
-[e ( _Button_Init (1 &U _keydef ]
-"39
-[; ;main.c: 39:     TimeStruct time;
+"33
+[; ;main.c: 33:     MenuParamPonterStruct menudef;
+[v _menudef `S139 ~T0 @X0 1 a ]
+"34
+[; ;main.c: 34:     TimeStruct time;
 [v _time `S135 ~T0 @X0 1 a ]
-"41
-[; ;main.c: 41:     while(1)
-[e :U 140 ]
+"36
+[; ;main.c: 36:     Button_Init(&keydef);
+[e ( _Button_Init (1 &U _keydef ]
+"37
+[; ;main.c: 37:     Menu_Init(&menudef);
+[e ( _Menu_Init (1 &U _menudef ]
 "42
-[; ;main.c: 42:     {
-{
+[; ;main.c: 42:     while(1)
+[e :U 142 ]
 "43
-[; ;main.c: 43:         Button_Handler(&keydef);
-[e ( _Button_Handler (1 &U _keydef ]
-"64
-[; ;main.c: 64:         ProcessRCVData(&DataRCV);
-[e ( _ProcessRCVData (1 &U _DataRCV ]
-"65
-[; ;main.c: 65:     }
+[; ;main.c: 43:     {
+{
+"44
+[; ;main.c: 44:         ProcessRCVData(&data_rcv,&time,&menudef);
+[e ( _ProcessRCVData (3 , , &U _data_rcv &U _time &U _menudef ]
+"45
+[; ;main.c: 45:         Select_Menu(&menudef,&keydef,&time);
+[e ( _Select_Menu (3 , , &U _menudef &U _keydef &U _time ]
+"46
+[; ;main.c: 46:     }
 }
-[e :U 139 ]
-[e $U 140  ]
 [e :U 141 ]
-"66
-[; ;main.c: 66: }
-[e :UE 138 ]
+[e $U 142  ]
+[e :U 143 ]
+"47
+[; ;main.c: 47: }
+[e :UE 140 ]
 }

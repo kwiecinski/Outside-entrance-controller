@@ -1,8 +1,6 @@
 #include <xc.h>
 #include "main.h"
 #include "display-7-segment.h"
-//
-
 
 #define SEG_A    PORTAbits.RA6
 #define SEG_B    PORTAbits.RA7
@@ -40,6 +38,16 @@ unsigned char SignAnodeData(unsigned char sign)
         case 7 : return 0b11100100;
         case 8 : return 0b11111110;
         case 9 : return 0b11110110;
+        case '0': return 0b11111100;
+        case '1': return 0b01100000;
+        case '2': return 0b11011010;
+        case '3': return 0b11110010;
+        case '4': return 0b01100110;
+        case '5': return 0b10110110;
+        case '6': return 0b10111110;
+        case '7': return 0b11100100;
+        case '8': return 0b11111110;
+        case '9': return 0b11110110;
         case 'a': return 0b11101110;
         case 'b': return 0b00111110;
         case 'c': return 0b10011100;
@@ -52,7 +60,7 @@ unsigned char SignAnodeData(unsigned char sign)
         case 'j': return 0b01110000;
         case 'k': return 0b01101110;   //same as H
         case 'l': return 0b00011100;
-        case 'm': return 0b00000000;   //no display
+        case 'm': return 0b11101100;   //display as N
         case 'n': return 0b00101010;
         case 'o': return 0b11111100;
         case 'p': return 0b01110011;
@@ -61,7 +69,7 @@ unsigned char SignAnodeData(unsigned char sign)
         case 't': return 0b00011110;
         case 'u': return 0b01111100;
         case 'v': return 0b01111100;   //same as U
-        case 'w': return 0b00000000;   //no display
+        case 'w': return 0b01111100;   //same as U
         case 'x': return 0b01101110;   //same as H
         case 'y': return 0b01110110;
         case 'z': return 0b11011010;   //same as 2
@@ -74,9 +82,8 @@ unsigned char SignAnodeData(unsigned char sign)
 
 void SetAnodeOutputs(unsigned char sign, unsigned char decimal_point);
 void OneDigitHandler(unsigned char sign, unsigned char digit_number, unsigned char decimal_point);
-void DisableAllDigits(void);
 
-void DisableAllDigits(void)
+void Disable_All_Digits(void)
 {
     DIG1_CA=1;
     DIG2_CA=1;
@@ -140,7 +147,7 @@ void Display7SegmentText(unsigned char *text, unsigned char decimal_point)
 void OneDigitHandler(unsigned char sign, unsigned char digit_number, unsigned char decimal_point)
 {
     
-    DisableAllDigits();
+    Disable_All_Digits();
     SetAnodeOutputs(SignAnodeData(sign),decimal_point);
     switch (digit_number) 
     {

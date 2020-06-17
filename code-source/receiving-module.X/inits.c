@@ -3,15 +3,14 @@
 
 void Global_Inits(void)
 {
-     
-    //Ocillator Config - 16MHz Internal
+    //Ocillator Config - 8MHz Internal
     OSCCONbits.IRCF=0b111;
     OSCCONbits.OSTS=0;
     OSCCONbits.SCS=1;
-    ANSEL=0x00;      //PORTA pins as digital I/O;
+    
+    //PORTA pins as digital I/O;
+    ANSEL=0x00;     
     ANSELH=0x00;
-    
-    
     
     TRISC0=0;    //unconeccted output
     TRISC1=1;    //radio rx
@@ -21,8 +20,7 @@ void Global_Inits(void)
     TRISC5=1;    //sw time2
     TRISC6=0;    //uart tx
     TRISC7=1;    //sw time1
-    
-    
+        
     TRISA0=0;    //seg dp
     TRISA1=0;    //seg g
     TRISA2=0;    //seg f
@@ -39,7 +37,5 @@ void Global_Inits(void)
     TRISB4=0;    //dig4 ca
     TRISB5=0;    //dig3 ca
     TRISB6=0;    //dig2 ca
-    TRISB7=0;    //dig1 ca
-    
-   
+    TRISB7=0;    //dig1 ca 
 }

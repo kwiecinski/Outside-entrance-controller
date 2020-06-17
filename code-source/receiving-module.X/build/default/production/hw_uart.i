@@ -2463,11 +2463,7 @@ extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 # 3 "hw_uart.c" 2
 # 1 "./main.h" 1
-
-
-
-
-
+# 13 "./main.h"
 #pragma config FOSC = INTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
@@ -2482,6 +2478,34 @@ extern int printf(const char *, ...);
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
+# 48 "./main.h"
+enum button_press
+{
+    k_set_rtc_short,
+    k_set_rtc_long,
+    k_set_time1_short,
+    k_set_time1_long,
+    k_set_time2_short,
+    k_set_time2_long,
+    k_set_right_short,
+    k_set_right_long,
+    k_set_up_short,
+    k_set_up_long,
+    k_set_down_short,
+    k_set_down_long,
+    k_no_key_press
+};
+
+enum days
+{
+    monday,
+    tuesday,
+    wedenesday,
+    thursday,
+    friday,
+    saturday,
+    sunday
+};
 
 typedef struct
 {
@@ -2493,7 +2517,7 @@ typedef struct
 
 typedef struct
 {
- unsigned char seconds,minutes,hours,day,month,year;
+ signed char seconds,minutes,hours,day,month,year,weekday;
 
 }TimeStruct;
 
@@ -2501,8 +2525,8 @@ typedef struct
 {
     unsigned char klock, pin, lock_long_press;
     volatile unsigned char *port;
-    void (*button_short_function)(void);
-    void (*button_long_function)(void);
+    unsigned char button_short_function;
+    unsigned char button_long_function;
 
 }KeyStruct;
 
@@ -2516,37 +2540,32 @@ typedef struct
     KeyStruct *set_down;
 
 }KeyPointerStruct;
+
+typedef struct MenuParamStruct
+{
+    unsigned char max_limit,max_limit1,letter,min_limit,min_limit1;
+    signed char param, param1;
+    struct MenuParamStruct *next_menu;
+
+}MenuParamStruct;
+
+typedef struct
+{
+    MenuParamStruct *hours_minutes_ptr;
+    MenuParamStruct *day_month_ptr;
+    MenuParamStruct *year_ptr;
+    MenuParamStruct *time_limit_work_day_1_ptr;
+    MenuParamStruct *time_limit_work_day_2_ptr;
+    MenuParamStruct *time_limit_free_day_1_ptr;
+    MenuParamStruct *time_limit_free_day_2_ptr;
+
+}MenuParamPonterStruct;
 # 4 "hw_uart.c" 2
 # 1 "./hw_uart.h" 1
-
-
-
-
-
-
-
-
+# 11 "./hw_uart.h"
 void UART_Init(void);
 void SendUART(char data);
 void SendDigitUART(unsigned int data);
 void SendArrayUART(unsigned char *data, unsigned char size);
 # 5 "hw_uart.c" 2
 
-
-
-
-void UART_Init(void)
-{
-    TRISC6=0;
-    RCSTAbits.SPEN=1;
-    RCSTAbits.CREN=1;
-    TXSTAbits.SYNC=0;
-    TXSTAbits.TXEN=1;
-    SPBRG=(8000000/9600)/64-1;
-}
-
-void SendUART(char data)
-{
-  while(!TRMT);
-  TXREG = data;
-}

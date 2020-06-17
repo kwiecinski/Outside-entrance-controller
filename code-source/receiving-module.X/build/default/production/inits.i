@@ -2373,14 +2373,13 @@ extern __bank0 __bit __timeout;
 void Global_Inits(void)
 {
 
-
     OSCCONbits.IRCF=0b111;
     OSCCONbits.OSTS=0;
     OSCCONbits.SCS=1;
+
+
     ANSEL=0x00;
     ANSELH=0x00;
-
-
 
     TRISC0=0;
     TRISC1=1;
@@ -2390,7 +2389,6 @@ void Global_Inits(void)
     TRISC5=1;
     TRISC6=0;
     TRISC7=1;
-
 
     TRISA0=0;
     TRISA1=0;
@@ -2409,6 +2407,4 @@ void Global_Inits(void)
     TRISB5=0;
     TRISB6=0;
     TRISB7=0;
-
-
 }

@@ -15,7 +15,7 @@ void InterruptConfig(void)
     INTCONbits.T0IE=1;
     
     //TIMER1 Config
-    //T1CONbits.TMR1ON=1;     //Timer1 Enable
+    T1CONbits.TMR1ON=1;     //Timer1 Enable
     T1CONbits.TMR1CS=0;     //Clock source - internal
     T1CONbits.T1CKPS=0b00;  //Prescaller 1:1
      
@@ -25,22 +25,21 @@ void InterruptConfig(void)
     
     //CCP1 Config
     FALLING_EDGE;
-    //PIE2bits.CCP2IE=1;   //CCP2 Interrupt Enable bit  
+    PIE2bits.CCP2IE=1;   //CCP2 Interrupt Enable bit  
     
-
 }
 
 unsigned char g_display_text[4];
 unsigned char g_decimal_point;
 
-volatile unsigned char ISR_ACK;
-volatile unsigned int PWM_Freq, Timer1, g_button_timer, g_generic_timer;
+volatile unsigned char g_reciver_ccp2_isr_fire_flag;
+volatile unsigned int g_pwm_freq, g_button_timer, g_generic_timer;
 
 void __interrupt() 
 ISR(void)
 {
     static unsigned char edge_dir, set_flag, display_timer;
-    unsigned int PulseTime;
+    unsigned int pulse_time;
       
     //////////////////////////////////////////////////////////////////////////
     //
@@ -50,15 +49,7 @@ ISR(void)
 
     if (TMR0IE && TMR0IF)
     {
-
-        if(Timer1)
-        {
-            Timer1--;
-        }
-      
-        
-        
-        if(display_timer>15)
+        if(display_timer>15 && g_display_controll==1)
         {
             Display7SegmentText(&g_display_text[0],g_decimal_point);
             display_timer=0;
@@ -78,21 +69,18 @@ ISR(void)
             g_generic_timer--;
         }
            
-        
-        
-     TMR0IF=0; 
-
+        TMR0IF=0; 
     }
     
     //////////////////////////////////////////////////////////////////////////
     //
-    // CCP1 Interrupt (Capture Mode)
+    // CCP2 Interrupt (Capture Mode) - Manchester Decode
     //
     //////////////////////////////////////////////////////////////////////////
     
     if(CCP2IF && CCP2IE)
     {
-        ISR_ACK=1;
+        g_reciver_ccp2_isr_fire_flag=1;
         
         if(edge_dir==FALL_FLAG)				
         {
@@ -105,16 +93,17 @@ ISR(void)
             edge_dir=FALL_FLAG;
         }	
         
-        PulseTime=CCPR1;
+        pulse_time=CCPR2;
 
-        ManchesterDecode(&edge_dir,&PulseTime);
+        ManchesterDecode(&edge_dir,&pulse_time);
+        
         TMR1=0;         //Null Timer1 
         CCP2IF=0;       //Clear CCP1 Interrupt Flag
     }
     
     //////////////////////////////////////////////////////////////////////////
     //
-    // CCP2 Interrupt (Compare Mode)
+    // CCP1 Interrupt (Compare Mode) - PWM Speaker Modulation
     //
     //////////////////////////////////////////////////////////////////////////
     
@@ -122,14 +111,15 @@ ISR(void)
     {
         if(set_flag)
         {
-            CompareSet;
+            COMPARE_SET;
             set_flag=0;
         }else
         {
-            CompareClear;
+            COMPARE_CLEAR;
             set_flag=1;
         }
-        CCPR1=PWM_Freq;
+        
+        CCPR1=g_pwm_freq;
         TMR1=0;
         CCP1IF=0;
     }

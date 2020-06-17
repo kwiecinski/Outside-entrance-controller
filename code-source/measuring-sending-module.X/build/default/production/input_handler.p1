@@ -1,6 +1,6 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"19 input_handler.c
-[; ;input_handler.c: 19: void DebounceWait(void);
+"20 input_handler.c
+[; ;input_handler.c: 20: void DebounceWait(void);
 [v _DebounceWait `(v ~T0 @X0 0 ef ]
 "172 /opt/microchip/xc8/v2.10/pic/include/pic16f819.h
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 172:     struct {
@@ -13,8 +13,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "183
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 183: extern volatile PORTAbits_t PORTAbits __attribute__((address(0x005)));
 [v _PORTAbits `VS5 ~T0 @X0 0 e@5 ]
-"18 ./manchester_encode.h
-[; ;./manchester_encode.h: 18: void SendFrame(unsigned char type);
+"20 ./manchester_encode.h
+[; ;./manchester_encode.h: 20: void SendFrame(unsigned char type);
 [v _SendFrame `(v ~T0 @X0 0 ef1`uc ]
 "234 /opt/microchip/xc8/v2.10/pic/include/pic16f819.h
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 234:     struct {
@@ -27,8 +27,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "245
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 245: extern volatile PORTBbits_t PORTBbits __attribute__((address(0x006)));
 [v _PORTBbits `VS7 ~T0 @X0 0 e@6 ]
-"20 input_handler.c
-[; ;input_handler.c: 20: void GateStartHighTime(void);
+"21 input_handler.c
+[; ;input_handler.c: 21: void GateStartHighTime(void);
 [v _GateStartHighTime `(v ~T0 @X0 0 ef ]
 "54 /opt/microchip/xc8/v2.10/pic/include/pic16f819.h
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 54: __asm("INDF equ 00h");
@@ -165,190 +165,190 @@ Version 4.0 HI-TECH Software Intermediate Code
 "13 ./interrupts.h
 [; ;./interrupts.h: 13: volatile unsigned char g_key_timer;
 [v _g_key_timer `Vuc ~T0 @X0 1 e ]
-"24 input_handler.c
-[; ;input_handler.c: 24: unsigned char CheckInputState(unsigned char input)
+"25 input_handler.c
+[; ;input_handler.c: 25: unsigned char CheckInputState(unsigned char input)
 [v _CheckInputState `(uc ~T0 @X0 1 ef1`uc ]
-"25
-[; ;input_handler.c: 25: {
+"26
+[; ;input_handler.c: 26: {
 {
 [e :U _CheckInputState ]
-"24
-[; ;input_handler.c: 24: unsigned char CheckInputState(unsigned char input)
-[v _input `uc ~T0 @X0 1 r1 ]
 "25
-[; ;input_handler.c: 25: {
-[f ]
+[; ;input_handler.c: 25: unsigned char CheckInputState(unsigned char input)
+[v _input `uc ~T0 @X0 1 r1 ]
 "26
-[; ;input_handler.c: 26:  if(input==1)
-[e $ ! == -> _input `i -> 1 `i 69  ]
+[; ;input_handler.c: 26: {
+[f ]
 "27
-[; ;input_handler.c: 27:  {
-{
+[; ;input_handler.c: 27:  if(input==1)
+[e $ ! == -> _input `i -> 1 `i 69  ]
 "28
-[; ;input_handler.c: 28:         DebounceWait();
-[e ( _DebounceWait ..  ]
-"30
-[; ;input_handler.c: 30:         if(input==1)
-[e $ ! == -> _input `i -> 1 `i 70  ]
-"31
-[; ;input_handler.c: 31:         {
+[; ;input_handler.c: 28:  {
 {
+"29
+[; ;input_handler.c: 29:         DebounceWait();
+[e ( _DebounceWait ..  ]
+"31
+[; ;input_handler.c: 31:         if(input==1)
+[e $ ! == -> _input `i -> 1 `i 70  ]
 "32
-[; ;input_handler.c: 32:             return 1;
+[; ;input_handler.c: 32:         {
+{
+"33
+[; ;input_handler.c: 33:             return 1;
 [e ) -> -> 1 `i `uc ]
 [e $UE 68  ]
-"33
-[; ;input_handler.c: 33:         }
+"34
+[; ;input_handler.c: 34:         }
 }
 [e :U 70 ]
-"34
-[; ;input_handler.c: 34:  }
+"35
+[; ;input_handler.c: 35:  }
 }
 [e :U 69 ]
-"36
-[; ;input_handler.c: 36:     return 0;
+"37
+[; ;input_handler.c: 37:     return 0;
 [e ) -> -> 0 `i `uc ]
 [e $UE 68  ]
-"37
-[; ;input_handler.c: 37: }
+"38
+[; ;input_handler.c: 38: }
 [e :UE 68 ]
 }
-"39
-[; ;input_handler.c: 39: void LineState(void)
-[v _LineState `(v ~T0 @X0 1 ef ]
 "40
-[; ;input_handler.c: 40: {
+[; ;input_handler.c: 40: void LineState(void)
+[v _LineState `(v ~T0 @X0 1 ef ]
+"41
+[; ;input_handler.c: 41: {
 {
 [e :U _LineState ]
 [f ]
-"42
-[; ;input_handler.c: 42:     if(CheckInputState(PORTAbits.RA4)==1)
-[e $ ! == -> ( _CheckInputState (1 . . _PORTAbits 0 4 `i -> 1 `i 72  ]
 "43
-[; ;input_handler.c: 43:     {
-{
+[; ;input_handler.c: 43:     if(CheckInputState(PORTAbits.RA4)==1)
+[e $ ! == -> ( _CheckInputState (1 . . _PORTAbits 0 4 `i -> 1 `i 72  ]
 "44
-[; ;input_handler.c: 44:          SendFrame(1);
+[; ;input_handler.c: 44:     {
+{
+"45
+[; ;input_handler.c: 45:          SendFrame(1);
 [e ( _SendFrame (1 -> -> 1 `i `uc ]
-"46
-[; ;input_handler.c: 46:     }else if(CheckInputState(PORTAbits.RA3)==1)
+"47
+[; ;input_handler.c: 47:     }else if(CheckInputState(PORTAbits.RA3)==1)
 }
 [e $U 73  ]
 [e :U 72 ]
 [e $ ! == -> ( _CheckInputState (1 . . _PORTAbits 0 3 `i -> 1 `i 74  ]
-"47
-[; ;input_handler.c: 47:     {
-{
 "48
-[; ;input_handler.c: 48:         SendFrame(0);
+[; ;input_handler.c: 48:     {
+{
+"49
+[; ;input_handler.c: 49:         SendFrame(0);
 [e ( _SendFrame (1 -> -> 0 `i `uc ]
-"50
-[; ;input_handler.c: 50:     }else if(CheckInputState(PORTBbits.RB0)==1)
+"51
+[; ;input_handler.c: 51:     }else if(CheckInputState(PORTBbits.RB0)==1)
 }
 [e $U 75  ]
 [e :U 74 ]
 [e $ ! == -> ( _CheckInputState (1 . . _PORTBbits 0 0 `i -> 1 `i 76  ]
-"51
-[; ;input_handler.c: 51:     {
-{
 "52
-[; ;input_handler.c: 52:         SendFrame(2);
-[e ( _SendFrame (1 -> -> 2 `i `uc ]
+[; ;input_handler.c: 52:     {
+{
 "53
-[; ;input_handler.c: 53:     }
+[; ;input_handler.c: 53:         SendFrame(2);
+[e ( _SendFrame (1 -> -> 2 `i `uc ]
+"54
+[; ;input_handler.c: 54:     }
 }
 [e :U 76 ]
 [e :U 75 ]
 [e :U 73 ]
-"54
-[; ;input_handler.c: 54: }
+"55
+[; ;input_handler.c: 55: }
 [e :UE 71 ]
 }
-"56
-[; ;input_handler.c: 56: void CheckGateCloseSwitch(void)
-[v _CheckGateCloseSwitch `(v ~T0 @X0 1 ef ]
 "57
-[; ;input_handler.c: 57: {
+[; ;input_handler.c: 57: void CheckGateCloseSwitch(void)
+[v _CheckGateCloseSwitch `(v ~T0 @X0 1 ef ]
+"58
+[; ;input_handler.c: 58: {
 {
 [e :U _CheckGateCloseSwitch ]
 [f ]
-"58
-[; ;input_handler.c: 58:  if(PORTAbits.RA1==1)
-[e $ ! == -> . . _PORTAbits 0 1 `i -> 1 `i 78  ]
 "59
-[; ;input_handler.c: 59:  {
-{
+[; ;input_handler.c: 59:  if(PORTAbits.RA1==1)
+[e $ ! == -> . . _PORTAbits 0 1 `i -> 1 `i 78  ]
 "60
-[; ;input_handler.c: 60:         DebounceWait();
-[e ( _DebounceWait ..  ]
-"62
-[; ;input_handler.c: 62:         if(PORTAbits.RA1==1)
-[e $ ! == -> . . _PORTAbits 0 1 `i -> 1 `i 79  ]
-"63
-[; ;input_handler.c: 63:         {
+[; ;input_handler.c: 60:  {
 {
+"61
+[; ;input_handler.c: 61:         DebounceWait();
+[e ( _DebounceWait ..  ]
+"63
+[; ;input_handler.c: 63:         if(PORTAbits.RA1==1)
+[e $ ! == -> . . _PORTAbits 0 1 `i -> 1 `i 79  ]
 "64
-[; ;input_handler.c: 64:             PORTBbits.RB3=1;
-[e = . . _PORTBbits 0 3 -> -> 1 `i `uc ]
+[; ;input_handler.c: 64:         {
+{
 "65
-[; ;input_handler.c: 65:             GateStartHighTime();
-[e ( _GateStartHighTime ..  ]
+[; ;input_handler.c: 65:             PORTBbits.RB3=1;
+[e = . . _PORTBbits 0 3 -> -> 1 `i `uc ]
 "66
-[; ;input_handler.c: 66:             PORTBbits.RB3=0;
-[e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
+[; ;input_handler.c: 66:             GateStartHighTime();
+[e ( _GateStartHighTime ..  ]
 "67
-[; ;input_handler.c: 67:         }
+[; ;input_handler.c: 67:             PORTBbits.RB3=0;
+[e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
+"68
+[; ;input_handler.c: 68:         }
 }
 [e :U 79 ]
-"68
-[; ;input_handler.c: 68:  }
+"69
+[; ;input_handler.c: 69:  }
 }
 [e :U 78 ]
-"69
-[; ;input_handler.c: 69: }
+"70
+[; ;input_handler.c: 70: }
 [e :UE 77 ]
 }
-"71
-[; ;input_handler.c: 71: void DebounceWait(void)
-[v _DebounceWait `(v ~T0 @X0 1 ef ]
 "72
-[; ;input_handler.c: 72: {
+[; ;input_handler.c: 72: void DebounceWait(void)
+[v _DebounceWait `(v ~T0 @X0 1 ef ]
+"73
+[; ;input_handler.c: 73: {
 {
 [e :U _DebounceWait ]
 [f ]
-"75
-[; ;input_handler.c: 75:     g_key_timer=20;
-[e = _g_key_timer -> -> 20 `i `uc ]
 "76
-[; ;input_handler.c: 76:     while(g_key_timer>0);
+[; ;input_handler.c: 76:     g_key_timer=20;
+[e = _g_key_timer -> -> 20 `i `uc ]
+"77
+[; ;input_handler.c: 77:     while(g_key_timer>0);
 [e $U 81  ]
 [e :U 82 ]
 [e :U 81 ]
 [e $ > -> _g_key_timer `i -> 0 `i 82  ]
 [e :U 83 ]
-"77
-[; ;input_handler.c: 77: }
+"78
+[; ;input_handler.c: 78: }
 [e :UE 80 ]
 }
-"79
-[; ;input_handler.c: 79: void GateStartHighTime(void)
+"81
+[; ;input_handler.c: 81: void GateStartHighTime(void)
 [v _GateStartHighTime `(v ~T0 @X0 1 ef ]
-"80
-[; ;input_handler.c: 80: {
+"82
+[; ;input_handler.c: 82: {
 {
 [e :U _GateStartHighTime ]
 [f ]
-"81
-[; ;input_handler.c: 81:     g_key_timer=200;
+"86
+[; ;input_handler.c: 86:     g_key_timer=200;
 [e = _g_key_timer -> -> 200 `i `uc ]
-"82
-[; ;input_handler.c: 82:     while(g_key_timer>0);
+"87
+[; ;input_handler.c: 87:     while(g_key_timer>0);
 [e $U 85  ]
 [e :U 86 ]
 [e :U 85 ]
 [e $ > -> _g_key_timer `i -> 0 `i 86  ]
 [e :U 87 ]
-"83
-[; ;input_handler.c: 83: }
+"88
+[; ;input_handler.c: 88: }
 [e :UE 84 ]
 }

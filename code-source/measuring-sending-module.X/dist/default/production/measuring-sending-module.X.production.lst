@@ -1,0 +1,2200 @@
+
+
+Microchip MPLAB XC8 Assembler V2.10 build 88905656 
+                                                                                               Mon May 25 21:55:40 2020
+
+Microchip MPLAB XC8 C Compiler v2.10 (Free license) build 20190730164152 Og9 
+     1                           	processor	16F819
+     2                           	opt	pw 120
+     3                           	opt	flic
+     4                           	psect	strings,global,class=STRING,delta=2
+     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     6                           	psect	bssCOMMON,global,class=COMMON,space=1,delta=1
+     7                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+     8                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
+     9                           	psect	maintext,global,class=CODE,split=1,delta=2
+    10                           	psect	text1,local,class=CODE,merge=1,delta=2
+    11                           	psect	text2,local,class=CODE,merge=1,delta=2
+    12                           	psect	text3,local,class=CODE,merge=1,delta=2
+    13                           	psect	text4,local,class=CODE,merge=1,delta=2
+    14                           	psect	text5,local,class=CODE,merge=1,delta=2
+    15                           	psect	text6,local,class=CODE,merge=1,delta=2
+    16                           	psect	text7,local,class=CODE,merge=1,delta=2
+    17                           	psect	text8,local,class=CODE,merge=1,delta=2
+    18                           	psect	text9,local,class=CODE,merge=1,delta=2
+    19                           	psect	text10,local,class=CODE,merge=1,delta=2
+    20                           	psect	text11,local,class=CODE,merge=1,delta=2
+    21                           	psect	text12,local,class=CODE,merge=1,delta=2
+    22                           	psect	text13,local,class=CODE,merge=1,delta=2
+    23                           	psect	text14,local,class=CODE,merge=1,delta=2
+    24                           	psect	intentry,global,class=CODE,delta=2
+    25                           	dabs	1,0x7E,2
+    26  0000                     
+    27                           ; Version 2.10
+    28                           ; Generated 31/07/2019 GMT
+    29                           ; 
+    30                           ; Copyright © 2019, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    31                           ; All rights reserved.
+    32                           ; 
+    33                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    34                           ; 
+    35                           ; Redistribution and use in source and binary forms, with or without modification, are
+    36                           ; permitted provided that the following conditions are met:
+    37                           ; 
+    38                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    39                           ;        conditions and the following disclaimer.
+    40                           ; 
+    41                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    42                           ;        of conditions and the following disclaimer in the documentation and/or other
+    43                           ;        materials provided with the distribution.
+    44                           ; 
+    45                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    46                           ;        software without specific prior written permission.
+    47                           ; 
+    48                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    49                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    50                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    51                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    52                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    53                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    54                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    55                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    56                           ; 
+    57                           ; 
+    58                           ; Code-generator required, PIC16F819 Definitions
+    59                           ; 
+    60                           ; SFR Addresses
+    61  0000                     	;# 
+    62  0001                     	;# 
+    63  0002                     	;# 
+    64  0003                     	;# 
+    65  0004                     	;# 
+    66  0005                     	;# 
+    67  0006                     	;# 
+    68  000A                     	;# 
+    69  000B                     	;# 
+    70  000C                     	;# 
+    71  000D                     	;# 
+    72  000E                     	;# 
+    73  000E                     	;# 
+    74  000F                     	;# 
+    75  0010                     	;# 
+    76  0011                     	;# 
+    77  0012                     	;# 
+    78  0013                     	;# 
+    79  0014                     	;# 
+    80  0015                     	;# 
+    81  0015                     	;# 
+    82  0016                     	;# 
+    83  0017                     	;# 
+    84  001E                     	;# 
+    85  001F                     	;# 
+    86  0081                     	;# 
+    87  0085                     	;# 
+    88  0086                     	;# 
+    89  008C                     	;# 
+    90  008D                     	;# 
+    91  008E                     	;# 
+    92  008F                     	;# 
+    93  0090                     	;# 
+    94  0092                     	;# 
+    95  0093                     	;# 
+    96  0094                     	;# 
+    97  009E                     	;# 
+    98  009F                     	;# 
+    99  010C                     	;# 
+   100  010D                     	;# 
+   101  010E                     	;# 
+   102  010F                     	;# 
+   103  018C                     	;# 
+   104  018D                     	;# 
+   105  0000                     	;# 
+   106  0001                     	;# 
+   107  0002                     	;# 
+   108  0003                     	;# 
+   109  0004                     	;# 
+   110  0005                     	;# 
+   111  0006                     	;# 
+   112  000A                     	;# 
+   113  000B                     	;# 
+   114  000C                     	;# 
+   115  000D                     	;# 
+   116  000E                     	;# 
+   117  000E                     	;# 
+   118  000F                     	;# 
+   119  0010                     	;# 
+   120  0011                     	;# 
+   121  0012                     	;# 
+   122  0013                     	;# 
+   123  0014                     	;# 
+   124  0015                     	;# 
+   125  0015                     	;# 
+   126  0016                     	;# 
+   127  0017                     	;# 
+   128  001E                     	;# 
+   129  001F                     	;# 
+   130  0081                     	;# 
+   131  0085                     	;# 
+   132  0086                     	;# 
+   133  008C                     	;# 
+   134  008D                     	;# 
+   135  008E                     	;# 
+   136  008F                     	;# 
+   137  0090                     	;# 
+   138  0092                     	;# 
+   139  0093                     	;# 
+   140  0094                     	;# 
+   141  009E                     	;# 
+   142  009F                     	;# 
+   143  010C                     	;# 
+   144  010D                     	;# 
+   145  010E                     	;# 
+   146  010F                     	;# 
+   147  018C                     	;# 
+   148  018D                     	;# 
+   149  0000                     	;# 
+   150  0001                     	;# 
+   151  0002                     	;# 
+   152  0003                     	;# 
+   153  0004                     	;# 
+   154  0005                     	;# 
+   155  0006                     	;# 
+   156  000A                     	;# 
+   157  000B                     	;# 
+   158  000C                     	;# 
+   159  000D                     	;# 
+   160  000E                     	;# 
+   161  000E                     	;# 
+   162  000F                     	;# 
+   163  0010                     	;# 
+   164  0011                     	;# 
+   165  0012                     	;# 
+   166  0013                     	;# 
+   167  0014                     	;# 
+   168  0015                     	;# 
+   169  0015                     	;# 
+   170  0016                     	;# 
+   171  0017                     	;# 
+   172  001E                     	;# 
+   173  001F                     	;# 
+   174  0081                     	;# 
+   175  0085                     	;# 
+   176  0086                     	;# 
+   177  008C                     	;# 
+   178  008D                     	;# 
+   179  008E                     	;# 
+   180  008F                     	;# 
+   181  0090                     	;# 
+   182  0092                     	;# 
+   183  0093                     	;# 
+   184  0094                     	;# 
+   185  009E                     	;# 
+   186  009F                     	;# 
+   187  010C                     	;# 
+   188  010D                     	;# 
+   189  010E                     	;# 
+   190  010F                     	;# 
+   191  018C                     	;# 
+   192  018D                     	;# 
+   193  0000                     	;# 
+   194  0001                     	;# 
+   195  0002                     	;# 
+   196  0003                     	;# 
+   197  0004                     	;# 
+   198  0005                     	;# 
+   199  0006                     	;# 
+   200  000A                     	;# 
+   201  000B                     	;# 
+   202  000C                     	;# 
+   203  000D                     	;# 
+   204  000E                     	;# 
+   205  000E                     	;# 
+   206  000F                     	;# 
+   207  0010                     	;# 
+   208  0011                     	;# 
+   209  0012                     	;# 
+   210  0013                     	;# 
+   211  0014                     	;# 
+   212  0015                     	;# 
+   213  0015                     	;# 
+   214  0016                     	;# 
+   215  0017                     	;# 
+   216  001E                     	;# 
+   217  001F                     	;# 
+   218  0081                     	;# 
+   219  0085                     	;# 
+   220  0086                     	;# 
+   221  008C                     	;# 
+   222  008D                     	;# 
+   223  008E                     	;# 
+   224  008F                     	;# 
+   225  0090                     	;# 
+   226  0092                     	;# 
+   227  0093                     	;# 
+   228  0094                     	;# 
+   229  009E                     	;# 
+   230  009F                     	;# 
+   231  010C                     	;# 
+   232  010D                     	;# 
+   233  010E                     	;# 
+   234  010F                     	;# 
+   235  018C                     	;# 
+   236  018D                     	;# 
+   237  0000                     	;# 
+   238  0001                     	;# 
+   239  0002                     	;# 
+   240  0003                     	;# 
+   241  0004                     	;# 
+   242  0005                     	;# 
+   243  0006                     	;# 
+   244  000A                     	;# 
+   245  000B                     	;# 
+   246  000C                     	;# 
+   247  000D                     	;# 
+   248  000E                     	;# 
+   249  000E                     	;# 
+   250  000F                     	;# 
+   251  0010                     	;# 
+   252  0011                     	;# 
+   253  0012                     	;# 
+   254  0013                     	;# 
+   255  0014                     	;# 
+   256  0015                     	;# 
+   257  0015                     	;# 
+   258  0016                     	;# 
+   259  0017                     	;# 
+   260  001E                     	;# 
+   261  001F                     	;# 
+   262  0081                     	;# 
+   263  0085                     	;# 
+   264  0086                     	;# 
+   265  008C                     	;# 
+   266  008D                     	;# 
+   267  008E                     	;# 
+   268  008F                     	;# 
+   269  0090                     	;# 
+   270  0092                     	;# 
+   271  0093                     	;# 
+   272  0094                     	;# 
+   273  009E                     	;# 
+   274  009F                     	;# 
+   275  010C                     	;# 
+   276  010D                     	;# 
+   277  010E                     	;# 
+   278  010F                     	;# 
+   279  018C                     	;# 
+   280  018D                     	;# 
+   281  0000                     	;# 
+   282  0001                     	;# 
+   283  0002                     	;# 
+   284  0003                     	;# 
+   285  0004                     	;# 
+   286  0005                     	;# 
+   287  0006                     	;# 
+   288  000A                     	;# 
+   289  000B                     	;# 
+   290  000C                     	;# 
+   291  000D                     	;# 
+   292  000E                     	;# 
+   293  000E                     	;# 
+   294  000F                     	;# 
+   295  0010                     	;# 
+   296  0011                     	;# 
+   297  0012                     	;# 
+   298  0013                     	;# 
+   299  0014                     	;# 
+   300  0015                     	;# 
+   301  0015                     	;# 
+   302  0016                     	;# 
+   303  0017                     	;# 
+   304  001E                     	;# 
+   305  001F                     	;# 
+   306  0081                     	;# 
+   307  0085                     	;# 
+   308  0086                     	;# 
+   309  008C                     	;# 
+   310  008D                     	;# 
+   311  008E                     	;# 
+   312  008F                     	;# 
+   313  0090                     	;# 
+   314  0092                     	;# 
+   315  0093                     	;# 
+   316  0094                     	;# 
+   317  009E                     	;# 
+   318  009F                     	;# 
+   319  010C                     	;# 
+   320  010D                     	;# 
+   321  010E                     	;# 
+   322  010F                     	;# 
+   323  018C                     	;# 
+   324  018D                     	;# 
+   325  0000                     	;# 
+   326  0001                     	;# 
+   327  0002                     	;# 
+   328  0003                     	;# 
+   329  0004                     	;# 
+   330  0005                     	;# 
+   331  0006                     	;# 
+   332  000A                     	;# 
+   333  000B                     	;# 
+   334  000C                     	;# 
+   335  000D                     	;# 
+   336  000E                     	;# 
+   337  000E                     	;# 
+   338  000F                     	;# 
+   339  0010                     	;# 
+   340  0011                     	;# 
+   341  0012                     	;# 
+   342  0013                     	;# 
+   343  0014                     	;# 
+   344  0015                     	;# 
+   345  0015                     	;# 
+   346  0016                     	;# 
+   347  0017                     	;# 
+   348  001E                     	;# 
+   349  001F                     	;# 
+   350  0081                     	;# 
+   351  0085                     	;# 
+   352  0086                     	;# 
+   353  008C                     	;# 
+   354  008D                     	;# 
+   355  008E                     	;# 
+   356  008F                     	;# 
+   357  0090                     	;# 
+   358  0092                     	;# 
+   359  0093                     	;# 
+   360  0094                     	;# 
+   361  009E                     	;# 
+   362  009F                     	;# 
+   363  010C                     	;# 
+   364  010D                     	;# 
+   365  010E                     	;# 
+   366  010F                     	;# 
+   367  018C                     	;# 
+   368  018D                     	;# 
+   369                           
+   370                           	psect	strings
+   371  014B                     __pstrings:	
+   372  014B                     stringtab:	
+   373  014B                     __stringtab:	
+   374  014B                     stringcode:	
+   375                           ;	String table - string pointers are 1 byte each
+   376                           
+   377  014B                     stringdir:	
+   378  014B  3001               	movlw	high stringdir
+   379  014C  008A               	movwf	10
+   380  014D  0804               	movf	4,w
+   381  014E  0A84               	incf	4,f
+   382  014F  0782               	addwf	2,f
+   383  0150                     __stringbase:	
+   384  0150  3400               	retlw	0
+   385  0151                     __end_of__stringtab:	
+   386  0151                     CRC16@generator:	
+   387  0151  3421               	retlw	33
+   388  0152  3410               	retlw	16
+   389  0153                     __end_ofCRC16@generator:	
+   390  0153                     InterruptConfig@k_baud_rate:	
+   391  0153  342C               	retlw	44
+   392  0154  3401               	retlw	1
+   393  0155  3400               	retlw	0
+   394  0156  3400               	retlw	0
+   395  0157                     __end_ofInterruptConfig@k_baud_rate:	
+   396  000E                     _TMR1	set	14
+   397  0015                     _CCPR1	set	21
+   398  000C                     _PIR1bits	set	12
+   399  0017                     _CCP1CONbits	set	23
+   400  0010                     _T1CONbits	set	16
+   401  000B                     _INTCONbits	set	11
+   402  0006                     _PORTBbits	set	6
+   403  0005                     _PORTAbits	set	5
+   404  005A                     _TMR0IF	set	90
+   405  005D                     _TMR0IE	set	93
+   406  0081                     _OPTION_REGbits	set	129
+   407  009F                     _ADCON1bits	set	159
+   408  008F                     _OSCCONbits	set	143
+   409  0435                     _TRISB5	set	1077
+   410  0434                     _TRISB4	set	1076
+   411  0433                     _TRISB3	set	1075
+   412  0432                     _TRISB2	set	1074
+   413  0431                     _TRISB1	set	1073
+   414  0430                     _TRISB0	set	1072
+   415  042F                     _TRISA7	set	1071
+   416  042E                     _TRISA6	set	1070
+   417  042C                     _TRISA4	set	1068
+   418  042B                     _TRISA3	set	1067
+   419  042A                     _TRISA2	set	1066
+   420  0429                     _TRISA1	set	1065
+   421  0428                     _TRISA0	set	1064
+   422                           
+   423                           ; #config settings
+   424  0000                     
+   425                           	psect	cinit
+   426  000B                     start_initialization:	
+   427  000B                     __initialization:	
+   428                           
+   429                           ; Clear objects allocated to COMMON
+   430  000B  01FB               	clrf	__pbssCOMMON& (0+127)
+   431  000C                     end_of_initialization:	
+   432                           ;End of C runtime variable initialization code
+   433                           
+   434  000C                     __end_of__initialization:	
+   435  000C  0183               	clrf	3
+   436  000D  2990               	ljmp	_main	;jump to C main() function
+   437                           
+   438                           	psect	bssCOMMON
+   439  007B                     __pbssCOMMON:	
+   440  007B                     _g_key_timer:	
+   441  007B                     	ds	1
+   442                           
+   443                           	psect	cstackCOMMON
+   444  0070                     __pcstackCOMMON:	
+   445  0070                     ?_LineState:	
+   446  0070                     ?_CheckGateCloseSwitch:	
+   447                           ; 1 bytes @ 0x0
+   448                           
+   449  0070                     ?_DebounceWait:	
+   450                           ; 1 bytes @ 0x0
+   451                           
+   452  0070                     ?_GateStartHighTime:	
+   453                           ; 1 bytes @ 0x0
+   454                           
+   455  0070                     ?_GlobalInits:	
+   456                           ; 1 bytes @ 0x0
+   457                           
+   458  0070                     ?_InterruptConfig:	
+   459                           ; 1 bytes @ 0x0
+   460                           
+   461  0070                     ?_ISR:	
+   462                           ; 1 bytes @ 0x0
+   463                           
+   464  0070                     ??_ISR:	
+   465                           ; 1 bytes @ 0x0
+   466                           
+   467  0070                     ?_main:	
+   468                           ; 1 bytes @ 0x0
+   469                           
+   470  0070                     ?_WaitManchesterT:	
+   471                           ; 1 bytes @ 0x0
+   472                           
+   473  0070                     ?_ManchesterSendOne:	
+   474                           ; 1 bytes @ 0x0
+   475                           
+   476  0070                     ?_ManchesterSendZero:	
+   477                           ; 1 bytes @ 0x0
+   478                           
+   479  0070                     ?_SendFrame:	
+   480                           ; 1 bytes @ 0x0
+   481                           
+   482  0070                     ?_CheckInputState:	
+   483                           ; 1 bytes @ 0x0
+   484                           
+   485                           
+   486                           ; 1 bytes @ 0x0
+   487  0070                     	ds	2
+   488  0072                     ??_DebounceWait:	
+   489  0072                     ??_GateStartHighTime:	
+   490                           ; 1 bytes @ 0x2
+   491                           
+   492  0072                     ??_GlobalInits:	
+   493                           ; 1 bytes @ 0x2
+   494                           
+   495  0072                     ??_InterruptConfig:	
+   496                           ; 1 bytes @ 0x2
+   497                           
+   498  0072                     ??_WaitManchesterT:	
+   499                           ; 1 bytes @ 0x2
+   500                           
+   501  0072                     ??_ManchesterSendOne:	
+   502                           ; 1 bytes @ 0x2
+   503                           
+   504  0072                     ??_ManchesterSendZero:	
+   505                           ; 1 bytes @ 0x2
+   506                           
+   507  0072                     ?_ManchesteEncode:	
+   508                           ; 1 bytes @ 0x2
+   509                           
+   510  0072                     ?_CRC16:	
+   511                           ; 1 bytes @ 0x2
+   512                           
+   513  0072                     CRC16@size:	
+   514                           ; 2 bytes @ 0x2
+   515                           
+   516  0072                     ManchesteEncode@data_lenght:	
+   517                           ; 1 bytes @ 0x2
+   518                           
+   519                           
+   520                           ; 1 bytes @ 0x2
+   521  0072                     	ds	1
+   522  0073                     ??_CheckGateCloseSwitch:	
+   523  0073                     ??_ManchesteEncode:	
+   524                           ; 1 bytes @ 0x3
+   525                           
+   526  0073                     ??_CheckInputState:	
+   527                           ; 1 bytes @ 0x3
+   528                           
+   529  0073                     CheckInputState@input:	
+   530                           ; 1 bytes @ 0x3
+   531                           
+   532                           
+   533                           ; 1 bytes @ 0x3
+   534  0073                     	ds	1
+   535  0074                     ??_CRC16:	
+   536                           
+   537                           ; 1 bytes @ 0x4
+   538  0074                     	ds	2
+   539  0076                     ManchesteEncode@data_to_send:	
+   540                           
+   541                           ; 1 bytes @ 0x6
+   542  0076                     	ds	1
+   543  0077                     ManchesteEncode@data_loop:	
+   544                           
+   545                           ; 1 bytes @ 0x7
+   546  0077                     	ds	1
+   547  0078                     ManchesteEncode@bit_loop:	
+   548                           
+   549                           ; 1 bytes @ 0x8
+   550  0078                     	ds	1
+   551  0079                     ??_SendFrame:	
+   552                           
+   553                           ; 1 bytes @ 0x9
+   554  0079                     	ds	1
+   555  007A                     ??_LineState:	
+   556                           
+   557                           ; 1 bytes @ 0xA
+   558  007A                     	ds	1
+   559  007B                     ??_main:	
+   560                           
+   561                           	psect	cstackBANK0
+   562  0020                     __pcstackBANK0:	
+   563                           ; 1 bytes @ 0xB
+   564                           
+   565  0020                     CRC16@data_tab_ptr:	
+   566                           
+   567                           ; 1 bytes @ 0x0
+   568  0020                     	ds	1
+   569  0021                     CRC16@k:	
+   570                           
+   571                           ; 1 bytes @ 0x1
+   572  0021                     	ds	1
+   573  0022                     CRC16@i:	
+   574                           
+   575                           ; 1 bytes @ 0x2
+   576  0022                     	ds	1
+   577  0023                     CRC16@crc:	
+   578                           
+   579                           ; 2 bytes @ 0x3
+   580  0023                     	ds	2
+   581  0025                     SendFrame@data_table:	
+   582                           
+   583                           ; 10 bytes @ 0x5
+   584  0025                     	ds	10
+   585  002F                     SendFrame@crc_val:	
+   586                           
+   587                           ; 2 bytes @ 0xF
+   588  002F                     	ds	2
+   589  0031                     SendFrame@i:	
+   590                           
+   591                           ; 1 bytes @ 0x11
+   592  0031                     	ds	1
+   593  0032                     SendFrame@j:	
+   594                           
+   595                           ; 1 bytes @ 0x12
+   596  0032                     	ds	1
+   597  0033                     SendFrame@type:	
+   598                           
+   599                           ; 1 bytes @ 0x13
+   600  0033                     	ds	1
+   601                           
+   602                           	psect	maintext
+   603  0190                     __pmaintext:	
+   604 ;;
+   605 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   606 ;;
+   607 ;; *************** function _main *****************
+   608 ;; Defined at:
+   609 ;;		line 18 in file "main.c"
+   610 ;; Parameters:    Size  Location     Type
+   611 ;;		None
+   612 ;; Auto vars:     Size  Location     Type
+   613 ;;		None
+   614 ;; Return value:  Size  Location     Type
+   615 ;;                  1    wreg      void 
+   616 ;; Registers used:
+   617 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+   618 ;; Tracked objects:
+   619 ;;		On entry : B00/0
+   620 ;;		On exit  : 300/0
+   621 ;;		Unchanged: 0/0
+   622 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   623 ;;      Params:         0       0       0       0
+   624 ;;      Locals:         0       0       0       0
+   625 ;;      Temps:          0       0       0       0
+   626 ;;      Totals:         0       0       0       0
+   627 ;;Total ram usage:        0 bytes
+   628 ;; Hardware stack levels required when called:    6
+   629 ;; This function calls:
+   630 ;;		_CheckGateCloseSwitch
+   631 ;;		_GlobalInits
+   632 ;;		_InterruptConfig
+   633 ;;		_LineState
+   634 ;; This function is called by:
+   635 ;;		Startup code after reset
+   636 ;; This function uses a non-reentrant model
+   637 ;;
+   638                           
+   639                           
+   640                           ;psect for function _main
+   641  0190                     _main:	
+   642                           
+   643                           ;main.c: 20:     GlobalInits();
+   644                           
+   645                           ;incstack = 0
+   646                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+   647  0190  210C               	fcall	_GlobalInits
+   648                           
+   649                           ;main.c: 21:     InterruptConfig();
+   650  0191  2124               	fcall	_InterruptConfig
+   651  0192                     l1227:	
+   652                           
+   653                           ;main.c: 24:     {;main.c: 25:         LineState();
+   654  0192  20EE               	fcall	_LineState
+   655                           
+   656                           ;main.c: 26:         CheckGateCloseSwitch();
+   657  0193  2163               	fcall	_CheckGateCloseSwitch
+   658  0194  2992               	goto	l1227
+   659  0195                     __end_of_main:	
+   660                           
+   661                           	psect	text1
+   662  00EE                     __ptext1:	
+   663 ;; *************** function _LineState *****************
+   664 ;; Defined at:
+   665 ;;		line 40 in file "input_handler.c"
+   666 ;; Parameters:    Size  Location     Type
+   667 ;;		None
+   668 ;; Auto vars:     Size  Location     Type
+   669 ;;		None
+   670 ;; Return value:  Size  Location     Type
+   671 ;;                  1    wreg      void 
+   672 ;; Registers used:
+   673 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+   674 ;; Tracked objects:
+   675 ;;		On entry : 300/0
+   676 ;;		On exit  : 300/0
+   677 ;;		Unchanged: 0/0
+   678 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   679 ;;      Params:         0       0       0       0
+   680 ;;      Locals:         0       0       0       0
+   681 ;;      Temps:          1       0       0       0
+   682 ;;      Totals:         1       0       0       0
+   683 ;;Total ram usage:        1 bytes
+   684 ;; Hardware stack levels used:    1
+   685 ;; Hardware stack levels required when called:    5
+   686 ;; This function calls:
+   687 ;;		_CheckInputState
+   688 ;;		_SendFrame
+   689 ;; This function is called by:
+   690 ;;		_main
+   691 ;; This function uses a non-reentrant model
+   692 ;;
+   693                           
+   694                           
+   695                           ;psect for function _LineState
+   696  00EE                     _LineState:	
+   697                           
+   698                           ;input_handler.c: 43:     if(CheckInputState(PORTAbits.RA4)==1)
+   699                           
+   700                           ;incstack = 0
+   701                           ; Regs used in _LineState: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+   702  00EE  0E05               	swapf	5,w	;volatile
+   703  00EF  3901               	andlw	1
+   704  00F0  2157               	fcall	_CheckInputState
+   705  00F1  3A01               	xorlw	1
+   706  00F2  1D03               	skipz
+   707  00F3  28F7               	goto	l1217
+   708                           
+   709                           ;input_handler.c: 44:     {;input_handler.c: 45:          SendFrame(1);
+   710  00F4  3001               	movlw	1
+   711  00F5  200E               	fcall	_SendFrame
+   712                           
+   713                           ;input_handler.c: 47:     }else if(CheckInputState(PORTAbits.RA3)==1)
+   714  00F6  0008               	return
+   715  00F7                     l1217:	
+   716  00F7  0C05               	rrf	5,w	;volatile
+   717  00F8  00FA               	movwf	??_LineState
+   718  00F9  0CFA               	rrf	??_LineState,f
+   719  00FA  0C7A               	rrf	??_LineState,w
+   720  00FB  3901               	andlw	1
+   721  00FC  2157               	fcall	_CheckInputState
+   722  00FD  3A01               	xorlw	1
+   723  00FE  1D03               	skipz
+   724  00FF  2903               	goto	l1221
+   725                           
+   726                           ;input_handler.c: 48:     {;input_handler.c: 49:         SendFrame(0);
+   727  0100  3000               	movlw	0
+   728  0101  200E               	fcall	_SendFrame
+   729                           
+   730                           ;input_handler.c: 51:     }else if(CheckInputState(PORTBbits.RB0)==1)
+   731  0102  0008               	return
+   732  0103                     l1221:	
+   733  0103  0806               	movf	6,w	;volatile
+   734  0104  3901               	andlw	1
+   735  0105  2157               	fcall	_CheckInputState
+   736  0106  3A01               	xorlw	1
+   737  0107  1D03               	skipz
+   738  0108  0008               	return
+   739                           
+   740                           ;input_handler.c: 52:     {;input_handler.c: 53:         SendFrame(2);
+   741  0109  3002               	movlw	2
+   742  010A  200E               	fcall	_SendFrame
+   743  010B  0008               	return
+   744  010C                     __end_of_LineState:	
+   745                           
+   746                           	psect	text2
+   747  000E                     __ptext2:	
+   748 ;; *************** function _SendFrame *****************
+   749 ;; Defined at:
+   750 ;;		line 66 in file "manchester_encode.c"
+   751 ;; Parameters:    Size  Location     Type
+   752 ;;  type            1    wreg     unsigned char 
+   753 ;; Auto vars:     Size  Location     Type
+   754 ;;  type            1   19[BANK0 ] unsigned char 
+   755 ;;  data_table     10    5[BANK0 ] unsigned char [10]
+   756 ;;  crc_val         2   15[BANK0 ] unsigned int 
+   757 ;;  j               1   18[BANK0 ] unsigned char 
+   758 ;;  i               1   17[BANK0 ] unsigned char 
+   759 ;; Return value:  Size  Location     Type
+   760 ;;                  1    wreg      void 
+   761 ;; Registers used:
+   762 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+   763 ;; Tracked objects:
+   764 ;;		On entry : 300/0
+   765 ;;		On exit  : 300/0
+   766 ;;		Unchanged: 0/0
+   767 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   768 ;;      Params:         0       0       0       0
+   769 ;;      Locals:         0      15       0       0
+   770 ;;      Temps:          1       0       0       0
+   771 ;;      Totals:         1      15       0       0
+   772 ;;Total ram usage:       16 bytes
+   773 ;; Hardware stack levels used:    1
+   774 ;; Hardware stack levels required when called:    4
+   775 ;; This function calls:
+   776 ;;		_CRC16
+   777 ;;		_ManchesteEncode
+   778 ;;		_WaitManchesterT
+   779 ;; This function is called by:
+   780 ;;		_LineState
+   781 ;; This function uses a non-reentrant model
+   782 ;;
+   783                           
+   784                           
+   785                           ;psect for function _SendFrame
+   786  000E                     _SendFrame:	
+   787                           
+   788                           ;incstack = 0
+   789                           ; Regs used in _SendFrame: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+   790                           ;SendFrame@type stored from wreg
+   791  000E  00B3               	movwf	SendFrame@type
+   792                           
+   793                           ;manchester_encode.c: 66: void SendFrame(unsigned char type);manchester_encode.c: 67: {;
+      +                          manchester_encode.c: 69:     unsigned char data_table[6 +4];;manchester_encode.c: 72:  d
+      +                          ata_table[0]=0xFE;
+   794  000F  30FE               	movlw	254
+   795  0010  00F9               	movwf	??_SendFrame
+   796  0011  0879               	movf	??_SendFrame,w
+   797  0012  00A5               	movwf	SendFrame@data_table
+   798                           
+   799                           ;manchester_encode.c: 73:     data_table[1]=0xFE;
+   800  0013  30FE               	movlw	254
+   801  0014  00F9               	movwf	??_SendFrame
+   802  0015  0879               	movf	??_SendFrame,w
+   803  0016  00A6               	movwf	SendFrame@data_table+1
+   804                           
+   805                           ;manchester_encode.c: 74:     data_table[2]=0xFE;
+   806  0017  30FE               	movlw	254
+   807  0018  00F9               	movwf	??_SendFrame
+   808  0019  0879               	movf	??_SendFrame,w
+   809  001A  00A7               	movwf	SendFrame@data_table+2
+   810                           
+   811                           ;manchester_encode.c: 75:     data_table[3]=0xFE;
+   812  001B  30FE               	movlw	254
+   813  001C  00F9               	movwf	??_SendFrame
+   814  001D  0879               	movf	??_SendFrame,w
+   815  001E  00A8               	movwf	SendFrame@data_table+3
+   816                           
+   817                           ;manchester_encode.c: 77:  data_table[4]='$';
+   818  001F  3024               	movlw	36
+   819  0020  00F9               	movwf	??_SendFrame
+   820  0021  0879               	movf	??_SendFrame,w
+   821  0022  00A9               	movwf	SendFrame@data_table+4
+   822                           
+   823                           ;manchester_encode.c: 79:     if(type==1)
+   824  0023  0333               	decf	SendFrame@type,w
+   825  0024  1D03               	btfss	3,2
+   826  0025  2828               	goto	l1167
+   827                           
+   828                           ;manchester_encode.c: 80:     {;manchester_encode.c: 81:         data_table[5]='G';
+   829  0026  3047               	movlw	71
+   830  0027  282C               	goto	L2
+   831  0028                     l1167:	
+   832                           ;manchester_encode.c: 84:     }else if(type==0)
+   833                           
+   834                           ;manchester_encode.c: 82:         data_table[6]='0';
+   835                           
+   836  0028  0833               	movf	SendFrame@type,w
+   837  0029  1D03               	btfss	3,2
+   838  002A  2831               	goto	l1171
+   839                           
+   840                           ;manchester_encode.c: 85:     {;manchester_encode.c: 86:         data_table[5]='W';
+   841  002B  3057               	movlw	87
+   842  002C                     L2:	
+   843  002C  00F9               	movwf	??_SendFrame
+   844  002D  0879               	movf	??_SendFrame,w
+   845  002E  00AA               	movwf	SendFrame@data_table+5
+   846                           
+   847                           ;manchester_encode.c: 87:         data_table[6]='0';
+   848  002F  3030               	movlw	48
+   849  0030  283A               	goto	L1
+   850  0031                     l1171:	
+   851                           ;manchester_encode.c: 89:     }else if(type==2)
+   852                           
+   853  0031  3002               	movlw	2
+   854  0032  0633               	xorwf	SendFrame@type,w
+   855  0033  1D03               	btfss	3,2
+   856  0034  283D               	goto	l1175
+   857                           
+   858                           ;manchester_encode.c: 90:     {;manchester_encode.c: 91:         data_table[5]='W';
+   859  0035  3057               	movlw	87
+   860  0036  00F9               	movwf	??_SendFrame
+   861  0037  0879               	movf	??_SendFrame,w
+   862  0038  00AA               	movwf	SendFrame@data_table+5
+   863                           
+   864                           ;manchester_encode.c: 92:         data_table[6]='B';
+   865  0039  3042               	movlw	66
+   866  003A                     L1:	
+   867  003A  00F9               	movwf	??_SendFrame
+   868  003B  0879               	movf	??_SendFrame,w
+   869  003C  00AB               	movwf	SendFrame@data_table+6
+   870  003D                     l1175:	
+   871                           
+   872                           ;manchester_encode.c: 97:      unsigned int crc_val;;manchester_encode.c: 98:     crc_va
+      +                          l=CRC16(&data_table[5],2);
+   873  003D  3002               	movlw	2
+   874  003E  00F9               	movwf	??_SendFrame
+   875  003F  0879               	movf	??_SendFrame,w
+   876  0040  00F2               	movwf	CRC16@size
+   877  0041  302A               	movlw	(low ((SendFrame@data_table| 0+5)))& (0+255)
+   878  0042  2073               	fcall	_CRC16
+   879  0043  0873               	movf	?_CRC16+1,w
+   880  0044  00B0               	movwf	SendFrame@crc_val+1
+   881  0045  0872               	movf	?_CRC16,w
+   882  0046  00AF               	movwf	SendFrame@crc_val
+   883                           
+   884                           ;manchester_encode.c: 99:     data_table[7]=crc_val>>8;
+   885  0047  0830               	movf	SendFrame@crc_val+1,w
+   886  0048  00F9               	movwf	??_SendFrame
+   887  0049  0879               	movf	??_SendFrame,w
+   888  004A  00AC               	movwf	SendFrame@data_table+7
+   889                           
+   890                           ;manchester_encode.c: 100:  data_table[8]=crc_val & 0x00FF;
+   891  004B  082F               	movf	SendFrame@crc_val,w
+   892  004C  00F9               	movwf	??_SendFrame
+   893  004D  0879               	movf	??_SendFrame,w
+   894  004E  00AD               	movwf	SendFrame@data_table+8
+   895                           
+   896                           ;manchester_encode.c: 101:  data_table[9]='&';
+   897  004F  3026               	movlw	38
+   898  0050  00F9               	movwf	??_SendFrame
+   899  0051  0879               	movf	??_SendFrame,w
+   900  0052  00AE               	movwf	SendFrame@data_table+9
+   901                           
+   902                           ;manchester_encode.c: 104:     T1CONbits.TMR1ON=1;
+   903  0053  1410               	bsf	16,0	;volatile
+   904                           
+   905                           ;manchester_encode.c: 105:     INTCONbits.TMR0IE=0;
+   906  0054  128B               	bcf	11,5	;volatile
+   907                           
+   908                           ;manchester_encode.c: 106:     PORTAbits.RA0=1;
+   909  0055  1405               	bsf	5,0	;volatile
+   910                           
+   911                           ;manchester_encode.c: 108:     unsigned char i,j;;manchester_encode.c: 109:     for(i=0;
+      +                          i<3;i++)
+   912  0056  01B1               	clrf	SendFrame@i
+   913  0057                     l1195:	
+   914                           
+   915                           ;manchester_encode.c: 110:     {;manchester_encode.c: 111:         ManchesteEncode(&data
+      +                          _table[0], 6 +4);
+   916  0057  300A               	movlw	10
+   917  0058  00F9               	movwf	??_SendFrame
+   918  0059  0879               	movf	??_SendFrame,w
+   919  005A  00F2               	movwf	ManchesteEncode@data_lenght
+   920  005B  3025               	movlw	(low (SendFrame@data_table| 0))& (0+255)
+   921  005C  20B5               	fcall	_ManchesteEncode
+   922                           
+   923                           ;manchester_encode.c: 115:         for(j=0;j<6;j++)
+   924  005D  01B2               	clrf	SendFrame@j
+   925  005E                     l1203:	
+   926                           
+   927                           ;manchester_encode.c: 116:         {;manchester_encode.c: 117:             WaitMancheste
+      +                          rT();
+   928  005E  218A               	fcall	_WaitManchesterT
+   929                           
+   930                           ;manchester_encode.c: 118:         }
+   931  005F  3001               	movlw	1
+   932  0060  00F9               	movwf	??_SendFrame
+   933  0061  0879               	movf	??_SendFrame,w
+   934  0062  07B2               	addwf	SendFrame@j,f
+   935  0063  3006               	movlw	6
+   936  0064  0232               	subwf	SendFrame@j,w
+   937  0065  1C03               	skipc
+   938  0066  285E               	goto	l1203
+   939                           
+   940                           ;manchester_encode.c: 119:     }
+   941  0067  3001               	movlw	1
+   942  0068  00F9               	movwf	??_SendFrame
+   943  0069  0879               	movf	??_SendFrame,w
+   944  006A  07B1               	addwf	SendFrame@i,f
+   945  006B  3003               	movlw	3
+   946  006C  0231               	subwf	SendFrame@i,w
+   947  006D  1C03               	skipc
+   948  006E  2857               	goto	l1195
+   949                           
+   950                           ;manchester_encode.c: 121:     PORTAbits.RA0=0;
+   951  006F  1005               	bcf	5,0	;volatile
+   952                           
+   953                           ;manchester_encode.c: 122:     T1CONbits.TMR1ON=0;
+   954  0070  1010               	bcf	16,0	;volatile
+   955                           
+   956                           ;manchester_encode.c: 123:     INTCONbits.TMR0IE=1;
+   957  0071  168B               	bsf	11,5	;volatile
+   958  0072  0008               	return
+   959  0073                     __end_of_SendFrame:	
+   960                           
+   961                           	psect	text3
+   962  00B5                     __ptext3:	
+   963 ;; *************** function _ManchesteEncode *****************
+   964 ;; Defined at:
+   965 ;;		line 47 in file "manchester_encode.c"
+   966 ;; Parameters:    Size  Location     Type
+   967 ;;  data_to_send    1    wreg     PTR unsigned char 
+   968 ;;		 -> SendFrame@data_table(10), 
+   969 ;;  data_lenght     1    2[COMMON] unsigned char 
+   970 ;; Auto vars:     Size  Location     Type
+   971 ;;  data_to_send    1    6[COMMON] PTR unsigned char 
+   972 ;;		 -> SendFrame@data_table(10), 
+   973 ;;  bit_loop        1    8[COMMON] char 
+   974 ;;  data_loop       1    7[COMMON] char 
+   975 ;; Return value:  Size  Location     Type
+   976 ;;                  1    wreg      void 
+   977 ;; Registers used:
+   978 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   979 ;; Tracked objects:
+   980 ;;		On entry : 300/0
+   981 ;;		On exit  : 300/0
+   982 ;;		Unchanged: 0/0
+   983 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   984 ;;      Params:         1       0       0       0
+   985 ;;      Locals:         3       0       0       0
+   986 ;;      Temps:          3       0       0       0
+   987 ;;      Totals:         7       0       0       0
+   988 ;;Total ram usage:        7 bytes
+   989 ;; Hardware stack levels used:    1
+   990 ;; Hardware stack levels required when called:    3
+   991 ;; This function calls:
+   992 ;;		_ManchesterSendOne
+   993 ;;		_ManchesterSendZero
+   994 ;; This function is called by:
+   995 ;;		_SendFrame
+   996 ;; This function uses a non-reentrant model
+   997 ;;
+   998                           
+   999                           
+  1000                           ;psect for function _ManchesteEncode
+  1001  00B5                     _ManchesteEncode:	
+  1002                           
+  1003                           ;incstack = 0
+  1004                           ; Regs used in _ManchesteEncode: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1005                           ;ManchesteEncode@data_to_send stored from wreg
+  1006  00B5  00F6               	movwf	ManchesteEncode@data_to_send
+  1007                           
+  1008                           ;manchester_encode.c: 47: void ManchesteEncode(unsigned char *data_to_send, unsigned cha
+      +                          r data_lenght);manchester_encode.c: 48: {;manchester_encode.c: 49:  signed char bit_loop
+      +                          , data_loop;;manchester_encode.c: 51:  for(data_loop=0;data_loop<data_lenght;data_loop++
+      +                          )
+  1009  00B6  01F7               	clrf	ManchesteEncode@data_loop
+  1010  00B7                     l1063:	
+  1011  00B7  0877               	movf	ManchesteEncode@data_loop,w
+  1012  00B8  00F3               	movwf	??_ManchesteEncode
+  1013  00B9  01F4               	clrf	??_ManchesteEncode+1
+  1014  00BA  1BF3               	btfsc	??_ManchesteEncode,7
+  1015  00BB  03F4               	decf	??_ManchesteEncode+1,f
+  1016  00BC  0874               	movf	??_ManchesteEncode+1,w
+  1017  00BD  3A80               	xorlw	128
+  1018  00BE  00F5               	movwf	??_ManchesteEncode+2
+  1019  00BF  3080               	movlw	128
+  1020  00C0  0275               	subwf	??_ManchesteEncode+2,w
+  1021  00C1  1D03               	skipz
+  1022  00C2  28C5               	goto	u355
+  1023  00C3  0872               	movf	ManchesteEncode@data_lenght,w
+  1024  00C4  0273               	subwf	??_ManchesteEncode,w
+  1025  00C5                     u355:	
+  1026  00C5  1803               	btfsc	3,0
+  1027  00C6  28EA               	goto	l130
+  1028                           
+  1029                           ;manchester_encode.c: 52:  {;manchester_encode.c: 53:   for(bit_loop=7;bit_loop>=0;bit_l
+      +                          oop--)
+  1030  00C7  3007               	movlw	7
+  1031  00C8  00F3               	movwf	??_ManchesteEncode
+  1032  00C9  0873               	movf	??_ManchesteEncode,w
+  1033  00CA  00F8               	movwf	ManchesteEncode@bit_loop
+  1034  00CB                     l1051:	
+  1035                           
+  1036                           ;manchester_encode.c: 54:   {;manchester_encode.c: 55:    if(((*(data_to_send+data_loop)
+      +                          )>>bit_loop) & 0x01)
+  1037  00CB  0877               	movf	ManchesteEncode@data_loop,w
+  1038  00CC  0776               	addwf	ManchesteEncode@data_to_send,w
+  1039  00CD  00F3               	movwf	??_ManchesteEncode
+  1040  00CE  0873               	movf	??_ManchesteEncode,w
+  1041  00CF  0084               	movwf	4
+  1042  00D0  1383               	bcf	3,7	;select IRP bank0
+  1043  00D1  0800               	movf	0,w
+  1044  00D2  00F4               	movwf	??_ManchesteEncode+1
+  1045  00D3  0A78               	incf	ManchesteEncode@bit_loop,w
+  1046  00D4  28D7               	goto	u324
+  1047  00D5                     u325:	
+  1048  00D5  1003               	clrc
+  1049  00D6  0CF4               	rrf	??_ManchesteEncode+1,f
+  1050  00D7                     u324:	
+  1051  00D7  3EFF               	addlw	-1
+  1052  00D8  1D03               	skipz
+  1053  00D9  28D5               	goto	u325
+  1054  00DA  1C74               	btfss	??_ManchesteEncode+1,0
+  1055  00DB  28DE               	goto	l1055
+  1056                           
+  1057                           ;manchester_encode.c: 56:    {;manchester_encode.c: 57:     ManchesterSendOne();
+  1058  00DC  2183               	fcall	_ManchesterSendOne
+  1059                           
+  1060                           ;manchester_encode.c: 58:    }else
+  1061  00DD  28DF               	goto	l1057
+  1062  00DE                     l1055:	
+  1063                           
+  1064                           ;manchester_encode.c: 59:     ManchesterSendZero();
+  1065  00DE  217C               	fcall	_ManchesterSendZero
+  1066  00DF                     l1057:	
+  1067                           
+  1068                           ;manchester_encode.c: 60:    }
+  1069  00DF  30FF               	movlw	255
+  1070  00E0  00F3               	movwf	??_ManchesteEncode
+  1071  00E1  0873               	movf	??_ManchesteEncode,w
+  1072  00E2  07F8               	addwf	ManchesteEncode@bit_loop,f
+  1073  00E3  1FF8               	btfss	ManchesteEncode@bit_loop,7
+  1074  00E4  28CB               	goto	l1051
+  1075                           
+  1076                           ;manchester_encode.c: 61:  }
+  1077  00E5  3001               	movlw	1
+  1078  00E6  00F3               	movwf	??_ManchesteEncode
+  1079  00E7  0873               	movf	??_ManchesteEncode,w
+  1080  00E8  07F7               	addwf	ManchesteEncode@data_loop,f
+  1081  00E9  28B7               	goto	l1063
+  1082  00EA                     l130:	
+  1083                           
+  1084                           ;manchester_encode.c: 63:     PORTAbits.RA2=1;
+  1085  00EA  1283               	bcf	3,5	;RP0=0, select bank0
+  1086  00EB  1303               	bcf	3,6	;RP1=0, select bank0
+  1087  00EC  1505               	bsf	5,2	;volatile
+  1088  00ED  0008               	return
+  1089  00EE                     __end_of_ManchesteEncode:	
+  1090                           
+  1091                           	psect	text4
+  1092  017C                     __ptext4:	
+  1093 ;; *************** function _ManchesterSendZero *****************
+  1094 ;; Defined at:
+  1095 ;;		line 39 in file "manchester_encode.c"
+  1096 ;; Parameters:    Size  Location     Type
+  1097 ;;		None
+  1098 ;; Auto vars:     Size  Location     Type
+  1099 ;;		None
+  1100 ;; Return value:  Size  Location     Type
+  1101 ;;                  1    wreg      void 
+  1102 ;; Registers used:
+  1103 ;;		status,2, status,0, pclath, cstack
+  1104 ;; Tracked objects:
+  1105 ;;		On entry : 800/0
+  1106 ;;		On exit  : 300/0
+  1107 ;;		Unchanged: 0/0
+  1108 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1109 ;;      Params:         0       0       0       0
+  1110 ;;      Locals:         0       0       0       0
+  1111 ;;      Temps:          0       0       0       0
+  1112 ;;      Totals:         0       0       0       0
+  1113 ;;Total ram usage:        0 bytes
+  1114 ;; Hardware stack levels used:    1
+  1115 ;; Hardware stack levels required when called:    2
+  1116 ;; This function calls:
+  1117 ;;		_WaitManchesterT
+  1118 ;; This function is called by:
+  1119 ;;		_ManchesteEncode
+  1120 ;; This function uses a non-reentrant model
+  1121 ;;
+  1122                           
+  1123                           
+  1124                           ;psect for function _ManchesterSendZero
+  1125  017C                     _ManchesterSendZero:	
+  1126                           
+  1127                           ;manchester_encode.c: 41:  PORTAbits.RA2=1;
+  1128                           
+  1129                           ;incstack = 0
+  1130                           ; Regs used in _ManchesterSendZero: [status,2+status,0+pclath+cstack]
+  1131  017C  1283               	bcf	3,5	;RP0=0, select bank0
+  1132  017D  1303               	bcf	3,6	;RP1=0, select bank0
+  1133  017E  1505               	bsf	5,2	;volatile
+  1134                           
+  1135                           ;manchester_encode.c: 42:  WaitManchesterT();
+  1136  017F  218A               	fcall	_WaitManchesterT
+  1137                           
+  1138                           ;manchester_encode.c: 43:  PORTAbits.RA2=0;
+  1139  0180  1105               	bcf	5,2	;volatile
+  1140                           
+  1141                           ;manchester_encode.c: 44:  WaitManchesterT();
+  1142  0181  218A               	fcall	_WaitManchesterT
+  1143  0182  0008               	return
+  1144  0183                     __end_of_ManchesterSendZero:	
+  1145                           
+  1146                           	psect	text5
+  1147  0183                     __ptext5:	
+  1148 ;; *************** function _ManchesterSendOne *****************
+  1149 ;; Defined at:
+  1150 ;;		line 31 in file "manchester_encode.c"
+  1151 ;; Parameters:    Size  Location     Type
+  1152 ;;		None
+  1153 ;; Auto vars:     Size  Location     Type
+  1154 ;;		None
+  1155 ;; Return value:  Size  Location     Type
+  1156 ;;                  1    wreg      void 
+  1157 ;; Registers used:
+  1158 ;;		status,2, status,0, pclath, cstack
+  1159 ;; Tracked objects:
+  1160 ;;		On entry : 800/0
+  1161 ;;		On exit  : 300/0
+  1162 ;;		Unchanged: 0/0
+  1163 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1164 ;;      Params:         0       0       0       0
+  1165 ;;      Locals:         0       0       0       0
+  1166 ;;      Temps:          0       0       0       0
+  1167 ;;      Totals:         0       0       0       0
+  1168 ;;Total ram usage:        0 bytes
+  1169 ;; Hardware stack levels used:    1
+  1170 ;; Hardware stack levels required when called:    2
+  1171 ;; This function calls:
+  1172 ;;		_WaitManchesterT
+  1173 ;; This function is called by:
+  1174 ;;		_ManchesteEncode
+  1175 ;; This function uses a non-reentrant model
+  1176 ;;
+  1177                           
+  1178                           
+  1179                           ;psect for function _ManchesterSendOne
+  1180  0183                     _ManchesterSendOne:	
+  1181                           
+  1182                           ;manchester_encode.c: 33:  PORTAbits.RA2=0;
+  1183                           
+  1184                           ;incstack = 0
+  1185                           ; Regs used in _ManchesterSendOne: [status,2+status,0+pclath+cstack]
+  1186  0183  1283               	bcf	3,5	;RP0=0, select bank0
+  1187  0184  1303               	bcf	3,6	;RP1=0, select bank0
+  1188  0185  1105               	bcf	5,2	;volatile
+  1189                           
+  1190                           ;manchester_encode.c: 34:  WaitManchesterT();
+  1191  0186  218A               	fcall	_WaitManchesterT
+  1192                           
+  1193                           ;manchester_encode.c: 35:  PORTAbits.RA2=1;
+  1194  0187  1505               	bsf	5,2	;volatile
+  1195                           
+  1196                           ;manchester_encode.c: 36:  WaitManchesterT();
+  1197  0188  218A               	fcall	_WaitManchesterT
+  1198  0189  0008               	return
+  1199  018A                     __end_of_ManchesterSendOne:	
+  1200                           
+  1201                           	psect	text6
+  1202  018A                     __ptext6:	
+  1203 ;; *************** function _WaitManchesterT *****************
+  1204 ;; Defined at:
+  1205 ;;		line 23 in file "manchester_encode.c"
+  1206 ;; Parameters:    Size  Location     Type
+  1207 ;;		None
+  1208 ;; Auto vars:     Size  Location     Type
+  1209 ;;		None
+  1210 ;; Return value:  Size  Location     Type
+  1211 ;;                  1    wreg      void 
+  1212 ;; Registers used:
+  1213 ;;		status,2
+  1214 ;; Tracked objects:
+  1215 ;;		On entry : 300/0
+  1216 ;;		On exit  : 300/0
+  1217 ;;		Unchanged: 0/0
+  1218 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1219 ;;      Params:         0       0       0       0
+  1220 ;;      Locals:         0       0       0       0
+  1221 ;;      Temps:          0       0       0       0
+  1222 ;;      Totals:         0       0       0       0
+  1223 ;;Total ram usage:        0 bytes
+  1224 ;; Hardware stack levels used:    1
+  1225 ;; Hardware stack levels required when called:    1
+  1226 ;; This function calls:
+  1227 ;;		Nothing
+  1228 ;; This function is called by:
+  1229 ;;		_ManchesterSendOne
+  1230 ;;		_ManchesterSendZero
+  1231 ;;		_SendFrame
+  1232 ;; This function uses a non-reentrant model
+  1233 ;;
+  1234                           
+  1235                           
+  1236                           ;psect for function _WaitManchesterT
+  1237  018A                     _WaitManchesterT:	
+  1238                           
+  1239                           ;manchester_encode.c: 25:     PIR1bits.CCP1IF=0;
+  1240                           
+  1241                           ;incstack = 0
+  1242                           ; Regs used in _WaitManchesterT: [status,2]
+  1243  018A  110C               	bcf	12,2	;volatile
+  1244                           
+  1245                           ;manchester_encode.c: 26:     TMR1=0;
+  1246  018B  018E               	clrf	14	;volatile
+  1247  018C  018F               	clrf	15	;volatile
+  1248  018D                     l112:	
+  1249                           ;manchester_encode.c: 27:     while(PIR1bits.CCP1IF==0);
+  1250                           
+  1251  018D  190C               	btfsc	12,2	;volatile
+  1252  018E  0008               	return
+  1253  018F  298D               	goto	l112
+  1254  0190                     __end_of_WaitManchesterT:	
+  1255                           
+  1256                           	psect	text7
+  1257  0073                     __ptext7:	
+  1258 ;; *************** function _CRC16 *****************
+  1259 ;; Defined at:
+  1260 ;;		line 8 in file "crc16.c"
+  1261 ;; Parameters:    Size  Location     Type
+  1262 ;;  data_tab_ptr    1    wreg     PTR unsigned char 
+  1263 ;;		 -> SendFrame@data_table(10), 
+  1264 ;;  size            1    2[COMMON] unsigned char 
+  1265 ;; Auto vars:     Size  Location     Type
+  1266 ;;  data_tab_ptr    1    0[BANK0 ] PTR unsigned char 
+  1267 ;;		 -> SendFrame@data_table(10), 
+  1268 ;;  crc             2    3[BANK0 ] unsigned int 
+  1269 ;;  i               1    2[BANK0 ] unsigned char 
+  1270 ;;  k               1    1[BANK0 ] unsigned char 
+  1271 ;; Return value:  Size  Location     Type
+  1272 ;;                  2    2[COMMON] unsigned int 
+  1273 ;; Registers used:
+  1274 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1
+  1275 ;; Tracked objects:
+  1276 ;;		On entry : 300/0
+  1277 ;;		On exit  : 300/0
+  1278 ;;		Unchanged: 0/0
+  1279 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1280 ;;      Params:         2       0       0       0
+  1281 ;;      Locals:         0       5       0       0
+  1282 ;;      Temps:          3       0       0       0
+  1283 ;;      Totals:         5       5       0       0
+  1284 ;;Total ram usage:       10 bytes
+  1285 ;; Hardware stack levels used:    1
+  1286 ;; Hardware stack levels required when called:    1
+  1287 ;; This function calls:
+  1288 ;;		Nothing
+  1289 ;; This function is called by:
+  1290 ;;		_SendFrame
+  1291 ;; This function uses a non-reentrant model
+  1292 ;;
+  1293                           
+  1294                           
+  1295                           ;psect for function _CRC16
+  1296  0073                     _CRC16:	
+  1297                           
+  1298                           ;incstack = 0
+  1299                           ; Regs used in _CRC16: [wreg-fsr0h+status,2+status,0+btemp+1]
+  1300                           ;CRC16@data_tab_ptr stored from wreg
+  1301  0073  00A0               	movwf	CRC16@data_tab_ptr
+  1302                           
+  1303                           ;crc16.c: 8: unsigned int CRC16(unsigned char *data_tab_ptr, unsigned char size);crc16.c
+      +                          : 9: {;crc16.c: 10:     const unsigned int generator = 0x1021;;crc16.c: 11:     unsigned
+      +                           int crc = 0;
+  1304  0074  01A3               	clrf	CRC16@crc
+  1305  0075  01A4               	clrf	CRC16@crc+1
+  1306                           
+  1307                           ;crc16.c: 12:     unsigned char k,i;;crc16.c: 14:     for(k=0;k<size;k++)
+  1308  0076  01A1               	clrf	CRC16@k
+  1309  0077                     l1155:	
+  1310  0077  0872               	movf	CRC16@size,w
+  1311  0078  0221               	subwf	CRC16@k,w
+  1312  0079  1803               	btfsc	3,0
+  1313  007A  28B0               	goto	l1157
+  1314                           
+  1315                           ;crc16.c: 15:     {;crc16.c: 16:         crc ^= (*(data_tab_ptr+k) << 8);
+  1316  007B  0821               	movf	CRC16@k,w
+  1317  007C  0720               	addwf	CRC16@data_tab_ptr,w
+  1318  007D  00F4               	movwf	??_CRC16
+  1319  007E  0874               	movf	??_CRC16,w
+  1320  007F  0084               	movwf	4
+  1321  0080  1383               	bcf	3,7	;select IRP bank0
+  1322  0081  0800               	movf	0,w
+  1323  0082  00F5               	movwf	??_CRC16+1
+  1324  0083  01F6               	clrf	??_CRC16+2
+  1325  0084  0875               	movf	??_CRC16+1,w
+  1326  0085  00F6               	movwf	??_CRC16+2
+  1327  0086  01F5               	clrf	??_CRC16+1
+  1328  0087  0875               	movf	??_CRC16+1,w
+  1329  0088  06A3               	xorwf	CRC16@crc,f
+  1330  0089  0876               	movf	??_CRC16+2,w
+  1331  008A  06A4               	xorwf	CRC16@crc+1,f
+  1332                           
+  1333                           ;crc16.c: 18:         for (i=0;i<8;i++)
+  1334  008B  01A2               	clrf	CRC16@i
+  1335  008C                     l7:	
+  1336                           
+  1337                           ;crc16.c: 19:         {;crc16.c: 20:             if ((crc&0x8000)!=0)
+  1338  008C  1FA4               	btfss	CRC16@crc+1,7
+  1339  008D  289C               	goto	l1147
+  1340                           
+  1341                           ;crc16.c: 21:             {;crc16.c: 22:                  crc=(crc<<1)^generator;
+  1342  008E  0824               	movf	CRC16@crc+1,w
+  1343  008F  00F5               	movwf	??_CRC16+1
+  1344  0090  0823               	movf	CRC16@crc,w
+  1345  0091  00F4               	movwf	??_CRC16
+  1346  0092  1003               	clrc
+  1347  0093  0DF4               	rlf	??_CRC16,f
+  1348  0094  0DF5               	rlf	??_CRC16+1,f
+  1349  0095  3021               	movlw	33
+  1350  0096  0674               	xorwf	??_CRC16,w
+  1351  0097  00A3               	movwf	CRC16@crc
+  1352  0098  3010               	movlw	16
+  1353  0099  0675               	xorwf	??_CRC16+1,w
+  1354  009A  00A4               	movwf	CRC16@crc+1
+  1355                           
+  1356                           ;crc16.c: 23:             }else
+  1357  009B  28A3               	goto	l1149
+  1358  009C                     l1147:	
+  1359                           
+  1360                           ;crc16.c: 24:             {;crc16.c: 25:                 crc<<=1;
+  1361  009C  3001               	movlw	1
+  1362  009D                     u455:	
+  1363  009D  1003               	clrc
+  1364  009E  0DA3               	rlf	CRC16@crc,f
+  1365  009F  0DA4               	rlf	CRC16@crc+1,f
+  1366  00A0  3EFF               	addlw	-1
+  1367  00A1  1D03               	skipz
+  1368  00A2  289D               	goto	u455
+  1369  00A3                     l1149:	
+  1370                           
+  1371                           ;crc16.c: 27:         }
+  1372  00A3  3001               	movlw	1
+  1373  00A4  00F4               	movwf	??_CRC16
+  1374  00A5  0874               	movf	??_CRC16,w
+  1375  00A6  07A2               	addwf	CRC16@i,f
+  1376  00A7  3008               	movlw	8
+  1377  00A8  0222               	subwf	CRC16@i,w
+  1378  00A9  1C03               	skipc
+  1379  00AA  288C               	goto	l7
+  1380                           
+  1381                           ;crc16.c: 28:     }
+  1382  00AB  3001               	movlw	1
+  1383  00AC  00F4               	movwf	??_CRC16
+  1384  00AD  0874               	movf	??_CRC16,w
+  1385  00AE  07A1               	addwf	CRC16@k,f
+  1386  00AF  2877               	goto	l1155
+  1387  00B0                     l1157:	
+  1388                           
+  1389                           ;crc16.c: 30:     return crc;
+  1390  00B0  0824               	movf	CRC16@crc+1,w
+  1391  00B1  00F3               	movwf	?_CRC16+1
+  1392  00B2  0823               	movf	CRC16@crc,w
+  1393  00B3  00F2               	movwf	?_CRC16
+  1394  00B4  0008               	return
+  1395  00B5                     __end_of_CRC16:	
+  1396                           
+  1397                           	psect	text8
+  1398  0157                     __ptext8:	
+  1399 ;; *************** function _CheckInputState *****************
+  1400 ;; Defined at:
+  1401 ;;		line 25 in file "input_handler.c"
+  1402 ;; Parameters:    Size  Location     Type
+  1403 ;;  input           1    wreg     unsigned char 
+  1404 ;; Auto vars:     Size  Location     Type
+  1405 ;;  input           1    3[COMMON] unsigned char 
+  1406 ;; Return value:  Size  Location     Type
+  1407 ;;                  1    wreg      unsigned char 
+  1408 ;; Registers used:
+  1409 ;;		wreg, status,2, status,0, pclath, cstack
+  1410 ;; Tracked objects:
+  1411 ;;		On entry : 300/0
+  1412 ;;		On exit  : 300/0
+  1413 ;;		Unchanged: 300/0
+  1414 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1415 ;;      Params:         0       0       0       0
+  1416 ;;      Locals:         1       0       0       0
+  1417 ;;      Temps:          0       0       0       0
+  1418 ;;      Totals:         1       0       0       0
+  1419 ;;Total ram usage:        1 bytes
+  1420 ;; Hardware stack levels used:    1
+  1421 ;; Hardware stack levels required when called:    2
+  1422 ;; This function calls:
+  1423 ;;		_DebounceWait
+  1424 ;; This function is called by:
+  1425 ;;		_LineState
+  1426 ;; This function uses a non-reentrant model
+  1427 ;;
+  1428                           
+  1429                           
+  1430                           ;psect for function _CheckInputState
+  1431  0157                     _CheckInputState:	
+  1432                           
+  1433                           ;incstack = 0
+  1434                           ; Regs used in _CheckInputState: [wreg+status,2+status,0+pclath+cstack]
+  1435                           ;CheckInputState@input stored from wreg
+  1436  0157  00F3               	movwf	CheckInputState@input
+  1437                           
+  1438                           ;input_handler.c: 25: unsigned char CheckInputState(unsigned char input);input_handler.c
+      +                          : 26: {;input_handler.c: 27:  if(input==1)
+  1439  0158  0373               	decf	CheckInputState@input,w
+  1440  0159  1D03               	btfss	3,2
+  1441  015A  2961               	goto	l907
+  1442                           
+  1443                           ;input_handler.c: 28:  {;input_handler.c: 29:         DebounceWait();
+  1444  015B  2174               	fcall	_DebounceWait
+  1445                           
+  1446                           ;input_handler.c: 31:         if(input==1)
+  1447  015C  0373               	decf	CheckInputState@input,w
+  1448  015D  1D03               	btfss	3,2
+  1449  015E  2961               	goto	l907
+  1450                           
+  1451                           ;input_handler.c: 32:         {;input_handler.c: 33:             return 1;
+  1452  015F  3001               	movlw	1
+  1453  0160  0008               	return
+  1454  0161                     l907:	
+  1455                           
+  1456                           ;input_handler.c: 37:     return 0;
+  1457  0161  3000               	movlw	0
+  1458  0162  0008               	return
+  1459  0163                     __end_of_CheckInputState:	
+  1460                           
+  1461                           	psect	text9
+  1462  0124                     __ptext9:	
+  1463 ;; *************** function _InterruptConfig *****************
+  1464 ;; Defined at:
+  1465 ;;		line 12 in file "interrupts.c"
+  1466 ;; Parameters:    Size  Location     Type
+  1467 ;;		None
+  1468 ;; Auto vars:     Size  Location     Type
+  1469 ;;		None
+  1470 ;; Return value:  Size  Location     Type
+  1471 ;;                  1    wreg      void 
+  1472 ;; Registers used:
+  1473 ;;		wreg, status,2, status,0
+  1474 ;; Tracked objects:
+  1475 ;;		On entry : B00/0
+  1476 ;;		On exit  : B00/0
+  1477 ;;		Unchanged: 800/0
+  1478 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1479 ;;      Params:         0       0       0       0
+  1480 ;;      Locals:         0       0       0       0
+  1481 ;;      Temps:          0       0       0       0
+  1482 ;;      Totals:         0       0       0       0
+  1483 ;;Total ram usage:        0 bytes
+  1484 ;; Hardware stack levels used:    1
+  1485 ;; Hardware stack levels required when called:    1
+  1486 ;; This function calls:
+  1487 ;;		Nothing
+  1488 ;; This function is called by:
+  1489 ;;		_main
+  1490 ;; This function uses a non-reentrant model
+  1491 ;;
+  1492                           
+  1493                           
+  1494                           ;psect for function _InterruptConfig
+  1495  0124                     _InterruptConfig:	
+  1496                           
+  1497                           ;interrupts.c: 15:     OPTION_REGbits.T0CS=0;
+  1498                           
+  1499                           ;incstack = 0
+  1500                           ; Regs used in _InterruptConfig: [wreg+status,2+status,0]
+  1501  0124  1683               	bsf	3,5	;RP0=1, select bank1
+  1502  0125  1281               	bcf	1,5	;volatile
+  1503                           
+  1504                           ;interrupts.c: 16:     OPTION_REGbits.PSA=0;
+  1505  0126  1181               	bcf	1,3	;volatile
+  1506                           
+  1507                           ;interrupts.c: 17:     OPTION_REGbits.PS=0b010;
+  1508  0127  0801               	movf	1,w	;volatile
+  1509  0128  39F8               	andlw	-8
+  1510  0129  3802               	iorlw	2
+  1511  012A  0081               	movwf	1	;volatile
+  1512                           
+  1513                           ;interrupts.c: 18:     INTCONbits.TMR0IE=1;
+  1514  012B  168B               	bsf	11,5	;volatile
+  1515                           
+  1516                           ;interrupts.c: 22:     T1CONbits.TMR1CS=0;
+  1517  012C  1283               	bcf	3,5	;RP0=0, select bank0
+  1518  012D  1090               	bcf	16,1	;volatile
+  1519                           
+  1520                           ;interrupts.c: 23:     T1CONbits.T1CKPS=0;
+  1521  012E  30CF               	movlw	-49
+  1522  012F  0590               	andwf	16,f	;volatile
+  1523                           
+  1524                           ;interrupts.c: 26:     CCP1CONbits.CCP1M=0b1010;
+  1525  0130  0817               	movf	23,w	;volatile
+  1526  0131  39F0               	andlw	-16
+  1527  0132  380A               	iorlw	10
+  1528  0133  0097               	movwf	23	;volatile
+  1529                           
+  1530                           ;interrupts.c: 30:     const unsigned long int k_baud_rate=300;;interrupts.c: 31:     CC
+      +                          PR1=8000000/(4*k_baud_rate);
+  1531  0134  301A               	movlw	26
+  1532  0135  0096               	movwf	22	;volatile
+  1533  0136  300A               	movlw	10
+  1534  0137  0095               	movwf	21	;volatile
+  1535                           
+  1536                           ;interrupts.c: 34:     INTCONbits.GIE=1;
+  1537  0138  178B               	bsf	11,7	;volatile
+  1538                           
+  1539                           ;interrupts.c: 35:     INTCONbits.PEIE=1;
+  1540  0139  170B               	bsf	11,6	;volatile
+  1541  013A  0008               	return
+  1542  013B                     __end_of_InterruptConfig:	
+  1543                           
+  1544                           	psect	text10
+  1545  010C                     __ptext10:	
+  1546 ;; *************** function _GlobalInits *****************
+  1547 ;; Defined at:
+  1548 ;;		line 5 in file "inits.c"
+  1549 ;; Parameters:    Size  Location     Type
+  1550 ;;		None
+  1551 ;; Auto vars:     Size  Location     Type
+  1552 ;;		None
+  1553 ;; Return value:  Size  Location     Type
+  1554 ;;                  1    wreg      void 
+  1555 ;; Registers used:
+  1556 ;;		wreg, status,2, status,0
+  1557 ;; Tracked objects:
+  1558 ;;		On entry : B00/0
+  1559 ;;		On exit  : B00/0
+  1560 ;;		Unchanged: 800/0
+  1561 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1562 ;;      Params:         0       0       0       0
+  1563 ;;      Locals:         0       0       0       0
+  1564 ;;      Temps:          0       0       0       0
+  1565 ;;      Totals:         0       0       0       0
+  1566 ;;Total ram usage:        0 bytes
+  1567 ;; Hardware stack levels used:    1
+  1568 ;; Hardware stack levels required when called:    1
+  1569 ;; This function calls:
+  1570 ;;		Nothing
+  1571 ;; This function is called by:
+  1572 ;;		_main
+  1573 ;; This function uses a non-reentrant model
+  1574 ;;
+  1575                           
+  1576                           
+  1577                           ;psect for function _GlobalInits
+  1578  010C                     _GlobalInits:	
+  1579                           
+  1580                           ;inits.c: 8:     OSCCONbits.IRCF=0b111;
+  1581                           
+  1582                           ;incstack = 0
+  1583                           ; Regs used in _GlobalInits: [wreg+status,2+status,0]
+  1584  010C  3070               	movlw	112
+  1585  010D  1683               	bsf	3,5	;RP0=1, select bank1
+  1586  010E  048F               	iorwf	15,f	;volatile
+  1587                           
+  1588                           ;inits.c: 9:     ADCON1bits.PCFG=0b0110;
+  1589  010F  081F               	movf	31,w	;volatile
+  1590  0110  39F0               	andlw	-16
+  1591  0111  3806               	iorlw	6
+  1592  0112  009F               	movwf	31	;volatile
+  1593                           
+  1594                           ;inits.c: 12:     TRISA0=0;
+  1595  0113  1005               	bcf	5,0	;volatile
+  1596                           
+  1597                           ;inits.c: 13:     TRISA1=1;
+  1598  0114  1485               	bsf	5,1	;volatile
+  1599                           
+  1600                           ;inits.c: 14:     TRISA2=0;
+  1601  0115  1105               	bcf	5,2	;volatile
+  1602                           
+  1603                           ;inits.c: 15:     TRISA3=1;
+  1604  0116  1585               	bsf	5,3	;volatile
+  1605                           
+  1606                           ;inits.c: 16:     TRISA4=1;
+  1607  0117  1605               	bsf	5,4	;volatile
+  1608                           
+  1609                           ;inits.c: 17:     TRISA6=1;
+  1610  0118  1705               	bsf	5,6	;volatile
+  1611                           
+  1612                           ;inits.c: 18:     TRISA7=1;
+  1613  0119  1785               	bsf	5,7	;volatile
+  1614                           
+  1615                           ;inits.c: 20:     TRISB0=1;
+  1616  011A  1406               	bsf	6,0	;volatile
+  1617                           
+  1618                           ;inits.c: 21:     TRISB1=1;
+  1619  011B  1486               	bsf	6,1	;volatile
+  1620                           
+  1621                           ;inits.c: 22:     TRISB2=0;
+  1622  011C  1106               	bcf	6,2	;volatile
+  1623                           
+  1624                           ;inits.c: 23:     TRISB3=0;
+  1625  011D  1186               	bcf	6,3	;volatile
+  1626                           
+  1627                           ;inits.c: 24:     TRISB4=0;
+  1628  011E  1206               	bcf	6,4	;volatile
+  1629                           
+  1630                           ;inits.c: 25:     TRISB5=0;
+  1631  011F  1286               	bcf	6,5	;volatile
+  1632                           
+  1633                           ;inits.c: 27:     PORTAbits.RA0=0;
+  1634  0120  1283               	bcf	3,5	;RP0=0, select bank0
+  1635  0121  1005               	bcf	5,0	;volatile
+  1636                           
+  1637                           ;inits.c: 28:     PORTBbits.RB3=0;
+  1638  0122  1186               	bcf	6,3	;volatile
+  1639  0123  0008               	return
+  1640  0124                     __end_of_GlobalInits:	
+  1641                           
+  1642                           	psect	text11
+  1643  0163                     __ptext11:	
+  1644 ;; *************** function _CheckGateCloseSwitch *****************
+  1645 ;; Defined at:
+  1646 ;;		line 57 in file "input_handler.c"
+  1647 ;; Parameters:    Size  Location     Type
+  1648 ;;		None
+  1649 ;; Auto vars:     Size  Location     Type
+  1650 ;;		None
+  1651 ;; Return value:  Size  Location     Type
+  1652 ;;                  1    wreg      void 
+  1653 ;; Registers used:
+  1654 ;;		wreg, status,2, status,0, pclath, cstack
+  1655 ;; Tracked objects:
+  1656 ;;		On entry : 300/0
+  1657 ;;		On exit  : 300/0
+  1658 ;;		Unchanged: 0/0
+  1659 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1660 ;;      Params:         0       0       0       0
+  1661 ;;      Locals:         0       0       0       0
+  1662 ;;      Temps:          0       0       0       0
+  1663 ;;      Totals:         0       0       0       0
+  1664 ;;Total ram usage:        0 bytes
+  1665 ;; Hardware stack levels used:    1
+  1666 ;; Hardware stack levels required when called:    2
+  1667 ;; This function calls:
+  1668 ;;		_DebounceWait
+  1669 ;;		_GateStartHighTime
+  1670 ;; This function is called by:
+  1671 ;;		_main
+  1672 ;; This function uses a non-reentrant model
+  1673 ;;
+  1674                           
+  1675                           
+  1676                           ;psect for function _CheckGateCloseSwitch
+  1677  0163                     _CheckGateCloseSwitch:	
+  1678                           
+  1679                           ;input_handler.c: 59:  if(PORTAbits.RA1==1)
+  1680                           
+  1681                           ;incstack = 0
+  1682                           ; Regs used in _CheckGateCloseSwitch: [wreg+status,2+status,0+pclath+cstack]
+  1683  0163  1C85               	btfss	5,1	;volatile
+  1684  0164  0008               	return
+  1685                           
+  1686                           ;input_handler.c: 60:  {;input_handler.c: 61:         DebounceWait();
+  1687  0165  2174               	fcall	_DebounceWait
+  1688                           
+  1689                           ;input_handler.c: 63:         if(PORTAbits.RA1==1)
+  1690  0166  1C85               	btfss	5,1	;volatile
+  1691  0167  0008               	return
+  1692                           
+  1693                           ;input_handler.c: 64:         {;input_handler.c: 65:             PORTBbits.RB3=1;
+  1694  0168  1586               	bsf	6,3	;volatile
+  1695                           
+  1696                           ;input_handler.c: 66:             GateStartHighTime();
+  1697  0169  216C               	fcall	_GateStartHighTime
+  1698                           
+  1699                           ;input_handler.c: 67:             PORTBbits.RB3=0;
+  1700  016A  1186               	bcf	6,3	;volatile
+  1701  016B  0008               	return
+  1702  016C                     __end_of_CheckGateCloseSwitch:	
+  1703                           
+  1704                           	psect	text12
+  1705  016C                     __ptext12:	
+  1706 ;; *************** function _GateStartHighTime *****************
+  1707 ;; Defined at:
+  1708 ;;		line 81 in file "input_handler.c"
+  1709 ;; Parameters:    Size  Location     Type
+  1710 ;;		None
+  1711 ;; Auto vars:     Size  Location     Type
+  1712 ;;		None
+  1713 ;; Return value:  Size  Location     Type
+  1714 ;;                  1    wreg      void 
+  1715 ;; Registers used:
+  1716 ;;		wreg, status,2, status,0
+  1717 ;; Tracked objects:
+  1718 ;;		On entry : 300/0
+  1719 ;;		On exit  : 300/0
+  1720 ;;		Unchanged: 300/0
+  1721 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1722 ;;      Params:         0       0       0       0
+  1723 ;;      Locals:         0       0       0       0
+  1724 ;;      Temps:          1       0       0       0
+  1725 ;;      Totals:         1       0       0       0
+  1726 ;;Total ram usage:        1 bytes
+  1727 ;; Hardware stack levels used:    1
+  1728 ;; Hardware stack levels required when called:    1
+  1729 ;; This function calls:
+  1730 ;;		Nothing
+  1731 ;; This function is called by:
+  1732 ;;		_CheckGateCloseSwitch
+  1733 ;; This function uses a non-reentrant model
+  1734 ;;
+  1735                           
+  1736                           
+  1737                           ;psect for function _GateStartHighTime
+  1738  016C                     _GateStartHighTime:	
+  1739                           
+  1740                           ;input_handler.c: 86:     g_key_timer=200;
+  1741                           
+  1742                           ;incstack = 0
+  1743                           ; Regs used in _GateStartHighTime: [wreg+status,2+status,0]
+  1744  016C  30C8               	movlw	200
+  1745  016D  00F2               	movwf	??_GateStartHighTime
+  1746  016E  0872               	movf	??_GateStartHighTime,w
+  1747  016F  00FB               	movwf	_g_key_timer	;volatile
+  1748  0170                     l913:	
+  1749                           ;input_handler.c: 87:     while(g_key_timer>0);
+  1750                           
+  1751  0170  087B               	movf	_g_key_timer,w	;volatile
+  1752  0171  1903               	btfsc	3,2
+  1753  0172  0008               	return
+  1754  0173  2970               	goto	l913
+  1755  0174                     __end_of_GateStartHighTime:	
+  1756                           
+  1757                           	psect	text13
+  1758  0174                     __ptext13:	
+  1759 ;; *************** function _DebounceWait *****************
+  1760 ;; Defined at:
+  1761 ;;		line 72 in file "input_handler.c"
+  1762 ;; Parameters:    Size  Location     Type
+  1763 ;;		None
+  1764 ;; Auto vars:     Size  Location     Type
+  1765 ;;		None
+  1766 ;; Return value:  Size  Location     Type
+  1767 ;;                  1    wreg      void 
+  1768 ;; Registers used:
+  1769 ;;		wreg, status,2, status,0
+  1770 ;; Tracked objects:
+  1771 ;;		On entry : 300/0
+  1772 ;;		On exit  : 300/0
+  1773 ;;		Unchanged: 300/0
+  1774 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1775 ;;      Params:         0       0       0       0
+  1776 ;;      Locals:         0       0       0       0
+  1777 ;;      Temps:          1       0       0       0
+  1778 ;;      Totals:         1       0       0       0
+  1779 ;;Total ram usage:        1 bytes
+  1780 ;; Hardware stack levels used:    1
+  1781 ;; Hardware stack levels required when called:    1
+  1782 ;; This function calls:
+  1783 ;;		Nothing
+  1784 ;; This function is called by:
+  1785 ;;		_CheckInputState
+  1786 ;;		_CheckGateCloseSwitch
+  1787 ;; This function uses a non-reentrant model
+  1788 ;;
+  1789                           
+  1790                           
+  1791                           ;psect for function _DebounceWait
+  1792  0174                     _DebounceWait:	
+  1793                           
+  1794                           ;input_handler.c: 76:     g_key_timer=20;
+  1795                           
+  1796                           ;incstack = 0
+  1797                           ; Regs used in _DebounceWait: [wreg+status,2+status,0]
+  1798  0174  3014               	movlw	20
+  1799  0175  00F2               	movwf	??_DebounceWait
+  1800  0176  0872               	movf	??_DebounceWait,w
+  1801  0177  00FB               	movwf	_g_key_timer	;volatile
+  1802  0178                     l843:	
+  1803                           ;input_handler.c: 77:     while(g_key_timer>0);
+  1804                           
+  1805  0178  087B               	movf	_g_key_timer,w	;volatile
+  1806  0179  1903               	btfsc	3,2
+  1807  017A  0008               	return
+  1808  017B  2978               	goto	l843
+  1809  017C                     __end_of_DebounceWait:	
+  1810                           
+  1811                           	psect	text14
+  1812  013B                     __ptext14:	
+  1813 ;; *************** function _ISR *****************
+  1814 ;; Defined at:
+  1815 ;;		line 39 in file "interrupts.c"
+  1816 ;; Parameters:    Size  Location     Type
+  1817 ;;		None
+  1818 ;; Auto vars:     Size  Location     Type
+  1819 ;;		None
+  1820 ;; Return value:  Size  Location     Type
+  1821 ;;                  1    wreg      void 
+  1822 ;; Registers used:
+  1823 ;;		wreg, status,2, status,0
+  1824 ;; Tracked objects:
+  1825 ;;		On entry : 0/0
+  1826 ;;		On exit  : 0/0
+  1827 ;;		Unchanged: 0/0
+  1828 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1829 ;;      Params:         0       0       0       0
+  1830 ;;      Locals:         0       0       0       0
+  1831 ;;      Temps:          2       0       0       0
+  1832 ;;      Totals:         2       0       0       0
+  1833 ;;Total ram usage:        2 bytes
+  1834 ;; Hardware stack levels used:    1
+  1835 ;; This function calls:
+  1836 ;;		Nothing
+  1837 ;; This function is called by:
+  1838 ;;		Interrupt level 1
+  1839 ;; This function uses a non-reentrant model
+  1840 ;;
+  1841                           
+  1842                           
+  1843                           ;psect for function _ISR
+  1844  013B                     _ISR:	
+  1845                           
+  1846                           ;interrupts.c: 49:     if (TMR0IE && TMR0IF)
+  1847  013B  1A8B               	btfsc	11,5	;volatile
+  1848  013C  1D0B               	btfss	11,2	;volatile
+  1849  013D  2944               	goto	i1l77
+  1850                           
+  1851                           ;interrupts.c: 50:     {;interrupts.c: 52:         if(g_key_timer>0)
+  1852  013E  087B               	movf	_g_key_timer,w	;volatile
+  1853  013F  1903               	btfsc	3,2
+  1854  0140  2943               	goto	i1l993
+  1855                           
+  1856                           ;interrupts.c: 53:         {;interrupts.c: 54:            g_key_timer--;
+  1857  0141  3001               	movlw	1
+  1858  0142  02FB               	subwf	_g_key_timer,f	;volatile
+  1859  0143                     i1l993:	
+  1860                           
+  1861                           ;interrupts.c: 56:         TMR0IF=0;
+  1862  0143  110B               	bcf	11,2	;volatile
+  1863  0144                     i1l77:	
+  1864  0144  0871               	movf	??_ISR+1,w
+  1865  0145  008A               	movwf	10
+  1866  0146  0E70               	swapf	??_ISR^(0+4294967168),w
+  1867  0147  0083               	movwf	3
+  1868  0148  0EFE               	swapf	126,f
+  1869  0149  0E7E               	swapf	126,w
+  1870  014A  0009               	retfie
+  1871  014B                     __end_of_ISR:	
+  1872  007E                     btemp	set	126	;btemp
+  1873  007E                     wtemp0	set	126
+  1874                           
+  1875                           	psect	intentry
+  1876  0004                     __pintentry:	
+  1877                           ;incstack = 0
+  1878                           ; Regs used in _ISR: [wreg+status,2+status,0]
+  1879                           
+  1880  0004                     interrupt_function:	
+  1881  007E                     saved_w	set	btemp
+  1882  0004  00FE               	movwf	btemp
+  1883  0005  0E03               	swapf	3,w
+  1884  0006  00F0               	movwf	??_ISR
+  1885  0007  080A               	movf	10,w
+  1886  0008  00F1               	movwf	??_ISR+1
+  1887  0009  293B               	ljmp	_ISR
+
+
+Data Sizes:
+    Strings     0
+    Constant    6
+    Data        0
+    BSS         1
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14     11      12
+    BANK0            80     20      20
+    BANK1            80      0       0
+    BANK2            80      0       0
+
+Pointer List with Targets:
+
+    ManchesteEncode@data_to_send	PTR unsigned char  size(1) Largest target is 10
+		 -> SendFrame@data_table(BANK0[10]), 
+
+    CRC16@data_tab_ptr	PTR unsigned char  size(1) Largest target is 10
+		 -> SendFrame@data_table(BANK0[10]), 
+
+
+Critical Paths under _main in COMMON
+
+    _main->_LineState
+    _LineState->_SendFrame
+    _SendFrame->_ManchesteEncode
+    _CheckInputState->_DebounceWait
+    _CheckGateCloseSwitch->_DebounceWait
+    _CheckGateCloseSwitch->_GateStartHighTime
+
+Critical Paths under _ISR in COMMON
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    _LineState->_SendFrame
+    _SendFrame->_CRC16
+
+Critical Paths under _ISR in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _ISR in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _ISR in BANK2
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0    1575
+               _CheckGateCloseSwitch
+                        _GlobalInits
+                    _InterruptConfig
+                          _LineState
+ ---------------------------------------------------------------------------------
+ (1) _LineState                                            1     1      0    1575
+                                             10 COMMON     1     1      0
+                    _CheckInputState
+                          _SendFrame
+ ---------------------------------------------------------------------------------
+ (2) _SendFrame                                           16    16      0    1545
+                                              9 COMMON     1     1      0
+                                              5 BANK0     15    15      0
+                              _CRC16
+                    _ManchesteEncode
+                    _WaitManchesterT
+ ---------------------------------------------------------------------------------
+ (3) _ManchesteEncode                                      7     6      1     267
+                                              2 COMMON     7     6      1
+                  _ManchesterSendOne
+                 _ManchesterSendZero
+ ---------------------------------------------------------------------------------
+ (4) _ManchesterSendZero                                   0     0      0       0
+                    _WaitManchesterT
+ ---------------------------------------------------------------------------------
+ (4) _ManchesterSendOne                                    0     0      0       0
+                    _WaitManchesterT
+ ---------------------------------------------------------------------------------
+ (3) _WaitManchesterT                                      0     0      0       0
+ ---------------------------------------------------------------------------------
+ (3) _CRC16                                               10     8      2     429
+                                              2 COMMON     5     3      2
+                                              0 BANK0      5     5      0
+ ---------------------------------------------------------------------------------
+ (2) _CheckInputState                                      1     1      0      30
+                                              3 COMMON     1     1      0
+                       _DebounceWait
+ ---------------------------------------------------------------------------------
+ (1) _InterruptConfig                                      0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _GlobalInits                                          0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _CheckGateCloseSwitch                                 0     0      0       0
+                       _DebounceWait
+                  _GateStartHighTime
+ ---------------------------------------------------------------------------------
+ (2) _GateStartHighTime                                    1     1      0       0
+                                              2 COMMON     1     1      0
+ ---------------------------------------------------------------------------------
+ (3) _DebounceWait                                         1     1      0       0
+                                              2 COMMON     1     1      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 4
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (6) _ISR                                                  2     2      0       0
+                                              0 COMMON     2     2      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 6
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _CheckGateCloseSwitch
+     _DebounceWait
+     _GateStartHighTime
+   _GlobalInits
+   _InterruptConfig
+   _LineState
+     _CheckInputState
+       _DebounceWait
+     _SendFrame
+       _CRC16
+       _ManchesteEncode
+         _ManchesterSendOne
+           _WaitManchesterT
+         _ManchesterSendZero
+           _WaitManchesterT
+       _WaitManchesterT
+
+ _ISR (ROOT)
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMMON            E      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMMON               E      B       C       1       85.7%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+STACK                0      0       0       2        0.0%
+BANK0               50     14      14       3       25.0%
+BITBANK1            50      0       0       4        0.0%
+BITSFR3              0      0       0       4        0.0%
+SFR3                 0      0       0       4        0.0%
+BANK1               50      0       0       5        0.0%
+BITSFR2              0      0       0       5        0.0%
+SFR2                 0      0       0       5        0.0%
+BITBANK2            50      0       0       6        0.0%
+BANK2               50      0       0       7        0.0%
+ABS                  0      0      20       8        0.0%
+BITBANK0            50      0       0       9        0.0%
+DATA                 0      0      20      10        0.0%
+
+
+Microchip Technology PIC Macro Assembler V2.10 build 88905656 
+Symbol Table                                                                                   Mon May 25 21:55:40 2020
+
+                 ??_CheckInputState 0073                                   l7 008C  
+                                 pc 0002                         __CFG_CP$OFF 0000  
+                                fsr 0004                       ??_GlobalInits 0072  
+                               l112 018D                                 l130 00EA  
+                               l913 0170                                 l843 0178  
+                               l907 0161                                 u324 00D7  
+                               u325 00D5                        __CFG_CPD$OFF 0000  
+                               u355 00C5                                 _ISR 013B  
+                               u455 009D                                 fsr0 0004  
+                               indf 0000                        __CFG_LVP$OFF 0000  
+                              ?_ISR 0070                                l1051 00CB  
+                              l1203 005E                                l1221 0103  
+                              l1055 00DE                                l1063 00B7  
+                              l1057 00DF                                l1217 00F7  
+                              l1147 009C                                l1155 0077  
+                              l1171 0031                                l1227 0192  
+                              l1157 00B0                                l1149 00A3  
+                              l1175 003D                                l1167 0028  
+                              l1195 0057                                i1l77 0144  
+                              _TMR1 000E                    ?_ManchesteEncode 0072  
+                      __CFG_WRT$OFF 0000                                _main 0190  
+                              btemp 007E                                start 000A  
+                 CRC16@data_tab_ptr 0020                       __CFG_MCLRE$ON 0000  
+                             ??_ISR 0070                               ?_main 0070  
+                             _CCPR1 0015                               _CRC16 0073  
+                     __CFG_WDTE$OFF 0000                               i1l993 0143  
+                    __CFG_CCPMX$RB2 0000                 __end_of_GlobalInits 0124  
+          ManchesteEncode@data_loop 0077                      __CFG_BOREN$OFF 0000  
+                             pclath 000A                               status 0003  
+                             wtemp0 007E                          SendFrame@i 0031  
+                        SendFrame@j 0032                     __initialization 000B  
+                      __end_of_main 0195                              CRC16@i 0022  
+                            CRC16@k 0021                              ??_main 007B  
+                            ?_CRC16 0072               __size_of_DebounceWait 0008  
+                         CRC16@size 0072                              _TMR0IE 005D  
+                            _TMR0IF 005A                              _TRISA0 0428  
+                            _TRISA1 0429                              _TRISA2 042A  
+                            _TRISB0 0430                              _TRISA3 042B  
+                            _TRISB1 0431                              _TRISA4 042C  
+                            _TRISB2 0432                              _TRISB3 0433  
+                            _TRISA6 042E                              _TRISB4 0434  
+                            _TRISA7 042F                              _TRISB5 0435  
+                __size_of_LineState 001E                      __CFG_PWRTE$OFF 0000  
+                __size_of_SendFrame 0065                        _DebounceWait 0174  
+                       _GlobalInits 010C                     _WaitManchesterT 018A  
+        __end_of_ManchesterSendZero 0183                              saved_w 007E  
+               SendFrame@data_table 0025                     _InterruptConfig 0124  
+                   _CheckInputState 0157             __end_of__initialization 000C  
+                 _ManchesterSendOne 0183                       __end_of_CRC16 00B5  
+                ?_ManchesterSendOne 0070                      __pcstackCOMMON 0070  
+     __size_of_CheckGateCloseSwitch 0009                 ??_ManchesterSendOne 0072  
+                           ??_CRC16 0074                   __end_of_LineState 010C  
+                    _OPTION_REGbits 0081                   __end_of_SendFrame 0073  
+         __end_of_ManchesterSendOne 018A                          __pmaintext 0190  
+           __end_of_WaitManchesterT 0190                          __pintentry 0004  
+           __end_of_InterruptConfig 013B             __end_of_CheckInputState 0163  
+                        __stringtab 014B            __size_of_ManchesteEncode 0039  
+                 _GateStartHighTime 016C                             __ptext1 00EE  
+                           __ptext2 000E                             __ptext3 00B5  
+                           __ptext4 017C                             __ptext5 0183  
+                           __ptext6 018A                             __ptext7 0073  
+                           __ptext8 0157                             __ptext9 0124  
+                ?_GateStartHighTime 0070                        __size_of_ISR 0010  
+                         _T1CONbits 0010                CheckInputState@input 0073  
+               ??_GateStartHighTime 0072                end_of_initialization 000C  
+        __size_of_ManchesterSendOne 0007                    ?_WaitManchesterT 0070  
+         __end_of_GateStartHighTime 0174                        ?_GlobalInits 0070  
+                         _PORTAbits 0005                           _PORTBbits 0006  
+                  ?_InterruptConfig 0070                    ?_CheckInputState 0070  
+                _ManchesterSendZero 017C                         _CCP1CONbits 0017  
+               ?_ManchesterSendZero 0070                   ??_ManchesteEncode 0073  
+              ??_ManchesterSendZero 0072             ManchesteEncode@bit_loop 0078  
+               start_initialization 000B                         __end_of_ISR 014B  
+                         _LineState 00EE        __end_of_CheckGateCloseSwitch 016C  
+                         _SendFrame 000E                            CRC16@crc 0023  
+__end_ofInterruptConfig@k_baud_rate 0157          InterruptConfig@k_baud_rate 0153  
+        __size_of_GateStartHighTime 0008          ManchesteEncode@data_lenght 0072  
+                       __pbssCOMMON 007B                           ___latbits 0000  
+                     __pcstackBANK0 0020                          ?_LineState 0070  
+                        ?_SendFrame 0070                         _g_key_timer 007B  
+                         __pstrings 014B                      __size_of_CRC16 0042  
+              __size_of_GlobalInits 0018                   interrupt_function 0004  
+                          _PIR1bits 000C                _CheckGateCloseSwitch 0163  
+                     ?_DebounceWait 0070                         __stringbase 0150  
+                        _ADCON1bits 009F                         ??_LineState 007A  
+                    CRC16@generator 0151                         ??_SendFrame 0079  
+                   _ManchesteEncode 00B5                      ??_DebounceWait 0072  
+             ?_CheckGateCloseSwitch 0070                  __end_of__stringtab 0151  
+          __size_of_WaitManchesterT 0006                            __ptext10 010C  
+                          __ptext11 0163                            __ptext12 016C  
+                          __ptext13 0174                            __ptext14 013B  
+            __end_ofCRC16@generator 0153            __size_of_InterruptConfig 0017  
+          __size_of_CheckInputState 000C                       __size_of_main 0005  
+       ManchesteEncode@data_to_send 0076                          _INTCONbits 000B  
+       __size_of_ManchesterSendZero 0007                    SendFrame@crc_val 002F  
+                          intlevel1 0000             __end_of_ManchesteEncode 00EE  
+                         stringcode 014B                          _OSCCONbits 008F  
+            ??_CheckGateCloseSwitch 0073                            stringdir 014B  
+                          stringtab 014B                   ??_WaitManchesterT 0072  
+              __end_of_DebounceWait 017C                  __CFG_FOSC$INTOSCIO 0000  
+                     SendFrame@type 0033                   ??_InterruptConfig 0072  

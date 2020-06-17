@@ -7,6 +7,13 @@
 # 1 "/opt/microchip/xc8/v2.10/pic/include/language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main.c" 2
+
+
+
+
+
+
+
 # 1 "/opt/microchip/xc8/v2.10/pic/include/xc.h" 1 3
 # 18 "/opt/microchip/xc8/v2.10/pic/include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2367,13 +2374,10 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "/opt/microchip/xc8/v2.10/pic/include/xc.h" 2 3
-# 2 "main.c" 2
+# 9 "main.c" 2
+
 # 1 "./main.h" 1
-
-
-
-
-
+# 13 "./main.h"
 #pragma config FOSC = INTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
@@ -2388,6 +2392,34 @@ extern __bank0 __bit __timeout;
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
+# 48 "./main.h"
+enum button_press
+{
+    k_set_rtc_short,
+    k_set_rtc_long,
+    k_set_time1_short,
+    k_set_time1_long,
+    k_set_time2_short,
+    k_set_time2_long,
+    k_set_right_short,
+    k_set_right_long,
+    k_set_up_short,
+    k_set_up_long,
+    k_set_down_short,
+    k_set_down_long,
+    k_no_key_press
+};
+
+enum days
+{
+    monday,
+    tuesday,
+    wedenesday,
+    thursday,
+    friday,
+    saturday,
+    sunday
+};
 
 typedef struct
 {
@@ -2399,7 +2431,7 @@ typedef struct
 
 typedef struct
 {
- unsigned char seconds,minutes,hours,day,month,year;
+ signed char seconds,minutes,hours,day,month,year,weekday;
 
 }TimeStruct;
 
@@ -2407,8 +2439,8 @@ typedef struct
 {
     unsigned char klock, pin, lock_long_press;
     volatile unsigned char *port;
-    void (*button_short_function)(void);
-    void (*button_long_function)(void);
+    unsigned char button_short_function;
+    unsigned char button_long_function;
 
 }KeyStruct;
 
@@ -2422,58 +2454,75 @@ typedef struct
     KeyStruct *set_down;
 
 }KeyPointerStruct;
-# 3 "main.c" 2
+
+typedef struct MenuParamStruct
+{
+    unsigned char max_limit,max_limit1,letter,min_limit,min_limit1;
+    signed char param, param1;
+    struct MenuParamStruct *next_menu;
+
+}MenuParamStruct;
+
+typedef struct
+{
+    MenuParamStruct *hours_minutes_ptr;
+    MenuParamStruct *day_month_ptr;
+    MenuParamStruct *year_ptr;
+    MenuParamStruct *time_limit_work_day_1_ptr;
+    MenuParamStruct *time_limit_work_day_2_ptr;
+    MenuParamStruct *time_limit_free_day_1_ptr;
+    MenuParamStruct *time_limit_free_day_2_ptr;
+
+}MenuParamPonterStruct;
+# 11 "main.c" 2
 # 1 "./inits.h" 1
 # 11 "./inits.h"
 void Global_Inits(void);
-# 4 "main.c" 2
+# 12 "main.c" 2
 # 1 "./utils.h" 1
-# 5 "main.c" 2
+# 15 "./utils.h"
+void Wait_ms(unsigned int time);
+# 13 "main.c" 2
 # 1 "./interrupts.h" 1
 # 18 "./interrupts.h"
 void InterruptConfig(void);
-volatile unsigned char ISR_ACK;
-volatile unsigned int PWM_Freq, Timer1, g_button_timer, g_generic_timer;
+
+volatile unsigned char g_reciver_ccp2_isr_fire_flag, g_display_controll;
+volatile unsigned int g_pwm_freq, g_button_timer, g_generic_timer;
+
 unsigned char g_display_text[4];
 unsigned char g_decimal_point;
-# 6 "main.c" 2
+# 14 "main.c" 2
 # 1 "./hw_uart.h" 1
-
-
-
-
-
-
-
-
+# 11 "./hw_uart.h"
 void UART_Init(void);
 void SendUART(char data);
 void SendDigitUART(unsigned int data);
 void SendArrayUART(unsigned char *data, unsigned char size);
-# 7 "main.c" 2
+# 15 "main.c" 2
 # 1 "./circular_buffer.h" 1
 # 11 "./circular_buffer.h"
 unsigned char FrameBuffer(unsigned char *data,unsigned char mode);
-# 8 "main.c" 2
+# 16 "main.c" 2
 # 1 "./manchester_decode.h" 1
-# 13 "./manchester_decode.h"
-void ManchesterDecode(unsigned char *EdgeDir, unsigned int *PulseTime);
-void ProcessRCVData(DataStruct *DataRCV);
-unsigned char CheckEvent(DataStruct *DataRCV);
-# 9 "main.c" 2
+# 11 "./manchester_decode.h"
+void ManchesterDecode(unsigned char *edge_dir, unsigned int *pulse_time);
+void ProcessRCVData(DataStruct *DataRCV, TimeStruct *time, MenuParamPonterStruct *time_limit);
+unsigned char Check_Time_Date(TimeStruct *time, MenuParamPonterStruct *time_limit);
+# 17 "main.c" 2
 # 1 "./crc16.h" 1
 # 11 "./crc16.h"
 unsigned int CRC16(unsigned char *data_tab_ptr, unsigned char size);
-# 10 "main.c" 2
+# 18 "main.c" 2
 # 1 "./melody.h" 1
-# 11 "./melody.h"
-void Wait_ms(unsigned int time);
-void PlayRing(unsigned char diode);
-# 11 "main.c" 2
+# 12 "./melody.h"
+void PlayRing(void);
+# 19 "main.c" 2
 # 1 "./display-7-segment.h" 1
 # 11 "./display-7-segment.h"
 void Display7SegmentText(unsigned char *text, unsigned char decimal_point);
-# 12 "main.c" 2
+void Disable_All_Digits(void);
+# 20 "main.c" 2
 # 1 "./hw_i2c.h" 1
 # 11 "./hw_i2c.h"
 void Init_I2C(void);
@@ -2482,56 +2531,46 @@ void I2C_Master_Start(void);
 void I2C_Master_Stop(void);
 void I2C_Master_Write(unsigned data);
 unsigned char I2C_Master_Read(unsigned char ack);
-# 13 "main.c" 2
+# 21 "main.c" 2
 # 1 "./pcf8583.h" 1
 # 14 "./pcf8583.h"
 void PCF8583_Read_Time_Date(TimeStruct *time_struct_ptr);
 void RTC_init(TimeStruct *set0val);
 void Time_To_UART(TimeStruct *time_struct_ptr);
-# 14 "main.c" 2
+void PCF8583_Set_Date_Time(TimeStruct *time_struct_ptr);
+# 22 "main.c" 2
 # 1 "./menu.h" 1
-# 11 "./menu.h"
-void Set_RTC_Button_Short(void);
-void Set_Time1_Button_Short(void);
-void Set_Time2_Button_Short(void);
-void Down_Button_Short(void);
-void Up_Button_Short(void);
-void Right_Button_Short(void);
-# 15 "main.c" 2
+# 12 "./menu.h"
+void Menu_Init(MenuParamPonterStruct *menudef);
+void Select_Menu(MenuParamPonterStruct *menudef, KeyPointerStruct *keydef, TimeStruct *time);
+void Display_7Seg_Text(char *text, unsigned char decimal_point);
+# 23 "main.c" 2
 # 1 "./key-handler.h" 1
-# 11 "./key-handler.h"
-void Button_Handler(KeyPointerStruct *keydef);
+# 12 "./key-handler.h"
+unsigned char Button_Handler(KeyPointerStruct *keydef);
 void Button_Init (KeyPointerStruct *keydef);
-# 16 "main.c" 2
-
+# 24 "main.c" 2
 
 void main(void)
 {
     Global_Inits();
     InterruptConfig();
     Init_I2C();
-    UART_Init();
 
-    DataStruct DataRCV;
-
-
-
-
-    g_display_text[0]=1;
-    g_display_text[1]='f';
-    g_display_text[2]='c';
-    g_display_text[3]=4;
-    g_decimal_point=0b0101;
-
+    DataStruct data_rcv;
     KeyPointerStruct keydef;
-    Button_Init(&keydef);
-
+    MenuParamPonterStruct menudef;
     TimeStruct time;
+
+    Button_Init(&keydef);
+    Menu_Init(&menudef);
+
+
+
 
     while(1)
     {
-        Button_Handler(&keydef);
-# 64 "main.c"
-        ProcessRCVData(&DataRCV);
+        ProcessRCVData(&data_rcv,&time,&menudef);
+        Select_Menu(&menudef,&keydef,&time);
     }
 }

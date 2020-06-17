@@ -227,39 +227,69 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3370
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 3370: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"6 ./main.h
-[; ;./main.h: 6: 
+"13 ./main.h
 [p x FOSC = INTRC_NOCLKOUT ]
-"7
-[; ;./main.h: 7: 
-[p x WDTE = OFF ]
-"8
-[; ;./main.h: 8: typedef struct
-[p x PWRTE = OFF ]
-"9
-[; ;./main.h: 9: {
-[p x MCLRE = ON ]
-"10
-[; ;./main.h: 10:  unsigned char seconds,minutes,hours,day,month,year;
-[p x CP = OFF ]
-"11
-[; ;./main.h: 11: 
-[p x CPD = OFF ]
-"12
-[; ;./main.h: 12: }TimeStruct;
-[p x BOREN = OFF ]
-"13
-[; ;./main.h: 13: 
-[p x IESO = OFF ]
 "14
-[; ;./main.h: 14: typedef struct
-[p x FCMEN = OFF ]
+[p x WDTE = OFF ]
 "15
-[; ;./main.h: 15: {
-[p x LVP = OFF ]
+[p x PWRTE = OFF ]
+"16
+[p x MCLRE = ON ]
+"17
+[p x CP = OFF ]
 "18
-[; ;./main.h: 18:     void (*button_short_function)(void);
-[p x BOR4V = BOR40V ]
+[p x CPD = OFF ]
 "19
-[; ;./main.h: 19:     void (*button_long_function)(void);
+[p x BOREN = OFF ]
+"20
+[p x IESO = OFF ]
+"21
+[p x FCMEN = OFF ]
+"22
+[p x LVP = OFF ]
+"25
+[p x BOR4V = BOR40V ]
+"26
 [p x WRT = OFF ]
+"20 ./interrupts.h
+[; ;./interrupts.h: 20: volatile unsigned char g_reciver_ccp2_isr_fire_flag, g_display_controll;
+[v _g_reciver_ccp2_isr_fire_flag `Vuc ~T0 @X0 1 e ]
+[v _g_display_controll `Vuc ~T0 @X0 1 e ]
+"21
+[; ;./interrupts.h: 21: volatile unsigned int g_pwm_freq, g_button_timer, g_generic_timer;
+[v _g_pwm_freq `Vui ~T0 @X0 1 e ]
+[v _g_button_timer `Vui ~T0 @X0 1 e ]
+[v _g_generic_timer `Vui ~T0 @X0 1 e ]
+"23
+[; ;./interrupts.h: 23: unsigned char g_display_text[4];
+[v _g_display_text `uc ~T0 @X0 -> 4 `i e ]
+"24
+[; ;./interrupts.h: 24: unsigned char g_decimal_point;
+[v _g_decimal_point `uc ~T0 @X0 1 e ]
+"7 utils.c
+[; ;utils.c: 7: void Wait_ms(unsigned int time)
+[v _Wait_ms `(v ~T0 @X0 1 ef1`ui ]
+"8
+[; ;utils.c: 8: {
+{
+[e :U _Wait_ms ]
+"7
+[; ;utils.c: 7: void Wait_ms(unsigned int time)
+[v _time `ui ~T0 @X0 1 r1 ]
+"8
+[; ;utils.c: 8: {
+[f ]
+"9
+[; ;utils.c: 9:     g_generic_timer=(125*(unsigned long int)time)/32;
+[e = _g_generic_timer -> / * -> -> -> 125 `i `l `ul -> _time `ul -> -> -> 32 `i `l `ul `ui ]
+"10
+[; ;utils.c: 10:     while(g_generic_timer);
+[e $U 141  ]
+[e :U 142 ]
+[e :U 141 ]
+[e $ != _g_generic_timer -> -> 0 `i `ui 142  ]
+[e :U 143 ]
+"11
+[; ;utils.c: 11: }
+[e :UE 140 ]
+}

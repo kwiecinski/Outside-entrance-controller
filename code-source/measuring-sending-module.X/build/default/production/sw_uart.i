@@ -1264,14 +1264,6 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 # 3 "sw_uart.c" 2
-
-
-
-
-
-
-
-
 # 1 "./main.h" 1
 # 14 "./main.h"
 #pragma config FOSC = INTOSCIO
@@ -1284,48 +1276,9 @@ extern int printf(const char *, ...);
 #pragma config WRT = OFF
 #pragma config CCPMX = RB2
 #pragma config CP = OFF
-# 12 "sw_uart.c" 2
+# 4 "sw_uart.c" 2
 # 1 "./sw_uart.h" 1
 # 12 "./sw_uart.h"
 void SendUART(unsigned char data);
-# 13 "sw_uart.c" 2
+# 5 "sw_uart.c" 2
 
-
-
-
-
-unsigned char DigitToString(unsigned char digit)
-{
-    unsigned char i;
-
-    for(i=0;i<10;i++)
-    {
-        if(digit==i)
-  {
-   return('0'+i);
-  }
-    }
-
-    return 0;
-}
-
-void SendUART(unsigned char data)
-{
- PORTBbits.RB5=0;;
- _delay((unsigned long)((1000000/1200)*(8000000/4000000.0)));
-
- for(unsigned char i=0;i<8;i++)
- {
-  if(data>>i & 0x01)
-  {
-   PORTBbits.RB5=1;;
-  }else
-  {
-   PORTBbits.RB5=0;;
-  }
-  _delay((unsigned long)((1000000/1200)*(8000000/4000000.0)));
- }
-
- PORTBbits.RB5=1;;
- _delay((unsigned long)((1000000/1200)*(8000000/4000000.0)));
-}

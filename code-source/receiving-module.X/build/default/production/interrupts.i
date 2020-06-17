@@ -2369,11 +2369,7 @@ extern __bank0 __bit __timeout;
 # 28 "/opt/microchip/xc8/v2.10/pic/include/xc.h" 2 3
 # 2 "interrupts.c" 2
 # 1 "./main.h" 1
-
-
-
-
-
+# 13 "./main.h"
 #pragma config FOSC = INTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
@@ -2388,6 +2384,34 @@ extern __bank0 __bit __timeout;
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
+# 48 "./main.h"
+enum button_press
+{
+    k_set_rtc_short,
+    k_set_rtc_long,
+    k_set_time1_short,
+    k_set_time1_long,
+    k_set_time2_short,
+    k_set_time2_long,
+    k_set_right_short,
+    k_set_right_long,
+    k_set_up_short,
+    k_set_up_long,
+    k_set_down_short,
+    k_set_down_long,
+    k_no_key_press
+};
+
+enum days
+{
+    monday,
+    tuesday,
+    wedenesday,
+    thursday,
+    friday,
+    saturday,
+    sunday
+};
 
 typedef struct
 {
@@ -2399,7 +2423,7 @@ typedef struct
 
 typedef struct
 {
- unsigned char seconds,minutes,hours,day,month,year;
+ signed char seconds,minutes,hours,day,month,year,weekday;
 
 }TimeStruct;
 
@@ -2407,8 +2431,8 @@ typedef struct
 {
     unsigned char klock, pin, lock_long_press;
     volatile unsigned char *port;
-    void (*button_short_function)(void);
-    void (*button_long_function)(void);
+    unsigned char button_short_function;
+    unsigned char button_long_function;
 
 }KeyStruct;
 
@@ -2422,40 +2446,58 @@ typedef struct
     KeyStruct *set_down;
 
 }KeyPointerStruct;
+
+typedef struct MenuParamStruct
+{
+    unsigned char max_limit,max_limit1,letter,min_limit,min_limit1;
+    signed char param, param1;
+    struct MenuParamStruct *next_menu;
+
+}MenuParamStruct;
+
+typedef struct
+{
+    MenuParamStruct *hours_minutes_ptr;
+    MenuParamStruct *day_month_ptr;
+    MenuParamStruct *year_ptr;
+    MenuParamStruct *time_limit_work_day_1_ptr;
+    MenuParamStruct *time_limit_work_day_2_ptr;
+    MenuParamStruct *time_limit_free_day_1_ptr;
+    MenuParamStruct *time_limit_free_day_2_ptr;
+
+}MenuParamPonterStruct;
 # 3 "interrupts.c" 2
 # 1 "./interrupts.h" 1
 # 18 "./interrupts.h"
 void InterruptConfig(void);
-volatile unsigned char ISR_ACK;
-volatile unsigned int PWM_Freq, Timer1, g_button_timer, g_generic_timer;
+
+volatile unsigned char g_reciver_ccp2_isr_fire_flag, g_display_controll;
+volatile unsigned int g_pwm_freq, g_button_timer, g_generic_timer;
+
 unsigned char g_display_text[4];
 unsigned char g_decimal_point;
 # 4 "interrupts.c" 2
 # 1 "./utils.h" 1
+# 15 "./utils.h"
+void Wait_ms(unsigned int time);
 # 5 "interrupts.c" 2
 # 1 "./hw_uart.h" 1
-
-
-
-
-
-
-
-
+# 11 "./hw_uart.h"
 void UART_Init(void);
 void SendUART(char data);
 void SendDigitUART(unsigned int data);
 void SendArrayUART(unsigned char *data, unsigned char size);
 # 6 "interrupts.c" 2
 # 1 "./manchester_decode.h" 1
-# 13 "./manchester_decode.h"
-void ManchesterDecode(unsigned char *EdgeDir, unsigned int *PulseTime);
-void ProcessRCVData(DataStruct *DataRCV);
-unsigned char CheckEvent(DataStruct *DataRCV);
+# 11 "./manchester_decode.h"
+void ManchesterDecode(unsigned char *edge_dir, unsigned int *pulse_time);
+void ProcessRCVData(DataStruct *DataRCV, TimeStruct *time, MenuParamPonterStruct *time_limit);
+unsigned char Check_Time_Date(TimeStruct *time, MenuParamPonterStruct *time_limit);
 # 7 "interrupts.c" 2
 # 1 "./display-7-segment.h" 1
 # 11 "./display-7-segment.h"
 void Display7SegmentText(unsigned char *text, unsigned char decimal_point);
+void Disable_All_Digits(void);
 # 8 "interrupts.c" 2
 
 void InterruptConfig(void)
@@ -2467,7 +2509,7 @@ void InterruptConfig(void)
     INTCONbits.T0IE=1;
 
 
-
+    T1CONbits.TMR1ON=1;
     T1CONbits.TMR1CS=0;
     T1CONbits.T1CKPS=0b00;
 
@@ -2477,22 +2519,21 @@ void InterruptConfig(void)
 
 
     CCP2CONbits.CCP2M=0b0100;
-
-
+    PIE2bits.CCP2IE=1;
 
 }
 
 unsigned char g_display_text[4];
 unsigned char g_decimal_point;
 
-volatile unsigned char ISR_ACK;
-volatile unsigned int PWM_Freq, Timer1, g_button_timer, g_generic_timer;
+volatile unsigned char g_reciver_ccp2_isr_fire_flag;
+volatile unsigned int g_pwm_freq, g_button_timer, g_generic_timer;
 
 void __attribute__((picinterrupt((""))))
 ISR(void)
 {
     static unsigned char edge_dir, set_flag, display_timer;
-    unsigned int PulseTime;
+    unsigned int pulse_time;
 
 
 
@@ -2502,15 +2543,7 @@ ISR(void)
 
     if (TMR0IE && TMR0IF)
     {
-
-        if(Timer1)
-        {
-            Timer1--;
-        }
-
-
-
-        if(display_timer>15)
+        if(display_timer>15 && g_display_controll==1)
         {
             Display7SegmentText(&g_display_text[0],g_decimal_point);
             display_timer=0;
@@ -2530,10 +2563,7 @@ ISR(void)
             g_generic_timer--;
         }
 
-
-
-     TMR0IF=0;
-
+        TMR0IF=0;
     }
 
 
@@ -2544,7 +2574,7 @@ ISR(void)
 
     if(CCP2IF && CCP2IE)
     {
-        ISR_ACK=1;
+        g_reciver_ccp2_isr_fire_flag=1;
 
         if(edge_dir==0)
         {
@@ -2557,9 +2587,10 @@ ISR(void)
             edge_dir=0;
         }
 
-        PulseTime=CCPR1;
+        pulse_time=CCPR2;
 
-        ManchesterDecode(&edge_dir,&PulseTime);
+        ManchesterDecode(&edge_dir,&pulse_time);
+
         TMR1=0;
         CCP2IF=0;
     }
@@ -2581,7 +2612,8 @@ ISR(void)
             CCP1CONbits.CCP1M=0b1001;
             set_flag=1;
         }
-        CCPR1=PWM_Freq;
+
+        CCPR1=g_pwm_freq;
         TMR1=0;
         CCP1IF=0;
     }

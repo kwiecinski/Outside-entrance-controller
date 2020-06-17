@@ -2369,11 +2369,7 @@ extern __bank0 __bit __timeout;
 # 28 "/opt/microchip/xc8/v2.10/pic/include/xc.h" 2 3
 # 2 "display-7-segment.c" 2
 # 1 "./main.h" 1
-
-
-
-
-
+# 13 "./main.h"
 #pragma config FOSC = INTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
@@ -2388,6 +2384,34 @@ extern __bank0 __bit __timeout;
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
+# 48 "./main.h"
+enum button_press
+{
+    k_set_rtc_short,
+    k_set_rtc_long,
+    k_set_time1_short,
+    k_set_time1_long,
+    k_set_time2_short,
+    k_set_time2_long,
+    k_set_right_short,
+    k_set_right_long,
+    k_set_up_short,
+    k_set_up_long,
+    k_set_down_short,
+    k_set_down_long,
+    k_no_key_press
+};
+
+enum days
+{
+    monday,
+    tuesday,
+    wedenesday,
+    thursday,
+    friday,
+    saturday,
+    sunday
+};
 
 typedef struct
 {
@@ -2399,7 +2423,7 @@ typedef struct
 
 typedef struct
 {
- unsigned char seconds,minutes,hours,day,month,year;
+ signed char seconds,minutes,hours,day,month,year,weekday;
 
 }TimeStruct;
 
@@ -2407,8 +2431,8 @@ typedef struct
 {
     unsigned char klock, pin, lock_long_press;
     volatile unsigned char *port;
-    void (*button_short_function)(void);
-    void (*button_long_function)(void);
+    unsigned char button_short_function;
+    unsigned char button_long_function;
 
 }KeyStruct;
 
@@ -2422,12 +2446,33 @@ typedef struct
     KeyStruct *set_down;
 
 }KeyPointerStruct;
+
+typedef struct MenuParamStruct
+{
+    unsigned char max_limit,max_limit1,letter,min_limit,min_limit1;
+    signed char param, param1;
+    struct MenuParamStruct *next_menu;
+
+}MenuParamStruct;
+
+typedef struct
+{
+    MenuParamStruct *hours_minutes_ptr;
+    MenuParamStruct *day_month_ptr;
+    MenuParamStruct *year_ptr;
+    MenuParamStruct *time_limit_work_day_1_ptr;
+    MenuParamStruct *time_limit_work_day_2_ptr;
+    MenuParamStruct *time_limit_free_day_1_ptr;
+    MenuParamStruct *time_limit_free_day_2_ptr;
+
+}MenuParamPonterStruct;
 # 3 "display-7-segment.c" 2
 # 1 "./display-7-segment.h" 1
 # 11 "./display-7-segment.h"
 void Display7SegmentText(unsigned char *text, unsigned char decimal_point);
+void Disable_All_Digits(void);
 # 4 "display-7-segment.c" 2
-# 28 "display-7-segment.c"
+# 27 "display-7-segment.c"
 unsigned char SignAnodeData(unsigned char sign)
 {
     switch (sign)
@@ -2442,6 +2487,16 @@ unsigned char SignAnodeData(unsigned char sign)
         case 7 : return 0b11100100;
         case 8 : return 0b11111110;
         case 9 : return 0b11110110;
+        case '0': return 0b11111100;
+        case '1': return 0b01100000;
+        case '2': return 0b11011010;
+        case '3': return 0b11110010;
+        case '4': return 0b01100110;
+        case '5': return 0b10110110;
+        case '6': return 0b10111110;
+        case '7': return 0b11100100;
+        case '8': return 0b11111110;
+        case '9': return 0b11110110;
         case 'a': return 0b11101110;
         case 'b': return 0b00111110;
         case 'c': return 0b10011100;
@@ -2454,7 +2509,7 @@ unsigned char SignAnodeData(unsigned char sign)
         case 'j': return 0b01110000;
         case 'k': return 0b01101110;
         case 'l': return 0b00011100;
-        case 'm': return 0b00000000;
+        case 'm': return 0b11101100;
         case 'n': return 0b00101010;
         case 'o': return 0b11111100;
         case 'p': return 0b01110011;
@@ -2463,7 +2518,7 @@ unsigned char SignAnodeData(unsigned char sign)
         case 't': return 0b00011110;
         case 'u': return 0b01111100;
         case 'v': return 0b01111100;
-        case 'w': return 0b00000000;
+        case 'w': return 0b01111100;
         case 'x': return 0b01101110;
         case 'y': return 0b01110110;
         case 'z': return 0b11011010;
@@ -2476,9 +2531,8 @@ unsigned char SignAnodeData(unsigned char sign)
 
 void SetAnodeOutputs(unsigned char sign, unsigned char decimal_point);
 void OneDigitHandler(unsigned char sign, unsigned char digit_number, unsigned char decimal_point);
-void DisableAllDigits(void);
 
-void DisableAllDigits(void)
+void Disable_All_Digits(void)
 {
     PORTBbits.RB7=1;
     PORTBbits.RB6=1;
@@ -2542,7 +2596,7 @@ void Display7SegmentText(unsigned char *text, unsigned char decimal_point)
 void OneDigitHandler(unsigned char sign, unsigned char digit_number, unsigned char decimal_point)
 {
 
-    DisableAllDigits();
+    Disable_All_Digits();
     SetAnodeOutputs(SignAnodeData(sign),decimal_point);
     switch (digit_number)
     {

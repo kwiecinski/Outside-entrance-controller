@@ -328,94 +328,94 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 [e :U _Global_Inits ]
 [f ]
-"8
-[; ;inits.c: 8:     OSCCONbits.IRCF=0b111;
+"7
+[; ;inits.c: 7:     OSCCONbits.IRCF=0b111;
 [e = . . _OSCCONbits 0 4 -> -> 7 `i `uc ]
-"9
-[; ;inits.c: 9:     OSCCONbits.OSTS=0;
+"8
+[; ;inits.c: 8:     OSCCONbits.OSTS=0;
 [e = . . _OSCCONbits 0 3 -> -> 0 `i `uc ]
-"10
-[; ;inits.c: 10:     OSCCONbits.SCS=1;
+"9
+[; ;inits.c: 9:     OSCCONbits.SCS=1;
 [e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
-"11
-[; ;inits.c: 11:     ANSEL=0x00;
-[e = _ANSEL -> -> 0 `i `uc ]
 "12
-[; ;inits.c: 12:     ANSELH=0x00;
+[; ;inits.c: 12:     ANSEL=0x00;
+[e = _ANSEL -> -> 0 `i `uc ]
+"13
+[; ;inits.c: 13:     ANSELH=0x00;
 [e = _ANSELH -> -> 0 `i `uc ]
-"16
-[; ;inits.c: 16:     TRISC0=0;
+"15
+[; ;inits.c: 15:     TRISC0=0;
 [e = _TRISC0 -> -> 0 `i `b ]
-"17
-[; ;inits.c: 17:     TRISC1=1;
+"16
+[; ;inits.c: 16:     TRISC1=1;
 [e = _TRISC1 -> -> 1 `i `b ]
-"18
-[; ;inits.c: 18:     TRISC2=0;
+"17
+[; ;inits.c: 17:     TRISC2=0;
 [e = _TRISC2 -> -> 0 `i `b ]
-"19
-[; ;inits.c: 19:     TRISC3=1;
+"18
+[; ;inits.c: 18:     TRISC3=1;
 [e = _TRISC3 -> -> 1 `i `b ]
-"20
-[; ;inits.c: 20:     TRISC4=1;
+"19
+[; ;inits.c: 19:     TRISC4=1;
 [e = _TRISC4 -> -> 1 `i `b ]
-"21
-[; ;inits.c: 21:     TRISC5=1;
+"20
+[; ;inits.c: 20:     TRISC5=1;
 [e = _TRISC5 -> -> 1 `i `b ]
-"22
-[; ;inits.c: 22:     TRISC6=0;
+"21
+[; ;inits.c: 21:     TRISC6=0;
 [e = _TRISC6 -> -> 0 `i `b ]
-"23
-[; ;inits.c: 23:     TRISC7=1;
+"22
+[; ;inits.c: 22:     TRISC7=1;
 [e = _TRISC7 -> -> 1 `i `b ]
-"26
-[; ;inits.c: 26:     TRISA0=0;
+"24
+[; ;inits.c: 24:     TRISA0=0;
 [e = _TRISA0 -> -> 0 `i `b ]
-"27
-[; ;inits.c: 27:     TRISA1=0;
+"25
+[; ;inits.c: 25:     TRISA1=0;
 [e = _TRISA1 -> -> 0 `i `b ]
-"28
-[; ;inits.c: 28:     TRISA2=0;
+"26
+[; ;inits.c: 26:     TRISA2=0;
 [e = _TRISA2 -> -> 0 `i `b ]
-"29
-[; ;inits.c: 29:     TRISA3=0;
+"27
+[; ;inits.c: 27:     TRISA3=0;
 [e = _TRISA3 -> -> 0 `i `b ]
-"30
-[; ;inits.c: 30:     TRISA4=0;
+"28
+[; ;inits.c: 28:     TRISA4=0;
 [e = _TRISA4 -> -> 0 `i `b ]
-"31
-[; ;inits.c: 31:     TRISA5=0;
+"29
+[; ;inits.c: 29:     TRISA5=0;
 [e = _TRISA5 -> -> 0 `i `b ]
-"32
-[; ;inits.c: 32:     TRISA6=0;
+"30
+[; ;inits.c: 30:     TRISA6=0;
 [e = _TRISA6 -> -> 0 `i `b ]
-"33
-[; ;inits.c: 33:     TRISA7=0;
+"31
+[; ;inits.c: 31:     TRISA7=0;
 [e = _TRISA7 -> -> 0 `i `b ]
-"35
-[; ;inits.c: 35:     TRISB0=1;
+"33
+[; ;inits.c: 33:     TRISB0=1;
 [e = _TRISB0 -> -> 1 `i `b ]
-"36
-[; ;inits.c: 36:     TRISB1=1;
+"34
+[; ;inits.c: 34:     TRISB1=1;
 [e = _TRISB1 -> -> 1 `i `b ]
-"37
-[; ;inits.c: 37:     TRISB2=1;
+"35
+[; ;inits.c: 35:     TRISB2=1;
 [e = _TRISB2 -> -> 1 `i `b ]
-"38
-[; ;inits.c: 38:     TRISB3=1;
+"36
+[; ;inits.c: 36:     TRISB3=1;
 [e = _TRISB3 -> -> 1 `i `b ]
-"39
-[; ;inits.c: 39:     TRISB4=0;
+"37
+[; ;inits.c: 37:     TRISB4=0;
 [e = _TRISB4 -> -> 0 `i `b ]
-"40
-[; ;inits.c: 40:     TRISB5=0;
+"38
+[; ;inits.c: 38:     TRISB5=0;
 [e = _TRISB5 -> -> 0 `i `b ]
-"41
-[; ;inits.c: 41:     TRISB6=0;
+"39
+[; ;inits.c: 39:     TRISB6=0;
 [e = _TRISB6 -> -> 0 `i `b ]
-"42
-[; ;inits.c: 42:     TRISB7=0;
+"40
+[; ;inits.c: 40:     TRISB7=0;
 [e = _TRISB7 -> -> 0 `i `b ]
-"45
-[; ;inits.c: 45: }
+"41
+[; ;inits.c: 41: }
 [e :UE 134 ]
 }

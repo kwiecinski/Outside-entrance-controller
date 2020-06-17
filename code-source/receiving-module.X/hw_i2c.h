@@ -1,8 +1,8 @@
 /* 
- * File:   hw_i2c.h
- * Author: mpc
+ * 
+ * 
  *
- * Created on 14 kwietnia 2020, 00:06
+ * 
  */
 
 #ifndef HW_I2C_H

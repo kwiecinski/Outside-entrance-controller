@@ -1178,7 +1178,7 @@ extern __bank0 __bit __timeout;
 # 28 "/opt/microchip/xc8/v2.10/pic/include/xc.h" 2 3
 # 9 "input_handler.c" 2
 # 1 "./manchester_encode.h" 1
-# 18 "./manchester_encode.h"
+# 20 "./manchester_encode.h"
 void SendFrame(unsigned char type);
 # 10 "input_handler.c" 2
 # 1 "./interrupts.h" 1
@@ -1191,6 +1191,11 @@ volatile unsigned char g_key_timer;
 # 12 "./sw_uart.h"
 void SendUART(unsigned char data);
 # 12 "input_handler.c" 2
+# 1 "./input_handler.h" 1
+# 11 "./input_handler.h"
+void LineState(void);
+void CheckGateCloseSwitch(void);
+# 13 "input_handler.c" 2
 
 
 
@@ -1258,8 +1263,12 @@ void DebounceWait(void)
     while(g_key_timer>0);
 }
 
+
 void GateStartHighTime(void)
 {
+
+
+
     g_key_timer=200;
     while(g_key_timer>0);
 }

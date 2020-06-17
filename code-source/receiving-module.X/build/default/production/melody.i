@@ -2369,11 +2369,7 @@ extern __bank0 __bit __timeout;
 # 28 "/opt/microchip/xc8/v2.10/pic/include/xc.h" 2 3
 # 2 "melody.c" 2
 # 1 "./main.h" 1
-
-
-
-
-
+# 13 "./main.h"
 #pragma config FOSC = INTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
@@ -2388,6 +2384,34 @@ extern __bank0 __bit __timeout;
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
+# 48 "./main.h"
+enum button_press
+{
+    k_set_rtc_short,
+    k_set_rtc_long,
+    k_set_time1_short,
+    k_set_time1_long,
+    k_set_time2_short,
+    k_set_time2_long,
+    k_set_right_short,
+    k_set_right_long,
+    k_set_up_short,
+    k_set_up_long,
+    k_set_down_short,
+    k_set_down_long,
+    k_no_key_press
+};
+
+enum days
+{
+    monday,
+    tuesday,
+    wedenesday,
+    thursday,
+    friday,
+    saturday,
+    sunday
+};
 
 typedef struct
 {
@@ -2399,7 +2423,7 @@ typedef struct
 
 typedef struct
 {
- unsigned char seconds,minutes,hours,day,month,year;
+ signed char seconds,minutes,hours,day,month,year,weekday;
 
 }TimeStruct;
 
@@ -2407,8 +2431,8 @@ typedef struct
 {
     unsigned char klock, pin, lock_long_press;
     volatile unsigned char *port;
-    void (*button_short_function)(void);
-    void (*button_long_function)(void);
+    unsigned char button_short_function;
+    unsigned char button_long_function;
 
 }KeyStruct;
 
@@ -2422,34 +2446,55 @@ typedef struct
     KeyStruct *set_down;
 
 }KeyPointerStruct;
+
+typedef struct MenuParamStruct
+{
+    unsigned char max_limit,max_limit1,letter,min_limit,min_limit1;
+    signed char param, param1;
+    struct MenuParamStruct *next_menu;
+
+}MenuParamStruct;
+
+typedef struct
+{
+    MenuParamStruct *hours_minutes_ptr;
+    MenuParamStruct *day_month_ptr;
+    MenuParamStruct *year_ptr;
+    MenuParamStruct *time_limit_work_day_1_ptr;
+    MenuParamStruct *time_limit_work_day_2_ptr;
+    MenuParamStruct *time_limit_free_day_1_ptr;
+    MenuParamStruct *time_limit_free_day_2_ptr;
+
+}MenuParamPonterStruct;
 # 3 "melody.c" 2
 # 1 "./interrupts.h" 1
 # 18 "./interrupts.h"
 void InterruptConfig(void);
-volatile unsigned char ISR_ACK;
-volatile unsigned int PWM_Freq, Timer1, g_button_timer, g_generic_timer;
+
+volatile unsigned char g_reciver_ccp2_isr_fire_flag, g_display_controll;
+volatile unsigned int g_pwm_freq, g_button_timer, g_generic_timer;
+
 unsigned char g_display_text[4];
 unsigned char g_decimal_point;
 # 4 "melody.c" 2
 # 1 "./melody.h" 1
-# 11 "./melody.h"
-void Wait_ms(unsigned int time);
-void PlayRing(unsigned char diode);
+# 12 "./melody.h"
+void PlayRing(void);
 # 5 "melody.c" 2
 # 1 "./utils.h" 1
+# 15 "./utils.h"
+void Wait_ms(unsigned int time);
 # 6 "melody.c" 2
+# 1 "./display-7-segment.h" 1
+# 11 "./display-7-segment.h"
+void Display7SegmentText(unsigned char *text, unsigned char decimal_point);
+void Disable_All_Digits(void);
+# 7 "melody.c" 2
 # 22 "melody.c"
-void Wait_ms(unsigned int time)
+void Generate_PWM(unsigned long int freq)
 {
-    Timer1=(125*(unsigned long int)time)/32;
-    while(Timer1);
+    g_pwm_freq=8000000/(4*8*2*freq);
 }
-
-void GeneratePWM(unsigned long int freq)
-{
-    PWM_Freq=8000000/(4*8*2*freq);
-}
-
 
 void Init_CompareMode(void)
 {
@@ -2457,7 +2502,6 @@ void Init_CompareMode(void)
     T1CONbits.T1CKPS=0b11;
     CCP1IE=1;
     CCP1CONbits.CCP1M=0b1000;
-
 }
 
 void Init_CaptureMode(void)
@@ -2468,23 +2512,25 @@ void Init_CaptureMode(void)
     CCP2CONbits.CCP2M=0b0100;
 }
 
- void PlayRing(unsigned char diode)
+ void PlayRing(void)
  {
-
-     Init_CompareMode();
+    Init_CompareMode();
 
     unsigned int const melody[] = {659, 523, 587, 392, 1, 392, 587, 659, 523};
     unsigned char const beats[] = {4, 4, 4, 2, 64, 4, 4, 4, 2};
-    const unsigned int tempo=2000;
+    const unsigned int tempo=1800;
 
     unsigned char MELODY_LENGTH = sizeof(melody) / sizeof(melody[0]);
 
     for (unsigned char i=0; i<MELODY_LENGTH; i++)
     {
-        GeneratePWM(melody[i]);
-        Wait_ms(tempo/beats[i]);
+        Generate_PWM(melody[i]);
+
+        for(unsigned int j=0;j<(tempo/beats[i])/4;j++)
+        {
+            Display7SegmentText(&g_display_text[0],g_decimal_point);
+            Wait_ms(4);
+        }
     }
-
     Init_CaptureMode();
-
  }

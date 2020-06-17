@@ -68,6 +68,28 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1972
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 1972: extern volatile __bit TRISB5 __attribute__((address(0x435)));
 [v _TRISB5 `Vb ~T0 @X0 0 e@1077 ]
+"172
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 172:     struct {
+[s S6 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S6 . RA0 RA1 RA2 RA3 RA4 RA5 RA6 RA7 ]
+"171
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 171: typedef union {
+[u S5 `S6 1 ]
+[n S5 . . ]
+"183
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 183: extern volatile PORTAbits_t PORTAbits __attribute__((address(0x005)));
+[v _PORTAbits `VS5 ~T0 @X0 0 e@5 ]
+"234
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 234:     struct {
+[s S8 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S8 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
+"233
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 233: typedef union {
+[u S7 `S8 1 ]
+[n S7 . . ]
+"245
+[; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 245: extern volatile PORTBbits_t PORTBbits __attribute__((address(0x006)));
+[v _PORTBbits `VS7 ~T0 @X0 0 e@6 ]
 "54 /opt/microchip/xc8/v2.10/pic/include/pic16f819.h
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -200,60 +222,66 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1595
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f819.h: 1595: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"4 inits.c
-[; ;inits.c: 4: void GlobalInits(void)
+"5 inits.c
+[; ;inits.c: 5: void GlobalInits(void)
 [v _GlobalInits `(v ~T0 @X0 1 ef ]
-"5
-[; ;inits.c: 5: {
+"6
+[; ;inits.c: 6: {
 {
 [e :U _GlobalInits ]
 [f ]
-"7
-[; ;inits.c: 7:     OSCCONbits.IRCF=0b111;
-[e = . . _OSCCONbits 0 3 -> -> 7 `i `uc ]
 "8
-[; ;inits.c: 8:     ADCON1bits.PCFG=0b0110;
+[; ;inits.c: 8:     OSCCONbits.IRCF=0b111;
+[e = . . _OSCCONbits 0 3 -> -> 7 `i `uc ]
+"9
+[; ;inits.c: 9:     ADCON1bits.PCFG=0b0110;
 [e = . . _ADCON1bits 0 0 -> -> 6 `i `uc ]
-"11
-[; ;inits.c: 11:     TRISA0=0;
-[e = _TRISA0 -> -> 0 `i `b ]
 "12
-[; ;inits.c: 12:     TRISA1=1;
-[e = _TRISA1 -> -> 1 `i `b ]
+[; ;inits.c: 12:     TRISA0=0;
+[e = _TRISA0 -> -> 0 `i `b ]
 "13
-[; ;inits.c: 13:     TRISA2=0;
-[e = _TRISA2 -> -> 0 `i `b ]
+[; ;inits.c: 13:     TRISA1=1;
+[e = _TRISA1 -> -> 1 `i `b ]
 "14
-[; ;inits.c: 14:     TRISA3=1;
-[e = _TRISA3 -> -> 1 `i `b ]
+[; ;inits.c: 14:     TRISA2=0;
+[e = _TRISA2 -> -> 0 `i `b ]
 "15
-[; ;inits.c: 15:     TRISA4=1;
-[e = _TRISA4 -> -> 1 `i `b ]
+[; ;inits.c: 15:     TRISA3=1;
+[e = _TRISA3 -> -> 1 `i `b ]
 "16
-[; ;inits.c: 16:     TRISA6=1;
-[e = _TRISA6 -> -> 1 `i `b ]
+[; ;inits.c: 16:     TRISA4=1;
+[e = _TRISA4 -> -> 1 `i `b ]
 "17
-[; ;inits.c: 17:     TRISA7=1;
+[; ;inits.c: 17:     TRISA6=1;
+[e = _TRISA6 -> -> 1 `i `b ]
+"18
+[; ;inits.c: 18:     TRISA7=1;
 [e = _TRISA7 -> -> 1 `i `b ]
-"19
-[; ;inits.c: 19:     TRISB0=1;
-[e = _TRISB0 -> -> 1 `i `b ]
 "20
-[; ;inits.c: 20:     TRISB1=1;
-[e = _TRISB1 -> -> 1 `i `b ]
+[; ;inits.c: 20:     TRISB0=1;
+[e = _TRISB0 -> -> 1 `i `b ]
 "21
-[; ;inits.c: 21:     TRISB2=0;
-[e = _TRISB2 -> -> 0 `i `b ]
+[; ;inits.c: 21:     TRISB1=1;
+[e = _TRISB1 -> -> 1 `i `b ]
 "22
-[; ;inits.c: 22:     TRISB3=0;
-[e = _TRISB3 -> -> 0 `i `b ]
+[; ;inits.c: 22:     TRISB2=0;
+[e = _TRISB2 -> -> 0 `i `b ]
 "23
-[; ;inits.c: 23:     TRISB4=0;
-[e = _TRISB4 -> -> 0 `i `b ]
+[; ;inits.c: 23:     TRISB3=0;
+[e = _TRISB3 -> -> 0 `i `b ]
 "24
-[; ;inits.c: 24:     TRISB5=0;
+[; ;inits.c: 24:     TRISB4=0;
+[e = _TRISB4 -> -> 0 `i `b ]
+"25
+[; ;inits.c: 25:     TRISB5=0;
 [e = _TRISB5 -> -> 0 `i `b ]
-"26
-[; ;inits.c: 26: }
+"27
+[; ;inits.c: 27:     PORTAbits.RA0=0;
+[e = . . _PORTAbits 0 0 -> -> 0 `i `uc ]
+"28
+[; ;inits.c: 28:     PORTBbits.RB3=0;
+[e = . . _PORTBbits 0 3 -> -> 0 `i `uc ]
+"30
+[; ;inits.c: 30: }
 [e :UE 68 ]
 }

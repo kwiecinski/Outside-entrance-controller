@@ -58,6 +58,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1109
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 1109: extern volatile CCP2CONbits_t CCP2CONbits __attribute__((address(0x01D)));
 [v _CCP2CONbits `VS39 ~T0 @X0 0 e@29 ]
+"11 ./display-7-segment.h
+[; ;./display-7-segment.h: 11: void Display7SegmentText(unsigned char *text, unsigned char decimal_point);
+[v _Display7SegmentText `(v ~T0 @X0 0 ef2`*uc`uc ]
+"15 ./utils.h
+[; ;./utils.h: 15: void Wait_ms(unsigned int time);
+[v _Wait_ms `(v ~T0 @X0 0 ef1`ui ]
 "54 /opt/microchip/xc8/v2.10/pic/include/pic16f886.h
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -286,172 +292,128 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3370
 [; ;/opt/microchip/xc8/v2.10/pic/include/pic16f886.h: 3370: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"6 ./main.h
-[; ;./main.h: 6: 
+"13 ./main.h
 [p x FOSC = INTRC_NOCLKOUT ]
-"7
-[; ;./main.h: 7: 
-[p x WDTE = OFF ]
-"8
-[; ;./main.h: 8: typedef struct
-[p x PWRTE = OFF ]
-"9
-[; ;./main.h: 9: {
-[p x MCLRE = ON ]
-"10
-[; ;./main.h: 10:  unsigned char seconds,minutes,hours,day,month,year;
-[p x CP = OFF ]
-"11
-[; ;./main.h: 11: 
-[p x CPD = OFF ]
-"12
-[; ;./main.h: 12: }TimeStruct;
-[p x BOREN = OFF ]
-"13
-[; ;./main.h: 13: 
-[p x IESO = OFF ]
 "14
-[; ;./main.h: 14: typedef struct
-[p x FCMEN = OFF ]
+[p x WDTE = OFF ]
 "15
-[; ;./main.h: 15: {
-[p x LVP = OFF ]
+[p x PWRTE = OFF ]
+"16
+[p x MCLRE = ON ]
+"17
+[p x CP = OFF ]
 "18
-[; ;./main.h: 18:     void (*button_short_function)(void);
-[p x BOR4V = BOR40V ]
+[p x CPD = OFF ]
 "19
-[; ;./main.h: 19:     void (*button_long_function)(void);
-[p x WRT = OFF ]
-"19 ./interrupts.h
-[; ;./interrupts.h: 19: volatile unsigned char ISR_ACK;
-[v _ISR_ACK `Vuc ~T0 @X0 1 e ]
+[p x BOREN = OFF ]
 "20
-[; ;./interrupts.h: 20: volatile unsigned int PWM_Freq, Timer1, g_button_timer, g_generic_timer;
-[v _PWM_Freq `Vui ~T0 @X0 1 e ]
-[v _Timer1 `Vui ~T0 @X0 1 e ]
+[p x IESO = OFF ]
+"21
+[p x FCMEN = OFF ]
+"22
+[p x LVP = OFF ]
+"25
+[p x BOR4V = BOR40V ]
+"26
+[p x WRT = OFF ]
+"20 ./interrupts.h
+[; ;./interrupts.h: 20: volatile unsigned char g_reciver_ccp2_isr_fire_flag, g_display_controll;
+[v _g_reciver_ccp2_isr_fire_flag `Vuc ~T0 @X0 1 e ]
+[v _g_display_controll `Vuc ~T0 @X0 1 e ]
+"21
+[; ;./interrupts.h: 21: volatile unsigned int g_pwm_freq, g_button_timer, g_generic_timer;
+[v _g_pwm_freq `Vui ~T0 @X0 1 e ]
 [v _g_button_timer `Vui ~T0 @X0 1 e ]
 [v _g_generic_timer `Vui ~T0 @X0 1 e ]
-"21
-[; ;./interrupts.h: 21: unsigned char g_display_text[4];
+"23
+[; ;./interrupts.h: 23: unsigned char g_display_text[4];
 [v _g_display_text `uc ~T0 @X0 -> 4 `i e ]
-"22
-[; ;./interrupts.h: 22: unsigned char g_decimal_point;
+"24
+[; ;./interrupts.h: 24: unsigned char g_decimal_point;
 [v _g_decimal_point `uc ~T0 @X0 1 e ]
 "22 melody.c
-[; ;melody.c: 22: void Wait_ms(unsigned int time)
-[v _Wait_ms `(v ~T0 @X0 1 ef1`ui ]
+[; ;melody.c: 22: void Generate_PWM(unsigned long int freq)
+[v _Generate_PWM `(v ~T0 @X0 1 ef1`ul ]
 "23
 [; ;melody.c: 23: {
 {
-[e :U _Wait_ms ]
+[e :U _Generate_PWM ]
 "22
-[; ;melody.c: 22: void Wait_ms(unsigned int time)
-[v _time `ui ~T0 @X0 1 r1 ]
+[; ;melody.c: 22: void Generate_PWM(unsigned long int freq)
+[v _freq `ul ~T0 @X0 1 r1 ]
 "23
 [; ;melody.c: 23: {
 [f ]
 "24
-[; ;melody.c: 24:     Timer1=(125*(unsigned long int)time)/32;
-[e = _Timer1 -> / * -> -> -> 125 `i `l `ul -> _time `ul -> -> -> 32 `i `l `ul `ui ]
+[; ;melody.c: 24:     g_pwm_freq=8000000/(4*8*2*freq);
+[e = _g_pwm_freq -> / -> -> 8000000 `l `ul * -> -> * * -> 4 `i -> 8 `i -> 2 `i `l `ul _freq `ui ]
 "25
-[; ;melody.c: 25:     while(Timer1);
-[e $U 139  ]
-[e :U 140 ]
-[e :U 139 ]
-[e $ != _Timer1 -> -> 0 `i `ui 140  ]
-[e :U 141 ]
-"26
-[; ;melody.c: 26: }
-[e :UE 138 ]
+[; ;melody.c: 25: }
+[e :UE 140 ]
 }
-"28
-[; ;melody.c: 28: void GeneratePWM(unsigned long int freq)
-[v _GeneratePWM `(v ~T0 @X0 1 ef1`ul ]
-"29
-[; ;melody.c: 29: {
-{
-[e :U _GeneratePWM ]
-"28
-[; ;melody.c: 28: void GeneratePWM(unsigned long int freq)
-[v _freq `ul ~T0 @X0 1 r1 ]
-"29
-[; ;melody.c: 29: {
-[f ]
-"30
-[; ;melody.c: 30:     PWM_Freq=8000000/(4*8*2*freq);
-[e = _PWM_Freq -> / -> -> 8000000 `l `ul * -> -> * * -> 4 `i -> 8 `i -> 2 `i `l `ul _freq `ui ]
-"31
-[; ;melody.c: 31: }
-[e :UE 142 ]
-}
-"34
-[; ;melody.c: 34: void Init_CompareMode(void)
+"27
+[; ;melody.c: 27: void Init_CompareMode(void)
 [v _Init_CompareMode `(v ~T0 @X0 1 ef ]
-"35
-[; ;melody.c: 35: {
+"28
+[; ;melody.c: 28: {
 {
 [e :U _Init_CompareMode ]
 [f ]
-"36
-[; ;melody.c: 36:     CCP2IE=0;
+"29
+[; ;melody.c: 29:     CCP2IE=0;
 [e = _CCP2IE -> -> 0 `i `b ]
-"37
-[; ;melody.c: 37:     T1CONbits.T1CKPS=0b11;
+"30
+[; ;melody.c: 30:     T1CONbits.T1CKPS=0b11;
 [e = . . _T1CONbits 0 4 -> -> 3 `i `uc ]
-"38
-[; ;melody.c: 38:     CCP1IE=1;
+"31
+[; ;melody.c: 31:     CCP1IE=1;
 [e = _CCP1IE -> -> 1 `i `b ]
-"39
-[; ;melody.c: 39:     CCP1CONbits.CCP1M=0b1000;
+"32
+[; ;melody.c: 32:     CCP1CONbits.CCP1M=0b1000;
 [e = . . _CCP1CONbits 0 0 -> -> 8 `i `uc ]
-"41
-[; ;melody.c: 41: }
-[e :UE 143 ]
+"33
+[; ;melody.c: 33: }
+[e :UE 141 ]
 }
-"43
-[; ;melody.c: 43: void Init_CaptureMode(void)
+"35
+[; ;melody.c: 35: void Init_CaptureMode(void)
 [v _Init_CaptureMode `(v ~T0 @X0 1 ef ]
-"44
-[; ;melody.c: 44: {
+"36
+[; ;melody.c: 36: {
 {
 [e :U _Init_CaptureMode ]
 [f ]
-"45
-[; ;melody.c: 45:     CCP1IE=0;
+"37
+[; ;melody.c: 37:     CCP1IE=0;
 [e = _CCP1IE -> -> 0 `i `b ]
-"46
-[; ;melody.c: 46:     T1CONbits.T1CKPS=0b00;
+"38
+[; ;melody.c: 38:     T1CONbits.T1CKPS=0b00;
 [e = . . _T1CONbits 0 4 -> -> 0 `i `uc ]
-"47
-[; ;melody.c: 47:     CCP2IE=1;
+"39
+[; ;melody.c: 39:     CCP2IE=1;
 [e = _CCP2IE -> -> 1 `i `b ]
-"48
-[; ;melody.c: 48:     CCP2CONbits.CCP2M=0b0100;
+"40
+[; ;melody.c: 40:     CCP2CONbits.CCP2M=0b0100;
 [e = . . _CCP2CONbits 0 0 -> -> 4 `i `uc ]
-"49
-[; ;melody.c: 49: }
-[e :UE 144 ]
+"41
+[; ;melody.c: 41: }
+[e :UE 142 ]
 }
-"51
-[; ;melody.c: 51:  void PlayRing(unsigned char diode)
-[v _PlayRing `(v ~T0 @X0 1 ef1`uc ]
-"52
-[; ;melody.c: 52:  {
+"43
+[; ;melody.c: 43:  void PlayRing(void)
+[v _PlayRing `(v ~T0 @X0 1 ef ]
+"44
+[; ;melody.c: 44:  {
 {
 [e :U _PlayRing ]
-"51
-[; ;melody.c: 51:  void PlayRing(unsigned char diode)
-[v _diode `uc ~T0 @X0 1 r1 ]
-"52
-[; ;melody.c: 52:  {
 [f ]
-"54
-[; ;melody.c: 54:      Init_CompareMode();
+"45
+[; ;melody.c: 45:     Init_CompareMode();
 [e ( _Init_CompareMode ..  ]
-"56
-[; ;melody.c: 56:     unsigned int const melody[] = {659, 523, 587, 392, 1, 392, 587, 659, 523};
-[v F1254 `Cui ~T0 @X0 -> 9 `i s melody ]
-[i F1254
+"47
+[; ;melody.c: 47:     unsigned int const melody[] = {659, 523, 587, 392, 1, 392, 587, 659, 523};
+[v F1294 `Cui ~T0 @X0 -> 9 `i s melody ]
+[i F1294
 :U ..
 -> -> 659 `i `ui
 -> -> 523 `i `ui
@@ -464,10 +426,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 523 `i `ui
 ..
 ]
-"57
-[; ;melody.c: 57:     unsigned char const beats[] = {4, 4, 4, 2, 64, 4, 4, 4, 2};
-[v F1255 `Cuc ~T0 @X0 -> 9 `i s beats ]
-[i F1255
+"48
+[; ;melody.c: 48:     unsigned char const beats[] = {4, 4, 4, 2, 64, 4, 4, 4, 2};
+[v F1295 `Cuc ~T0 @X0 -> 9 `i s beats ]
+[i F1295
 :U ..
 -> -> 4 `i `uc
 -> -> 4 `i `uc
@@ -480,44 +442,65 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 2 `i `uc
 ..
 ]
-"58
-[; ;melody.c: 58:     const unsigned int tempo=2000;
-[v F1256 `Cui ~T0 @X0 1 s tempo ]
-[i F1256
--> -> 2000 `i `ui
+"49
+[; ;melody.c: 49:     const unsigned int tempo=1800;
+[v F1296 `Cui ~T0 @X0 1 s tempo ]
+[i F1296
+-> -> 1800 `i `ui
 ]
-"60
-[; ;melody.c: 60:     unsigned char MELODY_LENGTH = sizeof(melody) / sizeof(melody[0]);
+"51
+[; ;melody.c: 51:     unsigned char MELODY_LENGTH = sizeof(melody) / sizeof(melody[0]);
 [v _MELODY_LENGTH `uc ~T0 @X0 1 a ]
-[e = _MELODY_LENGTH -> / -> # F1254 `ui -> # *U + &U F1254 * -> -> -> 0 `i `ui `ux -> -> # *U &U F1254 `ui `ux `ui `uc ]
-"62
-[; ;melody.c: 62:     for (unsigned char i=0; i<MELODY_LENGTH; i++)
+[e = _MELODY_LENGTH -> / -> # F1294 `ui -> # *U + &U F1294 * -> -> -> 0 `i `ui `ux -> -> # *U &U F1294 `ui `ux `ui `uc ]
+"53
+[; ;melody.c: 53:     for (unsigned char i=0; i<MELODY_LENGTH; i++)
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
-[e $U 149  ]
-[e :U 146 ]
-"63
-[; ;melody.c: 63:     {
+[e $U 147  ]
+[e :U 144 ]
+"54
+[; ;melody.c: 54:     {
 {
-"64
-[; ;melody.c: 64:         GeneratePWM(melody[i]);
-[e ( _GeneratePWM (1 -> *U + &U F1254 * -> _i `ux -> -> # *U &U F1254 `ui `ux `ul ]
-"65
-[; ;melody.c: 65:         Wait_ms(tempo/beats[i]);
-[e ( _Wait_ms (1 / F1256 -> *U + &U F1255 * -> _i `ux -> -> # *U &U F1255 `ui `ux `ui ]
-"66
-[; ;melody.c: 66:     }
+"55
+[; ;melody.c: 55:         Generate_PWM(melody[i]);
+[e ( _Generate_PWM (1 -> *U + &U F1294 * -> _i `ux -> -> # *U &U F1294 `ui `ux `ul ]
+"57
+[; ;melody.c: 57:         for(unsigned int j=0;j<(tempo/beats[i])/4;j++)
+{
+[v _j `ui ~T0 @X0 1 a ]
+[e = _j -> -> 0 `i `ui ]
+[e $U 151  ]
+[e :U 148 ]
+"58
+[; ;melody.c: 58:         {
+{
+"59
+[; ;melody.c: 59:             Display7SegmentText(&g_display_text[0],g_decimal_point);
+[e ( _Display7SegmentText (2 , &U *U + &U _g_display_text * -> -> -> 0 `i `ui `ux -> -> # *U &U _g_display_text `ui `ux _g_decimal_point ]
+"60
+[; ;melody.c: 60:             Wait_ms(4);
+[e ( _Wait_ms (1 -> -> 4 `i `ui ]
+"61
+[; ;melody.c: 61:         }
+}
+[e ++ _j -> -> 1 `i `ui ]
+[e :U 151 ]
+[e $ < _j / / F1296 -> *U + &U F1295 * -> _i `ux -> -> # *U &U F1295 `ui `ux `ui -> -> 4 `i `ui 148  ]
+[e :U 149 ]
+}
+"62
+[; ;melody.c: 62:     }
 }
 [e ++ _i -> -> 1 `i `uc ]
-[e :U 149 ]
-[e $ < -> _i `i -> _MELODY_LENGTH `i 146  ]
 [e :U 147 ]
+[e $ < -> _i `i -> _MELODY_LENGTH `i 144  ]
+[e :U 145 ]
 }
-"68
-[; ;melody.c: 68:     Init_CaptureMode();
+"63
+[; ;melody.c: 63:     Init_CaptureMode();
 [e ( _Init_CaptureMode ..  ]
-"70
-[; ;melody.c: 70:  }
-[e :UE 145 ]
+"64
+[; ;melody.c: 64:  }
+[e :UE 143 ]
 }

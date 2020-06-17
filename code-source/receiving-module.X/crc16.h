@@ -1,8 +1,8 @@
 /* 
- * File:   CRC16.h
- * Author: KapitanBomba
+ * 
+ * 
  *
- * Created on 11 grudnia 2019, 13:19
+ * 
  */
 
 #ifndef CRC16_H

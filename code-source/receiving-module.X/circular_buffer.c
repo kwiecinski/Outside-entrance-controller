@@ -1,47 +1,54 @@
+/* 
+ * 
+ * 
+ *
+ * 
+ */
+
 #include <xc.h>
 #include "circular_buffer.h"
 
-#define BufferSize	30
+#define BUFFER_SIZE	30
 
 unsigned char FrameBuffer(unsigned char *data,unsigned char mode)
 {
-	static unsigned char Buffer[BufferSize];
-	static unsigned char ReadPointer,WritePointer,
-		 		WritePointerMem;
+	static unsigned char buffer[BUFFER_SIZE];
+	static unsigned char read_pointer, write_pointer, write_pointer_mem;
 
 	if(mode==WRITE)
 	{
-		WritePointerMem=WritePointer;
-		WritePointer++;
-		if(WritePointer==BufferSize)
+		write_pointer_mem=write_pointer;
+		write_pointer++;
+        
+		if(write_pointer==BUFFER_SIZE)
 		{
-			WritePointer=0;
+			write_pointer=0;
 		}
-		if(WritePointer==ReadPointer)
+		if(write_pointer==read_pointer)
 		{
-			WritePointer=WritePointerMem;
-			return BuffFull;
+			write_pointer=write_pointer_mem;
+			return BUFF_FULL;
 		}	
 
-		Buffer[WritePointer]=*data;
+		buffer[write_pointer]=*data;
 
 		return 1;
 			
 	}else //READ
 	{
-		if(WritePointer!=ReadPointer)
+		if(write_pointer!=read_pointer)
 		{
-			ReadPointer++;		
-			if(ReadPointer==BufferSize)
+			read_pointer++;		
+			if(read_pointer==BUFFER_SIZE)
 			{
-				ReadPointer=0;
+				read_pointer=0;
 			}
-			*data=Buffer[ReadPointer];
+			*data=buffer[read_pointer];
 			return 1;
 
 		}else
 		{
-			return NoData;
+			return NO_DATA;
 		}
 	}
 }

@@ -1,5 +1,6 @@
 #include <xc.h>
-
+#include "manchester_encode.h"
+#include "input_handler.h"
 
 void GlobalInits(void)
 {
@@ -8,7 +9,7 @@ void GlobalInits(void)
     ADCON1bits.PCFG=0b0110;     //Digital I/O AN0-AN4
     
     //I/O port directions
-    TRISA0=0;       //unused pin
+    TRISA0=0;       //radio enable
     TRISA1=1;       //gate sw
     TRISA2=0;       //radio TX
     TRISA3=1;       //wicket input
@@ -22,5 +23,8 @@ void GlobalInits(void)
     TRISB3=0;       //open gate output
     TRISB4=0;       //output - unused
     TRISB5=0;       //UART TX - for debuging
+    
+    TRANSCIEVER_OFF;
+    GATE_CLOSE_OUTPUT_LOW;
     
 }

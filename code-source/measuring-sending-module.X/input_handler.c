@@ -9,12 +9,13 @@
 #include "manchester_encode.h"
 #include "interrupts.h"
 #include "sw_uart.h"
+#include "input_handler.h"
 
 #define	GATE_INPUT             PORTAbits.RA4
 #define	WICKET_INPUT           PORTAbits.RA3
 #define WICKET_BELL_INPUT      PORTBbits.RB0
 #define GATE_CLOSE_SWITCH      PORTAbits.RA1
-#define GATE_CLOSE_OUTPUT      PORTBbits.RB3
+
 
 void DebounceWait(void);
 void GateStartHighTime(void);
@@ -61,9 +62,9 @@ void CheckGateCloseSwitch(void)
 
         if(GATE_CLOSE_SWITCH==1)            
         {
-            GATE_CLOSE_OUTPUT=1;
+            GATE_CLOSE_OUTPUT_HIGH;
             GateStartHighTime();
-            GATE_CLOSE_OUTPUT=0;
+            GATE_CLOSE_OUTPUT_LOW;
         }
 	}
 }

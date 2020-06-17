@@ -212,295 +212,313 @@ Version 4.0 HI-TECH Software Intermediate Code
 "13 ./interrupts.h
 [; ;./interrupts.h: 13: volatile unsigned char g_key_timer;
 [v _g_key_timer `Vuc ~T0 @X0 1 e ]
-"21 manchester_encode.c
-[; ;manchester_encode.c: 21: void WaitManchesterT(void)
+"23 manchester_encode.c
+[; ;manchester_encode.c: 23: void WaitManchesterT(void)
 [v _WaitManchesterT `(v ~T0 @X0 1 ef ]
-"22
-[; ;manchester_encode.c: 22: {
+"24
+[; ;manchester_encode.c: 24: {
 {
 [e :U _WaitManchesterT ]
 [f ]
-"23
-[; ;manchester_encode.c: 23:     PIR1bits.CCP1IF=0;
-[e = . . _PIR1bits 0 2 -> -> 0 `i `uc ]
-"24
-[; ;manchester_encode.c: 24:     TMR1=0;
-[e = _TMR1 -> -> 0 `i `us ]
 "25
-[; ;manchester_encode.c: 25:     while(PIR1bits.CCP1IF==0);
+[; ;manchester_encode.c: 25:     PIR1bits.CCP1IF=0;
+[e = . . _PIR1bits 0 2 -> -> 0 `i `uc ]
+"26
+[; ;manchester_encode.c: 26:     TMR1=0;
+[e = _TMR1 -> -> 0 `i `us ]
+"27
+[; ;manchester_encode.c: 27:     while(PIR1bits.CCP1IF==0);
 [e $U 69  ]
 [e :U 70 ]
 [e :U 69 ]
 [e $ == -> . . _PIR1bits 0 2 `i -> 0 `i 70  ]
 [e :U 71 ]
-"27
-[; ;manchester_encode.c: 27: }
+"29
+[; ;manchester_encode.c: 29: }
 [e :UE 68 ]
 }
-"29
-[; ;manchester_encode.c: 29: void ManchesterSendOne(void)
+"31
+[; ;manchester_encode.c: 31: void ManchesterSendOne(void)
 [v _ManchesterSendOne `(v ~T0 @X0 1 ef ]
-"30
-[; ;manchester_encode.c: 30: {
+"32
+[; ;manchester_encode.c: 32: {
 {
 [e :U _ManchesterSendOne ]
 [f ]
-"31
-[; ;manchester_encode.c: 31:  PORTAbits.RA2=0;
-[e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
-"32
-[; ;manchester_encode.c: 32:  WaitManchesterT();
-[e ( _WaitManchesterT ..  ]
 "33
-[; ;manchester_encode.c: 33:  PORTAbits.RA2=1;
-[e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
+[; ;manchester_encode.c: 33:  PORTAbits.RA2=0;
+[e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
 "34
 [; ;manchester_encode.c: 34:  WaitManchesterT();
 [e ( _WaitManchesterT ..  ]
 "35
-[; ;manchester_encode.c: 35: }
+[; ;manchester_encode.c: 35:  PORTAbits.RA2=1;
+[e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
+"36
+[; ;manchester_encode.c: 36:  WaitManchesterT();
+[e ( _WaitManchesterT ..  ]
+"37
+[; ;manchester_encode.c: 37: }
 [e :UE 72 ]
 }
-"37
-[; ;manchester_encode.c: 37: void ManchesterSendZero(void)
+"39
+[; ;manchester_encode.c: 39: void ManchesterSendZero(void)
 [v _ManchesterSendZero `(v ~T0 @X0 1 ef ]
-"38
-[; ;manchester_encode.c: 38: {
+"40
+[; ;manchester_encode.c: 40: {
 {
 [e :U _ManchesterSendZero ]
 [f ]
-"39
-[; ;manchester_encode.c: 39:  PORTAbits.RA2=1;
-[e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
-"40
-[; ;manchester_encode.c: 40:  WaitManchesterT();
-[e ( _WaitManchesterT ..  ]
 "41
-[; ;manchester_encode.c: 41:  PORTAbits.RA2=0;
-[e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
+[; ;manchester_encode.c: 41:  PORTAbits.RA2=1;
+[e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
 "42
 [; ;manchester_encode.c: 42:  WaitManchesterT();
 [e ( _WaitManchesterT ..  ]
 "43
-[; ;manchester_encode.c: 43: }
+[; ;manchester_encode.c: 43:  PORTAbits.RA2=0;
+[e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
+"44
+[; ;manchester_encode.c: 44:  WaitManchesterT();
+[e ( _WaitManchesterT ..  ]
+"45
+[; ;manchester_encode.c: 45: }
 [e :UE 73 ]
 }
-"45
-[; ;manchester_encode.c: 45: void ManchesteEncode(unsigned char *data_to_send, unsigned char data_lenght)
+"47
+[; ;manchester_encode.c: 47: void ManchesteEncode(unsigned char *data_to_send, unsigned char data_lenght)
 [v _ManchesteEncode `(v ~T0 @X0 1 ef2`*uc`uc ]
-"46
-[; ;manchester_encode.c: 46: {
+"48
+[; ;manchester_encode.c: 48: {
 {
 [e :U _ManchesteEncode ]
-"45
-[; ;manchester_encode.c: 45: void ManchesteEncode(unsigned char *data_to_send, unsigned char data_lenght)
+"47
+[; ;manchester_encode.c: 47: void ManchesteEncode(unsigned char *data_to_send, unsigned char data_lenght)
 [v _data_to_send `*uc ~T0 @X0 1 r1 ]
 [v _data_lenght `uc ~T0 @X0 1 r2 ]
-"46
-[; ;manchester_encode.c: 46: {
+"48
+[; ;manchester_encode.c: 48: {
 [f ]
-"47
-[; ;manchester_encode.c: 47:  signed char bit_loop, data_loop;
+"49
+[; ;manchester_encode.c: 49:  signed char bit_loop, data_loop;
 [v _bit_loop `c ~T0 @X0 1 a ]
 [v _data_loop `c ~T0 @X0 1 a ]
-"49
-[; ;manchester_encode.c: 49:  for(data_loop=0;data_loop<data_lenght;data_loop++)
+"51
+[; ;manchester_encode.c: 51:  for(data_loop=0;data_loop<data_lenght;data_loop++)
 {
 [e = _data_loop -> -> 0 `i `c ]
 [e $U 78  ]
 [e :U 75 ]
-"50
-[; ;manchester_encode.c: 50:  {
+"52
+[; ;manchester_encode.c: 52:  {
 {
-"51
-[; ;manchester_encode.c: 51:   for(bit_loop=7;bit_loop>=0;bit_loop--)
+"53
+[; ;manchester_encode.c: 53:   for(bit_loop=7;bit_loop>=0;bit_loop--)
 {
 [e = _bit_loop -> -> 7 `i `c ]
 [e $ >= -> _bit_loop `i -> 0 `i 79  ]
 [e $U 80  ]
 [e :U 79 ]
-"52
-[; ;manchester_encode.c: 52:   {
-{
-"53
-[; ;manchester_encode.c: 53:    if(((*(data_to_send+data_loop))>>bit_loop) & 0x01)
-[e $ ! != & >> -> *U + _data_to_send * -> -> _data_loop `i `x -> -> # *U _data_to_send `i `x `i -> _bit_loop `i -> 1 `i -> 0 `i 82  ]
 "54
-[; ;manchester_encode.c: 54:    {
+[; ;manchester_encode.c: 54:   {
 {
 "55
-[; ;manchester_encode.c: 55:     ManchesterSendOne();
-[e ( _ManchesterSendOne ..  ]
+[; ;manchester_encode.c: 55:    if(((*(data_to_send+data_loop))>>bit_loop) & 0x01)
+[e $ ! != & >> -> *U + _data_to_send * -> -> _data_loop `i `x -> -> # *U _data_to_send `i `x `i -> _bit_loop `i -> 1 `i -> 0 `i 82  ]
 "56
-[; ;manchester_encode.c: 56:    }else
+[; ;manchester_encode.c: 56:    {
+{
+"57
+[; ;manchester_encode.c: 57:     ManchesterSendOne();
+[e ( _ManchesterSendOne ..  ]
+"58
+[; ;manchester_encode.c: 58:    }else
 }
 [e $U 83  ]
 [e :U 82 ]
-"57
-[; ;manchester_encode.c: 57:     ManchesterSendZero();
+"59
+[; ;manchester_encode.c: 59:     ManchesterSendZero();
 [e ( _ManchesterSendZero ..  ]
 [e :U 83 ]
-"58
-[; ;manchester_encode.c: 58:    }
+"60
+[; ;manchester_encode.c: 60:    }
 }
 [e -- _bit_loop -> -> 1 `i `c ]
 [e $ >= -> _bit_loop `i -> 0 `i 79  ]
 [e :U 80 ]
 }
-"59
-[; ;manchester_encode.c: 59:  }
+"61
+[; ;manchester_encode.c: 61:  }
 }
 [e ++ _data_loop -> -> 1 `i `c ]
 [e :U 78 ]
 [e $ < -> _data_loop `i -> _data_lenght `i 75  ]
 [e :U 76 ]
 }
-"61
-[; ;manchester_encode.c: 61:     PORTAbits.RA2=1;
+"63
+[; ;manchester_encode.c: 63:     PORTAbits.RA2=1;
 [e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
-"62
-[; ;manchester_encode.c: 62: }
+"64
+[; ;manchester_encode.c: 64: }
 [e :UE 74 ]
 }
-"64
-[; ;manchester_encode.c: 64: void SendFrame(unsigned char type)
+"66
+[; ;manchester_encode.c: 66: void SendFrame(unsigned char type)
 [v _SendFrame `(v ~T0 @X0 1 ef1`uc ]
-"65
-[; ;manchester_encode.c: 65: {
+"67
+[; ;manchester_encode.c: 67: {
 {
 [e :U _SendFrame ]
-"64
-[; ;manchester_encode.c: 64: void SendFrame(unsigned char type)
+"66
+[; ;manchester_encode.c: 66: void SendFrame(unsigned char type)
 [v _type `uc ~T0 @X0 1 r1 ]
-"65
-[; ;manchester_encode.c: 65: {
-[f ]
 "67
-[; ;manchester_encode.c: 67:     unsigned char data_table[6 +4];
+[; ;manchester_encode.c: 67: {
+[f ]
+"69
+[; ;manchester_encode.c: 69:     unsigned char data_table[6 +4];
 [v _data_table `uc ~T0 @X0 -> 10 `i a ]
-"70
-[; ;manchester_encode.c: 70:  data_table[0]=0xFE;
-[e = *U + &U _data_table * -> -> -> 0 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 254 `i `uc ]
-"71
-[; ;manchester_encode.c: 71:     data_table[1]=0xFE;
-[e = *U + &U _data_table * -> -> -> 1 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 254 `i `uc ]
 "72
-[; ;manchester_encode.c: 72:     data_table[2]=0xFE;
-[e = *U + &U _data_table * -> -> -> 2 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 254 `i `uc ]
+[; ;manchester_encode.c: 72:  data_table[0]=0xFE;
+[e = *U + &U _data_table * -> -> -> 0 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 254 `i `uc ]
 "73
-[; ;manchester_encode.c: 73:     data_table[3]=0xFE;
-[e = *U + &U _data_table * -> -> -> 3 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 254 `i `uc ]
+[; ;manchester_encode.c: 73:     data_table[1]=0xFE;
+[e = *U + &U _data_table * -> -> -> 1 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 254 `i `uc ]
+"74
+[; ;manchester_encode.c: 74:     data_table[2]=0xFE;
+[e = *U + &U _data_table * -> -> -> 2 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 254 `i `uc ]
 "75
-[; ;manchester_encode.c: 75:  data_table[4]='$';
-[e = *U + &U _data_table * -> -> -> 4 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 36 `ui `uc ]
+[; ;manchester_encode.c: 75:     data_table[3]=0xFE;
+[e = *U + &U _data_table * -> -> -> 3 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 254 `i `uc ]
 "77
-[; ;manchester_encode.c: 77:     if(type==1)
-[e $ ! == -> _type `i -> 1 `i 85  ]
-"78
-[; ;manchester_encode.c: 78:     {
-{
+[; ;manchester_encode.c: 77:  data_table[4]='$';
+[e = *U + &U _data_table * -> -> -> 4 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 36 `ui `uc ]
 "79
-[; ;manchester_encode.c: 79:         data_table[5]='G';
-[e = *U + &U _data_table * -> -> -> 5 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 71 `ui `uc ]
+[; ;manchester_encode.c: 79:     if(type==1)
+[e $ ! == -> _type `i -> 1 `i 85  ]
 "80
-[; ;manchester_encode.c: 80:         data_table[6]='0';
-[e = *U + &U _data_table * -> -> -> 6 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 48 `ui `uc ]
+[; ;manchester_encode.c: 80:     {
+{
+"81
+[; ;manchester_encode.c: 81:         data_table[5]='G';
+[e = *U + &U _data_table * -> -> -> 5 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 71 `ui `uc ]
 "82
-[; ;manchester_encode.c: 82:     }else if(type==0)
+[; ;manchester_encode.c: 82:         data_table[6]='0';
+[e = *U + &U _data_table * -> -> -> 6 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 48 `ui `uc ]
+"84
+[; ;manchester_encode.c: 84:     }else if(type==0)
 }
 [e $U 86  ]
 [e :U 85 ]
 [e $ ! == -> _type `i -> 0 `i 87  ]
-"83
-[; ;manchester_encode.c: 83:     {
-{
-"84
-[; ;manchester_encode.c: 84:         data_table[5]='W';
-[e = *U + &U _data_table * -> -> -> 5 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 87 `ui `uc ]
 "85
-[; ;manchester_encode.c: 85:         data_table[6]='0';
-[e = *U + &U _data_table * -> -> -> 6 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 48 `ui `uc ]
+[; ;manchester_encode.c: 85:     {
+{
+"86
+[; ;manchester_encode.c: 86:         data_table[5]='W';
+[e = *U + &U _data_table * -> -> -> 5 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 87 `ui `uc ]
 "87
-[; ;manchester_encode.c: 87:     }else if(type==2)
+[; ;manchester_encode.c: 87:         data_table[6]='0';
+[e = *U + &U _data_table * -> -> -> 6 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 48 `ui `uc ]
+"89
+[; ;manchester_encode.c: 89:     }else if(type==2)
 }
 [e $U 88  ]
 [e :U 87 ]
 [e $ ! == -> _type `i -> 2 `i 89  ]
-"88
-[; ;manchester_encode.c: 88:     {
-{
-"89
-[; ;manchester_encode.c: 89:         data_table[5]='W';
-[e = *U + &U _data_table * -> -> -> 5 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 87 `ui `uc ]
 "90
-[; ;manchester_encode.c: 90:         data_table[6]='B';
-[e = *U + &U _data_table * -> -> -> 6 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 66 `ui `uc ]
+[; ;manchester_encode.c: 90:     {
+{
 "91
-[; ;manchester_encode.c: 91:     }
+[; ;manchester_encode.c: 91:         data_table[5]='W';
+[e = *U + &U _data_table * -> -> -> 5 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 87 `ui `uc ]
+"92
+[; ;manchester_encode.c: 92:         data_table[6]='B';
+[e = *U + &U _data_table * -> -> -> 6 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 66 `ui `uc ]
+"93
+[; ;manchester_encode.c: 93:     }
 }
 [e :U 89 ]
 [e :U 88 ]
 [e :U 86 ]
-"95
-[; ;manchester_encode.c: 95:      unsigned int crc_val;
-[v _crc_val `ui ~T0 @X0 1 a ]
-"96
-[; ;manchester_encode.c: 96:     crc_val=CRC16(&data_table[5],2);
-[e = _crc_val ( _CRC16 (2 , &U *U + &U _data_table * -> -> -> 5 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 2 `i `uc ]
 "97
-[; ;manchester_encode.c: 97:     data_table[7]=crc_val>>8;
-[e = *U + &U _data_table * -> -> -> 7 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> >> _crc_val -> 8 `i `uc ]
+[; ;manchester_encode.c: 97:      unsigned int crc_val;
+[v _crc_val `ui ~T0 @X0 1 a ]
 "98
-[; ;manchester_encode.c: 98:  data_table[8]=crc_val & 0x00FF;
-[e = *U + &U _data_table * -> -> -> 8 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> & _crc_val -> -> 255 `i `ui `uc ]
+[; ;manchester_encode.c: 98:     crc_val=CRC16(&data_table[5],2);
+[e = _crc_val ( _CRC16 (2 , &U *U + &U _data_table * -> -> -> 5 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 2 `i `uc ]
 "99
-[; ;manchester_encode.c: 99:  data_table[9]='&';
+[; ;manchester_encode.c: 99:     data_table[7]=crc_val>>8;
+[e = *U + &U _data_table * -> -> -> 7 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> >> _crc_val -> 8 `i `uc ]
+"100
+[; ;manchester_encode.c: 100:  data_table[8]=crc_val & 0x00FF;
+[e = *U + &U _data_table * -> -> -> 8 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> & _crc_val -> -> 255 `i `ui `uc ]
+"101
+[; ;manchester_encode.c: 101:  data_table[9]='&';
 [e = *U + &U _data_table * -> -> -> 9 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> -> 38 `ui `uc ]
-"102
-[; ;manchester_encode.c: 102:     T1CONbits.TMR1ON=1;
+"104
+[; ;manchester_encode.c: 104:     T1CONbits.TMR1ON=1;
 [e = . . _T1CONbits 0 0 -> -> 1 `i `uc ]
-"103
-[; ;manchester_encode.c: 103:     INTCONbits.TMR0IE=0;
+"105
+[; ;manchester_encode.c: 105:     INTCONbits.TMR0IE=0;
 [e = . . _INTCONbits 0 5 -> -> 0 `i `uc ]
 "106
-[; ;manchester_encode.c: 106:     unsigned char i;
+[; ;manchester_encode.c: 106:     PORTAbits.RA0=1;
+[e = . . _PORTAbits 0 0 -> -> 1 `i `uc ]
+"108
+[; ;manchester_encode.c: 108:     unsigned char i,j;
 [v _i `uc ~T0 @X0 1 a ]
-"107
-[; ;manchester_encode.c: 107:     for(i=0;i<3;i++)
+[v _j `uc ~T0 @X0 1 a ]
+"109
+[; ;manchester_encode.c: 109:     for(i=0;i<3;i++)
 {
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 3 `i 90  ]
 [e $U 91  ]
 [e :U 90 ]
-"108
-[; ;manchester_encode.c: 108:     {
+"110
+[; ;manchester_encode.c: 110:     {
 {
-"109
-[; ;manchester_encode.c: 109:         ManchesteEncode(&data_table[0], 6 +4);
-[e ( _ManchesteEncode (2 , &U *U + &U _data_table * -> -> -> 0 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> + -> 6 `i -> 4 `i `uc ]
 "111
-[; ;manchester_encode.c: 111:         WaitManchesterT();
+[; ;manchester_encode.c: 111:         ManchesteEncode(&data_table[0], 6 +4);
+[e ( _ManchesteEncode (2 , &U *U + &U _data_table * -> -> -> 0 `i `ui `ux -> -> # *U &U _data_table `ui `ux -> + -> 6 `i -> 4 `i `uc ]
+"115
+[; ;manchester_encode.c: 115:         for(j=0;j<6;j++)
+{
+[e = _j -> -> 0 `i `uc ]
+[e $ < -> _j `i -> 6 `i 93  ]
+[e $U 94  ]
+[e :U 93 ]
+"116
+[; ;manchester_encode.c: 116:         {
+{
+"117
+[; ;manchester_encode.c: 117:             WaitManchesterT();
 [e ( _WaitManchesterT ..  ]
-"112
-[; ;manchester_encode.c: 112:         WaitManchesterT();
-[e ( _WaitManchesterT ..  ]
-"113
-[; ;manchester_encode.c: 113:         WaitManchesterT();
-[e ( _WaitManchesterT ..  ]
-"114
-[; ;manchester_encode.c: 114:     }
+"118
+[; ;manchester_encode.c: 118:         }
+}
+[e ++ _j -> -> 1 `i `uc ]
+[e $ < -> _j `i -> 6 `i 93  ]
+[e :U 94 ]
+}
+"119
+[; ;manchester_encode.c: 119:     }
 }
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 3 `i 90  ]
 [e :U 91 ]
 }
-"115
-[; ;manchester_encode.c: 115:     T1CONbits.TMR1ON=0;
+"121
+[; ;manchester_encode.c: 121:     PORTAbits.RA0=0;
+[e = . . _PORTAbits 0 0 -> -> 0 `i `uc ]
+"122
+[; ;manchester_encode.c: 122:     T1CONbits.TMR1ON=0;
 [e = . . _T1CONbits 0 0 -> -> 0 `i `uc ]
-"116
-[; ;manchester_encode.c: 116:     INTCONbits.TMR0IE=1;
+"123
+[; ;manchester_encode.c: 123:     INTCONbits.TMR0IE=1;
 [e = . . _INTCONbits 0 5 -> -> 1 `i `uc ]
-"117
-[; ;manchester_encode.c: 117: }
+"124
+[; ;manchester_encode.c: 124: }
 [e :UE 84 ]
 }

@@ -2369,11 +2369,7 @@ extern __bank0 __bit __timeout;
 # 28 "/opt/microchip/xc8/v2.10/pic/include/xc.h" 2 3
 # 2 "key-handler.c" 2
 # 1 "./main.h" 1
-
-
-
-
-
+# 13 "./main.h"
 #pragma config FOSC = INTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
@@ -2388,6 +2384,34 @@ extern __bank0 __bit __timeout;
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
+# 48 "./main.h"
+enum button_press
+{
+    k_set_rtc_short,
+    k_set_rtc_long,
+    k_set_time1_short,
+    k_set_time1_long,
+    k_set_time2_short,
+    k_set_time2_long,
+    k_set_right_short,
+    k_set_right_long,
+    k_set_up_short,
+    k_set_up_long,
+    k_set_down_short,
+    k_set_down_long,
+    k_no_key_press
+};
+
+enum days
+{
+    monday,
+    tuesday,
+    wedenesday,
+    thursday,
+    friday,
+    saturday,
+    sunday
+};
 
 typedef struct
 {
@@ -2399,7 +2423,7 @@ typedef struct
 
 typedef struct
 {
- unsigned char seconds,minutes,hours,day,month,year;
+ signed char seconds,minutes,hours,day,month,year,weekday;
 
 }TimeStruct;
 
@@ -2407,8 +2431,8 @@ typedef struct
 {
     unsigned char klock, pin, lock_long_press;
     volatile unsigned char *port;
-    void (*button_short_function)(void);
-    void (*button_long_function)(void);
+    unsigned char button_short_function;
+    unsigned char button_long_function;
 
 }KeyStruct;
 
@@ -2422,43 +2446,55 @@ typedef struct
     KeyStruct *set_down;
 
 }KeyPointerStruct;
+
+typedef struct MenuParamStruct
+{
+    unsigned char max_limit,max_limit1,letter,min_limit,min_limit1;
+    signed char param, param1;
+    struct MenuParamStruct *next_menu;
+
+}MenuParamStruct;
+
+typedef struct
+{
+    MenuParamStruct *hours_minutes_ptr;
+    MenuParamStruct *day_month_ptr;
+    MenuParamStruct *year_ptr;
+    MenuParamStruct *time_limit_work_day_1_ptr;
+    MenuParamStruct *time_limit_work_day_2_ptr;
+    MenuParamStruct *time_limit_free_day_1_ptr;
+    MenuParamStruct *time_limit_free_day_2_ptr;
+
+}MenuParamPonterStruct;
 # 3 "key-handler.c" 2
 # 1 "./interrupts.h" 1
 # 18 "./interrupts.h"
 void InterruptConfig(void);
-volatile unsigned char ISR_ACK;
-volatile unsigned int PWM_Freq, Timer1, g_button_timer, g_generic_timer;
+
+volatile unsigned char g_reciver_ccp2_isr_fire_flag, g_display_controll;
+volatile unsigned int g_pwm_freq, g_button_timer, g_generic_timer;
+
 unsigned char g_display_text[4];
 unsigned char g_decimal_point;
 # 4 "key-handler.c" 2
 # 1 "./hw_uart.h" 1
-
-
-
-
-
-
-
-
+# 11 "./hw_uart.h"
 void UART_Init(void);
 void SendUART(char data);
 void SendDigitUART(unsigned int data);
 void SendArrayUART(unsigned char *data, unsigned char size);
 # 5 "key-handler.c" 2
 # 1 "./menu.h" 1
-# 11 "./menu.h"
-void Set_RTC_Button_Short(void);
-void Set_Time1_Button_Short(void);
-void Set_Time2_Button_Short(void);
-void Down_Button_Short(void);
-void Up_Button_Short(void);
-void Right_Button_Short(void);
+# 12 "./menu.h"
+void Menu_Init(MenuParamPonterStruct *menudef);
+void Select_Menu(MenuParamPonterStruct *menudef, KeyPointerStruct *keydef, TimeStruct *time);
+void Display_7Seg_Text(char *text, unsigned char decimal_point);
 # 6 "key-handler.c" 2
 
 
 
 
-void Key_Press(KeyStruct *button)
+enum button_press Key_Press(KeyStruct *button)
 {
  if(button->klock==0 && (*button->port & 1<<button->pin)==0)
  {
@@ -2466,29 +2502,23 @@ void Key_Press(KeyStruct *button)
         button->lock_long_press=1;
         g_button_timer=7800;
 
-        if(button->button_short_function)
-        {
-            button->button_short_function();
-        }
+        return button->button_short_function;
 
  }else if((*button->port & 1<<button->pin)!=0 && button->klock==1)
  {
-        if(g_button_timer<(7800 -78))
+        if(g_button_timer<(7800 -800))
         {
             button->klock=0;
             button->lock_long_press=0;
-            SendUART('1');
         }
 
     }else if(button->lock_long_press==1 && g_button_timer==0)
     {
-        if(button->button_long_function)
-        {
-            button->button_long_function();
-        }
-
         button->lock_long_press=0;
+        return button->button_long_function;
     }
+
+    return k_no_key_press;
 }
 
 
@@ -2510,54 +2540,81 @@ void Button_Init (KeyPointerStruct *keydef)
 
     set_rtc.pin=0;
     set_rtc.port=&PORTB;
-    set_rtc.button_short_function=Set_RTC_Button_Short;
-    set_rtc.button_long_function=0;
+    set_rtc.button_short_function=k_set_rtc_short;
+    set_rtc.button_long_function=k_set_rtc_long;
     set_rtc.klock=0;
     set_rtc.lock_long_press=0;
 
     set_time1.pin=7;
     set_time1.port=&PORTC;
-    set_time1.button_short_function=Set_Time1_Button_Short;
-    set_time1.button_long_function=0;
+    set_time1.button_short_function=k_set_time1_short;
+    set_time1.button_long_function=k_set_time1_long;
     set_time1.klock=0;
     set_time1.lock_long_press=0;
 
     set_time2.pin=5;
     set_time2.port=&PORTC;
-    set_time2.button_short_function=Set_Time2_Button_Short;
-    set_time2.button_long_function=0;
+    set_time2.button_short_function=k_set_time2_short;
+    set_time2.button_long_function=k_set_time2_long;
     set_time2.klock=0;
     set_time2.lock_long_press=0;
 
     set_right.pin=1;
     set_right.port=&PORTB;
-    set_right.button_short_function=Right_Button_Short;
-    set_right.button_long_function=0;
+    set_right.button_short_function= k_set_right_short;
+    set_right.button_long_function=k_set_right_long;
     set_right.klock=0;
     set_right.lock_long_press=0;
 
     set_up.pin=3;
     set_up.port=&PORTB;
-    set_up.button_short_function=Up_Button_Short;
-    set_up.button_long_function=0;
+    set_up.button_short_function=k_set_up_short;
+    set_up.button_long_function=k_set_up_long;
     set_up.klock=0;
     set_up.lock_long_press=0;
 
     set_down.pin=2;
     set_down.port=&PORTB;
-    set_down.button_short_function=Down_Button_Short;
-    set_down.button_long_function=0;
+    set_down.button_short_function=k_set_down_short;
+    set_down.button_long_function=k_set_down_long;
     set_down.klock=0;
     set_down.lock_long_press=0;
-
 }
 
-void Button_Handler(KeyPointerStruct *keydef)
+unsigned char Button_Handler(KeyPointerStruct *keydef)
 {
-    Key_Press(keydef->set_rtc);
-    Key_Press(keydef->set_down);
-    Key_Press(keydef->set_right);
-    Key_Press(keydef->set_time1);
-    Key_Press(keydef->set_time2);
-    Key_Press(keydef->set_up);
+    unsigned char button;
+
+    button=Key_Press(keydef->set_rtc);
+    if(button!=k_no_key_press)
+    {
+        return button;
+    }
+    button=Key_Press(keydef->set_down);
+    if(button!=k_no_key_press)
+    {
+        return button;
+    }
+    button=Key_Press(keydef->set_right);
+    if(button!=k_no_key_press)
+    {
+        return button;
+    }
+    button=Key_Press(keydef->set_time1);
+    if(button!=k_no_key_press)
+    {
+        return button;
+    }
+    button=Key_Press(keydef->set_time2);
+    if(button!=k_no_key_press)
+    {
+        return button;
+    }
+    button=Key_Press(keydef->set_up);
+    if(button!=k_no_key_press)
+    {
+        return button;
+    }
+
+    return k_no_key_press;
 }
