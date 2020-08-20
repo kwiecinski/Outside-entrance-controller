@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name user-panel-receiver-rescue)(type Legacy)(uri ${KIPRJMOD}/user-panel-receiver-rescue.lib)(options "")(descr ""))
+  (lib (name tea2025b)(type Legacy)(uri ${KIPRJMOD}/lib/tea2025b.lib)(options "")(descr ""))
+)
