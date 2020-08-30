@@ -7,6 +7,7 @@
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "manchester_decode.c" 2
+# 11 "manchester_decode.c"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2371,7 +2372,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
-# 2 "manchester_decode.c" 2
+# 12 "manchester_decode.c" 2
 # 1 "./main.h" 1
 # 13 "./main.h"
 #pragma config FOSC = INTRC_NOCLKOUT
@@ -2470,64 +2471,64 @@ typedef struct
     MenuParamStruct *time_limit_free_day_2_ptr;
 
 }MenuParamPonterStruct;
-# 3 "manchester_decode.c" 2
+# 13 "manchester_decode.c" 2
 # 1 "./manchester_decode.h" 1
 # 11 "./manchester_decode.h"
 void Manchester_Decode(unsigned char *edge_dir, unsigned int *pulse_time);
 void Check_RCV_Data(DataStruct *DataRCV, TimeStruct *time, MenuParamPonterStruct *time_limit);
 unsigned char Check_Time_Date(TimeStruct *time, MenuParamPonterStruct *time_limit);
-# 4 "manchester_decode.c" 2
+# 14 "manchester_decode.c" 2
 # 1 "./circular_buffer.h" 1
 # 11 "./circular_buffer.h"
 unsigned char Frame_Buffer(unsigned char *data,unsigned char mode);
-# 5 "manchester_decode.c" 2
+# 15 "manchester_decode.c" 2
 # 1 "./hw_uart.h" 1
 # 11 "./hw_uart.h"
 void UART_Init(void);
 void Send_UART(char data);
 void Send_Digit_UART(unsigned int data);
 void Send_Array_UART(unsigned char *data, unsigned char size);
-# 6 "manchester_decode.c" 2
+# 16 "manchester_decode.c" 2
 # 1 "./crc16.h" 1
 # 11 "./crc16.h"
 unsigned int CRC16(unsigned char *data_tab_ptr, unsigned char size);
-# 7 "manchester_decode.c" 2
+# 17 "manchester_decode.c" 2
 # 1 "./interrupts.h" 1
 # 18 "./interrupts.h"
 void Interrupt_Init(void);
 
 volatile unsigned char g_reciver_ccp2_isr_fire_flag, g_display_controll;
-volatile unsigned int g_pwm_freq, g_button_timer, g_generic_timer;
+volatile unsigned int g_pwm_freq, g_button_timer, g_generic_timer, g_com_timeout;
 
 unsigned char g_display_text[4];
 unsigned char g_decimal_point;
-# 8 "manchester_decode.c" 2
+# 18 "manchester_decode.c" 2
 # 1 "./melody.h" 1
 # 12 "./melody.h"
 void Play_Ring(void);
-# 9 "manchester_decode.c" 2
+# 19 "manchester_decode.c" 2
 # 1 "./utils.h" 1
 # 15 "./utils.h"
 void Wait_ms(unsigned int time);
-# 10 "manchester_decode.c" 2
+# 20 "manchester_decode.c" 2
 # 1 "./pcf8583.h" 1
 # 14 "./pcf8583.h"
 void PCF8583_Read_Time_Date(TimeStruct *time_struct_ptr);
 void RTC_init(TimeStruct *set0val);
 void Time_To_UART(TimeStruct *time_struct_ptr);
 void PCF8583_Set_Date_Time(TimeStruct *time_struct_ptr);
-# 11 "manchester_decode.c" 2
+# 21 "manchester_decode.c" 2
 # 1 "./menu.h" 1
 # 12 "./menu.h"
 void Menu_Init(MenuParamPonterStruct *menudef);
 void Menu_Handler(MenuParamPonterStruct *menudef, KeyPointerStruct *keydef,
                  TimeStruct *time);
 void Send_7Seg_Text(char *text, unsigned char decimal_point);
-# 12 "manchester_decode.c" 2
-# 30 "manchester_decode.c"
+# 22 "manchester_decode.c" 2
+# 40 "manchester_decode.c"
 unsigned char Check_Time_Date(TimeStruct *time,
                               MenuParamPonterStruct *time_limit);
-# 43 "manchester_decode.c"
+# 53 "manchester_decode.c"
 void Manchester_Decode(unsigned char *edge_dir, unsigned int *pulse_time)
 {
     static unsigned char decoded_byte, bit_pos, data_counter, start_data_flag;
@@ -2631,7 +2632,7 @@ void Manchester_Decode(unsigned char *edge_dir, unsigned int *pulse_time)
         }
  }
 }
-# 156 "manchester_decode.c"
+# 165 "manchester_decode.c"
 unsigned int Frame_Decode(DataStruct *DataRCV)
 {
     unsigned char data, i;
@@ -2672,7 +2673,7 @@ unsigned int Frame_Decode(DataStruct *DataRCV)
         }
     }
 }
-# 206 "manchester_decode.c"
+# 215 "manchester_decode.c"
 unsigned char CRC_check(DataStruct *DataRCV)
 {
  unsigned int crc_val;
@@ -2688,7 +2689,7 @@ unsigned char CRC_check(DataStruct *DataRCV)
   return 0;
  }
 }
-# 230 "manchester_decode.c"
+# 239 "manchester_decode.c"
 unsigned char Check_Event(DataStruct *DataRCV)
 {
     if(DataRCV->frame[0]=='G' && DataRCV->frame[1]=='0')
@@ -2730,7 +2731,7 @@ unsigned char Check_Event(DataStruct *DataRCV)
 
     return 0;
 }
-# 281 "manchester_decode.c"
+# 290 "manchester_decode.c"
 void Check_RCV_Data(DataStruct *DataRCV, TimeStruct *time,
                     MenuParamPonterStruct *time_limit)
 {
@@ -2743,13 +2744,15 @@ void Check_RCV_Data(DataStruct *DataRCV, TimeStruct *time,
 
 
 
+        g_com_timeout=23000;
+
         if(PORTCbits.RC1 == 0)
         {
             g_generic_timer=80;
 
         }
 
-        if(g_generic_timer==0)
+        if(g_generic_timer==0 || g_com_timeout==0)
         {
             while(Frame_Decode(DataRCV)!=0xFF)
             {
@@ -2777,47 +2780,27 @@ void Check_RCV_Data(DataStruct *DataRCV, TimeStruct *time,
 
 unsigned char Check_Time_Date(TimeStruct *time, MenuParamPonterStruct *time_limit)
 {
+
     unsigned int time_limit_min_1, time_limit_min_2, current_time_min;
 
     PCF8583_Read_Time_Date(time);
 
-    if(time->weekday==saturday || time->weekday==sunday)
+
+    time_limit_min_1=time_limit->time_limit_work_day_1_ptr->param*60+
+                    time_limit->time_limit_work_day_1_ptr->param1;
+
+    time_limit_min_2=time_limit->time_limit_work_day_2_ptr->param*60+
+                    time_limit->time_limit_work_day_2_ptr->param1;
+
+    current_time_min=time->hours*60+time->minutes;
+
+    if(current_time_min<=time_limit_min_1 && current_time_min>=time_limit_min_2)
     {
-        time_limit_min_1=time_limit->time_limit_free_day_1_ptr->param*60+
-                         time_limit->time_limit_free_day_1_ptr->param1;
-        time_limit_min_2=time_limit->time_limit_free_day_2_ptr->param*60+
-                         time_limit->time_limit_free_day_2_ptr->param1;
-        current_time_min=time->hours*60+time->minutes;
-
-
-        if(time_limit_min_1>current_time_min &&
-           time_limit_min_2>time_limit_min_1)
-        {
-            return 1;
-        }else
-        {
-            return 0;
-        }
-
+        return 1;
     }else
     {
-        time_limit_min_1=time_limit->time_limit_work_day_1_ptr->param*60+
-                         time_limit->time_limit_free_day_1_ptr->param1;
-
-        time_limit_min_2=time_limit->time_limit_work_day_2_ptr->param*60+
-                         time_limit->time_limit_free_day_2_ptr->param1;
-
-        current_time_min=time->hours*60+time->minutes;
-
-        if(time_limit_min_1>current_time_min &&
-           time_limit_min_2>time_limit_min_1)
-        {
-            return 1;
-        }else
-        {
-            return 0;
-        }
-
-
+        return 0;
     }
+
+
 }

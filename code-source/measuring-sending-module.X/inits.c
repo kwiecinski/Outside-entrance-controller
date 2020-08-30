@@ -13,7 +13,7 @@ void GlobalInits(void)
     TRISA1=1;       //gate sw
     TRISA2=0;       //radio TX
     TRISA3=1;       //wicket input
-    TRISA4=1;       //gate input
+    TRISA4=1;       //gate input     
     TRISA6=1;       //unused pin
     TRISA7=1;       //unused pin
     

@@ -2476,7 +2476,7 @@ typedef struct
 void Interrupt_Init(void);
 
 volatile unsigned char g_reciver_ccp2_isr_fire_flag, g_display_controll;
-volatile unsigned int g_pwm_freq, g_button_timer, g_generic_timer;
+volatile unsigned int g_pwm_freq, g_button_timer, g_generic_timer, g_com_timeout;
 
 unsigned char g_display_text[4];
 unsigned char g_decimal_point;
@@ -2531,7 +2531,7 @@ unsigned char g_display_text[4];
 unsigned char g_decimal_point;
 
 volatile unsigned char g_reciver_ccp2_isr_fire_flag;
-volatile unsigned int g_pwm_freq, g_button_timer, g_generic_timer;
+volatile unsigned int g_pwm_freq, g_button_timer, g_generic_timer, g_com_timeout;
 
 void __attribute__((picinterrupt((""))))
 ISR(void)
@@ -2567,6 +2567,10 @@ ISR(void)
             g_generic_timer--;
         }
 
+        if(g_com_timeout)
+        {
+            g_com_timeout--;
+        }
         TMR0IF=0;
     }
 

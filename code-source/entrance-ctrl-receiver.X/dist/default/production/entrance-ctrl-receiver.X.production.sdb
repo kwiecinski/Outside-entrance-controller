@@ -19,18 +19,8 @@ k_set_down_short 10
 k_set_down_long 11
 k_no_key_press 12
 ]
-"331 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\manchester_decode.c
-[e E1218 days `uc
-monday 0
-tuesday 1
-wedenesday 2
-thursday 3
-friday 4
-saturday 5
-sunday 6
-]
-"137 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\menu.c
-[e E1212 button_press `uc
+"92 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\menu.c
+[e E1213 button_press `uc
 k_set_rtc_short 0
 k_set_rtc_long 1
 k_set_time1_short 2
@@ -45,16 +35,6 @@ k_set_down_short 10
 k_set_down_long 11
 k_no_key_press 12
 ]
-"671
-[e E1226 days `uc
-monday 0
-tuesday 1
-wedenesday 2
-thursday 3
-friday 4
-saturday 5
-sunday 6
-]
 "5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\__lldiv.c
 [v ___lldiv __lldiv `(ul  1 e 4 0 ]
 "5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\awdiv.c
@@ -67,8 +47,6 @@ sunday 6
 [v ___lbmod __lbmod `(uc  1 e 1 0 ]
 "5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\lwdiv.c
 [v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
-"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\lwmod.c
-[v ___lwmod __lwmod `(ui  1 e 2 0 ]
 "10 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
 "15 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul16.c
@@ -133,17 +111,17 @@ sunday 6
 [v _Button_Handler Button_Handler `(uc  1 e 1 0 ]
 "25 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\main.c
 [v _main main `(v  1 e 1 0 ]
-"43 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\manchester_decode.c
+"53 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\manchester_decode.c
 [v _Manchester_Decode Manchester_Decode `(v  1 e 1 0 ]
-"156
+"165
 [v _Frame_Decode Frame_Decode `(ui  1 e 2 0 ]
-"206
+"215
 [v _CRC_check CRC_check `(uc  1 e 1 0 ]
-"230
+"239
 [v _Check_Event Check_Event `(uc  1 e 1 0 ]
-"281
+"290
 [v _Check_RCV_Data Check_RCV_Data `(v  1 e 1 0 ]
-"325
+"336
 [v _Check_Time_Date Check_Time_Date `(uc  1 e 1 0 ]
 "22 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\melody.c
 [v _Generate_PWM Generate_PWM `(v  1 e 1 0 ]
@@ -153,30 +131,22 @@ sunday 6
 [v _Init_CaptureMode Init_CaptureMode `(v  1 e 1 0 ]
 "43
 [v _Play_Ring Play_Ring `(v  1 e 1 0 ]
-"42 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\menu.c
+"35 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\menu.c
 [v _Menu_Init Menu_Init `(v  1 e 1 0 ]
-"119
+"79
 [v _Show_Time Show_Time `(v  1 e 1 0 ]
-"188
-[v _Is_Leap Is_Leap `(uc  1 e 1 0 ]
-"201
-[v _Is_Valid_Date Is_Valid_Date `(uc  1 e 1 0 ]
-"251
-[v _Find_Weekday Find_Weekday `(uc  1 e 1 0 ]
-"268
+"109
 [v _Menu_Set_Time Menu_Set_Time `(v  1 e 1 0 ]
-"400
+"190
 [v _Menu_Set_Param_Time_Limit Menu_Set_Param_Time_Limit `(v  1 e 1 0 ]
-"554
+"344
 [v _Menu_Handler Menu_Handler `(v  1 e 1 0 ]
-"586
+"372
 [v _Write_Limit_To_EEprom Write_Limit_To_EEprom `(v  1 e 1 0 ]
-"613
+"389
 [v _Read_Limit_From_EEprom Read_Limit_From_EEprom `(v  1 e 1 0 ]
-"640
+"405
 [v _Send_7Seg_Text Send_7Seg_Text `(v  1 e 1 0 ]
-"660
-[v _Display_Weekday Display_Weekday `(v  1 e 1 0 ]
 "25 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\pcf8583.c
 [v _BCD_2_DEC BCD_2_DEC `(uc  1 e 1 0 ]
 "30
@@ -198,11 +168,12 @@ sunday 6
 [v _g_pwm_freq g_pwm_freq `VEui  1 e 2 0 ]
 [v _g_button_timer g_button_timer `VEui  1 e 2 0 ]
 [v _g_generic_timer g_generic_timer `VEui  1 e 2 0 ]
+[v _g_com_timeout g_com_timeout `VEui  1 e 2 0 ]
 "23
 [v _g_display_text g_display_text `[4]uc  1 e 4 0 ]
 "24
 [v _g_decimal_point g_decimal_point `uc  1 e 1 0 ]
-[s S186 . 1 `uc 1 RA0 1 0 :1:0 
+[s S187 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
@@ -212,11 +183,11 @@ sunday 6
 `uc 1 RA7 1 0 :1:7 
 ]
 "183 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f886.h
-[u S195 . 1 `S186 1 . 1 0 ]
-[v _PORTAbits PORTAbits `VES195  1 e 1 @5 ]
+[u S196 . 1 `S187 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES196  1 e 1 @5 ]
 "228
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
-[s S152 . 1 `uc 1 RB0 1 0 :1:0 
+[s S153 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
 `uc 1 RB2 1 0 :1:2 
 `uc 1 RB3 1 0 :1:3 
@@ -226,11 +197,11 @@ sunday 6
 `uc 1 RB7 1 0 :1:7 
 ]
 "245
-[u S161 . 1 `S152 1 . 1 0 ]
-[v _PORTBbits PORTBbits `VES161  1 e 1 @6 ]
+[u S162 . 1 `S153 1 . 1 0 ]
+[v _PORTBbits PORTBbits `VES162  1 e 1 @6 ]
 "290
 [v _PORTC PORTC `VEuc  1 e 1 @7 ]
-[s S914 . 1 `uc 1 RC0 1 0 :1:0 
+[s S918 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -240,9 +211,9 @@ sunday 6
 `uc 1 RC7 1 0 :1:7 
 ]
 "307
-[u S923 . 1 `S914 1 . 1 0 ]
-[v _PORTCbits PORTCbits `VES923  1 e 1 @7 ]
-[s S497 . 1 `uc 1 RBIF 1 0 :1:0 
+[u S927 . 1 `S918 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES927  1 e 1 @7 ]
+[s S498 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -252,16 +223,16 @@ sunday 6
 `uc 1 GIE 1 0 :1:7 
 ]
 "403
-[s S506 . 1 `uc 1 . 1 0 :2:0 
+[s S507 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 TMR0IE 1 0 :1:5 
 ]
-[u S511 . 1 `S497 1 . 1 0 `S506 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES511  1 e 1 @11 ]
+[u S512 . 1 `S498 1 . 1 0 `S507 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES512  1 e 1 @11 ]
 "571
 [v _TMR1 TMR1 `VEus  1 e 2 @14 ]
-[s S529 . 1 `uc 1 TMR1ON 1 0 :1:0 
+[s S530 . 1 `uc 1 TMR1ON 1 0 :1:0 
 `uc 1 TMR1CS 1 0 :1:1 
 `uc 1 nT1SYNC 1 0 :1:2 
 `uc 1 T1OSCEN 1 0 :1:3 
@@ -270,7 +241,7 @@ sunday 6
 `uc 1 T1GINV 1 0 :1:7 
 ]
 "621
-[s S537 . 1 `uc 1 . 1 0 :2:0 
+[s S538 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 T1INSYNC 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
 `uc 1 T1CKPS0 1 0 :1:4 
@@ -278,35 +249,35 @@ sunday 6
 `uc 1 . 1 0 :1:6 
 `uc 1 T1GIV 1 0 :1:7 
 ]
-[s S545 . 1 `uc 1 . 1 0 :2:0 
+[s S546 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 T1SYNC 1 0 :1:2 
 ]
-[u S548 . 1 `S529 1 . 1 0 `S537 1 . 1 0 `S545 1 . 1 0 ]
-[v _T1CONbits T1CONbits `VES548  1 e 1 @16 ]
+[u S549 . 1 `S530 1 . 1 0 `S538 1 . 1 0 `S546 1 . 1 0 ]
+[v _T1CONbits T1CONbits `VES549  1 e 1 @16 ]
 "764
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @19 ]
-[s S239 . 1 `uc 1 SSPM 1 0 :4:0 
+[s S240 . 1 `uc 1 SSPM 1 0 :4:0 
 `uc 1 CKP 1 0 :1:4 
 `uc 1 SSPEN 1 0 :1:5 
 `uc 1 SSPOV 1 0 :1:6 
 `uc 1 WCOL 1 0 :1:7 
 ]
 "791
-[s S245 . 1 `uc 1 SSPM0 1 0 :1:0 
+[s S246 . 1 `uc 1 SSPM0 1 0 :1:0 
 `uc 1 SSPM1 1 0 :1:1 
 `uc 1 SSPM2 1 0 :1:2 
 `uc 1 SSPM3 1 0 :1:3 
 ]
-[u S250 . 1 `S239 1 . 1 0 `S245 1 . 1 0 ]
-[v _SSPCONbits SSPCONbits `VES250  1 e 1 @20 ]
+[u S251 . 1 `S240 1 . 1 0 `S246 1 . 1 0 ]
+[v _SSPCONbits SSPCONbits `VES251  1 e 1 @20 ]
 "841
 [v _CCPR1 CCPR1 `VEus  1 e 2 @21 ]
-[s S634 . 1 `uc 1 CCP1M 1 0 :4:0 
+[s S635 . 1 `uc 1 CCP1M 1 0 :4:0 
 `uc 1 DC1B 1 0 :2:4 
 `uc 1 P1M 1 0 :2:6 
 ]
 "889
-[s S638 . 1 `uc 1 CCP1M0 1 0 :1:0 
+[s S639 . 1 `uc 1 CCP1M0 1 0 :1:0 
 `uc 1 CCP1M1 1 0 :1:1 
 `uc 1 CCP1M2 1 0 :1:2 
 `uc 1 CCP1M3 1 0 :1:3 
@@ -315,29 +286,29 @@ sunday 6
 `uc 1 P1M0 1 0 :1:6 
 `uc 1 P1M1 1 0 :1:7 
 ]
-[s S647 . 1 `uc 1 . 1 0 :4:0 
+[s S648 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 CCP1Y 1 0 :1:4 
 `uc 1 CCP1X 1 0 :1:5 
 ]
-[u S651 . 1 `S634 1 . 1 0 `S638 1 . 1 0 `S647 1 . 1 0 ]
-[v _CCP1CONbits CCP1CONbits `VES651  1 e 1 @23 ]
+[u S652 . 1 `S635 1 . 1 0 `S639 1 . 1 0 `S648 1 . 1 0 ]
+[v _CCP1CONbits CCP1CONbits `VES652  1 e 1 @23 ]
 "1068
 [v _CCPR2 CCPR2 `VEus  1 e 2 @27 ]
-[s S572 . 1 `uc 1 CCP2M 1 0 :4:0 
+[s S573 . 1 `uc 1 CCP2M 1 0 :4:0 
 `uc 1 DC2B0 1 0 :1:4 
 `uc 1 DC2B1 1 0 :1:5 
 ]
 "1109
-[s S576 . 1 `uc 1 CCP2M0 1 0 :1:0 
+[s S577 . 1 `uc 1 CCP2M0 1 0 :1:0 
 `uc 1 CCP2M1 1 0 :1:1 
 `uc 1 CCP2M2 1 0 :1:2 
 `uc 1 CCP2M3 1 0 :1:3 
 `uc 1 CCP2Y 1 0 :1:4 
 `uc 1 CCP2X 1 0 :1:5 
 ]
-[u S583 . 1 `S572 1 . 1 0 `S576 1 . 1 0 ]
-[v _CCP2CONbits CCP2CONbits `VES583  1 e 1 @29 ]
-[s S471 . 1 `uc 1 PS 1 0 :3:0 
+[u S584 . 1 `S573 1 . 1 0 `S577 1 . 1 0 ]
+[v _CCP2CONbits CCP2CONbits `VES584  1 e 1 @29 ]
+[s S472 . 1 `uc 1 PS 1 0 :3:0 
 `uc 1 PSA 1 0 :1:3 
 `uc 1 T0SE 1 0 :1:4 
 `uc 1 T0CS 1 0 :1:5 
@@ -345,13 +316,13 @@ sunday 6
 `uc 1 nRBPU 1 0 :1:7 
 ]
 "1287
-[s S478 . 1 `uc 1 PS0 1 0 :1:0 
+[s S479 . 1 `uc 1 PS0 1 0 :1:0 
 `uc 1 PS1 1 0 :1:1 
 `uc 1 PS2 1 0 :1:2 
 ]
-[u S482 . 1 `S471 1 . 1 0 `S478 1 . 1 0 ]
-[v _OPTION_REGbits OPTION_REGbits `VES482  1 e 1 @129 ]
-[s S598 . 1 `uc 1 CCP2IE 1 0 :1:0 
+[u S483 . 1 `S472 1 . 1 0 `S479 1 . 1 0 ]
+[v _OPTION_REGbits OPTION_REGbits `VES483  1 e 1 @129 ]
+[s S599 . 1 `uc 1 CCP2IE 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 ULPWUIE 1 0 :1:2 
 `uc 1 BCLIE 1 0 :1:3 
@@ -361,25 +332,25 @@ sunday 6
 `uc 1 OSFIE 1 0 :1:7 
 ]
 "1617
-[u S607 . 1 `S598 1 . 1 0 ]
-[v _PIE2bits PIE2bits `VES607  1 e 1 @141 ]
-[s S413 . 1 `uc 1 SCS 1 0 :1:0 
+[u S608 . 1 `S599 1 . 1 0 ]
+[v _PIE2bits PIE2bits `VES608  1 e 1 @141 ]
+[s S414 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 ]
 "1724
-[s S419 . 1 `uc 1 . 1 0 :4:0 
+[s S420 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IRCF0 1 0 :1:4 
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S424 . 1 `S413 1 . 1 0 `S419 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES424  1 e 1 @143 ]
+[u S425 . 1 `S414 1 . 1 0 `S420 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES425  1 e 1 @143 ]
 "1821
 [v _SSPCON2 SSPCON2 `VEuc  1 e 1 @145 ]
-[s S268 . 1 `uc 1 SEN 1 0 :1:0 
+[s S269 . 1 `uc 1 SEN 1 0 :1:0 
 `uc 1 RSEN 1 0 :1:1 
 `uc 1 PEN 1 0 :1:2 
 `uc 1 RCEN 1 0 :1:3 
@@ -389,13 +360,13 @@ sunday 6
 `uc 1 GCEN 1 0 :1:7 
 ]
 "1838
-[u S277 . 1 `S268 1 . 1 0 ]
-[v _SSPCON2bits SSPCON2bits `VES277  1 e 1 @145 ]
+[u S278 . 1 `S269 1 . 1 0 ]
+[v _SSPCON2bits SSPCON2bits `VES278  1 e 1 @145 ]
 "1890
 [v _SSPADD SSPADD `VEuc  1 e 1 @147 ]
 "2019
 [v _SSPSTAT SSPSTAT `VEuc  1 e 1 @148 ]
-[s S289 . 1 `uc 1 BF 1 0 :1:0 
+[s S290 . 1 `uc 1 BF 1 0 :1:0 
 `uc 1 UA 1 0 :1:1 
 `uc 1 R_nW 1 0 :1:2 
 `uc 1 S 1 0 :1:3 
@@ -405,39 +376,39 @@ sunday 6
 `uc 1 SMP 1 0 :1:7 
 ]
 "2073
-[s S298 . 1 `uc 1 . 1 0 :2:0 
+[s S299 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D 1 0 :1:5 
 ]
-[s S303 . 1 `uc 1 . 1 0 :2:0 
+[s S304 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 I2C_READ 1 0 :1:2 
 `uc 1 I2C_START 1 0 :1:3 
 `uc 1 I2C_STOP 1 0 :1:4 
 `uc 1 I2C_DATA 1 0 :1:5 
 ]
-[s S309 . 1 `uc 1 . 1 0 :2:0 
+[s S310 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nW 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nA 1 0 :1:5 
 ]
-[s S314 . 1 `uc 1 . 1 0 :2:0 
+[s S315 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nWRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nADDRESS 1 0 :1:5 
 ]
-[s S319 . 1 `uc 1 . 1 0 :2:0 
+[s S320 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D_A 1 0 :1:5 
 ]
-[s S324 . 1 `uc 1 . 1 0 :2:0 
+[s S325 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 READ_WRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 DATA_ADDRESS 1 0 :1:5 
 ]
-[u S329 . 1 `S289 1 . 1 0 `S298 1 . 1 0 `S303 1 . 1 0 `S309 1 . 1 0 `S314 1 . 1 0 `S319 1 . 1 0 `S324 1 . 1 0 ]
-[v _SSPSTATbits SSPSTATbits `VES329  1 e 1 @148 ]
+[u S330 . 1 `S290 1 . 1 0 `S299 1 . 1 0 `S304 1 . 1 0 `S310 1 . 1 0 `S315 1 . 1 0 `S320 1 . 1 0 `S325 1 . 1 0 ]
+[v _SSPSTATbits SSPSTATbits `VES330  1 e 1 @148 ]
 "3092
 [v _EEDAT EEDAT `VEuc  1 e 1 @268 ]
 "3099
@@ -529,133 +500,112 @@ sunday 6
 {
 "33
 [s S51 MenuParamStruct 8 `uc 1 max_limit 1 0 `uc 1 max_limit1 1 1 `uc 1 letter 1 2 `uc 1 min_limit 1 3 `uc 1 min_limit1 1 4 `c 1 param 1 5 `c 1 param1 1 6 `*.5S51 1 next_menu 1 7 ]
-[s S60 . 7 `*.5S51 1 hours_minutes_ptr 1 0 `*.5S51 1 day_month_ptr 1 1 `*.5S51 1 year_ptr 1 2 `*.5S51 1 time_limit_work_day_1_ptr 1 3 `*.5S51 1 time_limit_work_day_2_ptr 1 4 `*.5S51 1 time_limit_free_day_1_ptr 1 5 `*.5S51 1 time_limit_free_day_2_ptr 1 6 ]
+[s S60 . 7 `*.5S51 1 hours_minutes_ptr 1 0 `*.1S51 1 day_month_ptr 1 1 `*.1S51 1 year_ptr 1 2 `*.5S51 1 time_limit_work_day_1_ptr 1 3 `*.5S51 1 time_limit_work_day_2_ptr 1 4 `*.1S51 1 time_limit_free_day_1_ptr 1 5 `*.1S51 1 time_limit_free_day_2_ptr 1 6 ]
 [v main@menudef menudef `S60  1 a 7 18 ]
 [s S68 . 7 `c 1 seconds 1 0 `c 1 minutes 1 1 `c 1 hours 1 2 `c 1 day 1 3 `c 1 month 1 4 `c 1 year 1 5 `c 1 weekday 1 6 ]
 "34
 [v main@time time `S68  1 a 7 11 ]
 [s S37 . 7 `uc 1 klock 1 0 `uc 1 pin 1 1 `uc 1 lock_long_press 1 2 `*.39VEuc 1 port 2 3 `uc 1 button_short_function 1 5 `uc 1 button_long_function 1 6 ]
 "32
-[s S44 . 6 `*.4S37 1 set_rtc 1 0 `*.4S37 1 set_time1 1 1 `*.4S37 1 set_time2 1 2 `*.4S37 1 set_right 1 3 `*.5S37 1 set_up 1 4 `*.5S37 1 set_down 1 5 ]
+[s S44 . 6 `*.4S37 1 set_rtc 1 0 `*.4S37 1 set_time1 1 1 `*.4S37 1 set_time2 1 2 `*.4S37 1 set_right 1 3 `*.4S37 1 set_up 1 4 `*.4S37 1 set_down 1 5 ]
 [v main@keydef keydef `S44  1 a 6 5 ]
 [s S34 . 5 `[4]uc 1 frame 4 0 `uc 1 RCV_Frame 1 4 ]
 "31
 [v main@data_rcv data_rcv `S34  1 a 5 0 ]
 "44
 } 0
-"42 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\menu.c
+"35 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\menu.c
 [v _Menu_Init Menu_Init `(v  1 e 1 0 ]
 {
 [s S51 MenuParamStruct 8 `uc 1 max_limit 1 0 `uc 1 max_limit1 1 1 `uc 1 letter 1 2 `uc 1 min_limit 1 3 `uc 1 min_limit1 1 4 `c 1 param 1 5 `c 1 param1 1 6 `*.5S51 1 next_menu 1 7 ]
-[s S60 . 7 `*.5S51 1 hours_minutes_ptr 1 0 `*.5S51 1 day_month_ptr 1 1 `*.5S51 1 year_ptr 1 2 `*.5S51 1 time_limit_work_day_1_ptr 1 3 `*.5S51 1 time_limit_work_day_2_ptr 1 4 `*.5S51 1 time_limit_free_day_1_ptr 1 5 `*.5S51 1 time_limit_free_day_2_ptr 1 6 ]
+[s S60 . 7 `*.5S51 1 hours_minutes_ptr 1 0 `*.1S51 1 day_month_ptr 1 1 `*.1S51 1 year_ptr 1 2 `*.5S51 1 time_limit_work_day_1_ptr 1 3 `*.5S51 1 time_limit_work_day_2_ptr 1 4 `*.1S51 1 time_limit_free_day_1_ptr 1 5 `*.1S51 1 time_limit_free_day_2_ptr 1 6 ]
 [v Menu_Init@menudef menudef `*.5S60  1 a 1 wreg ]
 [v Menu_Init@menudef menudef `*.5S60  1 a 1 wreg ]
-"47
+"40
 [v Menu_Init@hours_minutes hours_minutes `S51  1 s 8 hours_minutes ]
-"48
-[v Menu_Init@day_month day_month `S51  1 s 8 day_month ]
-"49
-[v Menu_Init@year year `S51  1 s 8 year ]
-"50
+"41
 [v Menu_Init@time_limit_work_day_1 time_limit_work_day_1 `S51  1 s 8 time_limit_work_day_1 ]
-"51
-[v Menu_Init@time_limit_work_day_2 time_limit_work_day_2 `S51  1 s 8 time_limit_work_day_2 ]
-"52
-[v Menu_Init@time_limit_free_day_1 time_limit_free_day_1 `S51  1 s 8 time_limit_free_day_1 ]
-"53
-[v Menu_Init@time_limit_free_day_2 time_limit_free_day_2 `S51  1 s 8 time_limit_free_day_2 ]
-"44
 "42
-[v Menu_Init@menudef menudef `*.5S60  1 a 1 12 ]
-"109
+[v Menu_Init@time_limit_work_day_2 time_limit_work_day_2 `S51  1 s 8 time_limit_work_day_2 ]
+"37
+"35
+[v Menu_Init@menudef menudef `*.5S60  1 a 1 11 ]
+"69
 } 0
-"554
+"344
 [v _Menu_Handler Menu_Handler `(v  1 e 1 0 ]
 {
 [s S51 MenuParamStruct 8 `uc 1 max_limit 1 0 `uc 1 max_limit1 1 1 `uc 1 letter 1 2 `uc 1 min_limit 1 3 `uc 1 min_limit1 1 4 `c 1 param 1 5 `c 1 param1 1 6 `*.5S51 1 next_menu 1 7 ]
-[s S60 . 7 `*.5S51 1 hours_minutes_ptr 1 0 `*.5S51 1 day_month_ptr 1 1 `*.5S51 1 year_ptr 1 2 `*.5S51 1 time_limit_work_day_1_ptr 1 3 `*.5S51 1 time_limit_work_day_2_ptr 1 4 `*.5S51 1 time_limit_free_day_1_ptr 1 5 `*.5S51 1 time_limit_free_day_2_ptr 1 6 ]
+[s S60 . 7 `*.5S51 1 hours_minutes_ptr 1 0 `*.1S51 1 day_month_ptr 1 1 `*.1S51 1 year_ptr 1 2 `*.5S51 1 time_limit_work_day_1_ptr 1 3 `*.5S51 1 time_limit_work_day_2_ptr 1 4 `*.1S51 1 time_limit_free_day_1_ptr 1 5 `*.1S51 1 time_limit_free_day_2_ptr 1 6 ]
 [v Menu_Handler@menudef menudef `*.5S60  1 a 1 wreg ]
-"557
-[v Menu_Handler@check_button check_button `uc  1 a 1 54 ]
-"554
+"347
+[v Menu_Handler@check_button check_button `uc  1 a 1 40 ]
+"344
 [v Menu_Handler@menudef menudef `*.5S60  1 a 1 wreg ]
 [s S37 . 7 `uc 1 klock 1 0 `uc 1 pin 1 1 `uc 1 lock_long_press 1 2 `*.39VEuc 1 port 2 3 `uc 1 button_short_function 1 5 `uc 1 button_long_function 1 6 ]
-[s S44 . 6 `*.4S37 1 set_rtc 1 0 `*.4S37 1 set_time1 1 1 `*.4S37 1 set_time2 1 2 `*.4S37 1 set_right 1 3 `*.5S37 1 set_up 1 4 `*.5S37 1 set_down 1 5 ]
-[v Menu_Handler@keydef keydef `*.5S44  1 p 1 49 ]
+[s S44 . 6 `*.4S37 1 set_rtc 1 0 `*.4S37 1 set_time1 1 1 `*.4S37 1 set_time2 1 2 `*.4S37 1 set_right 1 3 `*.4S37 1 set_up 1 4 `*.4S37 1 set_down 1 5 ]
+[v Menu_Handler@keydef keydef `*.5S44  1 p 1 36 ]
 [s S68 . 7 `c 1 seconds 1 0 `c 1 minutes 1 1 `c 1 hours 1 2 `c 1 day 1 3 `c 1 month 1 4 `c 1 year 1 5 `c 1 weekday 1 6 ]
-"555
-[v Menu_Handler@time time `*.5S68  1 p 1 50 ]
-"559
-"554
-[v Menu_Handler@menudef menudef `*.5S60  1 a 1 53 ]
-"576
+"345
+[v Menu_Handler@time time `*.5S68  1 p 1 37 ]
+"349
+"344
+[v Menu_Handler@menudef menudef `*.5S60  1 a 1 39 ]
+"362
 } 0
-"119
+"79
 [v _Show_Time Show_Time `(v  1 e 1 0 ]
 {
 [s S68 . 7 `c 1 seconds 1 0 `c 1 minutes 1 1 `c 1 hours 1 2 `c 1 day 1 3 `c 1 month 1 4 `c 1 year 1 5 `c 1 weekday 1 6 ]
 [v Show_Time@time time `*.5S68  1 a 1 wreg ]
-"121
-[v Show_Time@check_button check_button `uc  1 a 1 36 ]
-"119
 [v Show_Time@time time `*.5S68  1 a 1 wreg ]
 [s S37 . 7 `uc 1 klock 1 0 `uc 1 pin 1 1 `uc 1 lock_long_press 1 2 `*.39VEuc 1 port 2 3 `uc 1 button_short_function 1 5 `uc 1 button_long_function 1 6 ]
-[s S44 . 6 `*.4S37 1 set_rtc 1 0 `*.4S37 1 set_time1 1 1 `*.4S37 1 set_time2 1 2 `*.4S37 1 set_right 1 3 `*.5S37 1 set_up 1 4 `*.5S37 1 set_down 1 5 ]
-[v Show_Time@keydef keydef `*.5S44  1 p 1 34 ]
-"123
-"119
-[v Show_Time@time time `*.5S68  1 a 1 37 ]
-"178
+[s S44 . 6 `*.4S37 1 set_rtc 1 0 `*.4S37 1 set_time1 1 1 `*.4S37 1 set_time2 1 2 `*.4S37 1 set_right 1 3 `*.4S37 1 set_up 1 4 `*.4S37 1 set_down 1 5 ]
+[v Show_Time@keydef keydef `*.5S44  1 p 1 28 ]
+"82
+"79
+[v Show_Time@time time `*.5S68  1 a 1 30 ]
+"99
 } 0
-"660
-[v _Display_Weekday Display_Weekday `(v  1 e 1 0 ]
-{
-[v Display_Weekday@weekday weekday `uc  1 a 1 wreg ]
-[v Display_Weekday@weekday weekday `uc  1 a 1 wreg ]
-[v Display_Weekday@weekday weekday `uc  1 a 1 12 ]
-"672
-} 0
-"268
+"109
 [v _Menu_Set_Time Menu_Set_Time `(v  1 e 1 0 ]
 {
 [s S51 MenuParamStruct 8 `uc 1 max_limit 1 0 `uc 1 max_limit1 1 1 `uc 1 letter 1 2 `uc 1 min_limit 1 3 `uc 1 min_limit1 1 4 `c 1 param 1 5 `c 1 param1 1 6 `*.5S51 1 next_menu 1 7 ]
-[s S60 . 7 `*.5S51 1 hours_minutes_ptr 1 0 `*.5S51 1 day_month_ptr 1 1 `*.5S51 1 year_ptr 1 2 `*.5S51 1 time_limit_work_day_1_ptr 1 3 `*.5S51 1 time_limit_work_day_2_ptr 1 4 `*.5S51 1 time_limit_free_day_1_ptr 1 5 `*.5S51 1 time_limit_free_day_2_ptr 1 6 ]
+[s S60 . 7 `*.5S51 1 hours_minutes_ptr 1 0 `*.1S51 1 day_month_ptr 1 1 `*.1S51 1 year_ptr 1 2 `*.5S51 1 time_limit_work_day_1_ptr 1 3 `*.5S51 1 time_limit_work_day_2_ptr 1 4 `*.1S51 1 time_limit_free_day_1_ptr 1 5 `*.1S51 1 time_limit_free_day_2_ptr 1 6 ]
 [v Menu_Set_Time@menudef menudef `*.5S60  1 a 1 wreg ]
-"272
-[v Menu_Set_Time@current_menu current_menu `S51  1 a 8 5 ]
+"113
+[v Menu_Set_Time@current_menu current_menu `S51  1 a 8 12 ]
 [s S68 . 7 `c 1 seconds 1 0 `c 1 minutes 1 1 `c 1 hours 1 2 `c 1 day 1 3 `c 1 month 1 4 `c 1 year 1 5 `c 1 weekday 1 6 ]
-"274
-[v Menu_Set_Time@time time `S68  1 a 7 13 ]
-"273
+"115
+[v Menu_Set_Time@time time `S68  1 a 7 5 ]
+"114
 [v Menu_Set_Time@current_menu_ptr current_menu_ptr `*.39S51  1 a 2 2 ]
-"271
+"112
 [v Menu_Set_Time@check_button check_button `uc  1 a 1 1 ]
 [v Menu_Set_Time@key key `uc  1 a 1 0 ]
-"268
+"109
 [v Menu_Set_Time@menudef menudef `*.5S60  1 a 1 wreg ]
 [s S37 . 7 `uc 1 klock 1 0 `uc 1 pin 1 1 `uc 1 lock_long_press 1 2 `*.39VEuc 1 port 2 3 `uc 1 button_short_function 1 5 `uc 1 button_long_function 1 6 ]
-[s S44 . 6 `*.4S37 1 set_rtc 1 0 `*.4S37 1 set_time1 1 1 `*.4S37 1 set_time2 1 2 `*.4S37 1 set_right 1 3 `*.5S37 1 set_up 1 4 `*.5S37 1 set_down 1 5 ]
-[v Menu_Set_Time@keydef keydef `*.5S44  1 p 1 44 ]
-"269
-[v Menu_Set_Time@menu_type menu_type `uc  1 p 1 45 ]
-"273
-"268
+[s S44 . 6 `*.4S37 1 set_rtc 1 0 `*.4S37 1 set_time1 1 1 `*.4S37 1 set_time2 1 2 `*.4S37 1 set_right 1 3 `*.4S37 1 set_up 1 4 `*.4S37 1 set_down 1 5 ]
+[v Menu_Set_Time@keydef keydef `*.5S44  1 p 1 31 ]
+"110
+[v Menu_Set_Time@menu_type menu_type `uc  1 p 1 32 ]
+"114
+"109
 [v Menu_Set_Time@menudef menudef `*.5S60  1 a 1 4 ]
-"390
+"180
 } 0
-"586
+"372
 [v _Write_Limit_To_EEprom Write_Limit_To_EEprom `(v  1 e 1 0 ]
 {
 [s S51 MenuParamStruct 8 `uc 1 max_limit 1 0 `uc 1 max_limit1 1 1 `uc 1 letter 1 2 `uc 1 min_limit 1 3 `uc 1 min_limit1 1 4 `c 1 param 1 5 `c 1 param1 1 6 `*.5S51 1 next_menu 1 7 ]
 [v Write_Limit_To_EEprom@limit1 limit1 `*.5S51  1 a 1 wreg ]
 [v Write_Limit_To_EEprom@limit1 limit1 `*.5S51  1 a 1 wreg ]
 [v Write_Limit_To_EEprom@limit2 limit2 `*.5S51  1 p 1 8 ]
-"587
-[v Write_Limit_To_EEprom@limit_type limit_type `uc  1 p 1 9 ]
-"589
-"586
-[v Write_Limit_To_EEprom@limit1 limit1 `*.5S51  1 a 1 11 ]
-"603
+"375
+"372
+[v Write_Limit_To_EEprom@limit1 limit1 `*.5S51  1 a 1 10 ]
+"379
 } 0
 "11 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\flash.c
 [v _Write_EEprom Write_EEprom `(v  1 e 1 0 ]
@@ -667,19 +617,17 @@ sunday 6
 [v Write_EEprom@data data `c  1 a 1 7 ]
 "24
 } 0
-"613 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\menu.c
+"389 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\menu.c
 [v _Read_Limit_From_EEprom Read_Limit_From_EEprom `(v  1 e 1 0 ]
 {
 [s S51 MenuParamStruct 8 `uc 1 max_limit 1 0 `uc 1 max_limit1 1 1 `uc 1 letter 1 2 `uc 1 min_limit 1 3 `uc 1 min_limit1 1 4 `c 1 param 1 5 `c 1 param1 1 6 `*.5S51 1 next_menu 1 7 ]
 [v Read_Limit_From_EEprom@limit1 limit1 `*.5S51  1 a 1 wreg ]
 [v Read_Limit_From_EEprom@limit1 limit1 `*.5S51  1 a 1 wreg ]
 [v Read_Limit_From_EEprom@limit2 limit2 `*.5S51  1 p 1 7 ]
-"614
-[v Read_Limit_From_EEprom@limit_type limit_type `uc  1 p 1 8 ]
-"616
-"613
-[v Read_Limit_From_EEprom@limit1 limit1 `*.5S51  1 a 1 10 ]
-"630
+"391
+"389
+[v Read_Limit_From_EEprom@limit1 limit1 `*.5S51  1 a 1 9 ]
+"395
 } 0
 "26 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\flash.c
 [v _Read_EEprom Read_EEprom `(c  1 e 1 0 ]
@@ -721,17 +669,17 @@ sunday 6
 [v DEC_2_BCD@dec dec `uc  1 a 1 16 ]
 "33
 } 0
-"400 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\menu.c
+"190 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\menu.c
 [v _Menu_Set_Param_Time_Limit Menu_Set_Param_Time_Limit `(v  1 e 1 0 ]
 {
 [s S51 MenuParamStruct 8 `uc 1 max_limit 1 0 `uc 1 max_limit1 1 1 `uc 1 letter 1 2 `uc 1 min_limit 1 3 `uc 1 min_limit1 1 4 `c 1 param 1 5 `c 1 param1 1 6 `*.5S51 1 next_menu 1 7 ]
-[v Menu_Set_Param_Time_Limit@menu menu `*.39S51  1 p 2 22 ]
-"401
-[v Menu_Set_Param_Time_Limit@check_button check_button `uc  1 p 1 24 ]
-"403
+[v Menu_Set_Param_Time_Limit@menu menu `*.39S51  1 p 2 15 ]
+"191
+[v Menu_Set_Param_Time_Limit@check_button check_button `uc  1 p 1 17 ]
+"193
 [v Menu_Set_Param_Time_Limit@flag flag `uc  1 s 1 flag ]
 [v Menu_Set_Param_Time_Limit@change_digit change_digit `uc  1 s 1 change_digit ]
-"544
+"334
 } 0
 "4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\lbmod.c
 [v ___lbmod __lbmod `(uc  1 e 1 0 ]
@@ -778,73 +726,39 @@ sunday 6
 [v ___awdiv __awdiv `(i  1 e 2 0 ]
 {
 "10
-[v ___awdiv@quotient quotient `i  1 a 2 20 ]
+[v ___awdiv@quotient quotient `i  1 a 2 13 ]
 "11
-[v ___awdiv@sign sign `uc  1 a 1 19 ]
-[v ___awdiv@counter counter `uc  1 a 1 18 ]
+[v ___awdiv@sign sign `uc  1 a 1 12 ]
+[v ___awdiv@counter counter `uc  1 a 1 11 ]
 "5
-[v ___awdiv@divisor divisor `i  1 p 2 13 ]
-[v ___awdiv@dividend dividend `i  1 p 2 15 ]
+[v ___awdiv@divisor divisor `i  1 p 2 6 ]
+[v ___awdiv@dividend dividend `i  1 p 2 8 ]
 "41
-} 0
-"201 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\menu.c
-[v _Is_Valid_Date Is_Valid_Date `(uc  1 e 1 0 ]
-{
-[v Is_Valid_Date@d d `uc  1 a 1 wreg ]
-[v Is_Valid_Date@d d `uc  1 a 1 wreg ]
-[v Is_Valid_Date@m m `uc  1 p 1 29 ]
-[v Is_Valid_Date@y y `ui  1 p 2 30 ]
-"208
-[v Is_Valid_Date@d d `uc  1 a 1 32 ]
-"241
-} 0
-"188
-[v _Is_Leap Is_Leap `(uc  1 e 1 0 ]
-{
-[v Is_Leap@year year `ui  1 p 2 26 ]
-"191
-} 0
-"251
-[v _Find_Weekday Find_Weekday `(uc  1 e 1 0 ]
-{
-"253
-[v Find_Weekday@wday wday `uc  1 a 1 43 ]
-"251
-[v Find_Weekday@year year `ui  1 p 2 26 ]
-[v Find_Weekday@month month `ui  1 p 2 28 ]
-[v Find_Weekday@day day `ui  1 p 2 30 ]
-"258
-} 0
-"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\lwmod.c
-[v ___lwmod __lwmod `(ui  1 e 2 0 ]
-{
-"10
-[v ___lwmod@counter counter `uc  1 a 1 25 ]
-"5
-[v ___lwmod@divisor divisor `ui  1 p 2 20 ]
-[v ___lwmod@dividend dividend `ui  1 p 2 22 ]
-"25
 } 0
 "97 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\key-handler.c
 [v _Button_Handler Button_Handler `(uc  1 e 1 0 ]
 {
 [s S37 . 7 `uc 1 klock 1 0 `uc 1 pin 1 1 `uc 1 lock_long_press 1 2 `*.39VEuc 1 port 2 3 `uc 1 button_short_function 1 5 `uc 1 button_long_function 1 6 ]
-[s S44 . 6 `*.4S37 1 set_rtc 1 0 `*.4S37 1 set_time1 1 1 `*.4S37 1 set_time2 1 2 `*.4S37 1 set_right 1 3 `*.5S37 1 set_up 1 4 `*.5S37 1 set_down 1 5 ]
+[s S44 . 6 `*.4S37 1 set_rtc 1 0 `*.4S37 1 set_time1 1 1 `*.4S37 1 set_time2 1 2 `*.4S37 1 set_right 1 3 `*.4S37 1 set_up 1 4 `*.4S37 1 set_down 1 5 ]
 [v Button_Handler@keydef keydef `*.5S44  1 a 1 wreg ]
 "99
-[v Button_Handler@button button `uc  1 a 1 18 ]
+[v Button_Handler@button button `uc  1 a 1 13 ]
 "97
 [v Button_Handler@keydef keydef `*.5S44  1 a 1 wreg ]
 "101
 "97
-[v Button_Handler@keydef keydef `*.5S44  1 a 1 17 ]
+[v Button_Handler@keydef keydef `*.5S44  1 a 1 12 ]
 "133
 } 0
 "10
 [v _Key_Press Key_Press `(E1204  1 e 1 0 ]
 {
 [s S37 . 7 `uc 1 klock 1 0 `uc 1 pin 1 1 `uc 1 lock_long_press 1 2 `*.39VEuc 1 port 2 3 `uc 1 button_short_function 1 5 `uc 1 button_long_function 1 6 ]
-[v Key_Press@button button `*.39S37  1 p 2 6 ]
+[v Key_Press@button button `*.4S37  1 a 1 wreg ]
+[v Key_Press@button button `*.4S37  1 a 1 wreg ]
+"12
+"10
+[v Key_Press@button button `*.4S37  1 a 1 10 ]
 "35
 } 0
 "9 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\interrupts.c
@@ -862,41 +776,41 @@ sunday 6
 {
 "41
 } 0
-"281 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\manchester_decode.c
+"290 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\manchester_decode.c
 [v _Check_RCV_Data Check_RCV_Data `(v  1 e 1 0 ]
 {
 [s S34 . 5 `[4]uc 1 frame 4 0 `uc 1 RCV_Frame 1 4 ]
 [v Check_RCV_Data@DataRCV DataRCV `*.5S34  1 a 1 wreg ]
 [v Check_RCV_Data@DataRCV DataRCV `*.5S34  1 a 1 wreg ]
 [s S68 . 7 `c 1 seconds 1 0 `c 1 minutes 1 1 `c 1 hours 1 2 `c 1 day 1 3 `c 1 month 1 4 `c 1 year 1 5 `c 1 weekday 1 6 ]
-[v Check_RCV_Data@time time `*.5S68  1 p 1 42 ]
-"282
+[v Check_RCV_Data@time time `*.5S68  1 p 1 38 ]
+"291
 [s S51 MenuParamStruct 8 `uc 1 max_limit 1 0 `uc 1 max_limit1 1 1 `uc 1 letter 1 2 `uc 1 min_limit 1 3 `uc 1 min_limit1 1 4 `c 1 param 1 5 `c 1 param1 1 6 `*.5S51 1 next_menu 1 7 ]
-[s S60 . 7 `*.5S51 1 hours_minutes_ptr 1 0 `*.5S51 1 day_month_ptr 1 1 `*.5S51 1 year_ptr 1 2 `*.5S51 1 time_limit_work_day_1_ptr 1 3 `*.5S51 1 time_limit_work_day_2_ptr 1 4 `*.5S51 1 time_limit_free_day_1_ptr 1 5 `*.5S51 1 time_limit_free_day_2_ptr 1 6 ]
-[v Check_RCV_Data@time_limit time_limit `*.5S60  1 p 1 43 ]
-"284
-"281
-[v Check_RCV_Data@DataRCV DataRCV `*.5S34  1 a 1 45 ]
-"323
+[s S60 . 7 `*.5S51 1 hours_minutes_ptr 1 0 `*.1S51 1 day_month_ptr 1 1 `*.1S51 1 year_ptr 1 2 `*.5S51 1 time_limit_work_day_1_ptr 1 3 `*.5S51 1 time_limit_work_day_2_ptr 1 4 `*.1S51 1 time_limit_free_day_1_ptr 1 5 `*.1S51 1 time_limit_free_day_2_ptr 1 6 ]
+[v Check_RCV_Data@time_limit time_limit `*.5S60  1 p 1 39 ]
+"293
+"290
+[v Check_RCV_Data@DataRCV DataRCV `*.5S34  1 a 1 41 ]
+"334
 } 0
-"325
+"336
 [v _Check_Time_Date Check_Time_Date `(uc  1 e 1 0 ]
 {
 [s S68 . 7 `c 1 seconds 1 0 `c 1 minutes 1 1 `c 1 hours 1 2 `c 1 day 1 3 `c 1 month 1 4 `c 1 year 1 5 `c 1 weekday 1 6 ]
 [v Check_Time_Date@time time `*.5S68  1 a 1 wreg ]
-"327
-[v Check_Time_Date@time_limit_min_1 time_limit_min_1 `ui  1 a 2 39 ]
-[v Check_Time_Date@current_time_min current_time_min `ui  1 a 2 37 ]
-[v Check_Time_Date@time_limit_min_2 time_limit_min_2 `ui  1 a 2 35 ]
-"325
+"339
+[v Check_Time_Date@current_time_min current_time_min `ui  1 a 2 33 ]
+[v Check_Time_Date@time_limit_min_2 time_limit_min_2 `ui  1 a 2 31 ]
+[v Check_Time_Date@time_limit_min_1 time_limit_min_1 `ui  1 a 2 29 ]
+"336
 [v Check_Time_Date@time time `*.5S68  1 a 1 wreg ]
 [s S51 MenuParamStruct 8 `uc 1 max_limit 1 0 `uc 1 max_limit1 1 1 `uc 1 letter 1 2 `uc 1 min_limit 1 3 `uc 1 min_limit1 1 4 `c 1 param 1 5 `c 1 param1 1 6 `*.5S51 1 next_menu 1 7 ]
-[s S60 . 7 `*.5S51 1 hours_minutes_ptr 1 0 `*.5S51 1 day_month_ptr 1 1 `*.5S51 1 year_ptr 1 2 `*.5S51 1 time_limit_work_day_1_ptr 1 3 `*.5S51 1 time_limit_work_day_2_ptr 1 4 `*.5S51 1 time_limit_free_day_1_ptr 1 5 `*.5S51 1 time_limit_free_day_2_ptr 1 6 ]
-[v Check_Time_Date@time_limit time_limit `*.5S60  1 p 1 34 ]
-"329
-"325
-[v Check_Time_Date@time time `*.5S68  1 a 1 41 ]
-"370
+[s S60 . 7 `*.5S51 1 hours_minutes_ptr 1 0 `*.1S51 1 day_month_ptr 1 1 `*.1S51 1 year_ptr 1 2 `*.5S51 1 time_limit_work_day_1_ptr 1 3 `*.5S51 1 time_limit_work_day_2_ptr 1 4 `*.1S51 1 time_limit_free_day_1_ptr 1 5 `*.1S51 1 time_limit_free_day_2_ptr 1 6 ]
+[v Check_Time_Date@time_limit time_limit `*.5S60  1 p 1 28 ]
+"341
+"336
+[v Check_Time_Date@time time `*.5S68  1 a 1 35 ]
+"361
 } 0
 "15 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
@@ -912,22 +826,22 @@ sunday 6
 [v _PCF8583_Read_Time_Date PCF8583_Read_Time_Date `(v  1 e 1 0 ]
 {
 "62
-[v PCF8583_Read_Time_Date@year year `uc  1 a 1 33 ]
+[v PCF8583_Read_Time_Date@year year `uc  1 a 1 27 ]
 "67
-[v PCF8583_Read_Time_Date@bcd_mon bcd_mon `uc  1 a 1 32 ]
+[v PCF8583_Read_Time_Date@bcd_mon bcd_mon `uc  1 a 1 26 ]
 "66
-[v PCF8583_Read_Time_Date@bcd_day bcd_day `uc  1 a 1 31 ]
+[v PCF8583_Read_Time_Date@bcd_day bcd_day `uc  1 a 1 25 ]
 "65
-[v PCF8583_Read_Time_Date@bcd_hrs bcd_hrs `uc  1 a 1 30 ]
+[v PCF8583_Read_Time_Date@bcd_hrs bcd_hrs `uc  1 a 1 24 ]
 "64
-[v PCF8583_Read_Time_Date@bcd_min bcd_min `uc  1 a 1 29 ]
+[v PCF8583_Read_Time_Date@bcd_min bcd_min `uc  1 a 1 23 ]
 "63
-[v PCF8583_Read_Time_Date@bcd_sec bcd_sec `uc  1 a 1 28 ]
+[v PCF8583_Read_Time_Date@bcd_sec bcd_sec `uc  1 a 1 22 ]
 "61
-[v PCF8583_Read_Time_Date@year_bits year_bits `uc  1 a 1 27 ]
+[v PCF8583_Read_Time_Date@year_bits year_bits `uc  1 a 1 21 ]
 [s S68 . 7 `c 1 seconds 1 0 `c 1 minutes 1 1 `c 1 hours 1 2 `c 1 day 1 3 `c 1 month 1 4 `c 1 year 1 5 `c 1 weekday 1 6 ]
 "59
-[v PCF8583_Read_Time_Date@time_struct_ptr time_struct_ptr `*.39S68  1 p 2 21 ]
+[v PCF8583_Read_Time_Date@time_struct_ptr time_struct_ptr `*.39S68  1 p 2 15 ]
 "102
 } 0
 "35
@@ -991,7 +905,7 @@ sunday 6
 [v BCD_2_DEC@bcd bcd `uc  1 a 1 wreg ]
 [v BCD_2_DEC@bcd bcd `uc  1 a 1 wreg ]
 "27
-[v BCD_2_DEC@bcd bcd `uc  1 a 1 20 ]
+[v BCD_2_DEC@bcd bcd `uc  1 a 1 13 ]
 "28
 } 0
 "4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul8.c
@@ -999,37 +913,37 @@ sunday 6
 {
 [v ___bmul@multiplier multiplier `uc  1 a 1 wreg ]
 "6
-[v ___bmul@product product `uc  1 a 1 15 ]
+[v ___bmul@product product `uc  1 a 1 8 ]
 "4
 [v ___bmul@multiplier multiplier `uc  1 a 1 wreg ]
-[v ___bmul@multiplicand multiplicand `uc  1 p 1 13 ]
+[v ___bmul@multiplicand multiplicand `uc  1 p 1 6 ]
 "6
-[v ___bmul@multiplier multiplier `uc  1 a 1 16 ]
+[v ___bmul@multiplier multiplier `uc  1 a 1 9 ]
 "51
 } 0
-"230 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\manchester_decode.c
+"239 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\manchester_decode.c
 [v _Check_Event Check_Event `(uc  1 e 1 0 ]
 {
 [s S34 . 5 `[4]uc 1 frame 4 0 `uc 1 RCV_Frame 1 4 ]
 [v Check_Event@DataRCV DataRCV `*.5S34  1 a 1 wreg ]
 [v Check_Event@DataRCV DataRCV `*.5S34  1 a 1 wreg ]
-"232
-"230
+"241
+"239
 [v Check_Event@DataRCV DataRCV `*.5S34  1 a 1 37 ]
-"270
+"279
 } 0
-"640 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\menu.c
+"405 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\menu.c
 [v _Send_7Seg_Text Send_7Seg_Text `(v  1 e 1 0 ]
 {
 [v Send_7Seg_Text@text text `*.24uc  1 a 1 wreg ]
-"642
-[v Send_7Seg_Text@i i `uc  1 a 1 8 ]
-"640
+"407
+[v Send_7Seg_Text@i i `uc  1 a 1 9 ]
+"405
 [v Send_7Seg_Text@text text `*.24uc  1 a 1 wreg ]
 [v Send_7Seg_Text@decimal_point decimal_point `uc  1 p 1 6 ]
-"644
-[v Send_7Seg_Text@text text `*.24uc  1 a 1 9 ]
-"650
+"409
+[v Send_7Seg_Text@text text `*.24uc  1 a 1 8 ]
+"415
 } 0
 "43 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\melody.c
 [v _Play_Ring Play_Ring `(v  1 e 1 0 ]
@@ -1050,12 +964,12 @@ sunday 6
 [v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
 {
 "10
-[v ___lwdiv@quotient quotient `ui  1 a 2 18 ]
+[v ___lwdiv@quotient quotient `ui  1 a 2 12 ]
 "11
-[v ___lwdiv@counter counter `uc  1 a 1 17 ]
+[v ___lwdiv@counter counter `uc  1 a 1 11 ]
 "5
-[v ___lwdiv@divisor divisor `ui  1 p 2 12 ]
-[v ___lwdiv@dividend dividend `ui  1 p 2 14 ]
+[v ___lwdiv@divisor divisor `ui  1 p 2 6 ]
+[v ___lwdiv@dividend dividend `ui  1 p 2 8 ]
 "30
 } 0
 "7 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\utils.c
@@ -1148,18 +1062,18 @@ sunday 6
 {
 "93
 } 0
-"156 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\manchester_decode.c
+"165 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\manchester_decode.c
 [v _Frame_Decode Frame_Decode `(ui  1 e 2 0 ]
 {
 [s S34 . 5 `[4]uc 1 frame 4 0 `uc 1 RCV_Frame 1 4 ]
 [v Frame_Decode@DataRCV DataRCV `*.5S34  1 a 1 wreg ]
-"158
+"167
 [v Frame_Decode@i i `uc  1 a 1 15 ]
 [v Frame_Decode@data data `uc  1 a 1 14 ]
-"156
+"165
 [v Frame_Decode@DataRCV DataRCV `*.5S34  1 a 1 wreg ]
 [v Frame_Decode@DataRCV DataRCV `*.5S34  1 a 1 13 ]
-"195
+"204
 } 0
 "13 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\circular_buffer.c
 [v _Frame_Buffer Frame_Buffer `(uc  1 e 1 0 ]
@@ -1168,7 +1082,7 @@ sunday 6
 [v Frame_Buffer@data data `*.4uc  1 a 1 wreg ]
 [v Frame_Buffer@mode mode `uc  1 p 1 6 ]
 "15
-[v Frame_Buffer@buffer buffer `[30]uc  1 s 30 buffer ]
+[v Frame_Buffer@buffer buffer `[60]uc  1 s 60 buffer ]
 "16
 [v Frame_Buffer@read_pointer read_pointer `uc  1 s 1 read_pointer ]
 [v Frame_Buffer@write_pointer write_pointer `uc  1 s 1 write_pointer ]
@@ -1177,19 +1091,19 @@ sunday 6
 [v Frame_Buffer@data data `*.4uc  1 a 1 8 ]
 "54
 } 0
-"206 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\manchester_decode.c
+"215 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\manchester_decode.c
 [v _CRC_check CRC_check `(uc  1 e 1 0 ]
 {
 [s S34 . 5 `[4]uc 1 frame 4 0 `uc 1 RCV_Frame 1 4 ]
 [v CRC_check@DataRCV DataRCV `*.5S34  1 a 1 wreg ]
-"208
+"217
 [v CRC_check@crc_val crc_val `ui  1 a 2 17 ]
-"206
+"215
 [v CRC_check@DataRCV DataRCV `*.5S34  1 a 1 wreg ]
-"210
-"206
+"219
+"215
 [v CRC_check@DataRCV DataRCV `*.5S34  1 a 1 19 ]
-"220
+"229
 } 0
 "7 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\crc16.c
 [v _CRC16 CRC16 `(ui  1 e 2 0 ]
@@ -1211,7 +1125,7 @@ sunday 6
 [v _Button_Init Button_Init `(v  1 e 1 0 ]
 {
 [s S37 . 7 `uc 1 klock 1 0 `uc 1 pin 1 1 `uc 1 lock_long_press 1 2 `*.39VEuc 1 port 2 3 `uc 1 button_short_function 1 5 `uc 1 button_long_function 1 6 ]
-[s S44 . 6 `*.4S37 1 set_rtc 1 0 `*.4S37 1 set_time1 1 1 `*.4S37 1 set_time2 1 2 `*.4S37 1 set_right 1 3 `*.5S37 1 set_up 1 4 `*.5S37 1 set_down 1 5 ]
+[s S44 . 6 `*.4S37 1 set_rtc 1 0 `*.4S37 1 set_time1 1 1 `*.4S37 1 set_time2 1 2 `*.4S37 1 set_right 1 3 `*.4S37 1 set_up 1 4 `*.4S37 1 set_down 1 5 ]
 [v Button_Init@keydef keydef `*.5S44  1 a 1 wreg ]
 [v Button_Init@keydef keydef `*.5S44  1 a 1 wreg ]
 "40
@@ -1240,7 +1154,7 @@ sunday 6
 [v ISR@edge_dir edge_dir `uc  1 s 1 edge_dir ]
 [v ISR@set_flag set_flag `uc  1 s 1 set_flag ]
 [v ISR@display_timer display_timer `uc  1 s 1 display_timer ]
-"126
+"130
 } 0
 "96 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\display-7-segment.c
 [v i1_Display_7Seg Display_7Seg `(v  1 e 1 0 ]
@@ -1286,23 +1200,23 @@ sunday 6
 {
 "93
 } 0
-"43 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\manchester_decode.c
+"53 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\manchester_decode.c
 [v _Manchester_Decode Manchester_Decode `(v  1 e 1 0 ]
 {
 [v Manchester_Decode@edge_dir edge_dir `*.4uc  1 a 1 wreg ]
 [v Manchester_Decode@edge_dir edge_dir `*.4uc  1 a 1 wreg ]
 [v Manchester_Decode@pulse_time pulse_time `*.4ui  1 p 1 3 ]
-"45
+"55
 [v Manchester_Decode@decoded_byte decoded_byte `uc  1 s 1 decoded_byte ]
 [v Manchester_Decode@bit_pos bit_pos `uc  1 s 1 bit_pos ]
 [v Manchester_Decode@data_counter data_counter `uc  1 s 1 data_counter ]
 [v Manchester_Decode@start_data_flag start_data_flag `uc  1 s 1 start_data_flag ]
-"46
+"56
 [v Manchester_Decode@next_edge_also_T_flag next_edge_also_T_flag `uc  1 s 1 next_edge_also_T_flag ]
 [v Manchester_Decode@sync_flag sync_flag `uc  1 s 1 sync_flag ]
-"48
+"58
 [v Manchester_Decode@edge_dir edge_dir `*.4uc  1 a 1 8 ]
-"145
+"155
 } 0
 "13 D:\projekty\Outside-entrance-controller\code-source\entrance-ctrl-receiver.X\circular_buffer.c
 [v i1_Frame_Buffer Frame_Buffer `(uc  1 e 1 0 ]

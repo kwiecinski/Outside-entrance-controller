@@ -228,22 +228,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f886.h: 3370: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
 "13 circular_buffer.c
-[; ;circular_buffer.c: 13: unsigned char Frame_Buffer(unsigned char *data,unsigned char mode)
+[; ;circular_buffer.c: 13: unsigned char Frame_Buffer(unsigned char *data, unsigned char mode)
 [v _Frame_Buffer `(uc ~T0 @X0 1 ef2`*uc`uc ]
 "14
 [; ;circular_buffer.c: 14: {
 {
 [e :U _Frame_Buffer ]
 "13
-[; ;circular_buffer.c: 13: unsigned char Frame_Buffer(unsigned char *data,unsigned char mode)
+[; ;circular_buffer.c: 13: unsigned char Frame_Buffer(unsigned char *data, unsigned char mode)
 [v _data `*uc ~T0 @X0 1 r1 ]
 [v _mode `uc ~T0 @X0 1 r2 ]
 "14
 [; ;circular_buffer.c: 14: {
 [f ]
 "15
-[; ;circular_buffer.c: 15:  static unsigned char buffer[30];
-[v F1210 `uc ~T0 @X0 -> 30 `i s buffer ]
+[; ;circular_buffer.c: 15:  static unsigned char buffer[60];
+[v F1210 `uc ~T0 @X0 -> 60 `i s buffer ]
 "16
 [; ;circular_buffer.c: 16:  static unsigned char read_pointer, write_pointer, write_pointer_mem;
 [v F1211 `uc ~T0 @X0 1 s read_pointer ]
@@ -262,8 +262,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;circular_buffer.c: 21:   write_pointer++;
 [e ++ F1212 -> -> 1 `i `uc ]
 "23
-[; ;circular_buffer.c: 23:   if(write_pointer==30)
-[e $ ! == -> F1212 `i -> 30 `i 136  ]
+[; ;circular_buffer.c: 23:   if(write_pointer==60)
+[e $ ! == -> F1212 `i -> 60 `i 136  ]
 "24
 [; ;circular_buffer.c: 24:   {
 {
@@ -316,8 +316,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;circular_buffer.c: 41:    read_pointer++;
 [e ++ F1211 -> -> 1 `i `uc ]
 "42
-[; ;circular_buffer.c: 42:    if(read_pointer==30)
-[e $ ! == -> F1211 `i -> 30 `i 140  ]
+[; ;circular_buffer.c: 42:    if(read_pointer==60)
+[e $ ! == -> F1211 `i -> 60 `i 140  ]
 "43
 [; ;circular_buffer.c: 43:    {
 {

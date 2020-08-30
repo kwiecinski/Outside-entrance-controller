@@ -256,10 +256,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _g_reciver_ccp2_isr_fire_flag `Vuc ~T0 @X0 1 e ]
 [v _g_display_controll `Vuc ~T0 @X0 1 e ]
 "21
-[; ;./interrupts.h: 21: volatile unsigned int g_pwm_freq, g_button_timer, g_generic_timer;
+[; ;./interrupts.h: 21: volatile unsigned int g_pwm_freq, g_button_timer, g_generic_timer, g_com_timeout;
 [v _g_pwm_freq `Vui ~T0 @X0 1 e ]
 [v _g_button_timer `Vui ~T0 @X0 1 e ]
 [v _g_generic_timer `Vui ~T0 @X0 1 e ]
+[v _g_com_timeout `Vui ~T0 @X0 1 e ]
 "23
 [; ;./interrupts.h: 23: unsigned char g_display_text[4];
 [v _g_display_text `uc ~T0 @X0 -> 4 `i e ]

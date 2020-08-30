@@ -321,10 +321,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _g_reciver_ccp2_isr_fire_flag `Vuc ~T0 @X0 1 e ]
 [v _g_display_controll `Vuc ~T0 @X0 1 e ]
 "21
-[; ;./interrupts.h: 21: volatile unsigned int g_pwm_freq, g_button_timer, g_generic_timer;
+[; ;./interrupts.h: 21: volatile unsigned int g_pwm_freq, g_button_timer, g_generic_timer, g_com_timeout;
 [v _g_pwm_freq `Vui ~T0 @X0 1 e ]
 [v _g_button_timer `Vui ~T0 @X0 1 e ]
 [v _g_generic_timer `Vui ~T0 @X0 1 e ]
+[v _g_com_timeout `Vui ~T0 @X0 1 e ]
 "23
 [; ;./interrupts.h: 23: unsigned char g_display_text[4];
 [v _g_display_text `uc ~T0 @X0 -> 4 `i e ]
@@ -412,8 +413,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _Init_CompareMode ..  ]
 "47
 [; ;melody.c: 47:     unsigned int const melody[] = {659, 523, 587, 392, 1, 392, 587, 659, 523};
-[v F1294 `Cui ~T0 @X0 -> 9 `i s melody ]
-[i F1294
+[v F1295 `Cui ~T0 @X0 -> 9 `i s melody ]
+[i F1295
 :U ..
 -> -> 659 `i `ui
 -> -> 523 `i `ui
@@ -428,8 +429,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 ]
 "48
 [; ;melody.c: 48:     unsigned char const beats[] = {4, 4, 4, 2, 64, 4, 4, 4, 2};
-[v F1295 `Cuc ~T0 @X0 -> 9 `i s beats ]
-[i F1295
+[v F1296 `Cuc ~T0 @X0 -> 9 `i s beats ]
+[i F1296
 :U ..
 -> -> 4 `i `uc
 -> -> 4 `i `uc
@@ -444,14 +445,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 ]
 "49
 [; ;melody.c: 49:     const unsigned int tempo=1800;
-[v F1296 `Cui ~T0 @X0 1 s tempo ]
-[i F1296
+[v F1297 `Cui ~T0 @X0 1 s tempo ]
+[i F1297
 -> -> 1800 `i `ui
 ]
 "51
 [; ;melody.c: 51:     unsigned char MELODY_LENGTH = sizeof(melody) / sizeof(melody[0]);
 [v _MELODY_LENGTH `uc ~T0 @X0 1 a ]
-[e = _MELODY_LENGTH -> / -> # F1294 `ui -> # *U + &U F1294 * -> -> -> 0 `i `ui `ux -> -> # *U &U F1294 `ui `ux `ui `uc ]
+[e = _MELODY_LENGTH -> / -> # F1295 `ui -> # *U + &U F1295 * -> -> -> 0 `i `ui `ux -> -> # *U &U F1295 `ui `ux `ui `uc ]
 "53
 [; ;melody.c: 53:     for (unsigned char i=0; i<MELODY_LENGTH; i++)
 {
@@ -464,7 +465,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "55
 [; ;melody.c: 55:         Generate_PWM(melody[i]);
-[e ( _Generate_PWM (1 -> *U + &U F1294 * -> _i `ux -> -> # *U &U F1294 `ui `ux `ul ]
+[e ( _Generate_PWM (1 -> *U + &U F1295 * -> _i `ux -> -> # *U &U F1295 `ui `ux `ul ]
 "57
 [; ;melody.c: 57:         for(unsigned int j=0;j<(tempo/beats[i])/4;j++)
 {
@@ -486,7 +487,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e ++ _j -> -> 1 `i `ui ]
 [e :U 151 ]
-[e $ < _j / / F1296 -> *U + &U F1295 * -> _i `ux -> -> # *U &U F1295 `ui `ux `ui -> -> 4 `i `ui 148  ]
+[e $ < _j / / F1297 -> *U + &U F1296 * -> _i `ux -> -> # *U &U F1296 `ui `ux `ui -> -> 4 `i `ui 148  ]
 [e :U 149 ]
 }
 "62

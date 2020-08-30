@@ -8,7 +8,7 @@
 #include <xc.h>
 #include "circular_buffer.h"
 
-#define BUFFER_SIZE	30
+#define BUFFER_SIZE	60
 
 unsigned char Frame_Buffer(unsigned char *data, unsigned char mode)
 {

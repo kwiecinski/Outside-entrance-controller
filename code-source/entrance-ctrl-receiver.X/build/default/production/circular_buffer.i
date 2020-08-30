@@ -2386,9 +2386,9 @@ unsigned char Frame_Buffer(unsigned char *data,unsigned char mode);
 
 
 
-unsigned char Frame_Buffer(unsigned char *data,unsigned char mode)
+unsigned char Frame_Buffer(unsigned char *data, unsigned char mode)
 {
- static unsigned char buffer[30];
+ static unsigned char buffer[60];
  static unsigned char read_pointer, write_pointer, write_pointer_mem;
 
  if(mode==1)
@@ -2396,7 +2396,7 @@ unsigned char Frame_Buffer(unsigned char *data,unsigned char mode)
   write_pointer_mem=write_pointer;
   write_pointer++;
 
-  if(write_pointer==30)
+  if(write_pointer==60)
   {
    write_pointer=0;
   }
@@ -2415,7 +2415,7 @@ unsigned char Frame_Buffer(unsigned char *data,unsigned char mode)
   if(write_pointer!=read_pointer)
   {
    read_pointer++;
-   if(read_pointer==30)
+   if(read_pointer==60)
    {
     read_pointer=0;
    }

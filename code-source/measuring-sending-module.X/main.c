@@ -19,9 +19,10 @@ void main(void)
 {
     GlobalInits();
     InterruptConfig();
-
+  
     while(1)
     {
+        CLRWDT();
         LineState();
         CheckGateCloseSwitch();
     }

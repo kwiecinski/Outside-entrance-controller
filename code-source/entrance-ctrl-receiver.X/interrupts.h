@@ -18,7 +18,7 @@
 void Interrupt_Init(void);
 
 volatile unsigned char g_reciver_ccp2_isr_fire_flag, g_display_controll;
-volatile unsigned int g_pwm_freq, g_button_timer, g_generic_timer;
+volatile unsigned int g_pwm_freq, g_button_timer, g_generic_timer, g_com_timeout;
 
 unsigned char g_display_text[4];
 unsigned char g_decimal_point;

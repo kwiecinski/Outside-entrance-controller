@@ -274,10 +274,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _g_reciver_ccp2_isr_fire_flag `Vuc ~T0 @X0 1 e ]
 [v _g_display_controll `Vuc ~T0 @X0 1 e ]
 "21
-[; ;./interrupts.h: 21: volatile unsigned int g_pwm_freq, g_button_timer, g_generic_timer;
+[; ;./interrupts.h: 21: volatile unsigned int g_pwm_freq, g_button_timer, g_generic_timer, g_com_timeout;
 [v _g_pwm_freq `Vui ~T0 @X0 1 e ]
 [v _g_button_timer `Vui ~T0 @X0 1 e ]
 [v _g_generic_timer `Vui ~T0 @X0 1 e ]
+[v _g_com_timeout `Vui ~T0 @X0 1 e ]
 "23
 [; ;./interrupts.h: 23: unsigned char g_display_text[4];
 [v _g_display_text `uc ~T0 @X0 -> 4 `i e ]
@@ -386,148 +387,148 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "40
 [; ;key-handler.c: 40:     static KeyStruct set_rtc;
-[v F1303 `S136 ~T0 @X0 1 s set_rtc ]
+[v F1304 `S136 ~T0 @X0 1 s set_rtc ]
 "41
 [; ;key-handler.c: 41:     static KeyStruct set_time1;
-[v F1304 `S136 ~T0 @X0 1 s set_time1 ]
+[v F1305 `S136 ~T0 @X0 1 s set_time1 ]
 "42
 [; ;key-handler.c: 42:     static KeyStruct set_time2;
-[v F1305 `S136 ~T0 @X0 1 s set_time2 ]
+[v F1306 `S136 ~T0 @X0 1 s set_time2 ]
 "43
 [; ;key-handler.c: 43:     static KeyStruct set_right;
-[v F1306 `S136 ~T0 @X0 1 s set_right ]
+[v F1307 `S136 ~T0 @X0 1 s set_right ]
 "44
 [; ;key-handler.c: 44:     static KeyStruct set_up;
-[v F1307 `S136 ~T0 @X0 1 s set_up ]
+[v F1308 `S136 ~T0 @X0 1 s set_up ]
 "45
 [; ;key-handler.c: 45:     static KeyStruct set_down;
-[v F1308 `S136 ~T0 @X0 1 s set_down ]
+[v F1309 `S136 ~T0 @X0 1 s set_down ]
 "47
 [; ;key-handler.c: 47:     keydef->set_rtc=&set_rtc;
-[e = . *U _keydef 0 &U F1303 ]
+[e = . *U _keydef 0 &U F1304 ]
 "48
 [; ;key-handler.c: 48:     keydef->set_time1=&set_time1;
-[e = . *U _keydef 1 &U F1304 ]
+[e = . *U _keydef 1 &U F1305 ]
 "49
 [; ;key-handler.c: 49:     keydef->set_time2=&set_time2;
-[e = . *U _keydef 2 &U F1305 ]
+[e = . *U _keydef 2 &U F1306 ]
 "50
 [; ;key-handler.c: 50:     keydef->set_right=&set_right;
-[e = . *U _keydef 3 &U F1306 ]
+[e = . *U _keydef 3 &U F1307 ]
 "51
 [; ;key-handler.c: 51:     keydef->set_up=&set_up;
-[e = . *U _keydef 4 &U F1307 ]
+[e = . *U _keydef 4 &U F1308 ]
 "52
 [; ;key-handler.c: 52:     keydef->set_down=&set_down;
-[e = . *U _keydef 5 &U F1308 ]
+[e = . *U _keydef 5 &U F1309 ]
 "54
 [; ;key-handler.c: 54:     set_rtc.pin=0;
-[e = . F1303 1 -> -> 0 `i `uc ]
+[e = . F1304 1 -> -> 0 `i `uc ]
 "55
 [; ;key-handler.c: 55:     set_rtc.port=&PORTB;
-[e = . F1303 3 &U _PORTB ]
+[e = . F1304 3 &U _PORTB ]
 "56
 [; ;key-handler.c: 56:     set_rtc.button_short_function=k_set_rtc_short;
-[e = . F1303 4 -> . `E1204 0 `uc ]
+[e = . F1304 4 -> . `E1204 0 `uc ]
 "57
 [; ;key-handler.c: 57:     set_rtc.button_long_function=k_set_rtc_long;
-[e = . F1303 5 -> . `E1204 1 `uc ]
+[e = . F1304 5 -> . `E1204 1 `uc ]
 "58
 [; ;key-handler.c: 58:     set_rtc.klock=0;
-[e = . F1303 0 -> -> 0 `i `uc ]
+[e = . F1304 0 -> -> 0 `i `uc ]
 "59
 [; ;key-handler.c: 59:     set_rtc.lock_long_press=0;
-[e = . F1303 2 -> -> 0 `i `uc ]
+[e = . F1304 2 -> -> 0 `i `uc ]
 "61
 [; ;key-handler.c: 61:     set_time1.pin=7;
-[e = . F1304 1 -> -> 7 `i `uc ]
+[e = . F1305 1 -> -> 7 `i `uc ]
 "62
 [; ;key-handler.c: 62:     set_time1.port=&PORTC;
-[e = . F1304 3 &U _PORTC ]
+[e = . F1305 3 &U _PORTC ]
 "63
 [; ;key-handler.c: 63:     set_time1.button_short_function=k_set_time1_short;
-[e = . F1304 4 -> . `E1204 2 `uc ]
+[e = . F1305 4 -> . `E1204 2 `uc ]
 "64
 [; ;key-handler.c: 64:     set_time1.button_long_function=k_set_time1_long;
-[e = . F1304 5 -> . `E1204 3 `uc ]
+[e = . F1305 5 -> . `E1204 3 `uc ]
 "65
 [; ;key-handler.c: 65:     set_time1.klock=0;
-[e = . F1304 0 -> -> 0 `i `uc ]
+[e = . F1305 0 -> -> 0 `i `uc ]
 "66
 [; ;key-handler.c: 66:     set_time1.lock_long_press=0;
-[e = . F1304 2 -> -> 0 `i `uc ]
+[e = . F1305 2 -> -> 0 `i `uc ]
 "68
 [; ;key-handler.c: 68:     set_time2.pin=5;
-[e = . F1305 1 -> -> 5 `i `uc ]
+[e = . F1306 1 -> -> 5 `i `uc ]
 "69
 [; ;key-handler.c: 69:     set_time2.port=&PORTC;
-[e = . F1305 3 &U _PORTC ]
+[e = . F1306 3 &U _PORTC ]
 "70
 [; ;key-handler.c: 70:     set_time2.button_short_function=k_set_time2_short;
-[e = . F1305 4 -> . `E1204 4 `uc ]
+[e = . F1306 4 -> . `E1204 4 `uc ]
 "71
 [; ;key-handler.c: 71:     set_time2.button_long_function=k_set_time2_long;
-[e = . F1305 5 -> . `E1204 5 `uc ]
+[e = . F1306 5 -> . `E1204 5 `uc ]
 "72
 [; ;key-handler.c: 72:     set_time2.klock=0;
-[e = . F1305 0 -> -> 0 `i `uc ]
+[e = . F1306 0 -> -> 0 `i `uc ]
 "73
 [; ;key-handler.c: 73:     set_time2.lock_long_press=0;
-[e = . F1305 2 -> -> 0 `i `uc ]
+[e = . F1306 2 -> -> 0 `i `uc ]
 "75
 [; ;key-handler.c: 75:     set_right.pin=1;
-[e = . F1306 1 -> -> 1 `i `uc ]
+[e = . F1307 1 -> -> 1 `i `uc ]
 "76
 [; ;key-handler.c: 76:     set_right.port=&PORTB;
-[e = . F1306 3 &U _PORTB ]
+[e = . F1307 3 &U _PORTB ]
 "77
 [; ;key-handler.c: 77:     set_right.button_short_function= k_set_right_short;
-[e = . F1306 4 -> . `E1204 6 `uc ]
+[e = . F1307 4 -> . `E1204 6 `uc ]
 "78
 [; ;key-handler.c: 78:     set_right.button_long_function=k_set_right_long;
-[e = . F1306 5 -> . `E1204 7 `uc ]
+[e = . F1307 5 -> . `E1204 7 `uc ]
 "79
 [; ;key-handler.c: 79:     set_right.klock=0;
-[e = . F1306 0 -> -> 0 `i `uc ]
+[e = . F1307 0 -> -> 0 `i `uc ]
 "80
 [; ;key-handler.c: 80:     set_right.lock_long_press=0;
-[e = . F1306 2 -> -> 0 `i `uc ]
+[e = . F1307 2 -> -> 0 `i `uc ]
 "82
 [; ;key-handler.c: 82:     set_up.pin=3;
-[e = . F1307 1 -> -> 3 `i `uc ]
+[e = . F1308 1 -> -> 3 `i `uc ]
 "83
 [; ;key-handler.c: 83:     set_up.port=&PORTB;
-[e = . F1307 3 &U _PORTB ]
+[e = . F1308 3 &U _PORTB ]
 "84
 [; ;key-handler.c: 84:     set_up.button_short_function=k_set_up_short;
-[e = . F1307 4 -> . `E1204 8 `uc ]
+[e = . F1308 4 -> . `E1204 8 `uc ]
 "85
 [; ;key-handler.c: 85:     set_up.button_long_function=k_set_up_long;
-[e = . F1307 5 -> . `E1204 9 `uc ]
+[e = . F1308 5 -> . `E1204 9 `uc ]
 "86
 [; ;key-handler.c: 86:     set_up.klock=0;
-[e = . F1307 0 -> -> 0 `i `uc ]
+[e = . F1308 0 -> -> 0 `i `uc ]
 "87
 [; ;key-handler.c: 87:     set_up.lock_long_press=0;
-[e = . F1307 2 -> -> 0 `i `uc ]
+[e = . F1308 2 -> -> 0 `i `uc ]
 "89
 [; ;key-handler.c: 89:     set_down.pin=2;
-[e = . F1308 1 -> -> 2 `i `uc ]
+[e = . F1309 1 -> -> 2 `i `uc ]
 "90
 [; ;key-handler.c: 90:     set_down.port=&PORTB;
-[e = . F1308 3 &U _PORTB ]
+[e = . F1309 3 &U _PORTB ]
 "91
 [; ;key-handler.c: 91:     set_down.button_short_function=k_set_down_short;
-[e = . F1308 4 -> . `E1204 10 `uc ]
+[e = . F1309 4 -> . `E1204 10 `uc ]
 "92
 [; ;key-handler.c: 92:     set_down.button_long_function=k_set_down_long;
-[e = . F1308 5 -> . `E1204 11 `uc ]
+[e = . F1309 5 -> . `E1204 11 `uc ]
 "93
 [; ;key-handler.c: 93:     set_down.klock=0;
-[e = . F1308 0 -> -> 0 `i `uc ]
+[e = . F1309 0 -> -> 0 `i `uc ]
 "94
 [; ;key-handler.c: 94:     set_down.lock_long_press=0;
-[e = . F1308 2 -> -> 0 `i `uc ]
+[e = . F1309 2 -> -> 0 `i `uc ]
 "95
 [; ;key-handler.c: 95: }
 [e :UE 147 ]

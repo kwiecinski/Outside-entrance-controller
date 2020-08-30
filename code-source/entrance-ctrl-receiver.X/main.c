@@ -1,8 +1,8 @@
 /* 
- * 
- * 
- *
- * 
+ * FILE: main.c
+ * DESCRIPTION: Main program body
+ * AUTHOR: kwiecinski
+ * DATE: 03.2020
  */
 
 #include <xc.h>

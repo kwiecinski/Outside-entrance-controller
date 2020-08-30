@@ -1,3 +1,13 @@
+/* 
+ * FILE: mmanchester_decode.c
+ * DESCRIPTION:
+ * - Decode manchester communication
+ * - Decode frame, extract data
+ * - Event logic
+ * AUTHOR: kwiecinski
+ * DATE: 03.2020
+ */
+
 #include <xc.h>
 #include "main.h"
 #include "manchester_decode.h"
@@ -145,12 +155,11 @@ void Manchester_Decode(unsigned char *edge_dir, unsigned int *pulse_time)
 }//void ManchesterDecode
 
 
-///////////////////////////////////////////////////////////////////////////////
-///
-/// 
-/// 
-/// 
-///
+//////////////////////////////////////////////////////////////////////////////
+//
+// PURPOSE: Extract data from frame
+// INPUTS: 
+//
 ///////////////////////////////////////////////////////////////////////////////
 
 unsigned int Frame_Decode(DataStruct *DataRCV)
@@ -290,13 +299,15 @@ void Check_RCV_Data(DataStruct *DataRCV, TimeStruct *time,
         * ended and the received data can be processed
         */
         
+        g_com_timeout=23000;               //~6s
+        
         if(PORTCbits.RC1 == 0)          
         { 
             g_generic_timer=80;
             
         }
         //receiving completed, now data processing
-        if(g_generic_timer==0)
+        if(g_generic_timer==0 || g_com_timeout==0)
         {
             while(Frame_Decode(DataRCV)!=NO_DATA)
             {
@@ -324,48 +335,28 @@ void Check_RCV_Data(DataStruct *DataRCV, TimeStruct *time,
 
 unsigned char Check_Time_Date(TimeStruct *time, MenuParamPonterStruct *time_limit)
 {
+
     unsigned int time_limit_min_1, time_limit_min_2, current_time_min;
     
     PCF8583_Read_Time_Date(time);
     
-    if(time->weekday==saturday || time->weekday==sunday)
+
+    time_limit_min_1=time_limit->time_limit_work_day_1_ptr->param*60+
+                    time_limit->time_limit_work_day_1_ptr->param1;
+
+    time_limit_min_2=time_limit->time_limit_work_day_2_ptr->param*60+
+                    time_limit->time_limit_work_day_2_ptr->param1;
+
+    current_time_min=time->hours*60+time->minutes;
+
+    if(current_time_min<=time_limit_min_1 && current_time_min>=time_limit_min_2)
     {
-        time_limit_min_1=time_limit->time_limit_free_day_1_ptr->param*60+
-                         time_limit->time_limit_free_day_1_ptr->param1;
-        time_limit_min_2=time_limit->time_limit_free_day_2_ptr->param*60+
-                         time_limit->time_limit_free_day_2_ptr->param1;
-        current_time_min=time->hours*60+time->minutes;
-        
-        
-        if(time_limit_min_1>current_time_min && 
-           time_limit_min_2>time_limit_min_1)
-        {
-            return 1;
-        }else
-        {
-            return 0;
-        } 
-        
+        return 1;
     }else
     {
-        time_limit_min_1=time_limit->time_limit_work_day_1_ptr->param*60+
-                         time_limit->time_limit_free_day_1_ptr->param1;
-        
-        time_limit_min_2=time_limit->time_limit_work_day_2_ptr->param*60+
-                         time_limit->time_limit_free_day_2_ptr->param1;
-        
-        current_time_min=time->hours*60+time->minutes;
-
-        if(time_limit_min_1>current_time_min && 
-           time_limit_min_2>time_limit_min_1)
-        {
-            return 1;
-        }else
-        {
-            return 0;
-        }
-        
-        
+        return 0;
     }
+        
+        
 }
  

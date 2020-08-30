@@ -11,16 +11,21 @@
 
 void InterruptConfig(void)
 {
-    //Timer0 Config PIC16f819 p.54
+    //WDT(Timer0) Config PIC16f819 p.54
     OPTION_REGbits.T0CS=0;      //Internal instruction cycle clock (FOSC/4)
-    OPTION_REGbits.PSA=0;       //Prescaler is assigned to the Timer0 module
-    OPTION_REGbits.PS=0b010;    //Prescaler Rate Select bits: 1:8
-    INTCONbits.TMR0IE=1;        //Enable TMR0
-    
-    
+    OPTION_REGbits.PSA=1;       //Prescaler is assigned to the WDT module
+    OPTION_REGbits.PS=0b111;    //Prescaler Rate Select bits: 1:64 (WDT) (reset ~2s)
+      
     //Timer1 Config
     T1CONbits.TMR1CS=0;   //Timer1 uses internal oscillator Fosc/4
     T1CONbits.T1CKPS=0;   //Prescaler ratio: 1:1
+    
+    //Timer2 Config
+    T2CONbits.TMR2ON=1;
+    T2CONbits.TOUTPS=0b0001;    //Postscale 1:2
+    T2CONbits.T2CKPS=0b01;      //Prescale 1:4
+    PIE1bits.TMR2IE=1;          
+           
     
     //Compare mode, generate software interrupt on match (CCP pin unaffected)
     CCP1CONbits.CCP1M=0b1010;
@@ -45,14 +50,13 @@ ISR(void)
     //
     //////////////////////////////////////////////////////////////////////////
 
-    //Timer0 Interrupt
-    if (TMR0IE && TMR0IF)
+    //Timer2 Interrupt
+    if (TMR2IE && TMR2IF)
     {
-    
         if(g_key_timer>0)
         {
            g_key_timer--; 
         }
-        TMR0IF=0;
+         TMR2IF=0;
     }
 }

@@ -24,7 +24,9 @@ void WaitManchesterT(void)
 {
     PIR1bits.CCP1IF=0;
     TMR1=0;
-    while(PIR1bits.CCP1IF==0);
+    while(PIR1bits.CCP1IF==0)
+    {
+    }
     
 }
 
@@ -63,12 +65,15 @@ void ManchesteEncode(unsigned char *data_to_send, unsigned char data_lenght)
     MANCH_HIGH;
 }
 
+#define DIODE_ON   PORTAbits.RA6=1
+#define DIODE_OFF  PORTAbits.RA6=0
+
 void SendFrame(unsigned char type)
 {
     //adding to DATA_SIZE number of added preamble
     unsigned char data_table[DATA_SIZE+4]; 
    
-    
+
 	data_table[0]=PREAMBLE;
     data_table[1]=PREAMBLE;
     data_table[2]=PREAMBLE;
@@ -94,20 +99,22 @@ void SendFrame(unsigned char type)
     
     //counting CRC val strarting from 5 array element (data_table[5])
     //ending on 6 array element (second CRC16 function parameter is 2)
-     unsigned int crc_val;
+    
+    unsigned int crc_val;
    	crc_val=CRC16(&data_table[5],2);   
    	data_table[7]=crc_val>>8;           //CRC first 8 bit				
 	data_table[8]=crc_val & 0x00FF;     //CRC second 8bit
 	data_table[9]='&';
     
-    //disable timer0 to not affect timer1
+    //disable timer2 to not affect timer1
     T1CONbits.TMR1ON=1;
-    INTCONbits.TMR0IE=0;
+    PIE1bits.TMR2IE=0;
     TRANSCIEVER_ON;
     //sending the same data 3 times to minimize frame loss
     unsigned char i,j;
-    for(i=0;i<3;i++)        
+    for(i=0;i<10;i++)        
     {
+        CLRWDT();
         ManchesteEncode(&data_table[0], DATA_SIZE+4);
         //little time interval between send (grater than 2*ManchesterT)
         //to prevent frame overlap
@@ -120,5 +127,6 @@ void SendFrame(unsigned char type)
     
     TRANSCIEVER_OFF;
     T1CONbits.TMR1ON=0;
-    INTCONbits.TMR0IE=1;
+    PIE1bits.TMR2IE=1;
+    
 }
